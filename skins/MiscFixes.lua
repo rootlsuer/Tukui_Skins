@@ -15,6 +15,8 @@ local MiscFixes = CreateFrame("Frame")
 				tComboEnergyBar:SetTemplate("Transparent")
 			end
 		end
+		self:UnregisterEvent("PLAYER_REGEN_DISABLED")
+		self:UnregisterEvent("PLAYER_REGEN_ENABLED")
 	else
 	if TukuiMinimap then Minimap:SetMaskTexture(c["media"].blank) end
 	if U.elv then
@@ -122,118 +124,6 @@ end
 function DisableLootIcons()
 	ChatFrame_RemoveMessageEventFilter("CHAT_MSG_LOOT", AddLootIcons)
 end
-
-
-----------------------------------------
--- Credit to PetBattleQualityGlow addon
-----------------------------------------
-local _
-local function GetPetDumpList(targetID)
-	local returned = nil
-
-	for i=1,C_PetJournal.GetNumPets(false) do 
-		id,speciesID,_,_,_,_,_,n,_,_,_,d=C_PetJournal.GetPetInfoByIndex(i)
-		
-		if speciesID == targetID then
-			if returned == nil then
-				returned = C_PetJournal.GetBattlePetLink(id)
-			else
-				returned = returned..", "..C_PetJournal.GetBattlePetLink(id)
-			end
-		end
-	end
-	
-	return returned
-end
-
-local function GetZoneDumpList()
-	local returned = nil
-	local x={}
-	
-	for i=1,C_PetJournal.GetNumPets(false) do 
-		id,speciesID,_,_,_,_,_,n,_,_,_,d=C_PetJournal.GetPetInfoByIndex(i)
-		
-		if string.find(d, GetZoneText()) and not x[n] then
-			if id>0 then
-				if returned == nil then returned = C_PetJournal.GetBattlePetLink(id) else returned = returned..", "..C_PetJournal.GetBattlePetLink(id) end
-			else
-				if returned == nil then returned = n else returned = returned..", "..n end
-				x[n]=1
-			end
-		end
-	end
-	
-	return returned
-end
-
-local function PetDump()
-	if not U.CheckOption('PetBattles') then return end
-	local isWildPetBattle = (C_PetBattles.IsInBattle() and C_PetBattles.IsWildBattle())
-
-	if (isWildPetBattle) then 
-		local activePet = C_PetBattles.GetActivePet(LE_BATTLE_PET_ENEMY)
-		local targetID = C_PetBattles.GetPetSpeciesID(LE_BATTLE_PET_ENEMY, activePet)
-		
-		local ownedDump = GetPetDumpList(targetID)
-		if GetPetDumpList(targetID) ~= ownedDump then local ownedDump = GetPetDumpList(targetID) end
-		if GetPetDumpList(targetID) == ownedDump then
-			if dumpedonce == nil then
-				if ownedDump == nil then
-					RaidNotice_AddMessage(RaidWarningFrame, "You do not own this pet.", ChatTypeInfo["RAID_WARNING"])
-					dumpedonce = true
-				else
-					RaidNotice_AddMessage(RaidWarningFrame, "Owned: "..ownedDump, ChatTypeInfo["RAID_WARNING"])
-					dumpedonce = true
-				end
-			end
-		else
-		end
-	else
-		local zoneDump = GetZoneDumpList()
-		if zoneDump ~= nil then print("Zone: "..GetZoneDumpList()) end
-	end
-end
-
-function KyleuiPetBattleGlow_Update(self)
-	if not U.CheckOption('PetBattles') then return end
-	if (not self.petOwner) or (not self.petIndex) then return end
-
-	local isTooltip = false
-	if (self:GetName() == "PetBattlePrimaryUnitTooltip") then isTooltip = true end
-
-	local nQuality = C_PetBattles.GetBreedQuality(self.petOwner, self.petIndex) - 1
-	local r, g, b, hex = GetItemQualityColor(nQuality)
-	
-	if self.petOwner == LE_BATTLE_PET_ENEMY then
-		if self.IconBackdrop then
-			self.IconBackdrop:SetBackdropBorderColor(r,g,b)
-			self.IconBackdrop:SetFrameLevel(2)
-		else
-			self:SetBackdropBorderColor(r,g,b)
-		end
-	end
-	
-	if (self.ActualHealthBar) and (not isTooltip) then
-		if (self.petIndex ~= 1) then
-			if (self.petIndex ~= C_PetBattles.GetActivePet(self.petOwner)) then
-				self.ActualHealthBar:SetVertexColor(r, g, b)
-			else
-				self.ActualHealthBar:SetVertexColor(0, 1, 0)
-			end
-		end
-	end
-end
-local PetBattlePetDumpChanger = CreateFrame("Frame")
-PetBattlePetDumpChanger:RegisterEvent("PET_BATTLE_PET_CHANGED")
-PetBattlePetDumpChanger:SetScript("OnEvent", PetDump)
-
-local PetBattlePetDumpReset = CreateFrame("Frame")
-PetBattlePetDumpReset:RegisterEvent("PET_BATTLE_CLOSE")
-PetBattlePetDumpReset:SetScript("OnEvent", function() dumpedonce = nil end)
-
-hooksecurefunc("PetBattleFrame_Display", PetDump)
-hooksecurefunc("PetBattleUnitFrame_UpdateDisplay", KyleuiPetBattleGlow_Update)
-
 
 --Minimap Button Skinning thanks to Sinaris
 

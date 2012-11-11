@@ -64,7 +64,7 @@ local function AuctioneerSkin(self,event)
 	if AuctionFrameTabUtilSearchUi then U.SkinTab(AuctionFrameTabUtilSearchUi) end
 	if AuctionFrameTabUtilSimple then U.SkinTab(AuctionFrameTabUtilSimple) end
 	if AuctionFrameTabUtilBeanCounter then U.SkinTab(AuctionFrameTabUtilBeanCounter) end
-	U.UnregisterEvent(name,self,"AUCTION_HOUSE_SHOW")
+	self:UnregisterEvent("AUCTION_HOUSE_SHOW")
 end
 
 U.RegisterSkin(name,AuctioneerSkin,'AUCTION_HOUSE_SHOW')

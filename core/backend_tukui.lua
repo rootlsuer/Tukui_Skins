@@ -184,7 +184,8 @@ end)
 local SkinOptions = CreateFrame("Frame", "SkinOptions", UIParent)
 	SkinOptions:RegisterEvent("PLAYER_ENTERING_WORLD")
 	SkinOptions:SetScript("OnEvent", function(self)
-	if IsAddOnLoaded("Tukui") then UIFont = [[Interface\AddOns\Tukui\medias\fonts\normal_font.ttf]] UIFontSize = 12 end
+	UIFont = c["media"].font
+	UIFontSize = 12
 	SkinOptions:Hide()
 	SkinOptions:SetTemplate("Transparent")
 	SkinOptions:Point("CENTER", UIParent, "CENTER", 0, 0)
@@ -438,21 +439,12 @@ local SkinOptions = CreateFrame("Frame", "SkinOptions", UIParent)
 	end
 
 	local Skins2 = {
-		["LootConfirmer"] = {
-			["buttonText"] = "Loot Confirm",
-		},
 		["BigButtons"] = {
 			["buttonText"] = "Big Buttons",
-		},
-		["UISkinMinimap"] = {
-			["buttonText"] = "Square Minimap Buttons",
 		},
 		["DBMSkinHalf"] = {
 			["buttonText"] = "DBM Half-Bar Skin",
 			["addon"] = "DBM-Core",
-		},
-		["PetBattles"] = {
-			["buttonText"] = "Pet Battle Dump/Glow",
 		},
 		["LootIconsChat"] = {
 			["buttonText"] = "Loot Icons in Loot Window",

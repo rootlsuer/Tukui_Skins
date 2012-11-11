@@ -14,13 +14,10 @@
 	<Script file="BGDefender.lua"/>
 	<Script file="BigButtons.lua"/>
 	<Script file="BPT.lua"/>
-	<Script file="BigWigs-ElvUI.lua"/>
-	<Script file="BigWigs-Tukui.lua"/>
+	<Script file="BigWigs.lua"/>
 	<Script file="BuyEmAll.lua"/>
-	<Script file="CLCInfo.lua"/>
 	<Script file="CLCProt.lua"/>
 	<Script file="CLCRet.lua"/>
-	<Script file="Calendar.lua"/>
 	<Script file="ChocolateBar.lua"/>
 	<Script file="Clique.lua"/>
 	<Script file="DBM.lua"/>
