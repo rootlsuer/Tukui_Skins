@@ -1,9 +1,6 @@
-if not IsAddOnLoaded("RaidInviteOrganizer") then return end
 local U = unpack(select(2,...))
 local name = "RaidInviteOrganizerSkin"
 local function SkinRIO(self)
-	local s = U.s
-	local c = U.c
 	
 	U.SkinFrame(RIO_MainFrame)
 	U.SkinFrame(RIO_GuildMemberFrame)

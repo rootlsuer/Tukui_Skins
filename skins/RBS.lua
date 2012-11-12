@@ -1,9 +1,6 @@
-if not IsAddOnLoaded("RaidBuffStatus") then return end
 local U = unpack(select(2,...))
 local name = "RaidBuffStatusSkin"
 local function SkinRBS(self)
-	local s = U.s
-	local c = U.c
 
 	U.SkinFrame(RBSFrame)
 	U.SkinButton(RBSFrameScanButton)

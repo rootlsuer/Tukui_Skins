@@ -1,6 +1,6 @@
-if not IsAddOnLoaded("MyRolePlay") then return end
 local U = unpack(select(2,...))
-
+local name = "MyRolePlaySkin"
+local function SkinMyRolePlay(self)
 hooksecurefunc(mrp, "CreateBrowseFrame", function()
 	if (U.CheckOption("MyRolePlaySkin")) then 
 		local bg = CreateFrame("Frame", nil, MyRolePlayBrowseFrame)
@@ -117,3 +117,7 @@ end
 
 hooksecurefunc(mrp, "CreateCFpfield", reskinHeader)
 hooksecurefunc(mrp, "CreateBFpfield", reskinHeader)
+
+end
+
+U.RegisterSkin(name,SkinMyRolePlay)

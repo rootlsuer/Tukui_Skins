@@ -1,4 +1,3 @@
-if not IsAddOnLoaded("MageNuggets") then return end
 local U = unpack(select(2,...))
 local name = "MageNuggetsSkin"
 local function SkinMageNuggets(self)
@@ -179,9 +178,9 @@ local function SkinMageNuggets(self)
 		MageNugCooldownFrame_Slider1,
 	}
 	
-	for _,s in pairs(sliders) do
+--[[	for _,s in pairs(sliders) do
 		U.SkinSliderFrame(s)
-	end
+	end]]
 	
 	-- Edit Boxes
 	local editbox = {

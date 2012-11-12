@@ -1,6 +1,4 @@
-if not IsAddOnLoaded("Reforgenator") then return end
 local U = unpack(select(2,...))
-local c = U.c
 local name = "ReforgenatorSkin"
 local function SkinReforgenator(self)
 	U.SkinFrame(ReforgenatorPanel)

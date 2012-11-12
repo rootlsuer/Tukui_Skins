@@ -1,4 +1,3 @@
-if not IsAddOnLoaded("SearingPlasmaTracker") then return end
 local U = unpack(select(2,...))
 local name = "SearingPlasmaTrackerSkin"
 local function SkinSearingPlasmaTracker(self)

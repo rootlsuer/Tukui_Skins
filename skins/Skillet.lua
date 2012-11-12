@@ -1,5 +1,4 @@
-﻿if not IsAddOnLoaded("Skillet") then return end
-local U = unpack(select(2,...))
+﻿local U = unpack(select(2,...))
 local s = U.s
 local c = U.c
 local Skillet = _G.Skillet

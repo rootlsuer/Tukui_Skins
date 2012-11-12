@@ -1,4 +1,3 @@
-if not IsAddOnLoaded("LootCouncil_Lite") then return end
 local U = unpack(select(2,...))
 local name = "LootCouncilLiteSkin"
 local function SkinLootCouncilLite(self)

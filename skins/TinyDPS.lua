@@ -1,4 +1,3 @@
-if not IsAddOnLoaded("TinyDPS") then return end
 local U = unpack(select(2,...))
 local name = "TinyDPSSkin"
 local function SkinTinyDps(self)

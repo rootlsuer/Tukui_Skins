@@ -1,5 +1,4 @@
-﻿if not IsAddOnLoaded("BGDefender") then return end
-local U = unpack(select(2,...))
+﻿local U = unpack(select(2,...))
 local function OnEnter11(Self)
   GameTooltip:SetOwner(Self, "ANCHOR_CURSOR")
   GameTooltip:AddLine("Lock or Make Moveable", 1, 1, 1)

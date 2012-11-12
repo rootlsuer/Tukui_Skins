@@ -1,9 +1,7 @@
-if not IsAddOnLoaded("ArkInventory") then return end
 local U = unpack(select(2,...))
-local ArkInventory = LibStub("AceAddon-3.0"):GetAddon("ArkInventory")
-
 local name = "ArkInventorySkin"
 local function SkinArkInventory(self)
+local ArkInventory = LibStub("AceAddon-3.0"):GetAddon("ArkInventory")
 	local _G = _G
 	local s = U.s
 	local c = U.c

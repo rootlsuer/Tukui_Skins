@@ -1,5 +1,4 @@
-﻿if not IsAddOnLoaded("ChocolateBar") then return end
-local U = unpack(select(2,...))
+﻿local U = unpack(select(2,...))
 local name = "ChocolateBarSkin"
 local function SkinCB(self)
 		for i = 1, 20 do   	

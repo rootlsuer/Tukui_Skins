@@ -1,4 +1,3 @@
-if not IsAddOnLoaded("Postal") then return end
 local U = unpack(select(2,...))
 local name = "PostalSkin"
 local function SkinPostal(self)

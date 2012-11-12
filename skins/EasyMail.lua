@@ -1,5 +1,4 @@
-﻿if not IsAddOnLoaded("EasyMail") then return end
-local U = unpack(select(2,...))
+﻿local U = unpack(select(2,...))
 local name = "EasyMailSkin"
 local function SkinEasyMail(self,event)
 	if event == "PLAYER_ENTERING_WORLD" then return end

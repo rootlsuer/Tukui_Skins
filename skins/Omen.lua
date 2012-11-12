@@ -1,4 +1,3 @@
-if not IsAddOnLoaded("Omen") then return end
 local U = unpack(select(2,...))
 
 function EmbedOmen()

@@ -1,4 +1,3 @@
-if not IsAddOnLoaded("SexyCooldown2") then return end
 local U = unpack(select(2,...))
 local name = "SexyCooldownSkin"
 local scd = SexyCooldown2

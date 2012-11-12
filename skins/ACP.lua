@@ -1,4 +1,3 @@
-if not IsAddOnLoaded("ACP") then return end
 local U = unpack(select(2,...))
 local name = "ACPSkin"
 local function cbResize(self, event, ...)

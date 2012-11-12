@@ -1,5 +1,4 @@
-﻿if not(IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("Titan") then return end
-local U = unpack(select(2,...))
+﻿local U = unpack(select(2,...))
 local function SetEnabled(self, event, ...) 
 		if TPBar2and3Position == nil then
 			x = WorldFrame:GetWidth()/5 

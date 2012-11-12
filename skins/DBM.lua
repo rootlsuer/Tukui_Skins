@@ -3,7 +3,6 @@
 	Modified: Elv, Azilroka
 	All rights reserved.
 ]]--
-if not IsAddOnLoaded("DBM-Core") then return end
 local U = unpack(select(2,...))
 local croprwicons = true			-- crops blizz shitty borders from icons in RaidWarning messages
 local rwiconsize = 18			-- RaidWarning icon size, because 12 is small for me. Works only if croprwicons=true

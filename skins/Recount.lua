@@ -1,4 +1,3 @@
-if not IsAddOnLoaded("Recount") then return end
 local U = unpack(select(2,...))
 local Recount = _G.Recount
 local s = U.s

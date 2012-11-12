@@ -1,4 +1,3 @@
-if not IsAddOnLoaded("Archy") then return end
 local U = unpack(select(2,...))
 local name = "ArchySkin"
 

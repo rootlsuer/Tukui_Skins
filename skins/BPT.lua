@@ -1,4 +1,3 @@
-if not IsAddOnLoaded("BalancePowerTracker") then return end
 local U = unpack(select(2,...))
 local name = "BPTSkin"
 local function SkinBPT(self)

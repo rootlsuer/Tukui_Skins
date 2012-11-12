@@ -1,4 +1,3 @@
-if not IsAddOnLoaded("Clique") then return end
 local U = unpack(select(2,...))
 local name = "CliqueSkin"
 local function SkinClique(self)

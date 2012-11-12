@@ -1,4 +1,3 @@
-if not IsAddOnLoaded("Auctionator") then return end
 local U = unpack(select(2,...))
 local name = "AuctionatorSkin"
 local function AtrSkin(self,event)

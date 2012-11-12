@@ -1,4 +1,3 @@
-if not IsAddOnLoaded("BuyEmAll") then return end
 local U = unpack(select(2,...))
 local name = "BuyEmAllSkin"
 local function SkinBuyEmAll(self)

@@ -5,8 +5,6 @@
 
 local T, C, L = unpack(Tukui)
 
-if not IsAddOnLoaded("BigWigs") then return end
-
 local buttonsize = 19
 
 -- init some tables to store backgrounds
@@ -164,7 +162,6 @@ end
 
 f:RegisterEvent("ADDON_LOADED")
 f:SetScript("OnEvent", function(self, event, addon)
-	if IsAddOnLoaded("Tukui_BigWigs") then return end
 	if addon == "BigWigs_Plugins" then
 		RegisterStyle()
 		local profile = BigWigs3DB["profileKeys"][T.myname.." - "..T.myrealm]

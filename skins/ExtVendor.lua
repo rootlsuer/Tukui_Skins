@@ -1,4 +1,3 @@
-if not IsAddOnLoaded("ExtVendor") then return end
 local U = unpack(select(2,...))
 local name = "ExtVendorSkin"
 local function SkinExtVendor(self)

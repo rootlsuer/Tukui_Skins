@@ -1,5 +1,3 @@
-if not IsAddOnLoaded("Incoming") then return end
-
 local U = unpack(select(2,...))
 
 local name = 'IncomingSkin'

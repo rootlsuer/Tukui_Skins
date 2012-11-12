@@ -1,5 +1,3 @@
-LoadAddOn("ZygorGuidesViewer")
-if not IsAddOnLoaded("ZygorGuidesViewer") then return end
 local U = unpack(select(2,...))
 local name = "ZygorSkin"
 local function SkinZygor(self)

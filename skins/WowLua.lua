@@ -1,7 +1,6 @@
 local U = unpack(select(2,...))
-LoadAddOn("WowLua")
-if not IsAddOnLoaded("WowLua") then return end
 
+local name = "WowLuaSkin"
 local function SkinWowLua(self)
 	U.SkinFrame(WowLuaFrame)
 	WowLuaFrameLineNumScrollFrame:StripTextures(True)

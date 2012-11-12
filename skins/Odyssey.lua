@@ -1,4 +1,3 @@
-if not IsAddOnLoaded("Odyssey") then return end
 local U = unpack(select(2,...))
 local name = "OdysseySkin"
 local function SkinOdyssey(self)

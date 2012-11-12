@@ -1,4 +1,3 @@
-if not IsAddOnLoaded("EnergyWatch") then return end
 local U = unpack(select(2,...))
 local name = "EnergyWatchSkin"
 local function SkinEnergyWatch(self)

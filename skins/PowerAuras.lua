@@ -1,4 +1,3 @@
-if not IsAddOnLoaded("PowerAuras") then return end
 local U = unpack(select(2,...))
 LoadAddOn("PowerAurasOptions")
 local s = U.s
@@ -219,10 +218,3 @@ local function SkinPowerAuras(self)
 end
 
 U.RegisterSkin(name,SkinPowerAuras)
-
---	U.SkinFrame(PowerAurasGUIBrowser)
---	U.SkinFrame(PowerAurasEditor)
---	U.SkinCloseButton(PowerAurasGUIBrowser.CloseButton)
---	U.SkinCloseButton(PowerAurasEditor.CloseButton)
-
---end)

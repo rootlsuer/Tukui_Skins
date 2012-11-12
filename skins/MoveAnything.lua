@@ -1,4 +1,3 @@
-if not IsAddOnLoaded("MoveAnything") then return end
 local U = unpack(select(2,...))
 local name = "MoveAnythingSkin"
 local function SkinMoveAnything(self)

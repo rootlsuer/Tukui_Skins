@@ -1,4 +1,3 @@
-if not IsAddOnLoaded("TellMeWhen") then return end
 local U = unpack(select(2,...))
 local s = U.s
 local c = U.c

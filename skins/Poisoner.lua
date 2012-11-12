@@ -1,9 +1,6 @@
-if not IsAddOnLoaded("Poisoner") then return end
 local U = unpack(select(2,...))
 local name = "PoisonerSkin"
 local function SkinPoisoner(self)
-	local s = U.s
-	local c = U.c
 
 	U.SkinFrame(PoisonerOptions_SettingsFrame)
 	U.SkinButton(PoisonerOptions_MenuSortingButton)

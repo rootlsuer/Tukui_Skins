@@ -1,4 +1,3 @@
-if not IsAddOnLoaded("Ara_Broker_Guild_Friends") then return end
 local U = unpack(select(2,...))
 
 local function SkinAraGF(self, event, ...)
