@@ -12,7 +12,6 @@
 	<Script file="Auctioneer.lua"/>
 	<Script file="Bagnon.lua"/>
 	<Script file="BGDefender.lua"/>
-	<Script file="BigButtons.lua"/>
 	<Script file="BPT.lua"/>
 	<Script file="BigWigs.lua"/>
 	<Script file="BuyEmAll.lua"/>
