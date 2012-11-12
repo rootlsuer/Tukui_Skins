@@ -55,6 +55,7 @@
 	<Script file="SpineCounter.lua"/>
 	<Script file="Spy.lua"/>
 	<Script file="Swatter.lua"/>
+	<Script file="tCombo.lua"/>
 	<Script file="TellMeWhen.lua"/>
 	<Script file="TinyDPS.lua"/>
 	<Script file="TitanPanel.lua"/>

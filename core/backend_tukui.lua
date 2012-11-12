@@ -159,6 +159,7 @@ local DefaultSetSkin = CreateFrame("Frame")
 	if(UISkinOptions.ZygorSkin == nil) then UISkinOptions.ZygorSkin = "Enabled" end
 	if(UISkinOptions.BagnonSkin == nil) then UISkinOptions.BagnonSkin = "Enabled" end
 	if(UISkinOptions.TomTomSkin == nil) then UISkinOptions.TomTomSkin = "Enabled" end
+	if(UISkinOptions.tComboSkin == nil) then UISkinOptions.tComboSkin = "Enabled" end
 	if(UISkinOptions.VengeanceStatusSkin == nil) then UISkinOptions.VengeanceStatusSkin = "Enabled" end
 	if(UISkinOptions.RecountBackdrop == nil) then UISkinOptions.RecountBackdrop = "Enabled" end
 	if(UISkinOptions.SkadaBackdrop == nil) then UISkinOptions.SkadaBackdrop = "Enabled" end

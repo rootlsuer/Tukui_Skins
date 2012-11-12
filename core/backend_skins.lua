@@ -238,4 +238,8 @@ U.Skins = {
 	["TomTomSkin"] = {
 		["addon"] = "TomTom",
 	},
+	["tComboSkin"] = {
+		["buttonText"] = "Tukui Combo",
+		["addon"] = "tCombo",
+	},
 }

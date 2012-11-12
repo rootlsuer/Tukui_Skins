@@ -1,22 +1,9 @@
 local U = unpack(select(2,...))
 local MiscFixes = CreateFrame("Frame")
 	MiscFixes:RegisterEvent("PLAYER_ENTERING_WORLD")
-	MiscFixes:RegisterEvent("PLAYER_REGEN_ENABLED")
-	MiscFixes:RegisterEvent("PLAYER_REGEN_DISABLED")
 	local s = U.s
 	local c = U.c 
-	MiscFixes:SetScript("OnEvent", function(self, event)
-	if event == "PLAYER_REGEN_ENABLED" or event == "PLAYER_REGEN_DISABLED" then
-		if IsAddOnLoaded("tCombo") then
-			if (tComboPoints and not tComboPoints.skinned) then 
-				tComboPoints.skinned = true
-				tComboPoints:SetTemplate("Transparent")
-				tComboEnergyBar:SetTemplate("Transparent")
-			end
-		end
-		self:UnregisterEvent("PLAYER_REGEN_DISABLED")
-		self:UnregisterEvent("PLAYER_REGEN_ENABLED")
-	else
+	MiscFixes:SetScript("OnEvent", function(self)
 	if TukuiMinimap then Minimap:SetMaskTexture(c["media"].blank) end
 	if IsAddOnLoaded("TomTom") and (U.CheckOption("TomTomSkin")) then
 		if TomTomBlock then
@@ -55,35 +42,6 @@ local MiscFixes = CreateFrame("Frame")
 		if (select(2, UnitClass("player")) == "ROGUE") then
 			TukuiStance:SetParent(TukuiUIHider)
 		end
-	end
 		self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 	end
 end)
-
-local ChatLootIcons = CreateFrame("Frame")
-ChatLootIcons:RegisterEvent("PLAYER_ENTERING_WORLD");
-ChatLootIcons:SetScript("OnEvent", function() 
-	if (U.CheckOption("ChatLootIcons")) then
-		EnableLootIcons()
-	else
-		DisableLootIcons()
-	end
-end)
-
-local function AddLootIcons(self, event, message, ...)
-	local _, fontSize = GetChatWindowInfo(self:GetID())
-	local function IconForLink(link)
-		local texture = GetItemIcon(link)
-		return "\124T" .. texture .. ":" .. fontSize .. "\124t" .. link
-	end
-	message = message:gsub("(\124c%x+\124Hitem:.-\124h\124r)", IconForLink)
-	return false, message, ...
-end
-
-function EnableLootIcons()
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_LOOT", AddLootIcons)
-end
-
-function DisableLootIcons()
-	ChatFrame_RemoveMessageEventFilter("CHAT_MSG_LOOT", AddLootIcons)
-end
