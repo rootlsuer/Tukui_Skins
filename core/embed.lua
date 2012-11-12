@@ -97,7 +97,7 @@ if event == "PLAYER_ENTERING_WORLD" then
 		end)
 		LeftChatToggleButton:SetScript("OnEnter", function(self, ...)
 			UIFrameFadeIn(self, 0.2, self:GetAlpha(), 1)
-			GameTooltip:SetOwner(self, 'ANCHOR_TOPRIGHT', 0, 4)
+			GameTooltip:SetOwner(self, 'ANCHOR_TOPLEFT', 0, 4)
 			GameTooltip:ClearLines()
 			GameTooltip:AddDoubleLine('Right Click:','Toggle Extra Skins/Options', 1, 1, 1)
 			GameTooltip:Show()
