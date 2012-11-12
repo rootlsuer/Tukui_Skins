@@ -2,7 +2,7 @@
 	Author: Affli@RU-Howling Fjord, 
 	All rights reserved.
 --]]
-
+if not IsAddOnLoaded("BigWigs") then return end
 local T, C, L = unpack(Tukui)
 
 local buttonsize = 19
