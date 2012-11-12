@@ -2,7 +2,7 @@
 ## Title: |cffC495DDTukui|r & |cff1784d1ElvUI |rSkin/Options
 ## Version: 1.00
 ## Author: Azilroka, Sortokk, and others see Credits.txt
-## OptionalDeps: Ace3
+## OptionalDeps: Ace3, Tukui_ChatTweaks
 ## RequiredDeps: Tukui
 ## SavedVariables: UISkinOptions, CBEnableSpecialBars, CBBar2and3Width, CBBar2and3Position, CBShowButtonPosition, TPEnableSpecialBars, TPBar2and3Width, TPBar2and3Position, TPShowButtonPosition
 ## X-Embeds: Ace3
