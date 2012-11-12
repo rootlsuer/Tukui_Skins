@@ -16,6 +16,7 @@ local EmbeddingWindow = CreateFrame("Frame", "EmbeddingWindow", UIParent)
 if event == "PLAYER_ENTERING_WORLD" then
 	
 	EmbedWindowResize()
+if not IsAddOnLoaded("Tukui_ChatTweaks") then
 	EmbedToggleButton = CreateFrame("Button", "EmbedToggleButton", UIParent)
 	EmbedToggleButton:SetTemplate("Transparent")
 	EmbedToggleButton:Size(TukuiInfoRight:GetHeight()-4)
@@ -106,7 +107,7 @@ if event == "PLAYER_ENTERING_WORLD" then
 			UIFrameFadeOut(self, 0.2, self:GetAlpha(), 0)
 			GameTooltip:Hide()
 		end)
-
+end
 --Embed Check
 	if not IsAddOnLoaded("Omen") then U.DisableOption("EmbedRO") U.DisableOption("EmbedOmen") end
 	if not IsAddOnLoaded("Recount") then U.DisableOption("EmbedRO") end
