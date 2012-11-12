@@ -1,4 +1,4 @@
-﻿if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("AtlasLoot_Loader") then return end
+﻿if not IsAddOnLoaded("AtlasLoot_Loader") then return end
 local U = unpack(select(2,...))
 local function AL_OnShow(self, event, ...)
 	AtlasLootPanel:Point("TOP", AtlasLootDefaultFrame, "BOTTOM", 0, -1)

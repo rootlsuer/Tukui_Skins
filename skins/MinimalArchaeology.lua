@@ -1,11 +1,11 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("MinimalArchaeology") then return end
+if not IsAddOnLoaded("MinimalArchaeology") then return end
 local U = unpack(select(2,...))
 local s = U.s
 local c = U.c
 local name = "MinimalArchaeologySkin"
 local function SkinMinimalArchaeology(self)
-	if IsAddOnLoaded("Tukui") then UIFont = c["media"].pixelfont UIFontSize = 12 end
-	if IsAddOnLoaded("ElvUI") then UIFont = [[Interface\AddOns\ElvUI\media\fonts\Homespun.ttf]] UIFontSize = 10 end
+	UIFont = c["media"].pixelfont
+	UIFontSize = 12
 	U.SkinFrame(MinArchMain)
 	U.SkinStatusBar(MinArchMainSkillBar)
 	MinArchMainSkillBar:Point("TOP", MinArchMain, "TOP", 2, -24)

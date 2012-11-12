@@ -1,6 +1,7 @@
 if not IsAddOnLoaded("ArkInventory") then return end
 local U = unpack(select(2,...))
 local ArkInventory = LibStub("AceAddon-3.0"):GetAddon("ArkInventory")
+
 local name = "ArkInventorySkin"
 local function SkinArkInventory(self)
 	local _G = _G
@@ -19,21 +20,13 @@ local function SkinArkInventory(self)
 			U.SkinFrame(subframe)
 		end
 	end
-	
+
 	ArkInventory.Frame_Container_Draw_ = ArkInventory.Frame_Container_Draw
 	ArkInventory.Frame_Container_Draw = function(frame)
 		local loc_id = frame.ARK_Data.loc_id
-		--ArkInventory.LocationOptionSet(loc_id, "bar", "pad", "external", 2)
-		--ArkInventory.LocationOptionSet(loc_id, "window", "pad", 0)
 		return ArkInventory.Frame_Container_Draw_(frame)
 	end
-	
-	--ArkInventory.Frame_Main_Scale_ = ArkInventory.Frame_Main_Scale
-	--ArkInventory.Frame_Main_Scale = function(loc_id)
-		--ArkInventory.Frame_Main_Get( loc_id ):SetScale(1)
-		--ArkInventory.Frame_Main_Anchor_Set(loc_id)
-	--end
-	
+
 	ArkInventory.Frame_Main_Anchor_Set_ = ArkInventory.Frame_Main_Anchor_Set
 	ArkInventory.Frame_Main_Anchor_Set = function(loc_id)
 		ArkInventory.Frame_Main_Anchor_Set_(loc_id)
@@ -62,7 +55,6 @@ local function SkinArkInventory(self)
 		ARKINV_Frame4ChangerWindowPurchaseInfo:ClearAllPoints()
 		ARKINV_Frame4ChangerWindowPurchaseInfo:SetPoint("TOP", ARKINV_Frame4ChangerWindowGoldAvailable, "BOTTOM", 0, -12)
 
-		--ArkInventory.Const.Frame.Status.Height = 30
 		_G[status:GetName().."EmptyText"]:SetPoint("LEFT",2,0)
 		if IsAddOnLoaded("ElvUI") then _G[status:GetName().."EmptyText"]:SetFont(c["media"].normFont, 12) end
 		if IsAddOnLoaded("Tukui") then _G[status:GetName().."EmptyText"]:SetFont(c["media"].font, 12) end
@@ -79,14 +71,11 @@ local function SkinArkInventory(self)
 		if IsAddOnLoaded("ElvUI") then _G[status:GetName().."GoldGoldButtonText"]:SetFont(c["media"].normFont, 12) end
 		if IsAddOnLoaded("Tukui") then _G[status:GetName().."GoldGoldButtonText"]:SetFont(c["media"].font,12) end
 	end
-	
-	--ArkInventory.Const.Frame.Title.Height2 = 32
-	
+
 	ArkInventory.Frame_Bar_Paint_ = ArkInventory.Frame_Bar_Paint
 	ArkInventory.Frame_Bar_Paint = function(bar)
 
 		local loc_id = bar.ARK_Data.loc_id
-		--ArkInventory.LocationOptionSet(loc_id, "bar", "pad", "internal" , 2)
 		ArkInventory.LocationOptionSet(loc_id, "bar", "name", "height", 18)
 		ArkInventory.Frame_Bar_Paint_(bar)
 		if not bar then return end
@@ -100,7 +89,7 @@ local function SkinArkInventory(self)
 			bar:SetBackdropColor(1,0,0,.1)
 		end
 	end
-	
+
 	ArkInventory.SetItemButtonTexture_ = ArkInventory.SetItemButtonTexture
 	ArkInventory.SetItemButtonTexture = function(frame, texture, r, g, b)
 		if not frame or not _G[frame:GetName().."IconTexture"] then return end
@@ -116,7 +105,7 @@ local function SkinArkInventory(self)
 			obj:SetPoint("BOTTOMRIGHT",-2,2)
 		end
 	end
-	
+
 	ArkInventory.Frame_Item_Update_Border_ = ArkInventory.Frame_Item_Update_Border
 	ArkInventory.Frame_Item_Update_Border = function(frame)
 		ArkInventory.Frame_Item_Update_Border_(frame)
@@ -126,7 +115,6 @@ local function SkinArkInventory(self)
 		obj:Hide()
 		frame:SetTemplate("Transparent")
 		frame:SetBackdropBorderColor(r,g,b,a)
-
 	end
 
 end

@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("MyRolePlay") then return end
+if not IsAddOnLoaded("MyRolePlay") then return end
 local U = unpack(select(2,...))
 
 hooksecurefunc(mrp, "CreateBrowseFrame", function()
@@ -74,13 +74,6 @@ hooksecurefunc(mrp, "CreateEditFrames", function()
 		MyRolePlayCharacterFrame_ProfileComboBox:Size(100,20)
 		MyRolePlayCharacterFrame_ProfileComboBox_Button:ClearAllPoints()
 		MyRolePlayCharacterFrame_ProfileComboBox_Button:SetPoint("RIGHT", MyRolePlayCharacterFrame_ProfileComboBox, "RIGHT", 0 , 0)
-	--	MyRolePlayComboEditFrameComboBox:StripTextures()
-	--	MyRolePlayComboEditFrameComboBox:CreateBackdrop()
-	--	U.SkinEditBox(MyRolePlayComboEditFrameComboBox)
-	--	MyRolePlayComboEditFrameComboBox:Size(100,20)
-	--	MyRolePlayComboEditFrameComboBoxButton:ClearAllPoints()
-	--	MyRolePlayComboEditFrameComboBoxButton:SetPoint("RIGHT", MyRolePlayComboEditFrameComboBox, "RIGHT", 0 , 0)
-	--	U.SkinNextPrevButton(MyRolePlayComboEditFrameComboBoxButton)
 		U.SkinScrollBar(MyRolePlayMultiEditFrameScrollFrameScrollBar)
 	end
 end)
@@ -106,8 +99,7 @@ local function reskinHeader(c, field)
 			if not f.reskinned then
 				local s = U.s
 				local z = U.c
-				if IsAddOnLoaded("ElvUI") then f.h.SetBackdrop = z.noop end
-				if IsAddOnLoaded("Tukui") then f.h.SetBackdrop = s.dummy end
+				f.h.SetBackdrop = function() end
 				f:StripTextures(True)
 				f.h:CreateBackdrop()
 				f.h:StripTextures(True)

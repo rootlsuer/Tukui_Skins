@@ -1,4 +1,4 @@
-if not(IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("MasterLootManagerRemix") then return end
+if not IsAddOnLoaded("MasterLootManagerRemix") then return end
 local U = unpack(select(2,...))
 local name = "MasterLootManagerRemixSkin"
 local function SkinMLM(self)

@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("Auc-Advanced") then return end
+if not IsAddOnLoaded("Auc-Advanced") then return end
 local U = unpack(select(2,...))
 local name = 'AuctioneerSkin'
 local function AuctioneerSkin(self,event)

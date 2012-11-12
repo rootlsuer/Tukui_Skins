@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("LootCouncil_Lite") then return end
+if not IsAddOnLoaded("LootCouncil_Lite") then return end
 local U = unpack(select(2,...))
 local name = "LootCouncilLiteSkin"
 local function SkinLootCouncilLite(self)

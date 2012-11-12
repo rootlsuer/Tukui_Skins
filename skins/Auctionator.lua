@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("Auctionator") then return end
+if not IsAddOnLoaded("Auctionator") then return end
 local U = unpack(select(2,...))
 local name = "AuctionatorSkin"
 local function AtrSkin(self,event)
@@ -6,7 +6,6 @@ local function AtrSkin(self,event)
 	local s = U.s
 	local c = U.c
 		
-	if IsAddOnLoaded("ElvUI") then if c.private.skins.blizzard.enable ~= true or c.private.skins.blizzard.auctionhouse ~= true then return end end
 	AuctionsCancelAuctionButton:Point("RIGHT", AuctionFrameMoneyFrame, "RIGHT", 554, 0)
 	AuctionsCloseButton:ClearAllPoints()
 	AuctionsCloseButton:Point("RIGHT", AuctionsCancelAuctionButton, "RIGHT", 86, 0)

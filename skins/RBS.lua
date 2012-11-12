@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("RaidBuffStatus") then return end
+if not IsAddOnLoaded("RaidBuffStatus") then return end
 local U = unpack(select(2,...))
 local name = "RaidBuffStatusSkin"
 local function SkinRBS(self)

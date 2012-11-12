@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("Omen") then return end
+if not IsAddOnLoaded("Omen") then return end
 local U = unpack(select(2,...))
 
 function EmbedOmen()
@@ -37,8 +37,7 @@ function EmbedOmen()
 		OmenAnchor:ClearAllPoints()
 		OmenBarList:SetPoint("TOPLEFT", EmbeddingWindow, "TOPLEFT", 0, 0)
 		OmenBarList:SetPoint("BOTTOMRIGHT", EmbeddingWindow, "BOTTOMRIGHT", 0, 2)
-		if U.elv then if RightChatPanel then OmenBarList:SetParent(RightChatPanel) end end
-		if U.tuk then if TukuiChatBackgroundRight then OmenBarList:SetParent(TukuiChatBackgroundRight) end end
+		if TukuiChatBackgroundRight then OmenBarList:SetParent(TukuiChatBackgroundRight) end
 		OmenBarList:SetFrameStrata("HIGH")
 end
 
@@ -62,16 +61,9 @@ Omen.UpdateBarLabelSettings_ = Omen.UpdateBarLabelSettings
 Omen.UpdateBarLabelSettings = function(self)
 	self:UpdateBarLabelSettings_()
 	for i, v in ipairs(self.Bars) do
-	if IsAddOnLoaded("Tukui") then
 		v.Text1:SetFont(c["media"].font, c["datatext"].fontsize)
 		v.Text2:SetFont(c["media"].font, c["datatext"].fontsize)
 		v.Text3:SetFont(c["media"].font, c["datatext"].fontsize)
-	end
-	if IsAddOnLoaded("ElvUI") then
-		v.Text1:FontTemplate(nil, self.db.profile.Bar.FontSize)
-		v.Text2:FontTemplate(nil, self.db.profile.Bar.FontSize)
-		v.Text3:FontTemplate(nil, self.db.profile.Bar.FontSize)
-	end
 	end
 end
 
@@ -82,15 +74,10 @@ Omen.UpdateTitleBar = function(self)
 	Omen.db.profile.Background.BarInset = borderWidth
 	Omen.db.profile.TitleBar.UseSameBG = true
 	self:UpdateTitleBar_()
-	if IsAddOnLoaded("Tukui") then
-		self.Title:SetHeight(23)
-		self.TitleText:SetFont(c["media"].font, c["datatext"].fontsize)
-		self.TitleText:ClearAllPoints()
-		self.TitleText:SetPoint("CENTER")
-	end
-	if IsAddOnLoaded("ElvUI") then
-		self.TitleText:FontTemplate(nil, self.db.profile.TitleBar.FontSize)
-	end
+	self.Title:SetHeight(23)
+	self.TitleText:SetFont(c["media"].font, c["datatext"].fontsize)
+	self.TitleText:ClearAllPoints()
+	self.TitleText:SetPoint("CENTER")
 	self.BarList:SetPoint("TOPLEFT", self.Title, "BOTTOMLEFT", 0, 1)
 end
 
@@ -115,10 +102,6 @@ omen_mt.__index = function(self, barID)
 end
 
 Omen.db.profile.Bar.Spacing = 1
-if IsAddOnLoaded("ElvUI") then
-	Omen.db.profile.Background.Texture = "ElvUI Blank"
-end
-
 Omen:UpdateBarTextureSettings()
 Omen:UpdateBarLabelSettings()
 Omen:UpdateTitleBar()

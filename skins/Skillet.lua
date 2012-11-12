@@ -1,31 +1,21 @@
-﻿if not(IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("Skillet") then return end
+﻿if not IsAddOnLoaded("Skillet") then return end
 local U = unpack(select(2,...))
 local s = U.s
 local c = U.c
 local Skillet = _G.Skillet
 
 function SetModifiedBackdrop(self)
-	if Tukui then
-		local color = RAID_CLASS_COLORS[U.ccolor]
-		self:SetBackdropColor(color.r*.15, color.g*.15, color.b*.15)
-		self:SetBackdropBorderColor(color.r, color.g, color.b)
-	else
-		if self.backdrop then self = self.backdrop end
-		self:SetBackdropBorderColor(unpack(c["media"].rgbvaluecolor))
-	end
+	local color = RAID_CLASS_COLORS[U.ccolor]
+	self:SetBackdropColor(color.r*.15, color.g*.15, color.b*.15)
+	self:SetBackdropBorderColor(color.r, color.g, color.b)
 end
 
 function SetOriginalBackdrop(self)
-	if Tukui then
-		local color = RAID_CLASS_COLORS[U.ccolor]
-		if c["general"].classcolortheme == true then
-			self:SetBackdropBorderColor(color.r, color.g, color.b)
-		else
-			self:SetTemplate("Default")
-		end
+	local color = RAID_CLASS_COLORS[U.ccolor]
+	if c["general"].classcolortheme == true then
+		self:SetBackdropBorderColor(color.r, color.g, color.b)
 	else
-		if self.backdrop then self = self.backdrop end
-		self:SetBackdropBorderColor(unpack(c["media"].bordercolor))
+		self:SetTemplate("Default")
 	end
 end
 
@@ -145,11 +135,7 @@ local function SkinIcon(self)
 	
 	if not SkilletShowOptionsButton.text then
 		SkilletShowOptionsButton.text = SkilletShowOptionsButton:CreateFontString(nil, 'OVERLAY')
-		if ElvUI then
-			SkilletShowOptionsButton.text:SetFont([[Interface\AddOns\ElvUI\media\fonts\PT_Sans_Narrow.ttf]], 12, 'OUTLINE')
-			else
-			SkilletShowOptionsButton.text:SetFont([[Interface\AddOns\Tukui\medias\fonts\normal_font.ttf]], 12, 'OUTLINE')
-		end
+		SkilletShowOptionsButton.text:SetFont([[Interface\AddOns\Tukui\medias\fonts\normal_font.ttf]], 12, 'OUTLINE')
 		SkilletShowOptionsButton.text:SetText(" ?")
 		SkilletShowOptionsButton.text:SetTextColor(1, 0, 0)	
 		SkilletShowOptionsButton.text:SetJustifyH('CENTER')
@@ -416,11 +402,7 @@ local function SkinSkillet(Self)
 			SkilletSortAscButton.texture = SkilletSortAscButton:CreateTexture(nil, 'OVERLAY')
 			SkilletSortAscButton.texture:Point("TOPLEFT", 2, -2)
 			SkilletSortAscButton.texture:Point("BOTTOMRIGHT", -2, 2)
-			if ElvUI then
-				SkilletSortAscButton.texture:SetTexture([[Interface\AddOns\ElvUI\media\textures\arrowup.tga]])
-			else
-				SkilletSortAscButton.texture:SetTexture([[Interface\AddOns\Tukui\medias\textures\arrowup.tga]])
-			end
+			SkilletSortAscButton.texture:SetTexture([[Interface\AddOns\Tukui\medias\textures\arrowup.tga]])
 			SkilletSortAscButton.texture:SetVertexColor(unpack(c["media"].bordercolor))
 		end
 
@@ -430,11 +412,7 @@ local function SkinSkillet(Self)
 			SkilletSortDescButton.texture = SkilletSortDescButton:CreateTexture(nil, 'OVERLAY')
 			SkilletSortDescButton.texture:Point("TOPLEFT", 2, -2)
 			SkilletSortDescButton.texture:Point("BOTTOMRIGHT", -2, 2)
-			if ElvUI then
-				SkilletSortDescButton.texture:SetTexture([[Interface\AddOns\ElvUI\media\textures\arrowdown.tga]])
-			else
-				SkilletSortDescButton.texture:SetTexture([[Interface\AddOns\Tukui\medias\textures\arrowdown.tga]])
-			end
+			SkilletSortDescButton.texture:SetTexture([[Interface\AddOns\Tukui\medias\textures\arrowdown.tga]])
 			SkilletSortDescButton.texture:SetVertexColor(unpack(c["media"].bordercolor))
 		end
 

@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("Altoholic") then return end
+if not IsAddOnLoaded("Altoholic") then return end
 local U = unpack(select(2,...))
 local s = U.s
 local c = U.c 
@@ -217,21 +217,11 @@ local function SkinAltoholic(self)
 		end
 	end
 
-	if IsAddOnLoaded("Tukui") then 
-		s.SkinFuncs["Altoholic_Achievements"] = LoadSkinAchievements
-		s.SkinFuncs["Altoholic_Agenda"] = LoadSkinAgenda
-		s.SkinFuncs["Altoholic_Grids"] = LoadSkinGrids
-		s.SkinFuncs["Altoholic_Guild"] = LoadSkinGuild
-		s.SkinFuncs["Altoholic_Search"] = LoadSkinSearch
-	end
-	if IsAddOnLoaded("ElvUI") then 
-		c:GetModule('Skins')
-		s:RegisterSkin('Altoholic_Achievements', LoadSkinAchievements)
-		s:RegisterSkin('Altoholic_Agenda', LoadSkinAgenda)
-		s:RegisterSkin('Altoholic_Grids', LoadSkinGrids)
-		s:RegisterSkin('Altoholic_Guild', LoadSkinGuild)
-		s:RegisterSkin('Altoholic_Search', LoadSkinSearch)
-	end
+	s.SkinFuncs["Altoholic_Achievements"] = LoadSkinAchievements
+	s.SkinFuncs["Altoholic_Agenda"] = LoadSkinAgenda
+	s.SkinFuncs["Altoholic_Grids"] = LoadSkinGrids
+	s.SkinFuncs["Altoholic_Guild"] = LoadSkinGuild
+	s.SkinFuncs["Altoholic_Search"] = LoadSkinSearch
 end
 
 U.RegisterSkin(name,SkinAltoholic)

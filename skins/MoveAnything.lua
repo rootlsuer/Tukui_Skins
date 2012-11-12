@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("MoveAnything") then return end
+if not IsAddOnLoaded("MoveAnything") then return end
 local U = unpack(select(2,...))
 local name = "MoveAnythingSkin"
 local function SkinMoveAnything(self)

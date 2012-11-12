@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("Wholly") then return end
+if not IsAddOnLoaded("Wholly") then return end
 
 local U = unpack(select(2,...))
 

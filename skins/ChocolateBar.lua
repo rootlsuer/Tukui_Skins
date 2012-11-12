@@ -1,4 +1,4 @@
-﻿if not(IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("ChocolateBar") then return end
+﻿if not IsAddOnLoaded("ChocolateBar") then return end
 local U = unpack(select(2,...))
 local name = "ChocolateBarSkin"
 local function SkinCB(self)
@@ -8,9 +8,6 @@ local function SkinCB(self)
 				U.SkinFrameD(f)
 			end
 		end
-
-		local BarOne = _G["ChocolateBar1"]
-		BarOne:SetScript("OnUpdate", UpdateRepExpBar)
 
 		local CB_Skin_OptionsFrame = CreateFrame("FRAME", "CB_Skin_OptionsFrame", UIParent)
 		CB_Skin_OptionsFrame:SetMovable(true)

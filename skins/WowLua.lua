@@ -1,8 +1,8 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) then return end
 local U = unpack(select(2,...))
 LoadAddOn("WowLua")
 if not IsAddOnLoaded("WowLua") then return end
 
+local function SkinWowLua(self)
 	U.SkinFrame(WowLuaFrame)
 	WowLuaFrameLineNumScrollFrame:StripTextures(True)
 	WowLuaFrameResizeBar:StripTextures(True)
@@ -27,3 +27,5 @@ if not IsAddOnLoaded("WowLua") then return end
 	WowLuaFrameCommand.bg1:CreateBackdrop()
 	WowLuaFrameCommand.bg1:Point("TOPLEFT", 0, -4)
 	WowLuaFrameCommand.bg1:Point("BOTTOMRIGHT", -12, 2)
+end
+U.RegisterSkin(name,SkinWowLua)

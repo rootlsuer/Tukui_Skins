@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("FlightMap") then return end
+if not IsAddOnLoaded("FlightMap") then return end
 local U = unpack(select(2,...))
 local function SkinFM(self,event)
 	U.SkinStatusBar(FlightMapTimesFrame)

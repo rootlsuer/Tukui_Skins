@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("Outfitter") then return end
+if not IsAddOnLoaded("Outfitter") then return end
 local U = unpack(select(2,...))
 local name = "OutfitterSkin"
 local function SkinOutfitter(self)
@@ -91,7 +91,6 @@ end)
 	U.SkinCloseButton(OutfitterEditScriptDialog.CloseButton)
 	U.SkinTab(OutfitterEditScriptDialogTab1)
 	U.SkinTab(OutfitterEditScriptDialogTab2)
-	--U.SkinDropDownBox(OutfitterEditScriptDialogPresetScript)
 
 end
 

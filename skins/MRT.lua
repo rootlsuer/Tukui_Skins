@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("MizusRaidTracker") then return end
+if not IsAddOnLoaded("MizusRaidTracker") then return end
 local U = unpack(select(2,...))
 local name = "MRTSkin"
 local function SkinMRT(self)

@@ -1,11 +1,11 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("SexyCooldown2") then return end
+if not IsAddOnLoaded("SexyCooldown2") then return end
 local U = unpack(select(2,...))
 local name = "SexyCooldownSkin"
 local scd = SexyCooldown2
 local c = U.c
 local s = U.s
 local LSM = LibStub("LibSharedMedia-3.0")
--- Strip skinning settings from in-game GUI
+
 local function SCDStripSkinSettings(bar)
 	-- Remove conflicting options
 	bar.optionsTable.args.icon.args.borderheader = nil
@@ -29,22 +29,11 @@ local function SkinSexyCooldownBar(bar)
 	U.SkinFrame(bar)
 	if(U.CheckOption("EmbedSexyCooldown")) then
 		bar:ClearAllPoints()
-		if IsAddOnLoaded("ElvUI") then
-			bar:Point('BOTTOM', ElvUI_Bar1, 'TOP', 0, 1)
-			bar:CreateShadow()
-			bar:SetHeight(ElvUI_Bar1:GetHeight())
-			if(U.CheckOption("SortSettings")) then
-				bar:Point('BOTTOM', ElvUI_Bar1, 'TOP', 0, 4)
-				bar:SetHeight(ElvUI_Bar1:GetHeight()*.8)
-			end
-			bar:SetWidth(ElvUI_Bar1:GetWidth())
-		else
-			bar:Point('BOTTOM', InvTukuiActionBarBackground, 'TOP', 0, 1)
-			if(U.CheckOption("AzilSettings")) then bar:Point('BOTTOM', InvTukuiActionBarBackground, 'TOP', 0, 16) end
-			bar:CreateShadow()
-			bar:SetHeight(ActionButton1:GetHeight())
-			bar:SetWidth(TukuiBar1:GetWidth())
-		end
+		bar:Point('BOTTOM', InvTukuiActionBarBackground, 'TOP', 0, 1)
+		if(U.CheckOption("AzilSettings")) then bar:Point('BOTTOM', InvTukuiActionBarBackground, 'TOP', 0, 16) end
+		bar:CreateShadow()
+		bar:SetHeight(ActionButton1:GetHeight())
+		bar:SetWidth(TukuiBar1:GetWidth())
 		bar:EnableMouse(false)
 		PetBattleFrame:HookScript("OnShow",function() bar:Hide() end)
 		PetBattleFrame:HookScript("OnHide",function() bar:Show() end)
@@ -58,10 +47,8 @@ local function SkinSexyCooldownIcon(bar, icon)
 		U.SkinFrame(icon)
 		icon.overlay:CreateBackdrop("Default")
 		icon.tex:SetTexCoord(0.08, 0.92, 0.08, 0.92)
-		if ElvUI then icon.tex.SetTexCoord = c.noop end
-		if Tukui then icon.tex.SetTexCoord = s.dummy end	
+		icon.tex.SetTexCoord = function() end
 		icon.overlay:SetBackdropColor(0,0,0,0)
-		-- Default no background/border
 		icon:SetBackdropColor(0,0,0,0)
 		icon:SetBackdropBorderColor(c["media"].bordercolor)
 		icon.overlay:SetBackdropBorderColor(c["media"].bordercolor)
@@ -71,16 +58,11 @@ end
 
 local function SkinSexyCooldownLabel(bar,label,store)
 	if not label.skinned then
-		if IsAddOnLoaded("ElvUI") then
-			local x = U.x
-			label:SetFont(x.pixelFont, store.fontsize, "OUTLINE")
-		else
-			label:SetFont(c["media"].pixelfont, store.fontsize, "OUTLINE")
-		end
+		label:SetFont(c["media"].pixelfont, store.fontsize, "OUTLINE")
 	end
 end
 local function SkinSexyCooldownBackdrop(bar)
-		bar:SetTemplate("Transparent")
+	bar:SetTemplate("Transparent")
 end
 
 local function HookSCDBar(bar)
@@ -88,7 +70,6 @@ local function HookSCDBar(bar)
 	hooksecurefunc(bar,"UpdateSingleIconLook", SkinSexyCooldownIcon)
 	hooksecurefunc(bar,"UpdateLabel",SkinSexyCooldownLabel)
 	hooksecurefunc(bar,"UpdateBarBackdrop", SkinSexyCooldownBackdrop)
-	-- Static skinning
 	bar.settings.icon.borderInset = 0
 end
 
@@ -100,10 +81,8 @@ local function SkinSexyCooldown(self)
 		return bar
 	end
 
-	-- Skin Pre-existing bars
 	for _,bar in ipairs(scd.bars) do
 		HookSCDBar(bar)
-		-- Force a bar update
 		bar:UpdateBarLook()
 	end
 end

@@ -1,4 +1,4 @@
-﻿if not(IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("Lightheaded") then return end
+﻿if not IsAddOnLoaded("Lightheaded") then return end
 local U = unpack(select(2,...))
 local function DoDis(self, event, ...)
 

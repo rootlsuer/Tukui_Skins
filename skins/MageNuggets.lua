@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("MageNuggets") then return end
+if not IsAddOnLoaded("MageNuggets") then return end
 local U = unpack(select(2,...))
 local name = "MageNuggetsSkin"
 local function SkinMageNuggets(self)

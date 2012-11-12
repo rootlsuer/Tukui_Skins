@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("ElvUI")) or not IsAddOnLoaded("!Swatter") then return end
+if not IsAddOnLoaded("!Swatter") then return end
 if IsAddOnLoaded("!BugGrabber") then return end
 if IsAddOnLoaded("!ImprovedErrorFrame") then return end
 local U = unpack(select(2,...))

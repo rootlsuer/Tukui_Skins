@@ -1,4 +1,4 @@
-﻿if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("Factionizer") then return end
+﻿if not IsAddOnLoaded("Factionizer") then return end
 local U = unpack(select(2,...))
 local function desat(self, event, ...)
 	for i = 1, 15 do

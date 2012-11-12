@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("TellMeWhen") then return end
+if not IsAddOnLoaded("TellMeWhen") then return end
 local U = unpack(select(2,...))
 local s = U.s
 local c = U.c
@@ -58,10 +58,4 @@ local function LoadSkin()
 	U.SkinCheckBox(TellMeWhen_IconEditorEventsEventSettingsOnlyShown)
 end
 
-if IsAddOnLoaded("Tukui") then
-	s.SkinFuncs["TellMeWhen_Options"] = LoadSkin
-end
-if IsAddOnLoaded("ElvUI") then 
-	c:GetModule('Skins')
-	s:RegisterSkin('TellMeWhen_Options', LoadSkin)
-end
+s.SkinFuncs["TellMeWhen_Options"] = LoadSkin

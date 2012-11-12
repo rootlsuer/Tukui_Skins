@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("Poisoner") then return end
+if not IsAddOnLoaded("Poisoner") then return end
 local U = unpack(select(2,...))
 local name = "PoisonerSkin"
 local function SkinPoisoner(self)
@@ -51,8 +51,6 @@ local function SkinPoisoner(self)
 	for i = 1, 5 do
 		U.SkinTab(_G["PoisonerOptions_SettingsFrameTab"..i])
 	end
-
-
 
 end
 

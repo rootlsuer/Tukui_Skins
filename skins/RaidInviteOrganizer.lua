@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("RaidInviteOrganizer") then return end
+if not IsAddOnLoaded("RaidInviteOrganizer") then return end
 local U = unpack(select(2,...))
 local name = "RaidInviteOrganizerSkin"
 local function SkinRIO(self)

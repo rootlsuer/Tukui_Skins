@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("Recount") then return end
+if not IsAddOnLoaded("Recount") then return end
 local U = unpack(select(2,...))
 local Recount = _G.Recount
 local s = U.s
@@ -25,17 +25,14 @@ local function SkinRecount(self)
 		frame.Title:SetParent(frame.TitleBackground)
 		frame.Title:ClearAllPoints()
 		frame.Title:SetPoint("LEFT", 4, 0)
-		if IsAddOnLoaded("Tukui") then
-			frame.CloseButton:SetNormalTexture("")
-			frame.CloseButton:SetPushedTexture("")
-			frame.CloseButton:SetHighlightTexture("")
-			frame.CloseButton:SetSize(16, 16)
-			frame.CloseButton.t = frame.CloseButton:CreateFontString(nil, "OVERLAY")
-			frame.CloseButton.t:SetFont(c["media"].pixelfont, c["datatext"].fontsize, "OUTLINE")
-			frame.CloseButton.t:SetPoint("CENTER", 1, 1)
-			frame.CloseButton.t:SetText("X")
-		end
-		if IsAddOnLoaded("ElvUI") then if not Recount_MainWindow then U.SkinCloseButton(frame.CloseButton) end end
+		frame.CloseButton:SetNormalTexture("")
+		frame.CloseButton:SetPushedTexture("")
+		frame.CloseButton:SetHighlightTexture("")
+		frame.CloseButton:SetSize(16, 16)
+		frame.CloseButton.t = frame.CloseButton:CreateFontString(nil, "OVERLAY")
+		frame.CloseButton.t:SetFont(c["media"].pixelfont, c["datatext"].fontsize, "OUTLINE")
+		frame.CloseButton.t:SetPoint("CENTER", 1, 1)
+		frame.CloseButton.t:SetText("X")
 	end
 
 	local function SkinMainFrame(frame)
@@ -57,17 +54,14 @@ local function SkinRecount(self)
 		frame.Title:SetParent(frame.TitleBackground)
 		frame.Title:ClearAllPoints()
 		frame.Title:SetPoint("LEFT", 4, 0)
-		if IsAddOnLoaded("Tukui") then
-			frame.CloseButton:SetNormalTexture("")
-			frame.CloseButton:SetPushedTexture("")
-			frame.CloseButton:SetHighlightTexture("")
-			frame.CloseButton:SetSize(16, 16)
-			frame.CloseButton.t = frame.CloseButton:CreateFontString(nil, "OVERLAY")
-			frame.CloseButton.t:SetFont(c["media"].pixelfont, c["datatext"].fontsize, "OUTLINE")
-			frame.CloseButton.t:SetPoint("CENTER", 1, 1)
-			frame.CloseButton.t:SetText("X")
-		end
-		if IsAddOnLoaded("ElvUI") then if not Recount_MainWindow then U.SkinCloseButton(frame.CloseButton) end end
+		frame.CloseButton:SetNormalTexture("")
+		frame.CloseButton:SetPushedTexture("")
+		frame.CloseButton:SetHighlightTexture("")
+		frame.CloseButton:SetSize(16, 16)
+		frame.CloseButton.t = frame.CloseButton:CreateFontString(nil, "OVERLAY")
+		frame.CloseButton.t:SetFont(c["media"].pixelfont, c["datatext"].fontsize, "OUTLINE")
+		frame.CloseButton.t:SetPoint("CENTER", 1, 1)
+		frame.CloseButton.t:SetText("X")
 	end
 
 	Recount.UpdateBarTextures = function(self)
@@ -75,10 +69,8 @@ local function SkinRecount(self)
 			v.StatusBar:SetStatusBarTexture(c["media"].normTex)
 			v.StatusBar:GetStatusBarTexture():SetHorizTile(false)
 			v.StatusBar:GetStatusBarTexture():SetVertTile(false)
-			if IsAddOnLoaded("Tukui") then
-				v.LeftText:SetPoint("LEFT", 4, 0)
-				v.RightText:SetPoint("RIGHT", -4, 0)
-			end
+			v.LeftText:SetPoint("LEFT", 4, 0)
+			v.RightText:SetPoint("RIGHT", -4, 0)
 		end
 	end
 	Recount.SetBarTextures = Recount.UpdateBarTextures
@@ -123,31 +115,6 @@ local function SkinRecount(self)
 	end)
 
 	Recount.MainWindow.FileButton:HookScript("OnClick", function(self) if LibDropdownFrame0 then LibDropdownFrame0:SetTemplate() end end)
-
-	if IsAddOnLoaded("ElvUI") then
-		local MWbuttons = {
-			Recount.MainWindow.CloseButton,
-			Recount.MainWindow.RightButton,
-			Recount.MainWindow.LeftButton,
-			Recount.MainWindow.ResetButton,
-			Recount.MainWindow.FileButton,
-			Recount.MainWindow.ConfigButton,
-			Recount.MainWindow.ReportButton,
-		}
-		for i = 1, getn(MWbuttons) do
-			local button = MWbuttons[i]
-			if button then
-				button:GetNormalTexture():SetDesaturated(true)
-				button:GetHighlightTexture():SetDesaturated(true)
-			end
-		end
-		U.Desaturate(Recount.DetailWindow.RightButton)
-		U.Desaturate(Recount.DetailWindow.LeftButton)
-		U.Desaturate(Recount.DetailWindow.ReportButton)
-		U.Desaturate(Recount.DetailWindow.SummaryButton)
-	end
-
-	if IsAddOnLoaded("Tukui") then
 
 	Recount.MainWindow.CloseButton:ClearAllPoints()
 	Recount.MainWindow.CloseButton:Point("TOPRIGHT", Recount.MainWindow.TitleBackground, "TOPRIGHT", -3, -3)
@@ -218,14 +185,11 @@ local function SkinRecount(self)
 	Recount.DetailWindow.ReportButton.text:SetText(s.RGBToHex(unpack(c["media"].datatextcolor2)).."S")
 	Recount.DetailWindow.ReportButton.text:SetPoint("CENTER", 1, 1)
 
-	end
-
 	if U.CheckOption("EmbedRecount") then EmbedRecount() end
 	
 end
 
 U.RegisterSkin(name,SkinRecount)
-
 
 StaticPopupDialogs["RECOUNT_RELOADUI"] = {
 	text = "Reload your User Interface?",
@@ -264,8 +228,7 @@ function EmbedRecount()
 	Recount:LockWindows(true)
 	Recount_MainWindow:ClearAllPoints()
 	EmbedRecountResize()
-	if U.elv then if RightChatPanel then Recount_MainWindow:SetParent(RightChatPanel) end end
-	if U.tuk then if TukuiChatBackgroundRight then Recount_MainWindow:SetParent(TukuiChatBackgroundRight) end end
+	if TukuiChatBackgroundRight then Recount_MainWindow:SetParent(TukuiChatBackgroundRight) end
 	Recount.MainWindow:SetFrameStrata("HIGH")
 end
 

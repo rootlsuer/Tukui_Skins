@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("CLCRet") then return end
+if not IsAddOnLoaded("CLCRet") then return end
 local U = unpack(select(2,...))
 local s = U.s
 local c = U.c
@@ -15,8 +15,7 @@ end
 
 local function CreateButton(self, name, size, point, parent, pointParent, offsetx, offsety, bfGroup, isChecked)
 	clcretFrame:SetScale(1)
-	if ElvUI then clcretFrame.SetScale = c.noop end
-	if Tukui then clcretFrame.SetScale = s.dummy end
+	clcretFrame.SetScale = function() end
 	
 	name = "clcret" .. name
 	local button
@@ -40,8 +39,7 @@ local function CreateButton(self, name, size, point, parent, pointParent, offset
 	button.texture:Point("BOTTOMRIGHT", -2, 2)
 	button.texture:SetTexture(BGTEX)
 	button.texture:SetTexCoord(0.08, 0.92, 0.08, 0.92)
-	if ElvUI then button.texture.SetTexCoord = c.noop end
-	if Tukui then button.texture.SetTexCoord = s.dummy end
+	button.texture.SetTexCoord = function() end
 	
 	button.texture.OldSetTexture = button.texture.SetTexture
 	button.texture.SetTexture = function(self, tex, ...)
@@ -71,8 +69,7 @@ local function CreateButton(self, name, size, point, parent, pointParent, offset
 	
 	button.defaultSize = button:GetWidth()
 
-	if ElvUI then button.SetScale = c.noop end
-	if Tukui then button.SetScale = s.dummy end
+	button.SetScale = function() end
 	button:ClearAllPoints()
 	button:SetPoint(point, parent, pointParent, offsetx, offsety)
 	

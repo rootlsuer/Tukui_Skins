@@ -1,4 +1,4 @@
-﻿if not(IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("EasyMail") then return end
+﻿if not IsAddOnLoaded("EasyMail") then return end
 local U = unpack(select(2,...))
 local name = "EasyMailSkin"
 local function SkinEasyMail(self,event)

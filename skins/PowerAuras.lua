@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("PowerAuras") then return end
+if not IsAddOnLoaded("PowerAuras") then return end
 local U = unpack(select(2,...))
 LoadAddOn("PowerAurasOptions")
 local s = U.s

@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("TradeSkillDW") then return end
+if not IsAddOnLoaded("TradeSkillDW") then return end
 local U = unpack(select(2,...))
 local s = U.s
 local c = U.c

@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("Skada") then return end
+if not IsAddOnLoaded("Skada") then return end
 local U = unpack(select(2,...))
 local s = U.s
 local c = U.c
@@ -18,8 +18,6 @@ local function SkinSkada(self)
 		options.titleoptions.args.margin = nil
 		options.titleoptions.args.color = nil
 		options.windowoptions = nil
-	--	options.baroptions.args.barfont = nil
-	--	options.titleoptions.args.font = nil
 	end
 
 	local barmod = Skada.displays["bar"]
@@ -67,17 +65,15 @@ local function SkinSkada(self)
 		
 		local titlefont = CreateFont("TitleFont" .. win.db.name)
 		skada.button:SetNormalFontObject(titlefont)
-		if IsAddOnLoaded("Tukui") then 
-			local color = win.db.title.color
-			skada.button:SetBackdropColor(0, 0, 0, 0)
-		end
-		if IsAddOnLoaded("ElvUI") then 
-			win.bargroup.button:SetBackdropColor(unpack(c["media"].backdropcolor))
-		end
+		local color = win.db.title.color
+		skada.button:SetBackdropColor(0, 0, 0, 0)
+
 		skada:SetBackdrop(nil)
+
 		if not skada.backdrop then
 			skada:CreateBackdrop("Default")
 		end
+
 		skada.backdrop:ClearAllPoints()
 		if(win.db.enabletitle) then
 			skada.backdrop:Point("TOPLEFT", skada.button, "TOPLEFT", -2, 2)
@@ -90,8 +86,7 @@ local function SkinSkada(self)
 			win.bargroup.button:SetFrameStrata("HIGH")
 			win.bargroup.button:SetFrameLevel(5)	
 			win.bargroup:SetFrameStrata("HIGH")
-			if U.elv then if RightChatPanel then win.bargroup:SetParent(RightChatPanel) end end
-			if U.tuk then if TukuiChatBackgroundRight then win.bargroup:SetParent(TukuiChatBackgroundRight) end end
+			if TukuiChatBackgroundRight then win.bargroup:SetParent(TukuiChatBackgroundRight) end
 		end
 	end
 end
@@ -112,30 +107,10 @@ end
 local windows = {}
 function EmbedSkada()
 	if(#windows == 1) then
-		if U.tuk then
-			EmbedWindow(windows[1], EmbeddingWindow:GetWidth() - 4, (EmbeddingWindow:GetHeight() - 19), "TOPRIGHT", EmbeddingWindow, "TOPRIGHT", -2, -17)
-		end
-		if U.elv then
-			if c.PixelMode then
-				EmbedWindow(windows[1], EmbeddingWindow:GetWidth() - 4, (EmbeddingWindow:GetHeight() - 18), "TOPRIGHT", EmbeddingWindow, "TOPRIGHT", -2, -17)
-			else
-				EmbedWindow(windows[1], EmbeddingWindow:GetWidth() - 4, (EmbeddingWindow:GetHeight() - 20), "TOPRIGHT", EmbeddingWindow, "TOPRIGHT", -2, -17)
-			end
-		end
+		EmbedWindow(windows[1], EmbeddingWindow:GetWidth() - 4, (EmbeddingWindow:GetHeight() - 19), "TOPRIGHT", EmbeddingWindow, "TOPRIGHT", -2, -17)
 	elseif(#windows == 2) then
-		if U.tuk then
-			EmbedWindow(windows[1], ((EmbeddingWindow:GetWidth() - 4) / 2) - (borderWidth + s.mult), EmbeddingWindow:GetHeight() - 19, "TOPRIGHT", EmbeddingWindow, "TOPRIGHT", -2, -17)
-			EmbedWindow(windows[2], ((EmbeddingWindow:GetWidth() - 4) / 2) - (borderWidth + s.mult), EmbeddingWindow:GetHeight() - 19, "TOPLEFT", EmbeddingWindow, "TOPLEFT", 2, -17)
-		end
-		if U.elv then
-			if c.PixelMode then
-				EmbedWindow(windows[1], ((EmbeddingWindow:GetWidth() - 4) / 2) - (borderWidth + c.mult), EmbeddingWindow:GetHeight() - 18, "TOPRIGHT", EmbeddingWindow, "TOPRIGHT", -2, -17)
-				EmbedWindow(windows[2], ((EmbeddingWindow:GetWidth() - 4) / 2) - (borderWidth + c.mult), EmbeddingWindow:GetHeight() - 18, "TOPLEFT", EmbeddingWindow, "TOPLEFT", 2, -17)
-			else
-				EmbedWindow(windows[1], ((EmbeddingWindow:GetWidth() - 4) / 2) - (borderWidth + c.mult), EmbeddingWindow:GetHeight() - 20, "TOPRIGHT", EmbeddingWindow, "TOPRIGHT", -2, -17)
-				EmbedWindow(windows[2], ((EmbeddingWindow:GetWidth() - 4) / 2) - (borderWidth + c.mult), EmbeddingWindow:GetHeight() - 20, "TOPLEFT", EmbeddingWindow, "TOPLEFT", 2, -17)
-			end
-		end
+		EmbedWindow(windows[1], ((EmbeddingWindow:GetWidth() - 4) / 2) - (borderWidth + s.mult), EmbeddingWindow:GetHeight() - 19, "TOPRIGHT", EmbeddingWindow, "TOPRIGHT", -2, -17)
+		EmbedWindow(windows[2], ((EmbeddingWindow:GetWidth() - 4) / 2) - (borderWidth + s.mult), EmbeddingWindow:GetHeight() - 19, "TOPLEFT", EmbeddingWindow, "TOPLEFT", 2, -17)
 	end
 end
 
@@ -152,9 +127,9 @@ function Skada:CreateWindow(name, db)
 		tinsert(windows, window)
 	end
 	hooksecurefunc(Skada, "CreateWindow", function()	
-	if U.CheckOption("EmbedSkada") then
-		EmbedSkada()
-	end
+		if U.CheckOption("EmbedSkada") then
+			EmbedSkada()
+		end
 	end)
 end
 
@@ -175,7 +150,6 @@ end
 		Skada_Skin:SetScript("OnEvent", function(self)
 			if U.CheckOption("EmbedSkada") then
 				EmbedSkada()
-				if U.elv then hooksecurefunc(RightChatPanel, "SetSize", function(self, width, height) EmbedSkada() end) end
 			end
 		self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 	end)

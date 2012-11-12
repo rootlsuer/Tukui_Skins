@@ -1,5 +1,5 @@
 LoadAddOn("ZygorGuidesViewer")
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("ZygorGuidesViewer") then return end
+if not IsAddOnLoaded("ZygorGuidesViewer") then return end
 local U = unpack(select(2,...))
 local name = "ZygorSkin"
 local function SkinZygor(self)

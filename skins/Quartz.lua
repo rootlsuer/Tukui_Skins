@@ -1,5 +1,4 @@
-﻿if not (IsAddOnLoaded( "ElvUI" ) or IsAddOnLoaded("Tukui")) then return end
-if not IsAddOnLoaded("Quartz") then return end
+﻿if not IsAddOnLoaded("Quartz") then return end
 local U = unpack(select(2,...))
 local Q3 = LibStub("AceAddon-3.0"):GetAddon("Quartz3")
 if not Q3 then return end
@@ -7,8 +6,8 @@ local name = "QuartzSkin"
 local function SkinQuartz(self)
 	local s = U.s
 	local c = U.c
-	if IsAddOnLoaded("Tukui") then UIFont = c["media"].font UIFontSize = 12 end
-	if IsAddOnLoaded("ElvUI") then UIFont = c["media"].normFont UIFontSize = 12 end
+	UIFont = c["media"].font
+	UIFontSize = 12
 
 	SkinQuartzBar = function(self, bar)
 		if not self.IconBorder then
@@ -22,9 +21,6 @@ local function SkinQuartz(self)
 		else
 			self.IconBorder:Show()
 		end
-		--self.Text:SetFont(UIFont, UIFontSize, "OUTLINE")
-		--self.TimeText:SetFont(UIFont, UIFontSize, "OUTLINE")
-		--self.Bar:SetStatusBarTexture(c["media"].normTex)
 		self.Bar:CreateBackdrop()
 	end
 

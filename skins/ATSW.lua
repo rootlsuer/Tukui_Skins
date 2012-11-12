@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("AdvancedTradeSkillWindow") then return end
+if not IsAddOnLoaded("AdvancedTradeSkillWindow") then return end
 local U = unpack(select(2,...))
 local name = 'ATSWSkin'
 local function SkinATSW(self)

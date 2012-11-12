@@ -1,4 +1,3 @@
-if not IsAddOnLoaded("Tukui") then return end
 --[[
 	Author: Affli@RU-Howling Fjord, 
 	All rights reserved.

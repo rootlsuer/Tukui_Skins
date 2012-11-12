@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) or not IsAddOnLoaded("CLCProt") then return end
+if not IsAddOnLoaded("CLCProt") then return end
 local U = unpack(select(2,...))
 local s = U.s
 local c = U.c
@@ -16,8 +16,7 @@ end
 local function CreateButton(self, name, size, point, parent, pointParent, offsetx, offsety, bfGroup, isChecked)
 	local db = self.db.profile
 	clcprotFrame:SetScale(1)
-	if ElvUI then clcprotFrame.SetScale = c.noop end
-	if Tukui then clcprotFrame.SetScale = s.dummy end
+	clcprotFrame.SetScale = function() end
 	
 	name = "clcprot" .. name
 	local button
@@ -71,8 +70,7 @@ local function CreateButton(self, name, size, point, parent, pointParent, offset
 	
 	button.defaultSize = button:GetWidth()
 	
-	if ElvUI then button.SetScale = c.noop end
-	if Tukui then button.SetScale = s.dummy end
+	button.SetScale = function() end
 	button:ClearAllPoints()
 	button:SetPoint(point, parent, pointParent, offsetx, offsety)
 	
