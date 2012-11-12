@@ -24,7 +24,6 @@ local function AdiSkin(self,event)
 				U.SkinEditBox(AdiBagsContainer1SearchBox)
 				AdiBagsContainer1SearchBox:Point("TOPRIGHT", AdiBagsSimpleLayeredRegion2, "TOPRIGHT", -75, -1)
 			end
-	end
 	elseif event == 'BANKFRAME_OPENED' then
 		SkinFrame(AdiBagsContainer2)
 		U.UnregisterEvent("BANKFRAME_OPENED")
