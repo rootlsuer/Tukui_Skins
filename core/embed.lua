@@ -16,7 +16,6 @@ local EmbeddingWindow = CreateFrame("Frame", "EmbeddingWindow", UIParent)
 if event == "PLAYER_ENTERING_WORLD" then
 	
 	EmbedWindowResize()
-if not IsAddOnLoaded("Tukui_ChatTweaks") then
 	EmbedToggleButton = CreateFrame("Button", "EmbedToggleButton", UIParent)
 	EmbedToggleButton:SetTemplate("Transparent")
 	EmbedToggleButton:Size(TukuiInfoRight:GetHeight()-4)
@@ -31,6 +30,31 @@ if not IsAddOnLoaded("Tukui_ChatTweaks") then
 	if AsphyxiaUILayoutSwitchButton then AsphyxiaUILayoutSwitchButton:SetParent(TukuiChatBackgroundRight) AsphyxiaUILayoutSwitchIcon:SetParent(AsphyxiaUILayoutSwitchButton) end
 		EmbedToggleButton:SetScript("OnClick", function(self, btn)
 			if btn == 'LeftButton' then
+		if IsAddOnLoaded("Tukui_ChatTweaks") and (ChatTweaksOptions.ChatHider == "Enabled") then
+			if TukuiChatBackgroundLeft then
+				if not InCombatLockdown() then
+					if TukuiInfoRight.Faded then
+						TukuiInfoRight.Faded = nil
+						TukuiChatBackgroundRight:Show()
+						TukuiTabsRightBackground:Show()
+						UIFrameFadeIn(TukuiInfoRight, 0.2, TukuiInfoRight:GetAlpha(), 1)
+						UIFrameFadeIn(TukuiChatBackgroundRight, 0.2, TukuiChatBackgroundRight:GetAlpha(), 1)
+						TukuiInfoRight:SetPoint("BOTTOM", TukuiChatBackgroundRight, "BOTTOM", 0, 5)
+					else
+						TukuiInfoRight.Faded = true
+						TukuiChatBackgroundRight:SetParent(UIParent)
+						TukuiChatBackgroundRight:SetFrameStrata("Background")
+						TukuiChatBackgroundRight:ClearAllPoints()
+						TukuiInfoRight:ClearAllPoints()
+						UIFrameFadeOut(TukuiInfoRight, 0.2, TukuiInfoRight:GetAlpha(), 0)
+						TukuiInfoRight:SetPoint("BOTTOM", TukuiChatBackgroundRight, "BOTTOM", UIParent:GetWidth(), 5)
+						TukuiChatBackgroundRight:Hide()
+						TukuiTabsRightBackground:Hide()
+						TukuiInfoRight.fadeInfo.finishedFunc = TukuiInfoRight.fadeFunc
+					end
+				end
+			end
+		end
 			else
 				if ChatFrame4:IsShown() then ChatFrame4:Hide() else ChatFrame4:Show() end
 				if (U.CheckOption("EmbedRecount","Recount")) or (U.CheckOption("EmbedRO")) then
@@ -69,6 +93,35 @@ if not IsAddOnLoaded("Tukui_ChatTweaks") then
 		LeftChatToggleButton:SetScript("OnClick", function(self, btn)
 		if not InCombatLockdown() then
 			if btn == 'LeftButton' then
+		if IsAddOnLoaded("Tukui_ChatTweaks") and (ChatTweaksOptions.ChatHider == "Enabled") then
+			if TukuiChatBackgroundLeft then
+				if TukuiInfoLeft.Faded then
+					TukuiInfoLeft.Faded = nil
+					TukuiChatBackgroundLeft:Show()
+					TukuiTabsLeftBackground:Show()
+					GeneralDockManager:Show()
+					if AsphyxiaUIChatBar then AsphyxiaUIChatBar:Show() end
+					UIFrameFadeIn(TukuiInfoLeft, 0.2, TukuiInfoLeft:GetAlpha(), 1)
+					UIFrameFadeIn(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 1)
+					UIFrameFadeIn(TukuiChatBackgroundLeft, 0.2, TukuiChatBackgroundLeft:GetAlpha(), 1)
+					TukuiInfoLeft:Point("BOTTOM", TukuiChatBackgroundLeft, "BOTTOM", 0, 5)
+				else
+					TukuiInfoLeft.Faded = true
+					TukuiChatBackgroundLeft:SetParent(UIParent)
+					TukuiChatBackgroundLeft:SetFrameStrata("Background")
+					TukuiChatBackgroundLeft:ClearAllPoints()
+					TukuiInfoLeft:ClearAllPoints()
+					TukuiInfoLeft:Point("BOTTOM", TukuiChatBackgroundLeft, "BOTTOM", -UIParent:GetWidth(), 5)
+					UIFrameFadeOut(TukuiInfoLeft, 0.2, TukuiInfoLeft:GetAlpha(), 0)
+					UIFrameFadeOut(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 0)
+					TukuiChatBackgroundLeft:Hide()
+					TukuiTabsLeftBackground:Hide()
+					GeneralDockManager:Hide()
+					if AsphyxiaUIChatBar then AsphyxiaUIChatBar:Hide() end
+					TukuiInfoLeft.fadeInfo.finishedFunc = TukuiInfoLeft.fadeFunc
+				end
+			end
+		end
 			else
 				if SkinOptions:IsShown() or SkinOptions2:IsShown() or SkinOptions3:IsShown() then
 					SkinOptions:Hide()
@@ -89,6 +142,11 @@ if not IsAddOnLoaded("Tukui_ChatTweaks") then
 			UIFrameFadeIn(self, 0.2, self:GetAlpha(), 1)
 			GameTooltip:SetOwner(self, 'ANCHOR_TOPRIGHT', 0, 4)
 			GameTooltip:ClearLines()
+			if IsAddOnLoaded("Tukui_ChatTweaks") and (ChatTweaksOptions.ChatHider == "Enabled") then
+				if TukuiChatBackgroundRight then
+					GameTooltip:AddDoubleLine('Left Click:', 'Toggle Right Chat Panel', 1, 1, 1)
+				end
+			end
 			GameTooltip:AddDoubleLine('Right Click:', 'Toggle Embedded AddOn', 1, 1, 1)
 			GameTooltip:Show()
 		end)
@@ -100,6 +158,11 @@ if not IsAddOnLoaded("Tukui_ChatTweaks") then
 			UIFrameFadeIn(self, 0.2, self:GetAlpha(), 1)
 			GameTooltip:SetOwner(self, 'ANCHOR_TOPLEFT', 0, 4)
 			GameTooltip:ClearLines()
+			if IsAddOnLoaded("Tukui_ChatTweaks") and (ChatTweaksOptions.ChatHider == "Enabled") then
+				if TukuiChatBackgroundLeft then
+					GameTooltip:AddDoubleLine('Left Click:', 'Toggle Left Chat Panel', 1, 1, 1)
+				end
+			end
 			GameTooltip:AddDoubleLine('Right Click:','Toggle Extra Skins/Options', 1, 1, 1)
 			GameTooltip:Show()
 		end)
@@ -107,7 +170,7 @@ if not IsAddOnLoaded("Tukui_ChatTweaks") then
 			UIFrameFadeOut(self, 0.2, self:GetAlpha(), 0)
 			GameTooltip:Hide()
 		end)
-end
+
 --Embed Check
 	if not IsAddOnLoaded("Omen") then U.DisableOption("EmbedRO") U.DisableOption("EmbedOmen") end
 	if not IsAddOnLoaded("Recount") then U.DisableOption("EmbedRO") end
