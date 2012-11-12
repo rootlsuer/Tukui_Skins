@@ -1,6 +1,6 @@
 ## Interface: 50001
 ## Title: |cffC495DDTukui|r & |cff1784d1ElvUI |rSkin/Options
-## Version: 4.00
+## Version: 1.00
 ## Author: Azilroka, Sortokk, and others see Credits.txt
 ## OptionalDeps: Ace3
 ## RequiredDeps: Tukui
