@@ -1,5 +1,3 @@
-if not IsAddOnLoaded("Tukui") then return end
-
 local U = unpack(select(2,...))
 UISkinOptions = {}
 local s = U.s

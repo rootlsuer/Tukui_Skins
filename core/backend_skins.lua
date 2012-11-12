@@ -1,5 +1,3 @@
-if not IsAddOnLoaded("Tukui") then return end
-
 local addon = select(1,...)
 local U = unpack(select(2,...))
 

@@ -3,7 +3,6 @@
 -- Restructured Functions file. - Azilroka
 -- Added Skinning features for ease of skinning and smaller size skins. - Azilroka
 
-if not IsAddOnLoaded("Tukui") then return end
 local U = unpack(select(2,...))
 local s = U.s
 
@@ -144,6 +143,7 @@ local function cCheckOption(optionName,...)
 		if not addon then break end
 		if not IsAddOnLoaded(addon) then return false end
 	end
+	return UISkinOptions[optionName] == "Enabled"
 end
 
 U.CheckOption = cCheckOption
