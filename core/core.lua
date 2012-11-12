@@ -3,106 +3,66 @@
 -- Restructured Functions file. - Azilroka
 -- Added Skinning features for ease of skinning and smaller size skins. - Azilroka
 
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) then return end
+if not IsAddOnLoaded("Tukui") then return end
 local U = unpack(select(2,...))
 local s = U.s
 
 local function cSkinButton(self,strip)
-	if ElvUI then
-		s:HandleButton(self,strip)
-	else
-		self:SkinButton(strip)
-	end
+	self:SkinButton(strip)
 end
 
 U.SkinButton = cSkinButton
 
 local function cSkinScrollBar(self)
-	if ElvUI then
-		s:HandleScrollBar(self)
-	else
-		self:SkinScrollBar()
-	end
+	self:SkinScrollBar()
 end
 
 U.SkinScrollBar = cSkinScrollBar
 
 local function cSkinTab(self)
-	if ElvUI then
-		s:HandleTab(self)
-	else
-		self:SkinTab()
-	end
+	self:SkinTab()
 end
 
 U.SkinTab = cSkinTab
 
 local function cSkinNextPrevButton(self, horizonal)
-	if ElvUI then
-		s:HandleNextPrevButton(self, horizonal)
-	else
-		self:SkinNextPrevButton(horizonal)
-	end
+	self:SkinNextPrevButton(horizonal)
 end
 
 U.SkinNextPrevButton = cSkinNextPrevButton
 
 local function cSkinRotateButton(self)
-	if ElvUI then
-		s:HandleRotateButton(self)
-	else
-		self:SkinRotateButton()
-	end
+	self:SkinRotateButton()
 end
 
 U.SkinRotateButton = cSkinRotateButton
 
 local function cSkinEditBox(self)
-	if ElvUI then
-		s:HandleEditBox(self)
-	else
-		self:SkinEditBox()
-	end
+	self:SkinEditBox()
 end
 
 U.SkinEditBox = cSkinEditBox
 
 local function cSkinDropDownBox(self, width)
-	if ElvUI then
-		s:HandleDropDownBox(self, width)
-	else
-		self:SkinDropDownBox(width)
-	end
+	self:SkinDropDownBox(width)
 end
 
 U.SkinDropDownBox = cSkinDropDownBox
 
 local function cSkinCheckBox(self)
-	if ElvUI then
-		s:HandleCheckBox(self)
-	else
-		self:SkinCheckBox()
-	end
+	self:SkinCheckBox()
 end
 
 U.SkinCheckBox = cSkinCheckBox
 
 local function cSkinCloseButton(self)
-	if ElvUI then
-		s:HandleCloseButton(self)
-	else
-		s.SkinCloseButton(self)
-	end
+	s.SkinCloseButton(self)
 end
 
 U.SkinCloseButton = cSkinCloseButton
 
 local function cSkinSliderFrame(self, height)
-	if ElvUI then
-		s:HandleSliderFrame(self)
-	else
-		SkinSlideBar(self, height, movetext)
-	end
+	SkinSlideBar(self, height, movetext)
 end
 
 U.SkinSliderFrame = cSkinSliderFrame
@@ -184,36 +144,18 @@ local function cCheckOption(optionName,...)
 		if not addon then break end
 		if not IsAddOnLoaded(addon) then return false end
 	end
-	
-	if IsAddOnLoaded("ElvUI") then
-		local c = U.c
-		if not c.db or not c.db.skins then return false end
-		return c.db.skins[optionName]
-	else
-		return UISkinOptions[optionName] == "Enabled"
-	end
 end
 
 U.CheckOption = cCheckOption
 
 local function cDisableOption(optionName)
-	if IsAddOnLoaded("ElvUI") then
-		local c = U.c
-		c.db.skins[optionName] = false
-	else
-		UISkinOptions[optionName] = "Disabled"
-	end
+	UISkinOptions[optionName] = "Disabled"
 end
 
 U.DisableOption = cDisableOption
 
 local function cEnableOption(optionName)
-	if IsAddOnLoaded("ElvUI") then
-		local c = U.c
-		c.db.skins[optionName] = true
-	else
-		UISkinOptions[optionName] = "Enabled"
-	end
+	UISkinOptions[optionName] = "Enabled"
 end
 
 U.EnableOption = cEnableOption
@@ -298,8 +240,6 @@ function AzilCompatMode()
 	_G["cUnregisterEvent"] = cUnregisterEvent
 end
 
-if IsAddOnLoaded("Tukui") then
-
 SLASH_FRAME1 = "/frame"
 SlashCmdList["FRAME"] = function(arg)
 	if arg ~= "" then
@@ -336,6 +276,4 @@ SlashCmdList["FRAME"] = function(arg)
 	else
 		ChatFrame1:AddMessage("Could not find frame info")
 	end
-end
-
 end

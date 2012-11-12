@@ -1,5 +1,4 @@
--- Shared backend for both UIs
-if not (IsAddOnLoaded("ElvUI") or IsAddOnLoaded("Tukui")) then return end
+if not IsAddOnLoaded("Tukui") then return end
 
 local addon = select(1,...)
 local U = unpack(select(2,...))
