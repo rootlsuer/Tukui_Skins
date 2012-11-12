@@ -18,9 +18,7 @@ XS.Init = function(self)
 	self.frame = f
 	for skin,alldata in pairs(self.register) do
 		for _,data in pairs(alldata) do
-			if IsAddOnLoaded(self.Skins[skin].addon) then
-				self:RegisterSkin(skin,data.func,data.events)
-			end
+			self:RegisterSkin(skin,data.func,data.events)
 		end
 	end
 	for skin,funcs in pairs(XS.skins) do
