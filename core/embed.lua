@@ -56,7 +56,7 @@ if event == "PLAYER_ENTERING_WORLD" then
 			end
 		end
 			else
-				if ChatFrame4:IsShown() then ChatFrame4:Hide() else ChatFrame4:Show() end
+				if ChatFrame4Tab:IsShown() then ChatFrame4Tab:Hide() else ChatFrame4Tab:Show() end
 				if (U.CheckOption("EmbedRecount","Recount")) or (U.CheckOption("EmbedRO")) then
 					ToggleFrame(Recount_MainWindow)
 				end
@@ -432,7 +432,7 @@ end
 if event == "PLAYER_REGEN_DISABLED" or event == "PLAYER_ENTER_COMBAT" or InCombatLockdown() then
 --	print("Entering Combat")
 	if (U.CheckOption("EmbedOoC")) then
-		ChatFrame4:Hide()
+		ChatFrame4Tab:Hide()
 		if (U.CheckOption("EmbedRecount","Recount"))  then
 			Recount_MainWindow:Show()
 		end
@@ -457,7 +457,7 @@ if event == "PLAYER_REGEN_DISABLED" or event == "PLAYER_ENTER_COMBAT" or InComba
 else
 --	print("Exiting Combat")
 	if (U.CheckOption("EmbedOoC")) then
-		ChatFrame4:Show()
+		ChatFrame4Tab:Show()
 		if (U.CheckOption("EmbedRecount","Recount")) then
 			Recount_MainWindow:Hide()
 		end
