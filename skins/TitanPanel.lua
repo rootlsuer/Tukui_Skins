@@ -16,6 +16,10 @@ end
 
 local name = "TitanPanelSkin"
 local function SkinTitanPanel(self)
+local T = unpack(Tukui)
+		if TPBar2and3Width == nil then TPBar2and3Width = 125 end 
+		if TPBar2and3Position == nil then TPBar2and3Position = WorldFrame:GetWidth()/5 end
+
 		Titan_Bar__Display_Bar:StripTextures()
 		Titan_Bar__Display_Bar:SetTemplate("Default")
 
@@ -87,23 +91,48 @@ local function SkinTitanPanel(self)
 			end)
 
 
-local AceGUI = LibStub("AceGUI-3.0")		
+	TPBar2and3WidthSlider = CreateFrame("Slider", "TPBar2and3WidthSlider", TP_Skin_OptionsFrame, "OptionsSliderTemplate")
+	TPBar2and3WidthSlider:SetSize(200, 15)
+	TPBar2and3WidthSlider:SetPoint("TOP", TP_Skin_OptionsFrame, "TOP", 0, -100)
+	TPBar2and3WidthSlider:SetOrientation("HORIZONTAL")
+	TPBar2and3WidthSlider:SetMinMaxValues(100, 300)
+	TPBar2and3WidthSlider:SetValueStep(1)
+	TPBar2and3WidthSlider:SetValue(TPBar2and3Width)
+	TPBar2and3WidthSliderLow:SetText("100")
+	TPBar2and3WidthSliderHigh:SetText("300")
+	TPBar2and3WidthSliderText:SetText("Set Width of Bar 2 and 3.")
+	TPBar2and3WidthSlider:SetScript("OnValueChanged", function(self, value)
+		TPBar2and3Width = value
+		if TPEnableSpecialBars then
+			Titan_Bar__Display_Bar2:SetWidth(TPBar2and3Width)
+			Titan_Bar__Display_AuxBar2:SetWidth(TPBar2and3Width)
+		end
+	end)
+	T.SkinSlideBar(TPBar2and3WidthSlider, 10, true)
 
-		local slider = AceGUI:Create("Slider")
-		slider.frame:SetParent("TP_Skin_OptionsFrame")
-		slider:SetPoint("TOPLEFT", tpskin_checkbox, "BOTTOMLEFT", 0, -10)
-		slider:SetLabel("Set Width of Bar 2 and 3.")
-		slider:SetSliderValues(10,300,1)
-		slider:SetCallback("OnValueChanged", function(self, value) TPBar2and3Width = self.value end)
+	TPBar2and3PositionSlider = CreateFrame("Slider", "TPBar2and3PositionSlider", TP_Skin_OptionsFrame, "OptionsSliderTemplate")
+	TPBar2and3PositionSlider:SetSize(200, 15)
+	TPBar2and3PositionSlider:SetPoint("TOP", TP_Skin_OptionsFrame, "TOP", 0, -150)
+	TPBar2and3PositionSlider:SetOrientation("HORIZONTAL")
+	TPBar2and3PositionSlider:SetMinMaxValues(10, 800)
+	TPBar2and3PositionSlider:SetValueStep(1)
+	TPBar2and3PositionSlider:SetValue(TPBar2and3Position)
+	TPBar2and3PositionSliderLow:SetText("10")
+	TPBar2and3PositionSliderHigh:SetText("800")
+	TPBar2and3PositionSliderText:SetText("Set Position from the center of Bar 2 and 3")
+	TPBar2and3PositionSlider:SetScript("OnValueChanged", function(self, value)
+		TPBar2and3Position = value
+		if TPEnableSpecialBars then
+			local x = TPBar2and3Position
+			local y = Titan_Bar__Display_Bar2:GetHeight() + Titan_Bar__Display_Bar2:GetHeight()/2 + 1
+			Titan_Bar__Display_Bar2:SetPoint("TOPRIGHT", WorldFrame, "TOP", -x, -y)
+			Titan_Bar__Display_AuxBar2:SetPoint("TOPLEFT", WorldFrame, "TOP", x, -y)
+		end
+	end)
+	T.SkinSlideBar(TPBar2and3PositionSlider, 10, true)
 
-		local slider2 = AceGUI:Create("Slider")
-		slider2.frame:SetParent("TP_Skin_OptionsFrame")
-		slider2:SetPoint("TOPLEFT", tpskin_checkbox, "BOTTOMLEFT", 0, -70)
-		slider2:SetLabel("Set Position of Bar 2 and 3. from center")
-		slider2:SetSliderValues(10,500,1)
-		slider2:SetCallback("OnValueChanged", function(self, value) TPBar2and3Position = self.value end)
-
-		local tpskin = CreateFrame("Frame", "tpskin", TP_Skin_OptionsFrame)
+	local tpskin = CreateFrame("Frame", "tpskin", TP_Skin_OptionsFrame)
+	local tpskin = CreateFrame("Frame", "tpskin", TP_Skin_OptionsFrame)
 		tpskin:SetScript("OnUpdate", function()
 			if Titan_Bar__Display_Bar2 and Titan_Bar__Display_AuxBar2 then -- Do they really exist!
 				tpskin_checkbox:SetChecked(TPEnableSpecialBars)
@@ -111,18 +140,18 @@ local AceGUI = LibStub("AceGUI-3.0")
 				tpskin_checkbox:SetChecked(nil)
 			end
 			if TPBar2and3Width == nil then
-				slider:SetValue(125)
+				TPBar2and3WidthSlider:SetValue(125)
 			else
-				slider:SetValue(TPBar2and3Width)
+				TPBar2and3WidthSlider:SetValue(TPBar2and3Width)
 			end
 			if TPBar2and3Position == nil then
 				local x = WorldFrame:GetWidth()/5
-				slider2:SetValue(x)
+				TPBar2and3PositionSlider:SetValue(x)
 			else
-				slider2:SetValue(TPBar2and3Position)
+				TPBar2and3PositionSlider:SetValue(TPBar2and3Position)
 			end
-	end)	
-		
+	end)
+
 	if TPEnableSpecialBars == true then
 		if Titan_Bar__Display_Bar2 and Titan_Bar__Display_AuxBar2 then -- Do they really exist!
 		

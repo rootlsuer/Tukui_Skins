@@ -1,6 +1,13 @@
 ﻿local U = unpack(select(2,...))
 local name = "ChocolateBarSkin"
 local function SkinCB(self)
+local T = unpack(Tukui)
+		if CBBar2and3Width == nil then
+			CBBar2and3Width = 125
+		end
+		if CBBar2and3Position == nil then
+			CBBar2and3Position = WorldFrame:GetWidth()/5
+		end
 		for i = 1, 20 do   	
 		local f = _G["ChocolateBar"..i]
 			if f then
@@ -58,7 +65,7 @@ local function SkinCB(self)
 					if ChocolateBar2 and ChocolateBar3 then
 							CBEnableSpecialBars = true
 					else
-						DEFAULT_CHAT_FRAME:AddMessage("|cff1784d1ElvUI|r CB Skin: You need to make sure you have created Bars 2 and 3.")
+						DEFAULT_CHAT_FRAME:AddMessage("|cffC495DDTukui|r CB Skin: You need to make sure you have created Bars 2 and 3.")
 						RaidNotice_AddMessage(RaidWarningFrame, "You need to make sure you have created Bars 2 and 3.", ChatTypeInfo["RAID_WARNING"])
 					end
 				else
@@ -66,20 +73,45 @@ local function SkinCB(self)
 				end
 			end)
 
-local AceGUI = LibStub("AceGUI-3.0")		
-	local slider = AceGUI:Create("Slider")
-	slider.frame:SetParent("CB_Skin_OptionsFrame")
-	slider:SetPoint("TOPLEFT", cbskin_checkbox, "BOTTOMLEFT", 0, -10)
-	slider:SetLabel("Set Width of Bar 2 and 3.")
-	slider:SetSliderValues(75,300,1)
-	slider:SetCallback("OnValueChanged", function(self, value) CBBar2and3Width = self.value ChocolateBar3:SetWidth(CBBar2and3Width) ChocolateBar2:SetWidth(CBBar2and3Width)end)
+	CBBar2and3WidthSlider = CreateFrame("Slider", "CBBar2and3WidthSlider", CB_Skin_OptionsFrame, "OptionsSliderTemplate")
+	CBBar2and3WidthSlider:SetSize(200, 15)
+	CBBar2and3WidthSlider:SetPoint("TOP", CB_Skin_OptionsFrame, "TOP", 0, -100)
+	CBBar2and3WidthSlider:SetOrientation("HORIZONTAL")
+	CBBar2and3WidthSlider:SetMinMaxValues(100, 300)
+	CBBar2and3WidthSlider:SetValueStep(1)
+	CBBar2and3WidthSlider:SetValue(CBBar2and3Width)
+	CBBar2and3WidthSliderLow:SetText("100")
+	CBBar2and3WidthSliderHigh:SetText("300")
+	CBBar2and3WidthSliderText:SetText("Set Width of Bar 2 and 3.")
+	CBBar2and3WidthSlider:SetScript("OnValueChanged", function(self, value)
+		CBBar2and3Width = value
+		if CBEnableSpecialBars then
+			ChocolateBar3:SetWidth(CBBar2and3Width)
+			ChocolateBar2:SetWidth(CBBar2and3Width)
+		end
+	end)
+	T.SkinSlideBar(CBBar2and3WidthSlider, 10, true)
 
-	local slider2 = AceGUI:Create("Slider")
-	slider2.frame:SetParent("CB_Skin_OptionsFrame")
-	slider2:SetPoint("TOPLEFT", cbskin_checkbox, "BOTTOMLEFT", 0, -70)
-	slider2:SetLabel("Set Position of Bar 2 and 3. from center")
-	slider2:SetSliderValues(10,500,1)
-	slider2:SetCallback("OnValueChanged", function(self, value) CBBar2and3Position = self.value local x = CBBar2and3Position local y = ChocolateBar1:GetHeight() + ChocolateBar2:GetHeight()/2 + 1 ChocolateBar2:SetPoint("TOPRIGHT", WorldFrame, "TOP", -x, -y) ChocolateBar3:SetPoint("TOPLEFT", WorldFrame, "TOP", x, -y) end)
+	CBBar2and3PositionSlider = CreateFrame("Slider", "CBBar2and3PositionSlider", CB_Skin_OptionsFrame, "OptionsSliderTemplate")
+	CBBar2and3PositionSlider:SetSize(200, 15)
+	CBBar2and3PositionSlider:SetPoint("TOP", CB_Skin_OptionsFrame, "TOP", 0, -150)
+	CBBar2and3PositionSlider:SetOrientation("HORIZONTAL")
+	CBBar2and3PositionSlider:SetMinMaxValues(10, 800)
+	CBBar2and3PositionSlider:SetValueStep(1)
+	CBBar2and3PositionSlider:SetValue(CBBar2and3Position)
+	CBBar2and3PositionSliderLow:SetText("10")
+	CBBar2and3PositionSliderHigh:SetText("800")
+	CBBar2and3PositionSliderText:SetText("Set Position from the center of Bar 2 and 3")
+	CBBar2and3PositionSlider:SetScript("OnValueChanged", function(self, value)
+		CBBar2and3Position = value
+		if CBEnableSpecialBars then
+			local x = CBBar2and3Position
+			local y = ChocolateBar1:GetHeight() + ChocolateBar2:GetHeight()/2 + 1
+			ChocolateBar2:SetPoint("TOPRIGHT", WorldFrame, "TOP", -x, -y)
+			ChocolateBar3:SetPoint("TOPLEFT", WorldFrame, "TOP", x, -y)
+		end
+	end)
+	T.SkinSlideBar(CBBar2and3PositionSlider, 10, true)
 
 	if CBEnableSpecialBars == true then
 	if ChocolateBar2 and ChocolateBar3 then -- Do they really exist!
@@ -154,15 +186,15 @@ end
 				cbskin_checkbox:SetChecked(nil)
 			end
 			if CBBar2and3Width == nil then
-				slider:SetValue(125)
+				CBBar2and3WidthSlider:SetValue(125)
 			else
-				slider:SetValue(CBBar2and3Width)
+				CBBar2and3WidthSlider:SetValue(CBBar2and3Width)
 			end
 			if CBBar2and3Position == nil then
 				local x = WorldFrame:GetWidth()/5
-				slider2:SetValue(x)
+				CBBar2and3PositionSlider:SetValue(x)
 			else
-				slider2:SetValue(CBBar2and3Position)
+				CBBar2and3PositionSlider:SetValue(CBBar2and3Position)
 			end
 	end)
 	
