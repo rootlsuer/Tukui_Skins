@@ -132,7 +132,6 @@ local T = unpack(Tukui)
 	T.SkinSlideBar(TPBar2and3PositionSlider, 10, true)
 
 	local tpskin = CreateFrame("Frame", "tpskin", TP_Skin_OptionsFrame)
-	local tpskin = CreateFrame("Frame", "tpskin", TP_Skin_OptionsFrame)
 		tpskin:SetScript("OnUpdate", function()
 			if Titan_Bar__Display_Bar2 and Titan_Bar__Display_AuxBar2 then -- Do they really exist!
 				tpskin_checkbox:SetChecked(TPEnableSpecialBars)
