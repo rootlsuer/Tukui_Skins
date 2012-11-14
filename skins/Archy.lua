@@ -57,6 +57,8 @@ local function SkinArchy(self)
 
 	U.SkinButton(ArchyDistanceIndicatorFrameSurveyButton)
 	ArchyDistanceIndicatorFrameSurveyButton:SetFrameLevel(ArchyDistanceIndicatorFrameSurveyButton:GetFrameLevel() + 5)
+	U.SkinButton(ArchyDistanceIndicatorFrameCrateButton)
+	ArchyDistanceIndicatorFrameCrateButton:SetFrameLevel(ArchyDistanceIndicatorFrameCrateButton:GetFrameLevel() + 5)
 end
 
 U.RegisterSkin(name,SkinArchy)
