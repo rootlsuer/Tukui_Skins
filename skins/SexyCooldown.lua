@@ -3,7 +3,6 @@ local name = "SexyCooldownSkin"
 local scd = SexyCooldown2
 local c = U.c
 local s = U.s
-local LSM = LibStub("LibSharedMedia-3.0")
 
 local function SCDStripSkinSettings(bar)
 	-- Remove conflicting options

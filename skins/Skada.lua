@@ -2,13 +2,13 @@ local U = unpack(select(2,...))
 local s = U.s
 local c = U.c
 
-local Skada = Skada
-local barSpacing = 1
-local borderWidth = 1
-local barmod = Skada.displays["bar"]
 local name = "SkadaSkin"
-
 local function SkinSkada(self)
+	local Skada = Skada
+	local barSpacing = 1
+	local borderWidth = 1
+
+	local barmod = Skada.displays["bar"]
 	local function StripOptions(options)
 		options.baroptions.args.barspacing = nil
 		options.titleoptions.args.texture = nil
@@ -88,9 +88,6 @@ local function SkinSkada(self)
 			if TukuiChatBackgroundRight then win.bargroup:SetParent(TukuiChatBackgroundRight) end
 		end
 	end
-end
-
-U.RegisterSkin(name,SkinSkada)
 
 local function EmbedWindow(window, width, height, point, relativeFrame, relativePoint, ofsx, ofsy)
 	window.db.barwidth = width
@@ -207,3 +204,6 @@ function SlashCmdList.SKADABACKDROP(msg, editbox)
 		U.DisableOption("SkadaBackdrop")
 	end
 end
+
+end
+U.RegisterSkin(name,SkinSkada)

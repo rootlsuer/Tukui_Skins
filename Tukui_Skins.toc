@@ -1,5 +1,5 @@
 ## Interface: 50001
-## Title: |cffC495DDTukui|r & |cff1784d1ElvUI |rSkin/Options
+## Title: |cffC495DDTukui|r Skins
 ## Version: 1.02
 ## Author: Azilroka, Sortokk, and others see Credits.txt
 ## OptionalDeps: Tukui_ChatTweaks
