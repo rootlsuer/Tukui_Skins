@@ -313,7 +313,7 @@ local SkinOptions = CreateFrame("Frame", "SkinOptions", UIParent)
 --Buttons
 	SkinOptionsButton = CreateFrame("Button", "SkinOptionsButton", GameMenuFrame, "GameMenuButtonTemplate")
 	SkinOptionsButton:Point("TOP", GameMenuButtonMacros, "BOTTOM", 0 , -1)
-	SkinOptionsButton:Size(GameMenuButtonLogout:GetWidth(),GameMenuButtonLogout:GetHei
+	SkinOptionsButton:Size(GameMenuButtonLogout:GetWidth(),GameMenuButtonLogout:GetHeight())
 	U.SkinButton(SkinOptionsButton)
 	SkinOptionsButton.text = SkinOptionsButton:CreateFontString(nil, "OVERLAY")
 	SkinOptionsButton.text:SetFont(UIFont, 12)
