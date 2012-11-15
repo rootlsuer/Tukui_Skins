@@ -321,15 +321,9 @@ local SkinOptions = CreateFrame("Frame", "SkinOptions", UIParent)
 	SkinOptionsButton.text:SetPoint("CENTER", SkinOptionsButton, 0, 0)
 	SkinOptionsButton.text:SetText("Skins")
 	SkinOptionsButton:HookScript("OnClick", function() SkinOptions:Show() HideUIPanel(GameMenuFrame) end)
-	if not IsAddOnLoaded("stAddonmanager") or not IsAddOnLoaded("ACP") then
-		GameMenuFrame:Height(GameMenuFrame:GetHeight() + 26)
-		GameMenuFrame:HookScript("OnShow",function()
-			SkinOptionsButton:Point("TOP", GameMenuButtonMacros, "BOTTOM", 0 , -1)
-			GameMenuButtonLogout:Point("TOP", GameMenuButtonMacros, "BOTTOM", 0 , -40)
-		end)
-	end
+	GameMenuButtonLogout:Point("TOP", GameMenuButtonMacros, "BOTTOM", 0 , -38)
+	GameMenuFrame:Height(GameMenuFrame:GetHeight() + 26)
 	if IsAddOnLoaded("stAddonmanager") then 
-		GameMenuFrame:Height(GameMenuFrame:GetHeight() + 26)
 		GameMenuFrame:HookScript("OnShow",function()
 		SkinOptionsButton:Point("TOP", GameMenuButtonMacros, "BOTTOM", 0 , -23)
 		GameMenuButtonLogout:Point("TOP", GameMenuButtonMacros, "BOTTOM", 0 , -60)
