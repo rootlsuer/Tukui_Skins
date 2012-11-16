@@ -12,7 +12,7 @@ local function Skin_WeakAuras(frame)
 		end
 	end
 
-	frame.icon:SetTexCoord(unpack(c.TexCoords))
+	frame.icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 	frame.icon.SetTexCoord = function() end
 end
 
