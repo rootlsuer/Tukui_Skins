@@ -10,7 +10,7 @@ local function LoadSkin()
 	TellMeWhen_IconEditor:StripTextures()
 	TellMeWhen_IconEditorMainOptions:StripTextures()
 	
-	TellMeWhen_IconEditor:SetTemplate("Transparent")
+	TellMeWhen_IconEditor:SetTemplate()
 	TellMeWhen_IconEditorMainOptions:SetTemplate("Transparent")
 	
 	U.SkinButton(TellMeWhen_IconEditorReset, true)
@@ -32,13 +32,14 @@ local function LoadSkin()
 	U.SkinButton(TellMeWhen_ConfigWarningNeverAgain, true)
 	
 	
-	TellMeWhen_IconEditorSuggest:ClearAllPoints()
+	--[[TellMeWhen_IconEditorSuggest:ClearAllPoints()
 	TellMeWhen_IconEditorSuggestItem1:ClearAllPoints()
 	TellMeWhen_IconEditorSuggestItem1:SetSize(200, 20)
 	TellMeWhen_IconEditorSuggest:SetSize(210, 400)
-	TellMeWhen_IconEditorSuggest:SetTemplate("Transparent")
-	TellMeWhen_IconEditorSuggest:Point("LEFT", TellMeWhen_IconEditorMain, "RIGHT", 1, 0)
 	TellMeWhen_IconEditorSuggestItem1:Point("TOPLEFT", TellMeWhen_IconEditorSuggest, "TOPLEFT", 5, -38)
+	TellMeWhen_IconEditorSuggest:Point("LEFT", TellMeWhen_IconEditorMain, "RIGHT", 1, 0)]]
+	TellMeWhen_IconEditorSuggest:StripTextures()
+	TellMeWhen_IconEditorSuggest:SetTemplate()
 	
 	TellMeWhen_IconEditorTab1:ClearAllPoints()
 	TellMeWhen_IconEditorTab2:ClearAllPoints()
