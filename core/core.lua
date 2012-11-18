@@ -7,10 +7,17 @@ local U = unpack(select(2,...))
 local s = U.s
 local c = U.c
 
+function cColorSwitch()
+	for k, v in pairs(U.ColorBackdrop) do cUpdateColor(v) end
+	for k, v in pairs(U.ColorFrame) do cUpdateColor(v) end
+	for k, v in pairs(U.ColorScroll) do cColorScrollBar(v) end
+	for k, v in pairs(U.ColorSlider) do cColorSlideBar(v) end
+end
+
 function cUpdateColor(self)
 	if UISkinOptions.ColorTemplate == "ClassColor" then
-		--local color = RAID_CLASS_COLORS[U.ccolor]
-		self:SetBackdropBorderColor(RAID_CLASS_COLORS[U.ccolor].r, RAID_CLASS_COLORS[U.ccolor].g, RAID_CLASS_COLORS[U.ccolor].b)
+		local color = RAID_CLASS_COLORS[U.ccolor]
+		self:SetBackdropBorderColor(color.r, color.g, color.b)
 	else
 		self:SetBackdropBorderColor(unpack(c["media"].bordercolor))
 	end
@@ -45,6 +52,7 @@ end
 
 local function cSkinButton(self,strip)
 	self:SkinButton(strip)
+	tinsert(U.ColorFrame, self)
 	cUpdateColor(self)
 	self:HookScript("OnEnter", TSSetModifiedBackdrop)
 	self:HookScript("OnLeave", TSSetOriginalBackdrop)
@@ -54,6 +62,7 @@ U.SkinButton = cSkinButton
 
 local function cSkinScrollBar(self)
 	self:SkinScrollBar()
+	tinsert(U.ColorScroll, self)
 	cColorScrollBar(self)
 end
 
@@ -62,6 +71,7 @@ U.SkinScrollBar = cSkinScrollBar
 local function cSkinTab(self, strip, hook)
 	if strip then self:StripTextures(True) end
 	self:SkinTab()
+	tinsert(U.ColorBackdrop, self.backdrop)
 	cUpdateColor(self.backdrop)
 	self:HookScript("OnEnter", TSSetModifiedBackdrop)
 	self:HookScript("OnLeave", TSSetOriginalBackdrop)
@@ -71,6 +81,7 @@ U.SkinTab = cSkinTab
 
 local function cSkinNextPrevButton(self, horizonal)
 	self:SkinNextPrevButton(horizonal)
+	tinsert(U.ColorFrame, self)
 	cUpdateColor(self)
 end
 
@@ -78,6 +89,7 @@ U.SkinNextPrevButton = cSkinNextPrevButton
 
 local function cSkinRotateButton(self)
 	self:SkinRotateButton()
+	tinsert(U.ColorFrame, self)
 	cUpdateColor(self)
 end
 
@@ -87,6 +99,7 @@ local function cSkinEditBox(self, width, height)
 	self:SkinEditBox()
 	if width then self:SetWidth(width) end
 	if height then self:SetHeight(height) end
+	tinsert(U.ColorBackdrop, self.backdrop)
 	cUpdateColor(self.backdrop)
 end
 
@@ -94,15 +107,18 @@ U.SkinEditBox = cSkinEditBox
 
 local function cSkinDropDownBox(self, width)
 	self:SkinDropDownBox(width)
+	tinsert(U.ColorBackdrop, self.backdrop)
 	cUpdateColor(self.backdrop)
 	local button = _G[self:GetName().."Button"]
 	cUpdateColor(button)
+	tinsert(U.ColorFrame, button)
 end
 
 U.SkinDropDownBox = cSkinDropDownBox
 
 local function cSkinCheckBox(self)
 	self:SkinCheckBox()
+	tinsert(U.ColorBackdrop, self.backdrop)
 	cUpdateColor(self.backdrop)
 end
 
@@ -116,6 +132,7 @@ U.SkinCloseButton = cSkinCloseButton
 
 local function cSkinSlideBar(self, height, movetext)
 	self:SkinSlideBar(height, movetext)
+	tinsert(U.ColorSlider, self)
 	cColorSlideBar(self)
 end
 
@@ -130,6 +147,7 @@ end
 local function cSkinFrame(self, overridestrip)
 	if not overridestrip then self:StripTextures(True) end
 	self:SetTemplate("Transparent")
+	tinsert(U.ColorFrame, self)
 	cUpdateColor(self)
 end
 
@@ -138,6 +156,7 @@ U.SkinFrame = cSkinFrame
 local function cSkinFrameD(self, overridestrip)
 	if not overridestrip then self:StripTextures(True) end
 	self:SetTemplate()
+	tinsert(U.ColorFrame, self)
 	cUpdateColor(self)
 end
 
@@ -150,6 +169,8 @@ local function cSkinBackdropFrame(self, strip, icon)
 		if self.icon then self.icon:SetTexCoord(0.12, 0.88, 0.12, 0.88) end
 		if _G[self:GetName().."_Background"] then _G[self:GetName().."_Background"]:SetTexCoord(0.12, 0.88, 0.12, 0.88) end
 	end
+	tinsert(U.ColorBackdrop, self.backdrop)
+	cUpdateColor(self.backdrop)
 end
 
 U.SkinBackdropFrame = cSkinBackdropFrame
@@ -157,10 +178,7 @@ U.SkinBackdropFrame = cSkinBackdropFrame
 local function cSkinStatusBar(self, ClassColor)
 	local s = U.s
 	local c = U.c
-	self:StripTextures(True)
-	self:CreateBackdrop()
-	print(self)
-	tinsert(U.ColorBackdrop, self:GetName()..".backdrop")
+	cSkinBackdropFrame(self ,true)
 	cUpdateColor(self.backdrop)
 	self:SetStatusBarTexture(c["media"].normTex)
 	if ClassColor then
