@@ -169,7 +169,7 @@ local DefaultSetSkin = CreateFrame("Frame")
 	if(UISkinOptions.EmbedSkada == nil) then UISkinOptions.EmbedSkada = "Disabled" end
 	if(UISkinOptions.EmbedRecount == nil) then UISkinOptions.EmbedRecount = "Disabled" end
 	if(UISkinOptions.EmbedRO == nil) then UISkinOptions.EmbedRO = "Disabled" end
-	--if(UISkinOptions.ColorTemplate == nil) then UISkinOptions.ColorTemplate = "ClassColor" end
+	if(UISkinOptions.ColorTemplate == nil) then UISkinOptions.ColorTemplate = "ClassColor" end
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 end)
 

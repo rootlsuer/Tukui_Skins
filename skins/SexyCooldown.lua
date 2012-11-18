@@ -25,6 +25,7 @@ end
 local function SkinSexyCooldownBar(bar)
 	SCDStripSkinSettings(bar)
 	U.SkinFrame(bar)
+	cRegisterForPetBattleHide(bar)
 	if(U.CheckOption("EmbedSexyCooldown")) then
 		bar:ClearAllPoints()
 		bar:Point('BOTTOM', InvTukuiActionBarBackground, 'TOP', 0, 1)

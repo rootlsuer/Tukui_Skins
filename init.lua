@@ -8,8 +8,10 @@ Engine[1] = AddOn
 UISkins = Engine
 
 AddOn.FrameLocks = {}
-AddOn.FrameColor = {}
-AddOn.FrameColorSB = {}
+AddOn.ColorFrame = {}
+AddOn.ColorScroll = {}
+AddOn.ColorSlider = {}
+AddOn.ColorBackdrop = {}
 
 local T, C, L = unpack(Tukui)
 AddOn.s = T
