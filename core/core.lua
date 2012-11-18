@@ -9,8 +9,8 @@ local c = U.c
 
 function cUpdateColor(self)
 	if UISkinOptions.ColorTemplate == "ClassColor" then
-		local color = RAID_CLASS_COLORS[U.ccolor]
-		self:SetBackdropBorderColor(color.r, color.g, color.b)
+		--local color = RAID_CLASS_COLORS[U.ccolor]
+		self:SetBackdropBorderColor(RAID_CLASS_COLORS[U.ccolor].r, RAID_CLASS_COLORS[U.ccolor].g, RAID_CLASS_COLORS[U.ccolor].b)
 	else
 		self:SetBackdropBorderColor(unpack(c["media"].bordercolor))
 	end
@@ -131,7 +131,6 @@ local function cSkinFrame(self, overridestrip)
 	if not overridestrip then self:StripTextures(True) end
 	self:SetTemplate("Transparent")
 	cUpdateColor(self)
-	cRegisterForPetBattleHide(self)
 end
 
 U.SkinFrame = cSkinFrame
@@ -140,7 +139,6 @@ local function cSkinFrameD(self, overridestrip)
 	if not overridestrip then self:StripTextures(True) end
 	self:SetTemplate()
 	cUpdateColor(self)
-	cRegisterForPetBattleHide(self)
 end
 
 U.SkinFrameD = cSkinFrameD
@@ -152,7 +150,6 @@ local function cSkinBackdropFrame(self, strip, icon)
 		if self.icon then self.icon:SetTexCoord(0.12, 0.88, 0.12, 0.88) end
 		if _G[self:GetName().."_Background"] then _G[self:GetName().."_Background"]:SetTexCoord(0.12, 0.88, 0.12, 0.88) end
 	end
-	cRegisterForPetBattleHide(self)
 end
 
 U.SkinBackdropFrame = cSkinBackdropFrame
@@ -162,6 +159,8 @@ local function cSkinStatusBar(self, ClassColor)
 	local c = U.c
 	self:StripTextures(True)
 	self:CreateBackdrop()
+	print(self)
+	tinsert(U.ColorBackdrop, self:GetName()..".backdrop")
 	cUpdateColor(self.backdrop)
 	self:SetStatusBarTexture(c["media"].normTex)
 	if ClassColor then
