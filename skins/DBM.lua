@@ -92,7 +92,7 @@ local function LoadSkin()
 						if (U.CheckOption("DBMSkinHalf")) then name:Point("BOTTOMLEFT", frame, "TOPLEFT", 0, 4) end
 						name:SetWidth(165)
 						name:SetHeight(8)
-						name:SetFont(c["media"].font, 12, "OUTLINE")
+						name:SetFont(DBT_SavedOptions["DBM"].Font, 12, "OUTLINE")
 						name:SetJustifyH("LEFT")
 						name:SetShadowColor(0, 0, 0, 0)
 						name.SetFont = s.dummy
@@ -103,7 +103,7 @@ local function LoadSkin()
 						timer:ClearAllPoints()
 						timer:Point("RIGHT", frame, "RIGHT", -4, 0)
 						if (U.CheckOption("DBMSkinHalf")) then timer:Point("BOTTOMRIGHT", frame, "TOPRIGHT", -1, 2) end
-						timer:SetFont(c["media"].font, 12, "OUTLINE")
+						timer:SetFont(DBT_SavedOptions["DBM"].Font, 12, "OUTLINE")
 						timer:SetJustifyH("RIGHT")
 						timer:SetShadowColor(0, 0, 0, 0)
 						timer.SetFont = s.dummy
@@ -130,7 +130,7 @@ local function LoadSkin()
 		if not anchor.styled then
 			local header={anchor:GetRegions()}
 				if header[1]:IsObjectType("FontString") then
-					header[1]:SetFont(c["media"].font, 12, "OUTLINE")
+					header[1]:SetFont(DBT_SavedOptions["DBM"].Font, 12, "OUTLINE")
 					header[1]:SetTextColor(1,1,1,1)
 					header[1]:SetShadowColor(0, 0, 0, 0)
 					anchor.styled=true	
@@ -189,7 +189,7 @@ local function LoadSkin()
 				if (U.CheckOption("DBMSkinHalf")) then
 					name:Point("BOTTOMLEFT", bar, "TOPLEFT", 1, 4)
 				end
-				name:SetFont(c["media"].font, 12, "OUTLINE")
+				name:SetFont(DBT_SavedOptions["DBM"].Font, 12, "OUTLINE")
 				name:SetJustifyH("LEFT")
 				name:SetShadowColor(0, 0, 0, 0)
 				name.styled=true
@@ -199,7 +199,7 @@ local function LoadSkin()
 				timer:ClearAllPoints()
 				timer:Point("RIGHT", bar, "RIGHT", -4, 0)
 				if (U.CheckOption("DBMSkinHalf")) then timer:Point("BOTTOMLEFT", bar, "TOPLEFT", 0, 2) end
-				timer:SetFont(c["media"].font, 12, "OUTLINE")
+				timer:SetFont(DBT_SavedOptions["DBM"].Font, 12, "OUTLINE")
 				timer:SetJustifyH("RIGHT")
 				timer:SetShadowColor(0, 0, 0, 0)
 				timer.styled=true

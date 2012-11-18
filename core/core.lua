@@ -164,13 +164,14 @@ U.SkinFrameD = cSkinFrameD
 
 local function cSkinBackdropFrame(self, strip, icon)
 	if strip then self:StripTextures(True) end
-	if not icon then self:CreateBackdrop() cUpdateColor(self.backdrop) end
-	if icon then
+	if not icon then
+		self:CreateBackdrop()
+		cUpdateColor(self.backdrop)
+		tinsert(U.ColorBackdrop, self.backdrop)
+	else
 		if self.icon then self.icon:SetTexCoord(0.12, 0.88, 0.12, 0.88) end
 		if _G[self:GetName().."_Background"] then _G[self:GetName().."_Background"]:SetTexCoord(0.12, 0.88, 0.12, 0.88) end
 	end
-	tinsert(U.ColorBackdrop, self.backdrop)
-	cUpdateColor(self.backdrop)
 end
 
 U.SkinBackdropFrame = cSkinBackdropFrame
