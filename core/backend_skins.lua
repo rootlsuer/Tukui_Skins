@@ -242,4 +242,8 @@ U.Skins = {
 		["buttonText"] = "Tukui Combo",
 		["addon"] = "tCombo",
 	},
+	["ShieldMonitorSkin"] = {
+		["buttonText"] = "Shield Monitor",
+		["addon"] = "shieldmonitor",
+	},
 }

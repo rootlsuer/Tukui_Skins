@@ -45,8 +45,6 @@ local function SkinSexyCooldownIcon(bar, icon)
 		U.SkinBackdropFrame(icon.overlay, false)
 		icon.tex:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 		icon.tex.SetTexCoord = function() end
-		icon.overlay:SetBackdropColor(0,0,0,0)
-		icon:SetBackdropColor(0,0,0,0)
 		icon.skinned = true
 	end
 end
