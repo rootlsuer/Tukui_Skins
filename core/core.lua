@@ -33,6 +33,16 @@ function cColorScrollBar(self)
 	if self.thumbbg then cUpdateColor(self.thumbbg) end
 end
 
+function cColorSlideBar(self)
+	cUpdateColor(self)
+	if UISkinOptions.ColorTemplate == "ClassColor" then
+		local color = RAID_CLASS_COLORS[U.ccolor]
+		self:GetThumbTexture():SetVertexColor(color.r, color.g, color.b)
+	else
+		self:GetThumbTexture():SetVertexColor(unpack( C["media"].bordercolor))
+	end
+end
+
 local function cSkinButton(self,strip)
 	self:SkinButton(strip)
 	cUpdateColor(self)
@@ -106,6 +116,7 @@ U.SkinCloseButton = cSkinCloseButton
 
 local function cSkinSlideBar(self, height, movetext)
 	self:SkinSlideBar(height, movetext)
+	cColorSlideBar(self)
 end
 
 U.SkinSlideBar = cSkinSlideBar
