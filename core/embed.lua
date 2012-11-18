@@ -2,8 +2,6 @@ local U = unpack(select(2,...))
 local s = U.s
 local c = U.c
 local EmbeddingWindow = CreateFrame("Frame", "EmbeddingWindow", UIParent)
-	EmbeddingWindow:SetTemplate("Transparent")
-	EmbeddingWindow:SetFrameStrata("HIGH")
 	UIFont = [[Interface\AddOns\Tukui\medias\fonts\normal_font.ttf]]
 	EmbeddingWindow:Hide()
 	EmbeddingWindow:RegisterEvent("PLAYER_ENTERING_WORLD")
@@ -17,7 +15,7 @@ if event == "PLAYER_ENTERING_WORLD" then
 	
 	EmbedWindowResize()
 	EmbedToggleButton = CreateFrame("Button", "EmbedToggleButton", UIParent)
-	EmbedToggleButton:SetTemplate("Transparent")
+	U.SkinButton(EmbedToggleButton)
 	EmbedToggleButton:Size(TukuiInfoRight:GetHeight()-4)
 	EmbedToggleButton:FontString("text", c["media"].pixelfont, 14, "MONOCHROMEOUTLINE")
 	EmbedToggleButton.text:SetText(">")
@@ -80,7 +78,7 @@ if event == "PLAYER_ENTERING_WORLD" then
 			end
 		end)
 		LeftChatToggleButton = CreateFrame("Button", "LeftChatToggleButton", UIParent)
-		LeftChatToggleButton:SetTemplate("Transparent")
+		U.SkinButton(LeftChatToggleButton)
 		LeftChatToggleButton:Size(TukuiInfoRight:GetHeight()-4)
 		LeftChatToggleButton:FontString("text", c["media"].pixelfont, 14, "MONOCHROMEOUTLINE")
 		LeftChatToggleButton.text:SetText("<")
@@ -180,7 +178,7 @@ if event == "PLAYER_ENTERING_WORLD" then
 	SkadaEmbedButton = CreateFrame("Button", "SkadaEmbedButton", SkinOptions3)
 	SkadaEmbedButton:SetPoint("TOPLEFT", 12, -30)
 	SkadaEmbedButton:Size(16)
-	SkadaEmbedButton:CreateBackdrop()
+	U.SkinBackdropFrame(SkadaEmbedButton)
 	SkadaEmbedButton:SetBackdrop({bgFile = c.media.normTex, edgeFile = nil, tile = false, tileSize = 0, edgeSize = 0, insets = { left = 0, right = 0, top = 0, bottom = 0 }});
 
 	SkadaEmbedButton.text = SkadaEmbedButton:CreateFontString(nil, "OVERLAY")
@@ -212,7 +210,7 @@ if event == "PLAYER_ENTERING_WORLD" then
 	RecountEmbedButton = CreateFrame("Button", "RecountEmbedButton", SkinOptions3)
 	RecountEmbedButton:SetPoint("TOPLEFT", 12, -55)
 	RecountEmbedButton:Size(16)
-	RecountEmbedButton:CreateBackdrop()
+	U.SkinBackdropFrame(RecountEmbedButton)
 	RecountEmbedButton:SetBackdrop({bgFile = c.media.normTex, edgeFile = nil, tile = false, tileSize = 0, edgeSize = 0, insets = { left = 0, right = 0, top = 0, bottom = 0 }});
 
 	RecountEmbedButton.text = RecountEmbedButton:CreateFontString(nil, "OVERLAY")
@@ -244,7 +242,7 @@ if event == "PLAYER_ENTERING_WORLD" then
 	EmbedROButton = CreateFrame("Button", "EmbedROButton", SkinOptions3)
 	EmbedROButton:SetPoint("TOPLEFT", 12, -80)
 	EmbedROButton:Size(16)
-	EmbedROButton:CreateBackdrop()
+	U.SkinBackdropFrame(EmbedROButton)
 	EmbedROButton:SetBackdrop({bgFile = c.media.normTex, edgeFile = nil, tile = false, tileSize = 0, edgeSize = 0, insets = { left = 0, right = 0, top = 0, bottom = 0 }});
 
 	EmbedROButton.text = EmbedROButton:CreateFontString(nil, "OVERLAY")
@@ -277,7 +275,7 @@ if event == "PLAYER_ENTERING_WORLD" then
 	EmbedOmenButton = CreateFrame("Button", "EmbedOmenButton", SkinOptions3)
 	EmbedOmenButton:SetPoint("TOPLEFT", 12, -105)
 	EmbedOmenButton:Size(16)
-	EmbedOmenButton:CreateBackdrop()
+	U.SkinBackdropFrame(EmbedOmenButton)
 	EmbedOmenButton:SetBackdrop({bgFile = c.media.normTex, edgeFile = nil, tile = false, tileSize = 0, edgeSize = 0, insets = { left = 0, right = 0, top = 0, bottom = 0 }});
 
 	EmbedOmenButton.text = EmbedOmenButton:CreateFontString(nil, "OVERLAY")
@@ -309,7 +307,7 @@ if event == "PLAYER_ENTERING_WORLD" then
 	EmbedTDPSButton = CreateFrame("Button", "EmbedTDPSButton", SkinOptions3)
 	EmbedTDPSButton:SetPoint("TOPLEFT", 12, -130)
 	EmbedTDPSButton:Size(16)
-	EmbedTDPSButton:CreateBackdrop()
+	U.SkinBackdropFrame(EmbedTDPSButton)
 	EmbedTDPSButton:SetBackdrop({bgFile = c.media.normTex, edgeFile = nil, tile = false, tileSize = 0, edgeSize = 0, insets = { left = 0, right = 0, top = 0, bottom = 0 }});
 
 	EmbedTDPSButton.text = EmbedTDPSButton:CreateFontString(nil, "OVERLAY")
@@ -341,7 +339,7 @@ if event == "PLAYER_ENTERING_WORLD" then
 	SkadaEmbedBackdropButton = CreateFrame("Button", "SkadaEmbedBackdropButton", SkinOptions3)
 	SkadaEmbedBackdropButton:SetPoint("TOP", -68, -30)
 	SkadaEmbedBackdropButton:Size(16)
-	SkadaEmbedBackdropButton:CreateBackdrop()
+	U.SkinBackdropFrame(SkadaEmbedBackdropButton)
 	SkadaEmbedBackdropButton:SetBackdrop({bgFile = c.media.normTex, edgeFile = nil, tile = false, tileSize = 0, edgeSize = 0, insets = { left = 0, right = 0, top = 0, bottom = 0 }});
 
 	SkadaEmbedBackdropButton.text = SkadaEmbedBackdropButton:CreateFontString(nil, "OVERLAY")
@@ -363,7 +361,7 @@ if event == "PLAYER_ENTERING_WORLD" then
 	RecountEmbedBackdropButton = CreateFrame("Button", "RecountEmbedBackdropButton", SkinOptions3)
 	RecountEmbedBackdropButton:SetPoint("TOP", -68, -55)
 	RecountEmbedBackdropButton:Size(16)
-	RecountEmbedBackdropButton:CreateBackdrop()
+	U.SkinBackdropFrame(RecountEmbedBackdropButton)
 	RecountEmbedBackdropButton:SetBackdrop({bgFile = c.media.normTex, edgeFile = nil, tile = false, tileSize = 0, edgeSize = 0, insets = { left = 0, right = 0, top = 0, bottom = 0 }});
 
 	RecountEmbedBackdropButton.text = RecountEmbedBackdropButton:CreateFontString(nil, "OVERLAY")
@@ -385,7 +383,7 @@ if event == "PLAYER_ENTERING_WORLD" then
 	EmbedOoCButton = CreateFrame("Button", "EmbedOoCButton", SkinOptions3)
 	EmbedOoCButton:SetPoint("TOP", -68, -105)
 	EmbedOoCButton:Size(16)
-	EmbedOoCButton:CreateBackdrop()
+	U.SkinBackdropFrame(EmbedOoCButton)
 	EmbedOoCButton:SetBackdrop({bgFile = c.media.normTex, edgeFile = nil, tile = false, tileSize = 0, edgeSize = 0, insets = { left = 0, right = 0, top = 0, bottom = 0 }});
 
 	EmbedOoCButton.text = EmbedOoCButton:CreateFontString(nil, "OVERLAY")
@@ -407,7 +405,7 @@ if event == "PLAYER_ENTERING_WORLD" then
 	EmbedSexyCooldownButton = CreateFrame("Button", "EmbedSexyCooldownButton", SkinOptions3)
 	EmbedSexyCooldownButton:SetPoint("TOPLEFT", 12, -155)
 	EmbedSexyCooldownButton:Size(16)
-	EmbedSexyCooldownButton:CreateBackdrop()
+	U.SkinBackdropFrame(EmbedSexyCooldownButton)
 	EmbedSexyCooldownButton:SetBackdrop({bgFile = c.media.normTex, edgeFile = nil, tile = false, tileSize = 0, edgeSize = 0, insets = { left = 0, right = 0, top = 0, bottom = 0 }});
 
 	EmbedSexyCooldownButton.text = EmbedSexyCooldownButton:CreateFontString(nil, "OVERLAY")
@@ -541,8 +539,7 @@ function EmbedRecountOmen()
 					end
 				end
 		end
-		OmenBarList:StripTextures()
-		OmenBarList:SetTemplate("Default")
+		U.SkinFrameD(OmenBarList)
 		OmenAnchor:ClearAllPoints()
 		Recount:LockWindows(true)
 		Recount_MainWindow:ClearAllPoints()
