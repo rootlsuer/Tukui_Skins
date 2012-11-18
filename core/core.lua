@@ -39,7 +39,7 @@ function cColorSlideBar(self)
 		local color = RAID_CLASS_COLORS[U.ccolor]
 		self:GetThumbTexture():SetVertexColor(color.r, color.g, color.b)
 	else
-		self:GetThumbTexture():SetVertexColor(unpack( C["media"].bordercolor))
+		self:GetThumbTexture():SetVertexColor(unpack(c["media"].bordercolor))
 	end
 end
 
