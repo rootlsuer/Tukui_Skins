@@ -59,7 +59,7 @@ local function SkinSkada(self)
 			skada.TitleBackGround:SetPoint("LEFT")
 			skada.TitleBackGround:SetPoint("RIGHT")
 			skada.TitleBackGround:SetPoint("BOTTOM", 0, 1)
-			skada.TitleBackGround:SetTemplate("Default")
+			U.SkinFrameD(skada.TitleBackGround)
 			skada.TitleBackGround:SetFrameLevel(skada.button:GetFrameLevel() -1)
 		end
 		
@@ -71,7 +71,7 @@ local function SkinSkada(self)
 		skada:SetBackdrop(nil)
 
 		if not skada.backdrop then
-			skada:CreateBackdrop("Default")
+			U.SkinBackdropFrame(skada)
 		end
 
 		skada.backdrop:ClearAllPoints()

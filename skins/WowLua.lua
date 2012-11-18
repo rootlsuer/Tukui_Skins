@@ -12,18 +12,18 @@ local function SkinWowLua(self)
 	WowLuaButton_New:Point("LEFT", WowLuaFrameToolbar, "LEFT", 60, 0)
 
 	WowLuaFrameEditFocusGrabber.bg1 = CreateFrame("Frame", nil, WowLuaFrameEditFocusGrabber)
-	WowLuaFrameEditFocusGrabber.bg1:CreateBackdrop()
+	U.SkinBackdropFrame(WowLuaFrameEditFocusGrabber.bg1)
 	WowLuaFrameEditFocusGrabber.bg1:Point("TOPLEFT", 0, 0)
 	WowLuaFrameEditFocusGrabber.bg1:Point("BOTTOMRIGHT", 5, -5)
 
 	WowLuaFrameResizeBar.bg1 = CreateFrame("Frame", nil, WowLuaFrameResizeBar)
-	WowLuaFrameResizeBar.bg1:SetTemplate()
+	U.SkinFrame(WowLuaFrameResizeBar.bg1)
 	WowLuaFrameResizeBar.bg1:Point("TOPLEFT", 6, -2)
 	WowLuaFrameResizeBar.bg1:Point("BOTTOMRIGHT", -27, 0)
 
 	WowLuaFrameCommand:StripTextures()
 	WowLuaFrameCommand.bg1 = CreateFrame("Frame", nil, WowLuaFrameCommand)
-	WowLuaFrameCommand.bg1:CreateBackdrop()
+	U.SkinBackdropFrame(WowLuaFrameCommand.bg1)
 	WowLuaFrameCommand.bg1:Point("TOPLEFT", 0, -4)
 	WowLuaFrameCommand.bg1:Point("BOTTOMRIGHT", -12, 2)
 end

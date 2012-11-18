@@ -10,8 +10,7 @@ local function SkinTinyDps(self)
 	local font = tdpsFont
 	local position = tdpsPosition
 	local template
-	if U.CheckOption("EmbedTDPS") then template = "Default" else template = "Transparent" end
-	frame:SetTemplate(template, true)
+	U.SkinFrame(frame)
 	if(tdps) then
 		tdps.width = TukuiMinimap:GetWidth()
 	end
@@ -38,6 +37,7 @@ U.RegisterSkin(name,SkinTinyDps)
 function EmbedTDPS()
 	if not IsAddOnLoaded("TinyDPS") then U.DisableOption("EmbedTDPS") return end
 	if TukuiChatBackgroundRight then tdpsFrame:SetParent(TukuiChatBackgroundRight) end
+	U.SkinFrameD(tdpsFrame)
 	tdpsFrame:SetFrameStrata("MEDIUM")
 	tdpsFrame.spacing = 0
 	tdpsFrame.barHeight = 14

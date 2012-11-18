@@ -10,9 +10,6 @@ local function AtrSkin(self,event)
 	AuctionsCloseButton:Point("RIGHT", AuctionsCancelAuctionButton, "RIGHT", 86, 0)
 	BidBuyoutButton:Point("RIGHT", BidCloseButton, "LEFT", -4, 0)
 	BidBidButton:Point("RIGHT", BidBuyoutButton, "LEFT", -4, 0)
-	AuctionsItemButton:StripTextures()
-	AuctionsItemButton:StyleButton()
-	AuctionsItemButton:SetTemplate("Transparent", true)
 	BrowseName:Point("TOPLEFT", AuctionFrameBrowse, "TOPLEFT", 22, -56)
 	BrowseMinLevel:ClearAllPoints()
 	BrowseMinLevel:Point("RIGHT", BrowseName, "RIGHT", 42, 0)
@@ -28,7 +25,6 @@ local function AtrSkin(self,event)
 	BrowseNameText:Point("TOPLEFT", 20, -41)
 	BrowseLevelText:Point("TOPLEFT", 184, -45)
 	BrowseLevelHyphen:Point("LEFT", BrowseMinLevel, "RIGHT", 4, 0)
-
 	AuctionFrameMoneyFrame:ClearAllPoints()
 	AuctionFrameMoneyFrame:Point("TOPLEFT", AuctionFrame, "BOTTOMLEFT", 55, 24)	
 	BrowseBidPrice:ClearAllPoints()
@@ -47,8 +43,6 @@ local function AtrSkin(self,event)
 	BidQualitySort:Point("TOPLEFT", AuctionFrameBid, "TOPLEFT", 65, -50)
 	AuctionFrameTab1:ClearAllPoints()
 	AuctionFrameTab1:Point("TOPLEFT", AuctionFrame, "BOTTOMLEFT", -5, 2)
-	U.SkinNextPrevButton(BrowseNextPageButton)
-	U.SkinNextPrevButton(BrowsePrevPageButton)
 	BrowseNextPageButton:Size(20, 20)
 	BrowsePrevPageButton:Size(20, 20)
 
@@ -190,10 +184,14 @@ local function AtrSkin(self,event)
 	Atr_SellControls_Tex:StripTextures()
 	Atr_SellControls_Tex:StyleButton()
 	Atr_SellControls_Tex:SetTemplate("Default", true)
-
-	for i = 1, AuctionFrame.numTabs do
+	for i = 4, AuctionFrame.numTabs do
 		U.SkinTab(_G["AuctionFrameTab"..i])
 	end
+	AuctionFrameTab4:HookScript("OnUpdate", function()
+		for i = 4, AuctionFrame.numTabs do
+			cUpdateColor(_G["AuctionFrameTab"..i].backdrop)
+		end
+	end)
 	AuctionFrameTab1:Point("TOPLEFT", AuctionFrame, "BOTTOMLEFT", 5, 2)
 	self:UnregisterEvent("AUCTION_HOUSE_SHOW")
 end

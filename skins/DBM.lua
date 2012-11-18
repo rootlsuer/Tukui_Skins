@@ -26,14 +26,14 @@ local function LoadSkin()
 					
 					if not (icon1.overlay) then
 						icon1.overlay = CreateFrame("Frame", "$parentIcon1Overlay", tbar)
-						icon1.overlay:CreateBackdrop()
+						U.SkinBackdropFrame(icon1.overlay)
 						icon1.overlay:Size(buttonsize-4)
 						icon1.overlay:Point("BOTTOMRIGHT", frame, "BOTTOMLEFT", -5, 2)
 					end
 
 					if not (icon2.overlay) then
 						icon2.overlay = CreateFrame("Frame", "$parentIcon2Overlay", tbar)
-						icon2.overlay:CreateBackdrop()
+						U.SkinBackdropFrame(icon2.overlay)
 						icon2.overlay:Point("BOTTOMLEFT", frame, "BOTTOMRIGHT", 5, 2)
 					end
 
@@ -49,7 +49,7 @@ local function LoadSkin()
 					if not frame.styled then
 						frame:SetHeight(buttonsize)
 						if (U.CheckOption("DBMSkinHalf")) then frame:SetHeight(buttonsize/3) end
-						frame:SetTemplate("Transparent")
+						U.SkinFrame(frame)
 						frame.styled=true
 					end
 
@@ -170,7 +170,7 @@ local function LoadSkin()
 			if not bar.styled then
 				bar:SetHeight(buttonsize)
 				if (U.CheckOption("DBMSkinHalf")) then bar:SetHeight(buttonsize/3) end
-				bar:SetTemplate("Transparent")
+				U.SkinFrame(bar)
 				background:SetNormalTexture(nil)
 				bar.styled=true
 			end	
@@ -216,13 +216,13 @@ local function LoadSkin()
 	DBM.RangeCheck:Show()
 	DBM.RangeCheck:Hide()
 	DBMRangeCheck:HookScript("OnShow",function(self)
-		self:SetTemplate("Transparent")
+		U.SkinFrame(self)
 	end)
-	DBMRangeCheckRadar:SetTemplate("Transparent")
+	U.SkinFrame(DBMRangeCheckRadar, true)
 	DBM.InfoFrame:Show(5, "test")
 	DBM.InfoFrame:Hide()
 	DBMInfoFrame:HookScript("OnShow",function(self)
-		self:SetTemplate("Transparent")
+		U.SkinFrame(self)
 	end)
 	local RaidNotice_AddMessage_=RaidNotice_AddMessage
 	RaidNotice_AddMessage=function(noticeFrame, textString, colorInfo)
@@ -235,13 +235,10 @@ end
 
 local function LoadSkinOptions()
 	DBM_GUI_OptionsFrame:HookScript("OnShow", function()
-	DBM_GUI_OptionsFrame:StripTextures()
-	DBM_GUI_OptionsFrameBossMods:StripTextures()
-	DBM_GUI_OptionsFrameDBMOptions:StripTextures()
-	DBM_GUI_OptionsFrame:SetTemplate("Transparent")
-	DBM_GUI_OptionsFrameBossMods:SetTemplate("Transparent")
-	DBM_GUI_OptionsFrameDBMOptions:SetTemplate("Transparent")
-	DBM_GUI_OptionsFramePanelContainer:SetTemplate("Transparent")
+	U.SkinFrame(DBM_GUI_OptionsFrame)
+	U.SkinFrame(DBM_GUI_OptionsFrameBossMods)
+	U.SkinFrame(DBM_GUI_OptionsFrameDBMOptions)
+	U.SkinFrame(DBM_GUI_OptionsFramePanelContainer)
 	end)
 	U.SkinTab(DBM_GUI_OptionsFrameTab1)
 	U.SkinTab(DBM_GUI_OptionsFrameTab2)

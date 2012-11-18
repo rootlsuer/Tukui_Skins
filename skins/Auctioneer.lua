@@ -7,9 +7,6 @@ local function AuctioneerSkin(self,event)
 	AuctionsCloseButton:Point("RIGHT", AuctionsCancelAuctionButton, "RIGHT", 86, 0)
 	BidBuyoutButton:Point("RIGHT", BidCloseButton, "LEFT", -4, 0)
 	BidBidButton:Point("RIGHT", BidBuyoutButton, "LEFT", -4, 0)
-	AuctionsItemButton:StripTextures()
-	AuctionsItemButton:StyleButton()
-	AuctionsItemButton:SetTemplate("Transparent", true)
 	BrowseName:Point("TOPLEFT", AuctionFrameBrowse, "TOPLEFT", 22, -56)
 	BrowseMinLevel:ClearAllPoints()
 	BrowseMinLevel:Point("RIGHT", BrowseName, "RIGHT", 42, 0)
@@ -44,8 +41,6 @@ local function AuctioneerSkin(self,event)
 	BidQualitySort:Point("TOPLEFT", AuctionFrameBid, "TOPLEFT", 65, -50)
 	AuctionFrameTab1:ClearAllPoints()
 	AuctionFrameTab1:Point("TOPLEFT", AuctionFrame, "BOTTOMLEFT", -5, 2)
-	U.SkinNextPrevButton(BrowseNextPageButton)
-	U.SkinNextPrevButton(BrowsePrevPageButton)
 	BrowseNextPageButton:Size(20, 20)
 	BrowsePrevPageButton:Size(20, 20)
 	if IsAddOnLoaded("Auc-Stat-Purchased") then
@@ -55,14 +50,17 @@ local function AuctioneerSkin(self,event)
 	if IsAddOnLoaded("Auc-Stat-Purchased") then
 		BrowsePrevPageButton:Point("BOTTOMRIGHT", BrowseScrollFrame, "BOTTOMRIGHT", -160, 0)
 	end
-
+	for i = 1, AuctionFrame.numTabs do
+		U.SkinTab(_G["AuctionFrameTab"..i])
+	end
+	AuctionFrameTab1:HookScript("OnUpdate", function()
+		for i = 1, AuctionFrame.numTabs do
+			cUpdateColor(_G["AuctionFrameTab"..i].backdrop)
+		end
+	end)
 	if AucAdvScanButton then U.SkinButton(AucAdvScanButton) end
 	if AucAdvSimpFrameCreate then U.SkinButton(AucAdvSimpFrameCreate) end
 	if AucAdvSimpFrameRemember then U.SkinButton(AucAdvSimpFrameRemember) end
-	if AuctionFrameTabUtilAppraiser then U.SkinTab(AuctionFrameTabUtilAppraiser) end
-	if AuctionFrameTabUtilSearchUi then U.SkinTab(AuctionFrameTabUtilSearchUi) end
-	if AuctionFrameTabUtilSimple then U.SkinTab(AuctionFrameTabUtilSimple) end
-	if AuctionFrameTabUtilBeanCounter then U.SkinTab(AuctionFrameTabUtilBeanCounter) end
 	self:UnregisterEvent("AUCTION_HOUSE_SHOW")
 end
 

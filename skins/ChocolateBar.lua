@@ -23,7 +23,7 @@ local T = unpack(Tukui)
 		CB_Skin_OptionsFrame:SetScript("OnDragStop", CB_Skin_OptionsFrame.StopMovingOrSizing)
 		CB_Skin_OptionsFrame:SetSize(250,250)
 		CB_Skin_OptionsFrame:SetPoint("CENTER", UIParent, "CENTER")
-		CB_Skin_OptionsFrame:SetTemplate('Transparent')
+		U.SkinFrame(CB_Skin_OptionsFrame)
 		CB_Skin_OptionsFrame:Hide()
 
 		CB_Skin_OptionsFrame.Title = CB_Skin_OptionsFrame:CreateFontString(nil, 'OVERLAY')
@@ -90,7 +90,7 @@ local T = unpack(Tukui)
 			ChocolateBar2:SetWidth(CBBar2and3Width)
 		end
 	end)
-	T.SkinSlideBar(CBBar2and3WidthSlider, 10, true)
+	U.SkinSlideBar(CBBar2and3WidthSlider, 10, true)
 
 	CBBar2and3PositionSlider = CreateFrame("Slider", "CBBar2and3PositionSlider", CB_Skin_OptionsFrame, "OptionsSliderTemplate")
 	CBBar2and3PositionSlider:SetSize(200, 15)
@@ -111,7 +111,7 @@ local T = unpack(Tukui)
 			ChocolateBar3:SetPoint("TOPLEFT", WorldFrame, "TOP", x, -y)
 		end
 	end)
-	T.SkinSlideBar(CBBar2and3PositionSlider, 10, true)
+	U.SkinSlideBar(CBBar2and3PositionSlider, 10, true)
 
 	if CBEnableSpecialBars == true then
 	if ChocolateBar2 and ChocolateBar3 then -- Do they really exist!
@@ -152,28 +152,28 @@ local T = unpack(Tukui)
 		cbBar2Left:Point('BOTTOM', ChocolateBar2, 'TOP',-x,0)
 		cbBar2Left:Width(2)
 		cbBar2Left:Height(ChocolateBar2:GetHeight()/2)
-		cbBar2Left:SetTemplate('Default')
+		U.SkinFrameD(cbBar2Left)
 		cbBar2Left:SetFrameLevel(ChocolateBar2:GetFrameLevel())
 
 		cbBar2Right = CreateFrame('Frame', nil, ChocolateBar2)
 		cbBar2Right:Point('BOTTOM', ChocolateBar2, 'TOP', x,0)
 		cbBar2Right:Width(2)
 		cbBar2Right:Height(ChocolateBar2:GetHeight()/2)
-		cbBar2Right:SetTemplate('Default')	
+		U.SkinFrameD(cbBar2Right)
 		cbBar2Right:SetFrameLevel(ChocolateBar2:GetFrameLevel())
 
 		cbBar3Left = CreateFrame('Frame', nil, ChocolateBar3)
 		cbBar3Left:Point('BOTTOM', ChocolateBar3, 'TOP',-x,0)
 		cbBar3Left:Width(2)
 		cbBar3Left:Height(ChocolateBar3:GetHeight()/2)
-		cbBar3Left:SetTemplate('Default')
+		U.SkinFrameD(cbBar3Left)
 		cbBar3Left:SetFrameLevel(ChocolateBar3:GetFrameLevel())
 
 		cbBar3Right = CreateFrame('Frame', nil, ChocolateBar3)
 		cbBar3Right:Point('BOTTOM', ChocolateBar3, 'TOP', x,0)
 		cbBar3Right:Width(2)
 		cbBar3Right:Height(ChocolateBar3:GetHeight()/2)
-		cbBar3Right:SetTemplate('Default')	
+		U.SkinFrameD(cbBar3Right)
 		cbBar3Right:SetFrameLevel(ChocolateBar3:GetFrameLevel())
 	end
 end

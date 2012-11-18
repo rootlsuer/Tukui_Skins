@@ -5,66 +5,110 @@
 
 local U = unpack(select(2,...))
 local s = U.s
+local c = U.c
+
+function cUpdateColor(self)
+	if UISkinOptions.ColorTemplate == "ClassColor" then
+		local color = RAID_CLASS_COLORS[U.ccolor]
+		self:SetBackdropBorderColor(color.r, color.g, color.b)
+	else
+		self:SetBackdropBorderColor(unpack(c["media"].bordercolor))
+	end
+end
+
+function cColorScrollBar(self)
+	if _G[self:GetName().."ScrollUpButton"] and _G[self:GetName().."ScrollDownButton"] then
+		cUpdateColor(_G[self:GetName().."ScrollUpButton"])
+		cUpdateColor(_G[self:GetName().."ScrollDownButton"])
+		if UISkinOptions.ColorTemplate == "ClassColor" then
+			local color = RAID_CLASS_COLORS[U.ccolor]
+			_G[self:GetName().."ScrollUpButton"].texture:SetVertexColor(color.r, color.g, color.b)
+			_G[self:GetName().."ScrollDownButton"].texture:SetVertexColor(color.r, color.g, color.b)
+		else
+			_G[self:GetName().."ScrollUpButton"].texture:SetVertexColor(unpack(c["media"].bordercolor))
+			_G[self:GetName().."ScrollDownButton"].texture:SetVertexColor(unpack(c["media"].bordercolor))
+		end
+	end
+	if self.trackbg then cUpdateColor(self.trackbg) end
+	if self.thumbbg then cUpdateColor(self.thumbbg) end
+end
 
 local function cSkinButton(self,strip)
 	self:SkinButton(strip)
+	cUpdateColor(self)
+	self:HookScript("OnEnter", TSSetModifiedBackdrop)
+	self:HookScript("OnLeave", TSSetOriginalBackdrop)
 end
 
 U.SkinButton = cSkinButton
 
 local function cSkinScrollBar(self)
 	self:SkinScrollBar()
+	cColorScrollBar(self)
 end
 
 U.SkinScrollBar = cSkinScrollBar
 
-local function cSkinTab(self)
+local function cSkinTab(self, strip, hook)
+	if strip then self:StripTextures(True) end
 	self:SkinTab()
+	cUpdateColor(self.backdrop)
+	self:HookScript("OnEnter", TSSetModifiedBackdrop)
+	self:HookScript("OnLeave", TSSetOriginalBackdrop)
 end
 
 U.SkinTab = cSkinTab
 
 local function cSkinNextPrevButton(self, horizonal)
 	self:SkinNextPrevButton(horizonal)
+	cUpdateColor(self)
 end
 
 U.SkinNextPrevButton = cSkinNextPrevButton
 
 local function cSkinRotateButton(self)
 	self:SkinRotateButton()
+	cUpdateColor(self)
 end
 
 U.SkinRotateButton = cSkinRotateButton
 
-local function cSkinEditBox(self)
+local function cSkinEditBox(self, width, height)
 	self:SkinEditBox()
+	if width then self:SetWidth(width) end
+	if height then self:SetHeight(height) end
+	cUpdateColor(self.backdrop)
 end
 
 U.SkinEditBox = cSkinEditBox
 
 local function cSkinDropDownBox(self, width)
 	self:SkinDropDownBox(width)
+	cUpdateColor(self.backdrop)
+	local button = _G[self:GetName().."Button"]
+	cUpdateColor(button)
 end
 
 U.SkinDropDownBox = cSkinDropDownBox
 
 local function cSkinCheckBox(self)
 	self:SkinCheckBox()
+	cUpdateColor(self.backdrop)
 end
 
 U.SkinCheckBox = cSkinCheckBox
 
 local function cSkinCloseButton(self)
-	s.SkinCloseButton(self)
+	self:SkinCloseButton()
 end
 
 U.SkinCloseButton = cSkinCloseButton
 
-local function cSkinSliderFrame(self, height)
-	SkinSlideBar(self, height, movetext)
+local function cSkinSlideBar(self, height, movetext)
+	self:SkinSlideBar(height, movetext)
 end
 
-U.SkinSliderFrame = cSkinSliderFrame
+U.SkinSlideBar = cSkinSlideBar
 
 function cRegisterForPetBattleHide(frame)
 	if frame.IsVisible and frame:GetName() then
@@ -72,58 +116,56 @@ function cRegisterForPetBattleHide(frame)
 	end
 end
 
-local function cSkinFrame(self)
-	self:StripTextures(True)
+local function cSkinFrame(self, overridestrip)
+	if not overridestrip then self:StripTextures(True) end
 	self:SetTemplate("Transparent")
+	cUpdateColor(self)
 	cRegisterForPetBattleHide(self)
 end
 
 U.SkinFrame = cSkinFrame
 
-local function cSkinBackdropFrame(self)
-	self:StripTextures(True)
-	self:CreateBackdrop("Transparent")
-	cRegisterForPetBattleHide(self)
-end
-
-U.SkinBackdropFrame = cSkinBackdropFrame
-
-local function cSkinFrameD(self)
-	self:StripTextures(True)
-	self:SetTemplate("Default")
+local function cSkinFrameD(self, overridestrip)
+	if not overridestrip then self:StripTextures(True) end
+	self:SetTemplate()
+	cUpdateColor(self)
 	cRegisterForPetBattleHide(self)
 end
 
 U.SkinFrameD = cSkinFrameD
 
-local function cSkinStatusBar(self)
+local function cSkinBackdropFrame(self, strip, icon)
+	if strip then self:StripTextures(True) end
+	if not icon then self:CreateBackdrop() cUpdateColor(self.backdrop) end
+	if icon then
+		if self.icon then self.icon:SetTexCoord(0.12, 0.88, 0.12, 0.88) end
+		if _G[self:GetName().."_Background"] then _G[self:GetName().."_Background"]:SetTexCoord(0.12, 0.88, 0.12, 0.88) end
+	end
+	cRegisterForPetBattleHide(self)
+end
+
+U.SkinBackdropFrame = cSkinBackdropFrame
+
+local function cSkinStatusBar(self, ClassColor)
 	local s = U.s
 	local c = U.c
 	self:StripTextures(True)
 	self:CreateBackdrop()
+	cUpdateColor(self.backdrop)
 	self:SetStatusBarTexture(c["media"].normTex)
+	if ClassColor then
+		local color = RAID_CLASS_COLORS[U.ccolor]
+		self:SetStatusBarColor(color.r, color.g, color.b)
+	end
 end
 
 U.SkinStatusBar = cSkinStatusBar
-
-local function cSkinCCStatusBar(self)
-	local s = U.s
-	local c = U.c
-	self:StripTextures(True)
-	self:CreateBackdrop("ClassColor")
-	self:SetStatusBarTexture(c["media"].normTex)
-	local color = RAID_CLASS_COLORS[U.ccolor]
-	self:SetStatusBarColor(color.r, color.g, color.b)
-end
-
-U.SkinCCStatusBar = cSkinCCStatusBar
 
 local function cDesaturate(f, point)
 	for i=1, f:GetNumRegions() do
 		local region = select(i, f:GetRegions())
 		if region:GetObjectType() == "Texture" then
 			region:SetDesaturated(1)
-
 			if region:GetTexture() == "Interface\\DialogFrame\\UI-DialogBox-Corner" then
 				region:Kill()
 			end
@@ -246,65 +288,16 @@ function cDelay(delay, func, ...)
 	return true
 end
 
-function AzilCompatMode()
-	_G["cSkinButton"] = cSkinButton
-	_G["cSkinScrollBar"] = cSkinScrollBar
-	_G["cSkinTab"] = cSkinTab
-	_G["cSkinNextPrevButton"] = cSkinNextPrevButton
-	_G["cSkinRotateButton"] = cSkinRotateButton
-	_G["cSkinEditBox"] = cSkinEditBox
-	_G["cSkinDropDownBox"] = cSkinDropDownBox
-	_G["cSkinCheckBox"] = cSkinCheckBox
-	_G["cSkinCloseButton"] = cSkinCloseButton
-	_G["cSkinSliderFrame"] = cSkinSliderFrame
-	_G["cSkinFrame"] = cSkinFrame
-	_G["cSkinBackdropFrame"] = cSkinBackdropFrame
-	_G["cSkinFrameD"] = cSkinFrameD
-	_G["cSkinStatusBar"] = cSkinStatusBar
-	_G["cSkinCCStatusBar"] = cSkinCCStatusBar
-	_G["cDesaturate"] = cDesaturate
-	_G["cCheckOption"] = cCheckOption
-	_G["cDisableOption"] = cDisableOption
-	_G["cEnableOption"] = cEnableOption
-	_G["cToggleOption"] = cToggleOption
-	_G["cRegisterSkin"] = cRegisterSkin
-	_G["cUnregisterEvent"] = cUnregisterEvent
+function TSSetModifiedBackdrop(self)
+	local color = RAID_CLASS_COLORS[U.ccolor]
+	self:SetBackdropBorderColor(color.r, color.g, color.b)
 end
 
-SLASH_FRAME1 = "/frame"
-SlashCmdList["FRAME"] = function(arg)
-	if arg ~= "" then
-		arg = _G[arg]
+function TSSetOriginalBackdrop(self)
+	local color = RAID_CLASS_COLORS[U.ccolor]
+	if UISkinOptions.ColorTemplate == "ClassColor" then
+		self:SetBackdropBorderColor(color.r, color.g, color.b)
 	else
-		arg = GetMouseFocus()
-	end
-
-	if arg ~= nil and arg:GetName() ~= nil then
-		local point, relativeTo, relativePoint, xOfs, yOfs = arg:GetPoint()
-		ChatFrame1:AddMessage("|cffCC0000~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-		ChatFrame1:AddMessage("Name: |cffFFD100"..arg:GetName())
-		if arg:GetParent() then
-			ChatFrame1:AddMessage("Parent: |cffFFD100"..arg:GetParent():GetName())
-		end
-
-		ChatFrame1:AddMessage("Width: |cffFFD100"..format("%.2f",arg:GetWidth()))
-		ChatFrame1:AddMessage("Height: |cffFFD100"..format("%.2f",arg:GetHeight()))
-		ChatFrame1:AddMessage("Strata: |cffFFD100"..arg:GetFrameStrata())
-		ChatFrame1:AddMessage("Level: |cffFFD100"..arg:GetFrameLevel())
-
-		if xOfs then
-			ChatFrame1:AddMessage("X: |cffFFD100"..format("%.2f",xOfs))
-		end
-		if yOfs then
-			ChatFrame1:AddMessage("Y: |cffFFD100"..format("%.2f",yOfs))
-		end
-		if relativeTo then
-			ChatFrame1:AddMessage("Point: |cffFFD100"..point.."|r anchored to "..relativeTo:GetName().."'s |cffFFD100"..relativePoint)
-		end
-		ChatFrame1:AddMessage("|cffCC0000~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-	elseif arg == nil then
-		ChatFrame1:AddMessage("Invalid frame name")
-	else
-		ChatFrame1:AddMessage("Could not find frame info")
+		self:SetBackdropBorderColor(unpack(c["media"].bordercolor))
 	end
 end

@@ -6,9 +6,9 @@ local function SkinBPT(self)
 	end
 	BalancePowerTracker_Options.global.enabled = true
 	BalancePowerTracker.CheckAll()
-	BalancePowerTracker_Eclipse_Bar_Frame:SetTemplate("Transparent")
-	BalancePowerTracker_SolarEclipseIcon:SetTemplate(Transparent)
-	BalancePowerTracker_LunarEclipseIcon:SetTemplate(Transparent)
+	U.SkinFrame(BalancePowerTracker_Eclipse_Bar_Frame, true)
+	U.SkinFrame(BalancePowerTracker_SolarEclipseIcon, true)
+	U.SkinFrame(BalancePowerTracker_LunarEclipseIcon, true)
 	
 	hooksecurefunc(BalancePowerTracker.modules.eclipse_bar,"ReDraw", function() BalancePowerTracker_Eclipse_Bar_Frame:SetTemplate("Transparent") end)
 end

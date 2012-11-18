@@ -25,14 +25,14 @@ local function SkinMinimalArchaeology(self)
 	U.SkinFrame(MinArchHist)
 	U.SkinCloseButton(MinArchHistButtonClose)
 
-	for i = 1, 10 do
+	for i = 1, 11 do
 		U.SkinStatusBar(_G["MinArchMainArtifactBar"..i])
 		_G["MinArchMainArtifactBar"..i]:SetStatusBarColor(1.0, 0.4, 0)
 		U.SkinButton(_G["MinArchMainArtifactBar"..i.."ButtonSolve"])
-		_G["MinArchMainArtifactBar"..i.."ButtonSolve"].text = _G["MinArchMainArtifactBar"..i.."ButtonSolve"]:CreateFontString(nil, "OVERLAY")
-		_G["MinArchMainArtifactBar"..i.."ButtonSolve"].text:SetFont(UIFont, UIFontSize, "OUTLINE")
-		_G["MinArchMainArtifactBar"..i.."ButtonSolve"].text:SetPoint("CENTER", 1, 1)
-		_G["MinArchMainArtifactBar"..i.."ButtonSolve"].text:SetText("Solve")
+		--_G["MinArchMainArtifactBar"..i.."ButtonSolve"].text = _G["MinArchMainArtifactBar"..i.."ButtonSolve"]:CreateFontString(nil, "OVERLAY")
+		--_G["MinArchMainArtifactBar"..i.."ButtonSolve"].text:SetFont(UIFont, UIFontSize, "OUTLINE")
+		--_G["MinArchMainArtifactBar"..i.."ButtonSolve"].text:SetPoint("CENTER", 1, 1)
+		--_G["MinArchMainArtifactBar"..i.."ButtonSolve"].text:SetText("Solve")
 		--Min Arch Options
 		U.SkinCheckBox(_G["MinArchOptionPanelHideArtifact"..i])
 		U.SkinCheckBox(_G["MinArchOptionPanelFragmentCap"..i])
@@ -51,7 +51,7 @@ local function SkinMinimalArchaeology(self)
 		U.SkinCheckBox(boxes)
 	end
 
-	--U.SkinSliderFrame(MinArchOptionPanelFrameScaleSlider)
+	U.SkinSlideBar(MinArchOptionPanelFrameScaleSlider)
 	MinArchOptionPanelFrameScaleSliderLow:ClearAllPoints()
 	MinArchOptionPanelFrameScaleSliderLow:SetPoint("BOTTOMLEFT", MinArchOptionPanelFrameScale, "BOTTOMLEFT", 3, 3)
 	MinArchOptionPanelFrameScaleSliderHigh:ClearAllPoints()

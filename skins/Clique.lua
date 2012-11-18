@@ -12,17 +12,14 @@ local function SkinClique(self)
 	"CliqueClickGrabber",
 	}
 	for _, object in pairs(Frames) do
-		_G[object]:StripTextures(True)
+		U.SkinBackdropFrame(_G[object], true)
 		if _G[object] == CliqueConfig then
-			_G[object]:CreateBackdrop("Transparent")
 			_G[object].backdrop:SetPoint("TOPLEFT",0,0)
 			_G[object].backdrop:SetPoint("BOTTOMRIGHT",0,-5)
 		elseif _G[object] == CliqueClickGrabber or _G[object] == CliqueScrollFrame then
-			_G[object]:CreateBackdrop("Default")
 			_G[object].backdrop:SetPoint("TOPLEFT",4,0)
 			_G[object].backdrop:SetPoint("BOTTOMRIGHT",-2,4)
 		else
-			_G[object]:CreateBackdrop("Default")
 			_G[object]:SetFrameLevel(_G[object]:GetFrameLevel()+1)
 			_G[object].backdrop:SetPoint("TOPLEFT",0,0)
 			_G[object].backdrop:SetPoint("BOTTOMRIGHT",2,0)
@@ -40,8 +37,7 @@ local function SkinClique(self)
 	"CliqueConfigPage2ButtonCancel",
 	}
 	for _, object in pairs(CliqueButtons) do
-		_G[object]:StripTextures(True)
-		U.SkinButton(_G[object])
+		U.SkinButton(_G[object], true)
 	end
 	
 	U.SkinCloseButton(CliqueConfigCloseButton)
@@ -89,7 +85,8 @@ local function SkinClique(self)
 	CliqueSpellTab:GetNormalTexture():ClearAllPoints()
 	CliqueSpellTab:GetNormalTexture():Point("TOPLEFT", 2, -2)
 	CliqueSpellTab:GetNormalTexture():Point("BOTTOMRIGHT", -2, 2)
-	CliqueSpellTab:CreateBackdrop("Transparent")
+	
+	U.SkinBackdropFrame(CliqueSpellTab)
 	CliqueSpellTab.backdrop:SetAllPoints()
 	CliqueSpellTab:StyleButton(True)
 

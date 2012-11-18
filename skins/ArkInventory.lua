@@ -54,20 +54,16 @@ local ArkInventory = LibStub("AceAddon-3.0"):GetAddon("ArkInventory")
 		ARKINV_Frame4ChangerWindowPurchaseInfo:SetPoint("TOP", ARKINV_Frame4ChangerWindowGoldAvailable, "BOTTOM", 0, -12)
 
 		_G[status:GetName().."EmptyText"]:SetPoint("LEFT",2,0)
-		if IsAddOnLoaded("ElvUI") then _G[status:GetName().."EmptyText"]:SetFont(c["media"].normFont, 12) end
-		if IsAddOnLoaded("Tukui") then _G[status:GetName().."EmptyText"]:SetFont(c["media"].font, 12) end
+		_G[status:GetName().."EmptyText"]:SetFont(c["media"].font, 12)
 
 		_G[status:GetName().."GoldCopperButton"]:SetPoint("RIGHT",-1,0)
-		if IsAddOnLoaded("ElvUI") then _G[status:GetName().."GoldCopperButtonText"]:SetFont(c["media"].normFont, 12) end
-		if IsAddOnLoaded("Tukui") then _G[status:GetName().."GoldCopperButtonText"]:SetFont(c["media"].font,12) end
+		_G[status:GetName().."GoldCopperButtonText"]:SetFont(c["media"].font,12)
 
 		_G[status:GetName().."GoldSilverButton"]:SetPoint("RIGHT",_G[status:GetName().."GoldCopperButtonText"],"LEFT",-1,0)
-		if IsAddOnLoaded("ElvUI") then _G[status:GetName().."GoldSilverButtonText"]:SetFont(c["media"].normFont, 12) end
-		if IsAddOnLoaded("Tukui") then _G[status:GetName().."GoldSilverButtonText"]:SetFont(c["media"].font,12) end
+		_G[status:GetName().."GoldSilverButtonText"]:SetFont(c["media"].font,12)
 		
 		_G[status:GetName().."GoldGoldButton"]:SetPoint("RIGHT",_G[status:GetName().."GoldSilverButtonText"],"LEFT",-1,0)
-		if IsAddOnLoaded("ElvUI") then _G[status:GetName().."GoldGoldButtonText"]:SetFont(c["media"].normFont, 12) end
-		if IsAddOnLoaded("Tukui") then _G[status:GetName().."GoldGoldButtonText"]:SetFont(c["media"].font,12) end
+		_G[status:GetName().."GoldGoldButtonText"]:SetFont(c["media"].font,12)
 	end
 
 	ArkInventory.Frame_Bar_Paint_ = ArkInventory.Frame_Bar_Paint

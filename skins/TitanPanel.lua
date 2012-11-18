@@ -20,17 +20,10 @@ local T = unpack(Tukui)
 		if TPBar2and3Width == nil then TPBar2and3Width = 125 end 
 		if TPBar2and3Position == nil then TPBar2and3Position = WorldFrame:GetWidth()/5 end
 
-		Titan_Bar__Display_Bar:StripTextures()
-		Titan_Bar__Display_Bar:SetTemplate("Default")
-
-		Titan_Bar__Display_Bar2:StripTextures()
-		Titan_Bar__Display_Bar2:SetTemplate("Default")
-
-		Titan_Bar__Display_AuxBar:StripTextures()
-		Titan_Bar__Display_AuxBar:SetTemplate("Default")
-
-		Titan_Bar__Display_AuxBar2:StripTextures()
-		Titan_Bar__Display_AuxBar2:SetTemplate("Default")		
+		U.SkinFrameD(Titan_Bar__Display_Bar)
+		U.SkinFrameD(Titan_Bar__Display_Bar2)
+		U.SkinFrameD(Titan_Bar__Display_AuxBar)
+		U.SkinFrameD(Titan_Bar__Display_AuxBar2)
 
 		local TP_Skin_OptionsFrame = CreateFrame("FRAME", "TP_Skin_OptionsFrame", UIParent)
 		TP_Skin_OptionsFrame:SetMovable(true)
@@ -40,7 +33,7 @@ local T = unpack(Tukui)
 		TP_Skin_OptionsFrame:SetScript("OnDragStop", TP_Skin_OptionsFrame.StopMovingOrSizing)
 		TP_Skin_OptionsFrame:SetSize(250,250)
 		TP_Skin_OptionsFrame:SetPoint("CENTER", UIParent, "CENTER")
-		TP_Skin_OptionsFrame:SetTemplate('Transparent')
+		U.SkinFrame(TP_Skin_OptionsFrame)
 		TP_Skin_OptionsFrame:Hide()
 
 		TP_Skin_OptionsFrame.Title = TP_Skin_OptionsFrame:CreateFontString(nil, 'OVERLAY')
@@ -108,7 +101,7 @@ local T = unpack(Tukui)
 			Titan_Bar__Display_AuxBar2:SetWidth(TPBar2and3Width)
 		end
 	end)
-	T.SkinSlideBar(TPBar2and3WidthSlider, 10, true)
+	U.SkinSlideBar(TPBar2and3WidthSlider, 10, true)
 
 	TPBar2and3PositionSlider = CreateFrame("Slider", "TPBar2and3PositionSlider", TP_Skin_OptionsFrame, "OptionsSliderTemplate")
 	TPBar2and3PositionSlider:SetSize(200, 15)
@@ -129,7 +122,7 @@ local T = unpack(Tukui)
 			Titan_Bar__Display_AuxBar2:SetPoint("TOPLEFT", WorldFrame, "TOP", x, -y)
 		end
 	end)
-	T.SkinSlideBar(TPBar2and3PositionSlider, 10, true)
+	U.SkinSlideBar(TPBar2and3PositionSlider, 10, true)
 
 	local tpskin = CreateFrame("Frame", "tpskin", TP_Skin_OptionsFrame)
 		tpskin:SetScript("OnUpdate", function()
@@ -189,28 +182,28 @@ local T = unpack(Tukui)
 		cbBar2Left:Point('BOTTOM', Titan_Bar__Display_Bar2, 'TOP',-x,0)
 		cbBar2Left:Width(2)
 		cbBar2Left:Height(Titan_Bar__Display_Bar2:GetHeight()/2)
-		cbBar2Left:SetTemplate('Default')
+		U.SkinFrameD(cbBar2Left)
 		cbBar2Left:SetFrameLevel(Titan_Bar__Display_Bar2:GetFrameLevel())
-		
+
 		cbBar2Right = CreateFrame('Frame', nil, Titan_Bar__Display_Bar2)
 		cbBar2Right:Point('BOTTOM', Titan_Bar__Display_Bar2, 'TOP', x,0)
 		cbBar2Right:Width(2)
 		cbBar2Right:Height(Titan_Bar__Display_Bar2:GetHeight()/2)
-		cbBar2Right:SetTemplate('Default')	
+		U.SkinFrameD(cbBar2Right)
 		cbBar2Right:SetFrameLevel(Titan_Bar__Display_Bar2:GetFrameLevel())
 
 		cbBar3Left = CreateFrame('Frame', nil, Titan_Bar__Display_AuxBar2)
 		cbBar3Left:Point('BOTTOM', Titan_Bar__Display_AuxBar2, 'TOP',-x,0)
 		cbBar3Left:Width(2)
 		cbBar3Left:Height(Titan_Bar__Display_AuxBar2:GetHeight()/2)
-		cbBar3Left:SetTemplate('Default')
+		U.SkinFrameD(cbBar3Left)
 		cbBar3Left:SetFrameLevel(Titan_Bar__Display_AuxBar2:GetFrameLevel())
 		
 		cbBar3Right = CreateFrame('Frame', nil, Titan_Bar__Display_AuxBar2)
 		cbBar3Right:Point('BOTTOM', Titan_Bar__Display_AuxBar2, 'TOP', x,0)
 		cbBar3Right:Width(2)
 		cbBar3Right:Height(Titan_Bar__Display_AuxBar2:GetHeight()/2)
-		cbBar3Right:SetTemplate('Default')	
+		U.SkinFrameD(cbBar3Right)
 		cbBar3Right:SetFrameLevel(Titan_Bar__Display_AuxBar2:GetFrameLevel())
 	end
 		local Enabled = _G["Titan_Bar__Display_AuxBar2"]

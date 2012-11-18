@@ -1,4 +1,4 @@
--- init for Tukui_ElvUI_Skins
+-- init for Tukui_Skins
 
 local addon,Engine = ...
 
@@ -8,11 +8,10 @@ Engine[1] = AddOn
 UISkins = Engine
 
 AddOn.FrameLocks = {}
-
-local s
+AddOn.FrameColor = {}
+AddOn.FrameColorSB = {}
 
 local T, C, L = unpack(Tukui)
 AddOn.s = T
 AddOn.c = C
 AddOn.ccolor = T.myclass
-s = T

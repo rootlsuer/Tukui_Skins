@@ -5,10 +5,9 @@ local c = U.c
 local name = 'AdiBagsSkin'
 local function SkinFrame(frame)
 	local region = frame.HeaderRightRegion
-	frame:StripTextures()
-	frame:SetTemplate('Transparent')
-	_G[frame:GetName()..'Bags']:StripTextures()
-	_G[frame:GetName()..'Bags']:SetTemplate('Transparent')
+	U.SkinFrame(frame)
+	U.SkinFrame(_G[frame:GetName()..'Bags'])
+	U.SkinFrameD(_G[frame:GetName()..'Bags'], true)
 	U.SkinCloseButton(frame.CloseButton)
 	for i = 1, 3 do
 		U.SkinButton(region.widgets[i].widget, true)
@@ -23,9 +22,10 @@ local function AdiSkin(self,event)
 				U.SkinEditBox(AdiBagsContainer1SearchBox)
 				AdiBagsContainer1SearchBox:Point("TOPRIGHT", AdiBagsSimpleLayeredRegion2, "TOPRIGHT", -75, -1)
 			end
+		self:UnregisterEvent('PLAYER_ENTERING_WORLD')
 	elseif event == 'BANKFRAME_OPENED' then
 		SkinFrame(AdiBagsContainer2)
-		U.UnregisterEvent("BANKFRAME_OPENED")
+		self:UnregisterEvent('BANKFRAME_OPENED')
 	end
 end
 

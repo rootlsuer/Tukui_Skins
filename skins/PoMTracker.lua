@@ -6,15 +6,14 @@ local function SkinPoMTracker(self)
 	U.SkinFrame(PoMOptionFrame)
 	U.SkinCloseButton(PoMOptionFrame_CloseButton)
 
-	pomtracker1:CreateBackdrop("Transparent")
+	U.SkinBackdropFrame(pomtracker1)
 	pomtracker1:Size(85,15)
 
 	pomtracker2:ClearAllPoints()
 	pomtracker2:Point("TOP", pomtracker1, "BOTTOM", 0, -5)
-	pomtracker2:StripTextures(True)
-	pomtracker2:CreateBackdrop("Transparent")
+	U.SkinBackdropFrame(pomtracker2)
 
-	pomtracker3:CreateBackdrop("Transparent")
+	U.SkinBackdropFrame(pomtracker3)
 	pomtracker3:ClearAllPoints()
 	pomtracker3:Point("TOP", pomtrackerstatusBar, "BOTTOM", 0, -5)
 	pomtracker3:Height(15)
@@ -23,8 +22,7 @@ local function SkinPoMTracker(self)
 
 	pomtrackerstatusBar:ClearAllPoints()
 	pomtrackerstatusBar:Point("TOP", pomtracker2, "BOTTOM", 0, -5)
-	pomtrackerstatusBar:CreateBackdrop("Transparent")
-	pomtrackerstatusBar:SetStatusBarTexture(c["media"].normTex)
+	U.SkinStatusBar(pomtrackerstatusBar)
 
 	for i = 1,6 do
 		U.SkinCheckBox(_G["PoMOptionFrame_CheckButton"..i])

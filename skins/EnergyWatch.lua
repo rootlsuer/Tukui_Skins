@@ -4,8 +4,7 @@ local function SkinEnergyWatch(self)
 	local s = U.s
 	local c = U.c
 	EnergyWatchBar:StripTextures(True)
-	EnergyWatchStatusBar:CreateBackdrop()
-	EnergyWatchStatusBar:SetStatusBarTexture(c["media"].normTex)
+	U.SkinStatusBar(EnergyWatchStatusBar)
 end
 
 U.RegisterSkin(name,SkinEnergyWatch)

@@ -2,8 +2,7 @@ local U = unpack(select(2,...))
 
 local function SkinAraGF(self, event, ...)
     local AraGuildFriends = _G["AraBrokerGuildFriends"]
-        AraGuildFriends:StripTextures()
-        AraGuildFriends:SetTemplate("Default")
+        U.SkinFrame(AraGuildFriends)
 end
 
 local name = "AraBrokerGuildFriendsSkin"

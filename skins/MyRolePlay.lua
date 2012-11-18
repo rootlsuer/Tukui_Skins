@@ -7,7 +7,7 @@ hooksecurefunc(mrp, "CreateBrowseFrame", function()
 		bg:SetPoint("TOPLEFT")
 		bg:SetPoint("BOTTOMRIGHT")
 		bg:SetFrameLevel(MyRolePlayBrowseFrame:GetFrameLevel()-1)
-		bg:SetTemplate("Transparent")
+		U.SkinFrame(bg)
 
 		MyRolePlayBrowseFrame:DisableDrawLayer("BACKGROUND")
 		MyRolePlayBrowseFrame:DisableDrawLayer("BORDER")
@@ -65,12 +65,11 @@ hooksecurefunc(mrp, "CreateEditFrames", function()
 			insets = { left = 0, right = 0, top = 0, bottom = 0	},
 		} )
 
-		MyRolePlayEditFrame.editbox:CreateBackdrop()
+		U.SkinBackdropFrame(MyRolePlayEditFrame.editbox)
 		MyRolePlayCharacterFrame_ProfileComboBox:SetPoint("TOP", CharacterFrameInset, "TOP", 0, 22)
 		MyRolePlayCharacterFrame_ProfileComboBox.text:SetPoint("LEFT", MyRolePlayCharacterFrame_ProfileComboBox, "LEFT", 8, 0)
 		U.SkinNextPrevButton(MyRolePlayCharacterFrame_ProfileComboBox_Button)
-		MyRolePlayCharacterFrame_ProfileComboBox:StripTextures()
-		MyRolePlayCharacterFrame_ProfileComboBox:CreateBackdrop()
+		U.SkinBackdropFrame(MyRolePlayCharacterFrame_ProfileComboBox)
 		MyRolePlayCharacterFrame_ProfileComboBox:Size(100,20)
 		MyRolePlayCharacterFrame_ProfileComboBox_Button:ClearAllPoints()
 		MyRolePlayCharacterFrame_ProfileComboBox_Button:SetPoint("RIGHT", MyRolePlayCharacterFrame_ProfileComboBox, "RIGHT", 0 , 0)
@@ -101,8 +100,7 @@ local function reskinHeader(c, field)
 				local z = U.c
 				f.h.SetBackdrop = function() end
 				f:StripTextures(True)
-				f.h:CreateBackdrop()
-				f.h:StripTextures(True)
+				U.SkinBackdropFrame(f.h)
 				f.h.fs:SetPoint("TOPLEFT", f.h, "TOPLEFT", 0, 1)
 
 			if f.sep then

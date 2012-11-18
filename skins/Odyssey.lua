@@ -4,7 +4,6 @@ local function SkinOdyssey(self)
 	local s = U.s
 	local c = U.c
 
-	OdysseyFrameQuestDBScrollFrame:StripTextures(True)
 	OdysseyMapsMenuScrollFrame:StripTextures(True)
 	OdysseyFrameQuestDetailsSeries:StripTextures(True)
 	OdysseyFrameSearchScrollFrame:StripTextures(True)
@@ -13,10 +12,10 @@ local function SkinOdyssey(self)
 
 	U.SkinFrame(OdysseyFrame)
 	U.SkinFrame(OdysseyFrameRealmSummaryScrollFrame)
-	OdysseyFrameQuestDB:SetTemplate("Transparent")
-	OdysseyFrameQuestDBScrollFrame:SetTemplate("Transparent")
-	OdysseyFrameQuestDetails:SetTemplate("Transparent")
-	OdysseyFrameZoneMaps:SetTemplate("Transparent")
+	U.SkinFrame(OdysseyFrameQuestDB)
+	U.SkinFrame(OdysseyFrameQuestDBScrollFrame)
+	U.SkinFrame(OdysseyFrameQuestDetails)
+	U.SkinFrame(OdysseyFrameZoneMaps)
 
 	U.SkinScrollBar(OdysseyFrameQuestDBScrollFrameScrollBar)
 	U.SkinScrollBar(OdysseyFrameRealmSummaryScrollFrameScrollBar)
@@ -54,17 +53,17 @@ local function SkinOdyssey(self)
 	end
 
 	for i = 1, 10 do
-		_G["OdysseyFrameRealmSummaryEntry1Item"..i]:StripTextures(True)
-		_G["OdysseyFrameRealmSummaryEntry2Item"..i]:StripTextures(True)
-		_G["OdysseyFrameRealmSummaryEntry3Item"..i]:StripTextures(True)
-		_G["OdysseyFrameRealmSummaryEntry4Item"..i]:StripTextures(True)
-		_G["OdysseyFrameRealmSummaryEntry5Item"..i]:StripTextures(True)
-		_G["OdysseyFrameRealmSummaryEntry6Item"..i]:StripTextures(True)
-		_G["OdysseyFrameRealmSummaryEntry7Item"..i]:StripTextures(True)
-		_G["OdysseyFrameRealmSummaryEntry8Item"..i]:StripTextures(True)
+		U.SkinBackdropFrame(_G["OdysseyFrameRealmSummaryEntry1Item"..i], true, true)
+		U.SkinBackdropFrame(_G["OdysseyFrameRealmSummaryEntry2Item"..i], true, true)
+		U.SkinBackdropFrame(_G["OdysseyFrameRealmSummaryEntry3Item"..i], true, true)
+		U.SkinBackdropFrame(_G["OdysseyFrameRealmSummaryEntry4Item"..i], true, true)
+		U.SkinBackdropFrame(_G["OdysseyFrameRealmSummaryEntry5Item"..i], true, true)
+		U.SkinBackdropFrame(_G["OdysseyFrameRealmSummaryEntry6Item"..i], true, true)
+		U.SkinBackdropFrame(_G["OdysseyFrameRealmSummaryEntry7Item"..i], true, true)
+		U.SkinBackdropFrame(_G["OdysseyFrameRealmSummaryEntry8Item"..i], true, true)
 	end
 
-	OdyTooltip:HookScript("OnShow", function(self) self:SetTemplate("Transparent") end)
+	OdyTooltip:HookScript("OnShow", function(self) self:SetTemplate("Transparent") cUpdateColor(self) end)
 
 end
 

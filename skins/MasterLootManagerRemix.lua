@@ -8,7 +8,7 @@ local function SkinMLM(self)
 				"MasterLootLoggerAddEditFrame",
 				}
 
-	local SetTemplateD = { -- Default Texture
+	local SetTemplateD = { 
 				"MasterLootLoggerFrameContentColumnHeader1",
 				"MasterLootLoggerFrameContentColumnHeader2",
 				"MasterLootLoggerFrameContentColumnHeader3",
@@ -17,7 +17,7 @@ local function SkinMLM(self)
 				"MasterLootLoggerFrameContentColumnHeader6",																			
 				}
 
-	local SetTemplateT = {-- Transparent Texture
+	local SetTemplateT = {
 				"MasterLootManagerMain",
 				"MasterLootManagerMain_ScrollFrame",
 				"MasterLootLoggerFrame",
@@ -60,21 +60,21 @@ local function SkinMLM(self)
 	end	
 
 	for _, object in pairs(SetTemplateD) do
-				_G[object]:SetTemplate("Default")
+		U.SkinFrameD(_G[object],true)
 	end	
 
 	for _, object in pairs(SetTemplateT) do
-				_G[object]:SetTemplate("Transparent")
+		U.SkinFrame(_G[object],true)
 	end	
 
 	-- Skin Buttons
 	for _, button in pairs(buttons) do
-					U.SkinButton(_G[button])
+		U.SkinButton(_G[button])
 	end	
 
 	-- Skin CheckBoxes
 	for _, button in pairs(checkboxes) do
-					U.SkinCheckBox(_G[button])
+		U.SkinCheckBox(_G[button])
 	end	
 
 	-- Move this

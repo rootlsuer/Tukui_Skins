@@ -10,7 +10,7 @@ local function SkinQuartz(self)
 	SkinQuartzBar = function(self, bar)
 		if not self.IconBorder then
 			self.IconBorder = CreateFrame("Frame", nil, self)
-			self.IconBorder:CreateBackdrop()
+			U.SkinBackdropFrame(self.IconBorder)
 			self.IconBorder:SetPoint("TOPLEFT",self.Icon, "TOPLEFT", 0, 0)
 			self.IconBorder:SetPoint("BOTTOMRIGHT", self.Icon, "BOTTOMRIGHT", 0, 0)
 		end
@@ -19,7 +19,7 @@ local function SkinQuartz(self)
 		else
 			self.IconBorder:Show()
 		end
-		self.Bar:CreateBackdrop()
+		U.SkinBackdropFrame(self.Bar)
 	end
 
 	local template = Q3.CastBarTemplate.template

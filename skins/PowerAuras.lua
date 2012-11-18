@@ -182,7 +182,7 @@ local function SkinPowerAuras(self)
 	U.SkinCheckBox(PowaBuffStacksUpdatePingButton)
 	U.SkinCheckBox(PowaBuffStacksLegacySizing)
 	U.SkinCheckBox(PowaOwntexButton)
-	
+	--[[
 	U.SkinSliderFrame(PowaBarAuraTextureSlider)
 	U.SkinSliderFrame(PowaBarAuraAlphaSlider)
 	U.SkinSliderFrame(PowaBarAuraSizeSlider)
@@ -201,7 +201,7 @@ local function SkinPowerAuras(self)
 	U.SkinSliderFrame(PowaStacksCoordSlider)
 	U.SkinSliderFrame(PowaStacksSizeSlider)
 	U.SkinSliderFrame(PowaStacksAlphaSlider)
-	
+	]]
 	U.SkinEditBox(PowaBarAuraTextureEdit)
 	U.SkinEditBox(PowaBarBuffStacks)
 	U.SkinEditBox(PowaBarBuffName)

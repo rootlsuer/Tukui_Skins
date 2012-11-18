@@ -4,10 +4,10 @@ local name = 'tComboSkin'
 local function SkintCombo(self)
 	cDelay(1,function()
 		if tComboPoints then
-			tComboPoints:SetTemplate("Transparent")
+			U.SkinFrame(tComboPoints)
 		end
 		if tComboEnergyBar then
-			tComboEnergyBar:SetTemplate("Transparent")
+			U.SkinFrame(tComboEnergyBar)
 		end
 	end)
 end

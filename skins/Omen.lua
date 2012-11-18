@@ -31,8 +31,7 @@ function EmbedOmen()
 				end
 		end
 		OmenTitle:Kill()
-		OmenBarList:StripTextures()
-		OmenBarList:SetTemplate("Default")
+		U.SkinFrameD(OmenBarList)
 		OmenAnchor:ClearAllPoints()
 		OmenBarList:SetPoint("TOPLEFT", EmbeddingWindow, "TOPLEFT", 0, 0)
 		OmenBarList:SetPoint("BOTTOMRIGHT", EmbeddingWindow, "BOTTOMRIGHT", 0, 2)
@@ -86,8 +85,8 @@ Omen.UpdateBackdrop = function(self)
 	Omen.db.profile.Background.EdgeSize = 1
 	Omen.db.profile.Background.BarInset = borderWidth
 	self:UpdateBackdrop_()
-	self.BarList:SetTemplate("Default")
-	self.Title:SetTemplate("Default", True)
+	U.SkinFrameD(self.BarList)
+	U.SkinFrameD(self.Title)
 	self.BarList:SetPoint("TOPLEFT", self.Title, "BOTTOMLEFT", 0, 1)
 end
 

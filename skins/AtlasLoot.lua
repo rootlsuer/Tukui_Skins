@@ -65,25 +65,15 @@ local function Nine_IsThere(Self, event, ...)
 		f:SetWidth(44.44)
 	end
 				
-	local StripAllTextures = {
+	local nineisthere = {
 		"AtlasLootCompareFrameSortButton_7",
 		"AtlasLootCompareFrameSortButton_8",
 		"AtlasLootCompareFrameSortButton_9",
 		}
 
-	local SetTemplateD = { 
-		"AtlasLootCompareFrameSortButton_7",
-		"AtlasLootCompareFrameSortButton_8",
-		"AtlasLootCompareFrameSortButton_9",
-		}
-
-	for _, object in pairs(StripAllTextures) do
-		_G[object]:StripTextures()
+	for _, object in pairs(nineisthere) do
+		U.SkinFrame(_G[object])
 	end	
-
-	for _, object in pairs(SetTemplateD) do
-		_G[object]:SetTemplate("Default")
-	end		
 
 	AtlasLootCompareFrameSortButton_7:Point("LEFT", AtlasLootCompareFrameSortButton_6, "RIGHT", 1, 0)
 	AtlasLootCompareFrameSortButton_8:Point("LEFT", AtlasLootCompareFrameSortButton_7, "RIGHT", 1, 0)
@@ -163,11 +153,11 @@ local function SkinAL(self)
 	end	
 
 	for _, object in pairs(SetTemplateD) do
-		_G[object]:SetTemplate("Default")
+		U.SkinFrameD(_G[object])
 	end	
 
 	for _, object in pairs(SetTemplateT) do
-		_G[object]:SetTemplate("Transparent")
+		U.SkinFrame(_G[object])
 	end			
 
 	for _, button in pairs(buttons) do

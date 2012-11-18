@@ -28,13 +28,11 @@ local function SkinSexyCooldownBar(bar)
 	if(U.CheckOption("EmbedSexyCooldown")) then
 		bar:ClearAllPoints()
 		bar:Point('BOTTOM', InvTukuiActionBarBackground, 'TOP', 0, 1)
-		if(U.CheckOption("AzilSettings")) then bar:Point('BOTTOM', InvTukuiActionBarBackground, 'TOP', 0, 16) end
+		if IsAddOnLoaded("AzilSettings") then bar:Point('BOTTOM', InvTukuiActionBarBackground, 'TOP', 0, 16) end
 		bar:CreateShadow()
 		bar:SetHeight(ActionButton1:GetHeight())
 		bar:SetWidth(TukuiBar1:GetWidth())
 		bar:EnableMouse(false)
-		PetBattleFrame:HookScript("OnShow",function() bar:Hide() end)
-		PetBattleFrame:HookScript("OnHide",function() bar:Show() end)
 	end
 end
 
@@ -43,13 +41,11 @@ end
 local function SkinSexyCooldownIcon(bar, icon)
 	if not icon.skinned then
 		U.SkinFrame(icon)
-		icon.overlay:CreateBackdrop("Default")
+		U.SkinBackdropFrame(icon.overlay, false)
 		icon.tex:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 		icon.tex.SetTexCoord = function() end
 		icon.overlay:SetBackdropColor(0,0,0,0)
 		icon:SetBackdropColor(0,0,0,0)
-		icon:SetBackdropBorderColor(c["media"].bordercolor)
-		icon.overlay:SetBackdropBorderColor(c["media"].bordercolor)
 		icon.skinned = true
 	end
 end

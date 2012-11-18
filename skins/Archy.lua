@@ -14,18 +14,20 @@ local function SkinArchy(self)
 
 			for i, child in pairs(ArchyArtifactFrame.children) do
 				local containerFrame = _G['ArchyArtifactChildFrame'..i]
+				local crest = _G['ArchyArtifactChildFrame'..i..'Crest']
 				local icon = _G['ArchyArtifactChildFrame'..i..'Icon']
 				local fragmentBar = _G['ArchyArtifactChildFrame'..i..'FragmentBar']
 				local solveButton = _G['ArchyArtifactChildFrame'..i..'SolveButton']
 
 				if icon then
-					icon:SetTemplate('Default')
+					U.SkinFrame(icon, true)
+					icon:SetSize(solveButton:GetHeight(),solveButton:GetHeight())
 					icon.texture:SetTexCoord(.08, .92, .08, .92)
 					icon.texture:SetInside()
 				end
 				
 				if solveButton then
-					solveButton:SetTemplate('Default')
+					U.SkinFrame(solveButton, true)
 					solveButton:GetNormalTexture():SetTexCoord(.08, .92, .08, .92)
 					solveButton:GetNormalTexture():SetInside()	
 					solveButton:GetDisabledTexture():SetTexCoord(.08, .92, .08, .92)
@@ -34,9 +36,10 @@ local function SkinArchy(self)
 				end
 				
 				if fragmentBar then
-					U.SkinStatusBar(fragmentBar)	
+					U.SkinStatusBar(fragmentBar)
+					fragmentBar:SetPoint("TOPLEFT", icon, "TOPRIGHT", 7, -2)
 				end
-			end	
+			end
 	end
 
 	hooksecurefunc(Archy, 'RefreshRacesDisplay', SkinArchyArtifactFrame)

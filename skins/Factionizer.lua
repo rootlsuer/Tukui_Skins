@@ -58,7 +58,7 @@ local function SkinFactionizer(self)
 		end	
 
 		for _, object in pairs(SetTemplateT) do
-			_G[object]:SetTemplate("Transparent")
+			U.SkinFrame(_G[object])
 		end			
 
 		for _, button in pairs(buttons) do
@@ -71,7 +71,8 @@ local function SkinFactionizer(self)
 
 		FIZ_ReputationDetailAtWarCheckBox:SetScript("OnUpdate", function(frame)
 		frame:StripTextures()
-		frame:CreateBackdrop("Default")
+		frame:CreateBackdrop()
+		cUpdateColor(frame.backdrop)
 		frame.backdrop:Point("TOPLEFT", 4, -4)
 		frame.backdrop:Point("BOTTOMRIGHT", -4, 4)
 

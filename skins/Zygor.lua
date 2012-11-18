@@ -2,17 +2,16 @@ local U = unpack(select(2,...))
 local name = "ZygorSkin"
 local function SkinZygor(self)
 	ZygorGuidesViewerFrame:StripTextures(True)
-	ZygorGuidesViewerFrame_Border:StripTextures(True)
-	ZygorGuidesViewer_CreatureViewer:SetTemplate("Transparent")
+	U.SkinFrame(ZygorGuidesViewerFrame_Border)
+	U.SkinFrame(ZygorGuidesViewer_CreatureViewer, true)
 
 	for i = 1, 6 do
-		_G["ZygorGuidesViewerFrame_Step"..i]:StripTextures(True)
-		_G["ZygorGuidesViewerFrame_Step"..i]:CreateBackdrop()
+		U.SkinBackdropFrame(_G["ZygorGuidesViewerFrame_Step"..i])
 	end
 
-	if ZygorGuidesViewerFrame:IsShown() then ZygorGuidesViewerFrame_Border:SetTemplate("Transparent") end
+	if ZygorGuidesViewerFrame:IsShown() then U.SkinFrame(ZygorGuidesViewerFrame_Border) end
 	ZygorGuidesViewerFrame_Border:HookScript("OnHide", function(self) self:StripTextures(True) end)
-	ZygorGuidesViewerFrame_Border:HookScript("OnShow", function(self) self:SetTemplate("Transparent") end)
+	ZygorGuidesViewerFrame_Border:HookScript("OnShow", function(self) U.SkinFrame(self) end)
 
 end
 

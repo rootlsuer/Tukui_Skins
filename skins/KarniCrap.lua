@@ -99,6 +99,14 @@ local function SkinKarniCrap(self)
 	for i = 1, 15 do
 		U.SkinCloseButton(_G["KarniInvEntry"..i.."_BtnCrap"])
 	end
+
+--	U.SkinEditBox(KarniCrap_Poor_GoldInputBox)	
+--	U.SkinEditBox(KarniCrap_Poor_SilverInputBox)
+--	U.SkinEditBox(KarniCrap_Poor_CopperInputBox)
+--	U.SkinEditBox(KarniCrap_Tab1_CBCommonDesc_GoldInputBox)
+--	U.SkinEditBox(KarniCrap_Tab1_CBCommonDesc_SilverInputBox)
+--	U.SkinEditBox(KarniCrap_Tab1_CBCommonDesc_CopperInputBox)
+--	U.SkinEditBox(KarniCrap_EBDestroySlotsNum)
 end
 
 U.RegisterSkin(name,SkinKarniCrap)

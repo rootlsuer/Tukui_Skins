@@ -3,21 +3,6 @@ local s = U.s
 local c = U.c
 local Skillet = _G.Skillet
 
-function SetModifiedBackdrop(self)
-	local color = RAID_CLASS_COLORS[U.ccolor]
-	self:SetBackdropColor(color.r*.15, color.g*.15, color.b*.15)
-	self:SetBackdropBorderColor(color.r, color.g, color.b)
-end
-
-function SetOriginalBackdrop(self)
-	local color = RAID_CLASS_COLORS[U.ccolor]
-	if c["general"].classcolortheme == true then
-		self:SetBackdropBorderColor(color.r, color.g, color.b)
-	else
-		self:SetTemplate("Default")
-	end
-end
-
 local function SkinButton(ButtonOrSpellID) -- Thanks to SinaC
 	if not ButtonOrSpellID then return end
 	local button
@@ -35,15 +20,15 @@ local function SkinButton(ButtonOrSpellID) -- Thanks to SinaC
 	end
 
 	if texture then
-		button:SetTemplate("Default", true)
+		U.SkinFrame(button)
 		texture:SetDrawLayer('OVERLAY') -- Make sure we can see the Icons.
 		texture:ClearAllPoints()
 		texture:Point("TOPLEFT", 2, -2)
 		texture:Point("BOTTOMRIGHT", -2, 2)
 		texture:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 		button:SetHighlightTexture(nil)
-		button:HookScript("OnEnter", SetModifiedBackdrop)
-		button:HookScript("OnLeave", SetOriginalBackdrop)
+		button:HookScript("OnEnter", TSSetModifiedBackdrop)
+		button:HookScript("OnLeave", TSSetOriginalBackdrop)
 		end
 	end
 end
@@ -67,15 +52,15 @@ local function SkinGuildRecipes(ButtonOrSpellID)
 	end
 	
 	if texture then
-		button:SetTemplate("Default", true)
+		U.SkinFrame(button)
 		texture:SetDrawLayer('OVERLAY') -- Make sure we can see the Icons.
 		texture:ClearAllPoints()
 		texture:Point("TOPLEFT", 2, -2)
 		texture:Point("BOTTOMRIGHT", -2, 2)
 		texture:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 		button:SetHighlightTexture(nil)
-		button:HookScript("OnEnter", SetModifiedBackdrop)
-		button:HookScript("OnLeave", SetOriginalBackdrop)
+		button:HookScript("OnEnter", TSSetModifiedBackdrop)
+		button:HookScript("OnLeave", TSSetOriginalBackdrop)
 		end
 	end	
 end
@@ -90,7 +75,7 @@ local function SkinReagentButton(ButtonName)
 	end
 
 	if texture then
-		button:SetTemplate("Default", true)
+		U.SkinFrame(button)
 		texture:SetDrawLayer('OVERLAY') -- Make sure we can see the Icons.
 		texture:ClearAllPoints()
 		texture:Point("TOPLEFT", 2, -2)
@@ -143,10 +128,8 @@ local function SkinIcon(self)
 end
 
 local function SkinShopping(self)
-	SkilletShoppingList:StripTextures()
-	SkilletShoppingList:SetTemplate("Transparent")
-	SkilletShoppingListParent:StripTextures()
-	SkilletShoppingListParent:SetTemplate("Default")
+	U.SkinFrame(SkilletShoppingList)
+	U.SkinFrameD(SkilletShoppingListParent)
 	U.SkinCloseButton(SkilletShoppingListCloseButton)
 	U.SkinCheckBox(SkilletShowQueuesFromAllAlts)
 	U.SkinScrollBar(SkilletShoppingListListScrollBar)
@@ -164,7 +147,7 @@ end
 
 local function SkilletFrameOnShow(self)
 	
-	local StripAllTextures = {
+		local StripAllTextures = {
 				"SkilletFrame",
 				"SkilletSkillListParent",
 				"SkilletReagentParent",
@@ -175,12 +158,12 @@ local function SkilletFrameOnShow(self)
 				"SkilletStandalonQueue",
 				"SkilletViewCraftersParent",
 				}
-				
+
 		for _, object in pairs(StripAllTextures) do
-					_G[object]:StripTextures()
+			_G[object]:StripTextures()
 		end	
 
-	local SetTemplateD = {
+		local SetTemplateD = {
 				"SkilletSkillListParent",
 				"SkilletReagentParent",
 				"SkilletQueueParent",
@@ -188,19 +171,19 @@ local function SkilletFrameOnShow(self)
 				"SkilletViewCraftersParent",
 				}
 
-	local SetTemplateT = {
+		local SetTemplateT = {
 				"SkilletFrame",
 				"SkilletRecipeNotesFrame",
 				"SkilletSkillTooltip",
 				"SkilletStandalonQueue",
 				}	
-				
+
 		for _, object in pairs(SetTemplateD) do
-					_G[object]:SetTemplate("Default")
+			U.SkinFrameD(_G[object])
 		end	
 
 		for _, object in pairs(SetTemplateT) do
-					_G[object]:SetTemplate("Transparent")
+			U.SkinFrame(_G[object])
 		end	
 
 		U.SkinCloseButton(SkilletNotesCloseButton)
@@ -226,8 +209,7 @@ local function SkilletFrameOnShow(self)
 		SkilletTradeSkillLinkButton:SetPoint("RIGHT", SkilletShowOptionsButton, "LEFT", 0, 0)
 		SkilletViewCraftersButton:SetPoint("RIGHT", SkilletQueueManagementButton, "LEFT", -5, 0)
 		
-		SkilletTradeskillTooltip:StripTextures()
-		SkilletTradeskillTooltip:SetTemplate("Default")
+		U.SkinFrameD(SkilletTradeskillTooltip)
 
 		U.SkinScrollBar(SkilletQueueListScrollBar)
 
@@ -239,8 +221,7 @@ local function SkilletFrameOnShow(self)
 	end
 
 	if Enchantrix_BarkerOptions_Frame then
-		Enchantrix_BarkerOptions_Frame:StripTextures()
-		Enchantrix_BarkerOptions_Frame:SetTemplate("Default")
+		U.SkinFrame(Enchantrix_BarkerOptions_Frame)
 		Enchantrix_BarkerOptions_Frame:SetHeight(480)
 
 		for i=1,4 do 
@@ -277,7 +258,7 @@ local function SkinReagentIcon(self, event, ...)
 		}
 
 		for _, button in pairs(ReagentIcons) do
-						SkinReagentButton(_G[button])
+			SkinReagentButton(_G[button])
 		end	
 	
 end
@@ -383,7 +364,7 @@ local function SkinSkillet(Self)
 				}
 
 		for _, button in pairs(buttons) do
-						U.SkinButton(_G[button])
+			U.SkinButton(_G[button])
 		end	
 
 		U.SkinCloseButton(SkilletFrameCloseButton)

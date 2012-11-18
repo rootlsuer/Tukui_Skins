@@ -30,7 +30,7 @@ local function SkinMageNuggets(self)
 
 	for i = 1, #frames do
 		_G[frames[i]]:SetBackdrop({bgFile = nil, edgeFile = nil, tile = false, tileSize = 0, edgeSize = 0, insets = { left = 0, right = 0, top = 0, bottom = 0 }});
-		_G[frames[i]]:CreateBackdrop("Transparent")
+		U.SkinBackdropFrame(_G[frames[i]])
 	end
 	local sframes = {
 		"MNcritMass_Frame",
@@ -62,28 +62,27 @@ local function SkinMageNuggets(self)
 	MageNugLB2_Frame_Bar:SetStatusBarTexture(c["media"].normTex)
 	MageNugLB3_Frame_Bar:SetStatusBarTexture(c["media"].normTex)
 	MageNugLB4_Frame_Bar:SetStatusBarTexture(c["media"].normTex)
-	MageNugMI_Frame_MiBar:CreateBackdrop("Transparent")
-	MageNugCauterize_Frame_Bar:CreateBackdrop("Transparent")
+	U.SkinBackdropFrame(MageNugMI_Frame_MiBar)
+	U.SkinBackdropFrame(MageNugCauterize_Frame_Bar)
 
 	U.SkinButton(MageNugHordeFrameClose)
 	U.SkinButton(MageNugHordeFrameShowOptions)
 	U.SkinButton(MageNugAlliFrameClose)
 	U.SkinButton(MageNugAlliFrameShowOptions)
 
-	MageNugAB_Frame_ABBar:CreateBackdrop("Transparent")
+	U.SkinBackdropFrame(MageNugAB_Frame_ABBar)
 	MageNugAB_Frame_ABBar:ClearAllPoints()
 	MageNugAB_Frame_ABBar:Point("TOPLEFT", MageNugAB_Frame, "TOPLEFT", 1, -42)
-	MageNugIgnite_Frame_Bar:CreateBackdrop("Transparent")
+	U.SkinBackdropFrame(MageNugIgnite_Frame_Bar)
 	MageNugIgnite_Frame_Bar:ClearAllPoints()
 	MageNugIgnite_Frame_Bar:Point("TOPLEFT", MageNugIgnite_Frame, "TOPLEFT", 1, -42)
-	MageNugManaGem_Frame_Bar:CreateBackdrop("Transparent")
+	U.SkinBackdropFrame(MageNugManaGem_Frame_Bar)
 	MageNugManaGem_Frame_Bar:ClearAllPoints()
 	MageNugManaGem_Frame_Bar:Point("TOPLEFT", MageNugManaGem_Frame, "TOPLEFT", 1, -42)
-	MageNugClearcast_Frame_Bar:CreateBackdrop("Transparent")
+	U.SkinBackdropFrame(MageNugClearcast_Frame_Bar)
 	MageNugClearcast_Frame_Bar:ClearAllPoints()
 	MageNugClearcast_Frame_Bar:Point("TOPLEFT", MageNugClearcast_Frame, "TOPLEFT", 1, -42)
 	MNabCast_Frame:Point("TOPLEFT", MageNugAB_Frame, "TOPLEFT", 0, 18)
-	
 	
 	--stupid ass amount of check boxes
 	local checkbuttons = {
@@ -178,9 +177,9 @@ local function SkinMageNuggets(self)
 		MageNugCooldownFrame_Slider1,
 	}
 	
---[[	for _,s in pairs(sliders) do
-		U.SkinSliderFrame(s)
-	end]]
+	for _,s in pairs(sliders) do
+		U.SkinSlideBar(s, 8, true)
+	end
 	
 	-- Edit Boxes
 	local editbox = {
@@ -213,8 +212,7 @@ local function SkinMageNuggets(self)
 	}
 	
 	for _,f in pairs(editbox) do
-		U.SkinEditBox(f)
-		f:SetHeight(15)
+		U.SkinEditBox(f, false, 15)
 	end
 	
 	-- Buttons
