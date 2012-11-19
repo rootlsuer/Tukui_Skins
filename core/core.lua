@@ -12,6 +12,17 @@ function cColorSwitch()
 	for k, v in pairs(U.ColorFrame) do cUpdateColor(v) end
 	for k, v in pairs(U.ColorScroll) do cColorScrollBar(v) end
 	for k, v in pairs(U.ColorSlider) do cColorSlideBar(v) end
+	ColorTukui()
+	GameTooltip:HookScript("OnUpdate", function(self) cUpdateColor(self) end)
+	if IsAddOnLoaded("SpecSwitcher") then
+		cUpdateColor(SpecTalent)
+		cUpdateColor(SpecTalentBackdrop)
+	end
+	if IsAddOnLoaded("Tukui_BuffsNotice") then
+		if TukuiBuffsWarningFrame then cUpdateColor(TukuiBuffsWarningFrame) end
+		if TukuiBuffsWarningFrame2 then cUpdateColor(TukuiBuffsWarningFrame2) end
+		if TukuiEnchantsWarningFrame then cUpdateColor(TukuiEnchantsWarningFrame) end
+	end
 end
 
 function cUpdateColor(self)
@@ -179,7 +190,7 @@ U.SkinBackdropFrame = cSkinBackdropFrame
 local function cSkinStatusBar(self, ClassColor)
 	local s = U.s
 	local c = U.c
-	cSkinBackdropFrame(self ,true)
+	cSkinBackdropFrame(self, true)
 	cUpdateColor(self.backdrop)
 	self:SetStatusBarTexture(c["media"].normTex)
 	if ClassColor then
