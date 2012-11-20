@@ -1,6 +1,5 @@
 local U = unpack(select(2,...))
 local name = "SexyCooldownSkin"
-local scd = SexyCooldown2
 local c = U.c
 local s = U.s
 
@@ -67,6 +66,7 @@ local function HookSCDBar(bar)
 end
 
 local function SkinSexyCooldown(self)
+	local scd = SexyCooldown2
 	scd.CreateBar_ = scd.CreateBar
 	scd.CreateBar = function(self, settings, name)
 		local bar = scd:CreateBar_(settings,name)
