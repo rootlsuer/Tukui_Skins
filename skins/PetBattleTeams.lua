@@ -13,9 +13,9 @@ local function SkinPetBattleTeams(self)
 		PetBattleTeamBackgroundFrameMenu.icon:SetTexCoord(0.12, 0.88, 0.12, 0.88)
 
 		for i = 1, 60 do
-			if _G["PetTeam"..i.."Button1"] then U.SkinFrame(_G["PetTeam"..i.."Button1"], true) _G["PetTeam"..i.."Button1"].BorderAlive:Kill() _G["PetTeam"..i.."Button1"].BorderDead:Kill() end
-			if _G["PetTeam"..i.."Button2"] then U.SkinFrame(_G["PetTeam"..i.."Button2"], true) _G["PetTeam"..i.."Button2"].BorderAlive:Kill() _G["PetTeam"..i.."Button2"].BorderDead:Kill() end
-			if _G["PetTeam"..i.."Button3"] then U.SkinFrame(_G["PetTeam"..i.."Button3"], true) _G["PetTeam"..i.."Button3"].BorderAlive:Kill() _G["PetTeam"..i.."Button3"].BorderDead:Kill() end
+			if _G["PetTeam"..i.."Button1"] then U.SkinFrame(_G["PetTeam"..i.."Button1"], true) _G["PetTeam"..i.."Button1"].BorderAlive:SetTexture(nil) _G["PetTeam"..i.."Button1"].BorderDead:SetTexture(nil) end
+			if _G["PetTeam"..i.."Button2"] then U.SkinFrame(_G["PetTeam"..i.."Button2"], true) _G["PetTeam"..i.."Button2"].BorderAlive:SetTexture(nil) _G["PetTeam"..i.."Button2"].BorderDead:SetTexture(nil) end
+			if _G["PetTeam"..i.."Button3"] then U.SkinFrame(_G["PetTeam"..i.."Button3"], true) _G["PetTeam"..i.."Button3"].BorderAlive:SetTexture(nil) _G["PetTeam"..i.."Button3"].BorderDead:SetTexture(nil) end
 		end
 end
 

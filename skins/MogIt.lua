@@ -1,6 +1,6 @@
 ﻿local U = unpack(select(2,...))
-local name = "GupPetSkin"
-function SkinGupPet(self)
+local name = "MogItSkin"
+function SkinMogIt(self)
 
 	--Skinning MogIt Frames
 	U.SkinBackdropFrame(MogItFrame)
