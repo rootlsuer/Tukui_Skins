@@ -4,6 +4,7 @@ local MiscFixes = CreateFrame("Frame")
 	local s = U.s
 	local c = U.c 
 	MiscFixes:SetScript("OnEvent", function(self)
+	if NumerationFrame then U.SkinFrame(NumerationFrame, true) end
 	if TukuiMinimap then Minimap:SetMaskTexture(c["media"].blank) end
 	if IsAddOnLoaded("TomTom") and (U.CheckOption("TomTomSkin")) then
 		if TomTomBlock then
@@ -24,24 +25,5 @@ local MiscFixes = CreateFrame("Frame")
 		U.SkinBackdropFrame(AzCastBarPluginFocus)
 		U.SkinBackdropFrame(AzCastBarPluginMirror)
 		U.SkinBackdropFrame(AzCastBarPluginPet)
-	end
-
-	if (U.CheckOption("AzilSettings")) then
-		if TukuiPlayer_Experience then
-			TukuiPlayer_Experience:ClearAllPoints()
-			TukuiPlayer_Experience:Point('BOTTOM', InvTukuiActionBarBackground, 'TOP', 0, 4)
-			TukuiPlayer_Experience:Height(8)
-			TukuiPlayer_Experience:SetFrameStrata("BACKGROUND")
-		end
-		if TukuiPlayer_Reputation then
-			TukuiPlayer_Reputation:ClearAllPoints()
-			TukuiPlayer_Reputation:Point('BOTTOM', InvTukuiActionBarBackground, 'TOP', 0, 4)
-			TukuiPlayer_Reputation:Height(8)
-			TukuiPlayer_Reputation:SetFrameStrata("BACKGROUND")
-		end
-		if (select(2, UnitClass("player")) == "ROGUE") then
-			TukuiStance:SetParent(TukuiUIHider)
-		end
-		self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 	end
 end)

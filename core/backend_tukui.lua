@@ -183,7 +183,7 @@ local SkinOptions = CreateFrame("Frame", "SkinOptions", UIParent)
 	U.SkinFrame(SkinOptions)
 	SkinOptions:Point("CENTER", UIParent, "CENTER", 0, 0)
 	SkinOptions:SetFrameStrata("DIALOG")
-	SkinOptions:Width(650)
+	SkinOptions:Width(750)
 	SkinOptions:Height(650)
 	SkinOptions:SetClampedToScreen(true)
 	SkinOptions:SetMovable(true)
@@ -342,8 +342,9 @@ local SkinOptions = CreateFrame("Frame", "SkinOptions", UIParent)
 		local yOffset = -30 - (25*(y-1))
 		local xTable = {
 			[1] = { point = "TOPLEFT", offset = 12 },
-			[2] = { point = "TOP", offset = -68 },
-			[3] = { point = "TOPRIGHT", offset = -178 }
+			[2] = { point = "TOPLEFT", offset = 200 },
+			[3] = { point = "TOPLEFT", offset = 388 },
+			[4] = { point = "TOPLEFT", offset = 576 },
 		}
 		button:SetPoint(xTable[x].point, xTable[x].offset, yOffset)
 		button:Size(16)
@@ -383,17 +384,15 @@ local SkinOptions = CreateFrame("Frame", "SkinOptions", UIParent)
       end
       return iter
     end
-    local curX,curY,maxY=1,1,22
+    local curX,curY,maxY=1,1,24
 	for skin,options in pairsByKeys(Skins) do
 		local addon = options.addon
 		local buttonText = options.buttonText or addon
-		if options.ui ~= "ElvUI" then
-			CreateButton(string.format('%sButton',skin),buttonText,addon,skin,curX,curY)
-			curY = curY + 1
-			if curY > maxY then
-				curX = curX + 1
-				curY = 1
-			end
+		CreateButton(string.format('%sButton',skin),buttonText,addon,skin,curX,curY)
+		curY = curY + 1
+		if curY > maxY then
+			curX = curX + 1
+			curY = 1
 		end
 	end
 
@@ -495,11 +494,9 @@ function ColorTukui()
 		cUpdateColor(_G["TukuiBar"..i])
 		if _G["TukuiBar"..i.."Button"] then cUpdateColor(_G["TukuiBar"..i.."Button"]) end
 		if _G["StaticPopup"..i] then cUpdateColor(_G["StaticPopup"..i]) end
-		if _G["StaticPopup1Button"..i] then cUpdateColor(_G["StaticPopup1Button"..i]) end
-		if _G["StaticPopup2Button"..i] then cUpdateColor(_G["StaticPopup2Button"..i]) end
-		if _G["StaticPopup3Button"..i] then cUpdateColor(_G["StaticPopup3Button"..i]) end
-		if _G["StaticPopup4Button"..i] then cUpdateColor(_G["StaticPopup4Button"..i]) end
-		if _G["StaticPopup5Button"..i] then cUpdateColor(_G["StaticPopup5Button"..i]) end
+		if _G["StaticPopup1Button"..i] then cUpdateColor(_G["StaticPopup1Button"..i]) _G["StaticPopup1Button"..i]:HookScript("OnEnter", TSSetModifiedBackdrop) _G["StaticPopup1Button"..i]:HookScript("OnLeave", TSSetOriginalBackdrop) end
+		if _G["StaticPopup2Button"..i] then cUpdateColor(_G["StaticPopup2Button"..i]) _G["StaticPopup2Button"..i]:HookScript("OnEnter", TSSetModifiedBackdrop) _G["StaticPopup2Button"..i]:HookScript("OnLeave", TSSetOriginalBackdrop) end
+		if _G["StaticPopup3Button"..i] then cUpdateColor(_G["StaticPopup3Button"..i]) _G["StaticPopup3Button"..i]:HookScript("OnEnter", TSSetModifiedBackdrop) _G["StaticPopup3Button"..i]:HookScript("OnLeave", TSSetOriginalBackdrop) end
 		if _G["StanceButton"..i] then cUpdateColor(_G["StanceButton"..i].backdrop) end
 	end
 

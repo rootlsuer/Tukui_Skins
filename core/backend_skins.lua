@@ -246,4 +246,28 @@ U.Skins = {
 		["buttonText"] = "Shield Monitor",
 		["addon"] = "shieldmonitor",
 	},
+	["DresserSkin"] = {
+		["addon"] = "Dresser",
+	},
+	["MogItSkin"] = {
+		["addon"] = "MogIt",
+	},
+	["GupPetSkin"] = {
+		["addon"] = "GupPet",
+	},
+	["ExaminerSkin"] = {
+		["addon"] = "Examiner",
+	},
+	["NumerationSkin"] = {
+		["addon"] = "Numeration",
+	},
+	["ExaminerSkin"] = {
+		["addon"] = "Examiner",
+	},
+	["OneClickEnchantScrollSkin"] = {
+		["addon"] = "OneClickEnchantScroll",
+	},
+	["xMerchantSkin"] = {
+		["addon"] = "xMerchant",
+	},
 }
