@@ -1,11 +1,10 @@
 local U = unpack(select(2,...))
-local Recount = _G.Recount
 local s = U.s
 local c = U.c
 
 local name = "RecountSkin"
 local function SkinRecount(self)
-	
+	local Recount = _G.Recount	
 	local function SkinFrame(frame)
 		frame.bgMain = CreateFrame("Frame", nil, frame)
 		U.SkinFrameD(frame.bgMain)
