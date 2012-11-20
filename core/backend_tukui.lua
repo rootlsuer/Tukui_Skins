@@ -60,7 +60,6 @@ end
 XS.UnregisterEvent = function(self,skinName,event)
 	if not self.events[event] then return end
 	if not self.events[event][skinName] then return end
-
 	self.events[event][skinName] = nil
 	local found = false
 	for skin,_ in pairs(self.events[event]) do

@@ -8,35 +8,38 @@ local function SkinMogIt(self)
 	U.SkinFrame(MogItFilters)
 	MogItFiltersInset:StripTextures(True)
 
-	MogIt.view:Show()
-	U.SkinFrame(MogItPreview1)
-	U.SkinCloseButton(MogItPreview1CloseButton)
-	MogItPreview1Inset:StripTextures(True)
-	U.SkinButton(MogItPreview1Activate, true)
+	local function SkinMogItPreview()
+		for i = 1, 99 do
+			local MogItGearSlots = {
+				"HeadSlot",
+				"ShoulderSlot",
+				"BackSlot",
+				"ChestSlot",
+				"ShirtSlot",
+				"TabardSlot",
+				"WristSlot",
+				"HandsSlot",
+				"WaistSlot",
+				"LegsSlot",
+				"FeetSlot",
+				"MainHandSlot",
+				"SecondaryHandSlot",
+				}
 
-	local MogItPreviewGearSlots = {
-		"MogItPreview1HeadSlot",
-		"MogItPreview1ShoulderSlot",
-		"MogItPreview1BackSlot",
-		"MogItPreview1ChestSlot",
-		"MogItPreview1ShirtSlot",
-		"MogItPreview1TabardSlot",
-		"MogItPreview1WristSlot",
-		"MogItPreview1HandsSlot",
-		"MogItPreview1WaistSlot",
-		"MogItPreview1LegsSlot",
-		"MogItPreview1FeetSlot",
-		"MogItPreview1MainHandSlot",
-		"MogItPreview1SecondaryHandSlot",
-		}
+			for _, object in pairs(MogItGearSlots) do
+				if _G["MogItPreview"..i] then U.SkinIconButton(_G["MogItPreview"..i..object], true) end
+				if _G["MogItPreview"..i] then _G["MogItPreview"..i..object]:SetPushedTexture(nil) end
+				if _G["MogItPreview"..i] then _G["MogItPreview"..i..object]:SetHighlightTexture(nil) end
+			end
 
-	for _, object in pairs(MogItPreviewGearSlots) do
-		_G[object]:SkinIconButton()
-		_G[object]:SetPushedTexture(nil)
-		_G[object]:SetHighlightTexture(nil)
+			if _G["MogItPreview"..i] then U.SkinFrame(_G["MogItPreview"..i]) end
+			if _G["MogItPreview"..i] then U.SkinCloseButton(_G["MogItPreview"..i.."CloseButton"]) end
+			if _G["MogItPreview"..i] then _G["MogItPreview"..i.."Inset"]:StripTextures(True) end
+			if _G["MogItPreview"..i] then U.SkinButton(_G["MogItPreview"..i.."Activate"], true) end
+		end
 	end
 
-	MogIt.view:Hide()
+	hooksecurefunc(MogIt, "CreatePreview", SkinMogItPreview)
 
 	MogItTooltip:HookScript("OnShow", function(self) U.SkinFrame(self, true) end)
 

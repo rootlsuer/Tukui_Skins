@@ -61,7 +61,7 @@ local function AuctioneerSkin(self,event)
 	if AucAdvScanButton then U.SkinButton(AucAdvScanButton) end
 	if AucAdvSimpFrameCreate then U.SkinButton(AucAdvSimpFrameCreate) end
 	if AucAdvSimpFrameRemember then U.SkinButton(AucAdvSimpFrameRemember) end
-	self:UnregisterEvent("AUCTION_HOUSE_SHOW")
+	U.UnregisterEvent(name, self, event)
 end
 
 U.RegisterSkin(name,AuctioneerSkin,'AUCTION_HOUSE_SHOW')

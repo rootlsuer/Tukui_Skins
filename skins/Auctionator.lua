@@ -193,7 +193,7 @@ local function AtrSkin(self,event)
 		end
 	end)
 	AuctionFrameTab1:Point("TOPLEFT", AuctionFrame, "BOTTOMLEFT", 5, 2)
-	self:UnregisterEvent("AUCTION_HOUSE_SHOW")
+	U.UnregisterEvent(name, self, event)
 end
 
 U.RegisterSkin(name,AtrSkin,'AUCTION_HOUSE_SHOW')

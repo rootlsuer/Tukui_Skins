@@ -1,6 +1,6 @@
 ﻿local U = unpack(select(2,...))
 local name = "ExaminerSkin"
-function SkinExaminer(self)
+local function SkinExaminer(self)
 
 	-- Skin Examiner Frame
 	U.SkinFrame(Examiner)

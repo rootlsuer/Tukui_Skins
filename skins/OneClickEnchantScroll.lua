@@ -1,4 +1,4 @@
-﻿local U = unpack(select(2,...))
+local U = unpack(select(2,...))
 
 local name = 'OneClickEnchantScrollSkin'
 local function SkinOneClickEnchantScroll(self)

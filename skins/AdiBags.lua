@@ -2,7 +2,7 @@ local U = unpack(select(2,...))
 local s = U.s
 local c = U.c
 
-local name = 'AdiBagsSkin'
+local name = "AdiBagsSkin"
 local function SkinFrame(frame)
 	local region = frame.HeaderRightRegion
 	U.SkinFrame(frame)
@@ -15,17 +15,16 @@ local function SkinFrame(frame)
 end
 
 local function AdiSkin(self,event)
-	if event == 'PLAYER_ENTERING_WORLD' then
-			if not AdiBagsContainer1 then ToggleBackpack() ToggleBackpack() end
-			if AdiBagsContainer1 then
-				SkinFrame(AdiBagsContainer1)
-				U.SkinEditBox(AdiBagsContainer1SearchBox)
-				AdiBagsContainer1SearchBox:Point("TOPRIGHT", AdiBagsSimpleLayeredRegion2, "TOPRIGHT", -75, -1)
-			end
-		self:UnregisterEvent('PLAYER_ENTERING_WORLD')
-	elseif event == 'BANKFRAME_OPENED' then
+	if event == "PLAYER_ENTERING_WORLD" then
+		if not AdiBagsContainer1 then ToggleBackpack() ToggleBackpack() end
+		if AdiBagsContainer1 then
+			SkinFrame(AdiBagsContainer1)
+			U.SkinEditBox(AdiBagsContainer1SearchBox)
+			AdiBagsContainer1SearchBox:Point("TOPRIGHT", AdiBagsSimpleLayeredRegion2, "TOPRIGHT", -75, -1)
+		end
+	elseif event == "BANKFRAME_OPENED" then
 		SkinFrame(AdiBagsContainer2)
-		self:UnregisterEvent('BANKFRAME_OPENED')
+		U.UnregisterEvent(name, self, event)
 	end
 end
 

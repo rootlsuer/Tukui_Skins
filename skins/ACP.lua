@@ -28,15 +28,15 @@ end
 
 local function SkinACP(self)
 	U.SkinFrame(ACP_AddonList)
-    U.SkinFrame(ACP_AddonList_ScrollFrame)
+	U.SkinFrame(ACP_AddonList_ScrollFrame)
 	
 	local buttons = {
-        "ACP_AddonListSetButton",
-        "ACP_AddonListDisableAll",
-        "ACP_AddonListEnableAll",
-        "ACP_AddonList_ReloadUI",
+        	"ACP_AddonListSetButton",
+	        "ACP_AddonListDisableAll",
+        	"ACP_AddonListEnableAll",
+	        "ACP_AddonList_ReloadUI",
 		"ACP_AddonListBottomClose",
-	}
+		}
 
 	for _, button in pairs(buttons) do
 		U.SkinButton(_G[button])

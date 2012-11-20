@@ -1,6 +1,6 @@
-﻿local U = unpack(select(2,...))
+local U = unpack(select(2,...))
 local name = "GupPetSkin"
-function SkinGupPet(self,event)
+local function SkinGupPet(self,event)
 	U.SkinBackdropFrame(GupPet_InterfaceOptionsFrame)
 	U.SkinBackdropFrame(GupPet_InterfaceOptionsFrameOptions)
 	U.SkinBackdropFrame(GupPet_InterfaceOptionsFrameMountsCompanions)
