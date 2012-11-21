@@ -412,10 +412,10 @@ local SkinOptions = CreateFrame("Frame", "SkinOptions", UIParent)
 			["buttonText"] = "PowerAuras Icons",
 			["addon"] = "PowerAuras",
 		},
-		["WeakAurasSkin"] = {
-			["buttonText"] = "WeakAuras Icons",
-			["addon"] = "WeakAuras",
-		},
+		--["WeakAurasSkin"] = {
+		--	["buttonText"] = "WeakAuras Icons",
+		--	["addon"] = "WeakAuras",
+		--},
 	}
 
 	curY = 1

@@ -17,27 +17,27 @@ U.Skins = {
 	},
 	["AraBrokerGuildFriendsSkin"] = {
 		["buttonText"] = "Ara Broker Guild Friends",
-		["addon"] = "Ara_Broker_Guild_Friends"
+		["addon"] = "Ara_Broker_Guild_Friends",
 	},
 	["ArchySkin"] = {
-		["addon"] = "Archy"
+		["addon"] = "Archy",
 	},
 	['ArhSkin'] = {
 		["buttonText"] = "ArchaeologyHelper",
-		["addon"] = "Arh"
+		["addon"] = "Arh",
 	},
 	["ArkInventorySkin"] = {
-		["addon"] = "ArkInventory"
+		["addon"] = "ArkInventory",
 	},
 	["AtlasLootSkin"] = {
 		["buttonText"] = "AtlasLoot",
-		["addon"] = "AtlasLoot_Loader"
+		["addon"] = "AtlasLoot_Loader",
 	},
 	["ATSWSkin"] = {
-		["addon"] = "AdvancedTradeSkillWindow"
+		["addon"] = "AdvancedTradeSkillWindow",
 	},
 	["AuctionatorSkin"] = {
-		["addon"] = "Auctionator"
+		["addon"] = "Auctionator",
 	},
 	["AuctioneerSkin"] = {
 		["buttonText"] = "Auctioneer",
@@ -48,186 +48,164 @@ U.Skins = {
 		["addon"] = "BalancePowerTracker"
 	},
 	["BGDefenderSkin"] = {
-		["addon"] = "BGDefender"
+		["addon"] = "BGDefender",
 	},
 	["BigWigsSkin"] = {
-		["addon"] = "BigWigs"
+		["addon"] = "BigWigs",
 	},
 	["BuyEmAllSkin"] = {
-		["addon"] = "BuyEmAll"
+		["addon"] = "BuyEmAll",
 	},
 	["ChocolateBarSkin"] = {
-		["addon"] = "ChocolateBar"
-	},
-	["CLCInfoSkin"] = {
-		["addon"] = "CLCInfo",
-		["ui"] = "ElvUI"
-	},
-	["CLCProtSkin"] = {
-		["addon"] = "CLCProt",
-		["ui"] = "ElvUI"
-	},
-	["CLCRetSkin"] = {
-		["addon"] = "CLCRet",
-		["ui"] = "ElvUI"
+		["addon"] = "ChocolateBar",
 	},
 	["CliqueSkin"] = {
-		["addon"] = "Clique"
+		["addon"] = "Clique",
 	},
 	["DBMSkin"] = {
 		["buttonText"] = "DBM",
-		["addon"] = "DBM-Core"
+		["addon"] = "DBM-Core",
 	},
 	["EasyMailSkin"] = {
-		["addon"] = "EasyMail"
+		["addon"] = "EasyMail",
 	},
 	["EnergyWatchSkin"] = {
-		["addon"] = "EnergyWatch"
+		["addon"] = "EnergyWatch",
 	},
 	["ExtVendorSkin"] = {
 		["buttonText"] = "Extended Vendor",
-		["addon"] = "ExtVendor"
+		["addon"] = "ExtVendor",
 	},
 	["FactionizerSkin"] = {
-		["addon"] = "Factionizer"
+		["addon"] = "Factionizer",
 	},
 	["FlightMapSkin"] = {
-		["addon"] = "FlightMap"
+		["addon"] = "FlightMap",
 	},
 	["IncomingSkin"] = {
-		["addon"] = "Incoming"
+		["addon"] = "Incoming",
 	},
 	["KarniCrapSkin"] = {
 		["buttonText"] = "Karni's Crap Filter",
-		["addon"] = "KarniCrap"
+		["addon"] = "KarniCrap",
 	},
 	["LightheadedSkin"] = {
-		["addon"] = "Lightheaded"
+		["addon"] = "Lightheaded",
 	},
 	["LootCouncilLiteSkin"] = {
 		["buttonText"] = "LootCouncilLite",
-		["addon"] = "LootCouncil_Lite"
+		["addon"] = "LootCouncil_Lite",
 	},
 	["MageNuggetsSkin"] = {
-		["addon"] = "MageNuggets"
+		["addon"] = "MageNuggets",
 	},
 	["MasterLootManagerRemixSkin"] = {
-		["addon"] = "MasterLootManagerRemix"
+		["addon"] = "MasterLootManagerRemix",
 	},
 	["MinimalArchaeologySkin"] = {
-		["addon"] = "MinimalArchaeology"
+		["addon"] = "MinimalArchaeology",
 	},
 	["MoveAnythingSkin"] = {
-		["addon"] = "MoveAnything"
+		["addon"] = "MoveAnything",
 	},
 	["MRTSkin"] = {
 		["buttonText"] = "Mizus Raid Tracker",
-		["addon"] = "MizusRaidTracker"
+		["addon"] = "MizusRaidTracker",
 	},
 	["MyRolePlaySkin"] = {
-		["addon"] = "MyRolePlay"
+		["addon"] = "MyRolePlay",
 	},
 	["OdysseySkin"] = {
-		["addon"] = "Odyssey"
+		["addon"] = "Odyssey",
 	},
 	["OgriLazySkin"] = {
-		["addon"] = "Ogri'Lazy"
+		["addon"] = "Ogri'Lazy",
 	},
 	["OmenSkin"] = {
-		["addon"] = "Omen"
+		["addon"] = "Omen",
 	},
 	["OutfitterSkin"] = {
-		["addon"] = "Outfitter"
+		["addon"] = "Outfitter",
 	},
 	--["PoisonerSkin"] = {
-	--	["addon"] = "Poisoner"
+	--	["addon"] = "Poisoner",
 	--},
 	["PoMTrackerSkin"] = {
-		["addon"] = "PoMTracker"
+		["addon"] = "PoMTracker",
 	},
 	["PostalSkin"] = {
-		["addon"] = "Postal"
+		["addon"] = "Postal",
 	},
 	["PowerAurasSkin"] = {
 		["addon"] = "PowerAuras",
 	},
-	["PowerAurasIconsSkin"] = {
-		["buttonText"] = "PowerAuras Icons",
-		["addon"] = "PowerAuras",
-		["ui"] = "ElvUI"
-	},
 	["QuartzSkin"] = {
-		["addon"] = "Quartz"
+		["addon"] = "Quartz",
 	},
 	["RaidInviteOrganizerSkin"] = {
 		["buttonText"] = "Raid Invite Organizer",
-		["addon"] = "RaidInviteOrganizer"
+		["addon"] = "RaidInviteOrganizer",
 	},
 	["RaidBuffStatusSkin"] = {
 		["buttonText"] = "Raid Buff Status",
-		["addon"] = "RaidBuffStatus"
+		["addon"] = "RaidBuffStatus",
 	},
 	["RecountSkin"] = {
-		["addon"] = "Recount"
+		["addon"] = "Recount",
 	},
 	["ReforgenatorSkin"] = {
-		["addon"] = "Reforgenator"
+		["addon"] = "Reforgenator",
 	},
 	["SearingPlasmaTrackerSkin"] = {
 		["buttonText"] = "Searing Plasma Tracker",
-		["addon"] = "SearingPlasmaTracker"
+		["addon"] = "SearingPlasmaTracker",
 	},
 	["SexyCooldownSkin"] = {
-		["buttonText"] = "SexyCooldown",
-		["addon"] = "SexyCooldown2"
+		["buttonText"] = "SexyCooldown 2",
+		["addon"] = "SexyCooldown2",
 	},
 	["SkadaSkin"] = {
-		["addon"] = "Skada"
+		["addon"] = "Skada",
 	},
 	["SkilletSkin"] = {
-		["addon"] = "Skillet"
+		["addon"] = "Skillet",
 	},
 	["SpineCounterSkin"] = {
 		["buttonText"] = "Spine Blood Counter",
-		["addon"] = "SpineCounter"
+		["addon"] = "SpineCounter",
 	},
 	["SpySkin"] = {
-		["addon"] = "Spy"
+		["addon"] = "Spy",
 	},
 	["SwatterSkin"] = {
 		["buttonText"] = "Swatter",
-		["addon"] = "!Swatter"
+		["addon"] = "!Swatter",
 	},
 	["TellMeWhenSkin"] = {
-		["addon"] = "TellMeWhen"
+		["addon"] = "TellMeWhen",
 	},
 	["TinyDPSSkin"] = {
-		["addon"] = "TinyDPS"
+		["addon"] = "TinyDPS",
 	},
 	["TitanPanelSkin"] = {
 		["buttonText"] = "TitanPanel",
-		["addon"] = "Titan"
+		["addon"] = "Titan",
 	},
 	["TradeSkillDWSkin"] = {
-		["addon"] = "TradeSkillDW"
-	},
-	["WeakAurasSkin"] = {
-		["addon"] = "WeakAuras",
-		["ui"] = "ElvUI",
+		["addon"] = "TradeSkillDW",
 	},
 	["WhollySkin"] = {
 		["addon"] = "Wholly",
 	},
 	["WowLuaSkin"] = {
-		["addon"] = "WowLua"
+		["addon"] = "WowLua",
 	},
 	["ZygorSkin"] = {
 		["buttonText"] = "Zygor",
-		["addon"] = "ZygorGuidesViewer"
+		["addon"] = "ZygorGuidesViewer",
 	},
 	["PetBattleTeamsSkin"] = {
-		["buttonText"] = "PetBattleTeams",
-		["addon"] = "PetBattleTeams"
+		["addon"] = "PetBattleTeams",
 	},
 	["BagnonSkin"] = {
 		["addon"] = "Bagnon",
@@ -246,28 +224,25 @@ U.Skins = {
 		["buttonText"] = "Shield Monitor",
 		["addon"] = "shieldmonitor",
 	},
-	--["DresserSkin"] = {
-	--	["addon"] = "Dresser",
-	--},
+	["DresserSkin"] = {
+		["addon"] = "Dresser",
+	},
 	["MogItSkin"] = {
 		["addon"] = "MogIt",
 	},
-	--["GupPetSkin"] = {
-	--	["addon"] = "GupPet",
-	--},
-	--["ExaminerSkin"] = {
-	--	["addon"] = "Examiner",
-	--},
-	--["NumerationSkin"] = {
-	--	["addon"] = "Numeration",
-	--},
-	--["ExaminerSkin"] = {
-	--	["addon"] = "Examiner",
-	--},
-	--["OneClickEnchantScrollSkin"] = {
-	--	["addon"] = "OneClickEnchantScroll",
-	--},
-	--["xMerchantSkin"] = {
-	--	["addon"] = "xMerchant",
-	--},
+	["GupPetSkin"] = {
+		["addon"] = "GupPet",
+	},
+	["ExaminerSkin"] = {
+		["addon"] = "Examiner",
+	},
+	["NumerationSkin"] = {
+		["addon"] = "Numeration",
+	},
+	["OneClickEnchantScrollSkin"] = {
+		["addon"] = "OneClickEnchantScroll",
+	},
+	["xMerchantSkin"] = {
+		["addon"] = "xMerchant",
+	},
 }
