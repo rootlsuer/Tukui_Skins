@@ -5,7 +5,7 @@ local function SkinOneClickEnchantScroll(self)
 
 	U.SkinButton(TradeSkillCreateScrollButton, true)
 	TradeSkillCreateScrollButton:ClearAllPoints()
-	TradeSkillCreateScrollButton:Point("LEFT", TradeSkillCreateButton, -81, 0)
+	TradeSkillCreateScrollButton:Point("RIGHT", TradeSkillCreateButton, "LEFT", -2, 0)
 
 end
 
