@@ -201,6 +201,39 @@ end
 
 U.SkinStatusBar = cSkinStatusBar
 
+local function cSkinIconButton(self, strip, style, shrinkIcon)
+	if self.isSkinned then return end
+
+	if strip then self:StripTextures() end
+	self:CreateBackdrop("Default", true)
+	if style then self:StyleButton() end
+
+	cUpdateColor(self.backdrop)
+	tinsert(U.ColorBackdrop, self.backdrop)
+
+	local icon = self.icon
+	if self:GetName() and _G[self:GetName().."IconTexture"] then
+		icon = _G[self:GetName().."IconTexture"]
+	elseif self:GetName() and _G[self:GetName().."Icon"] then
+		icon = _G[self:GetName().."Icon"]
+	end
+
+	if icon then
+		icon:SetTexCoord(.08,.88,.08,.88)
+
+		if shrinkIcon then
+			self.backdrop:SetAllPoints()
+			icon:SetInside(self)
+		else
+			self.backdrop:SetOutside(icon)
+		end
+		icon:SetParent(self.backdrop)
+	end
+	self.isSkinned = true
+end
+
+U.SkinIconButton = cSkinIconButton
+
 local function cDesaturate(f, point)
 	for i=1, f:GetNumRegions() do
 		local region = select(i, f:GetRegions())
