@@ -245,4 +245,31 @@ U.Skins = {
 	["xMerchantSkin"] = {
 		["addon"] = "xMerchant",
 	},
+--DO NOT REMOVE THESE
+	["DBMSkinHalf"] = {
+		["buttonText"] = "DBM Half-Bar Skin",
+		["addon"] = "DBM-Core",
+		["ui"] = "ElvUI",
+	},
+	["CLCProtSkin"] = {
+		["buttonText"] = "CLCProt Icons",
+		["addon"] = "CLCProt",
+		["ui"] = "ElvUI",
+	},
+	["CLCRetSkin"] = {
+		["buttonText"] = "CLCRet Icons",
+		["addon"] = "CLCRet",
+		["ui"] = "ElvUI",
+	},
+	["PowerAurasIconsSkin"] = {
+		["buttonText"] = "PowerAuras Icons",
+		["addon"] = "PowerAuras",
+		["ui"] = "ElvUI",
+	},
+	["WeakAurasSkin"] = {
+		["buttonText"] = "WeakAuras Icons",
+		["addon"] = "WeakAuras",
+		["ui"] = "ElvUI",
+	},
+--
 }

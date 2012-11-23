@@ -3,9 +3,9 @@
 local name = 'xMerchantSkin'
 local function SkinxMerchant(self)
 
-	U.SkinCheckBox(xMerchantFrameTooltipSearching)
-	U.SkinFrameD(xMerchantFrameSearch)
-	U.SkinScrollBar(xMerchantScrollFrameScrollBar)
+	U.SkinCheckBox(NuuhMerchantFrameTooltipSearching)
+	U.SkinFrameD(NuuhMerchantFrameSearch)
+	U.SkinScrollBar(NuuhMerchantScrollFrameScrollBar)
 
 end
 

@@ -387,35 +387,37 @@ local SkinOptions = CreateFrame("Frame", "SkinOptions", UIParent)
 	for skin,options in pairsByKeys(Skins) do
 		local addon = options.addon
 		local buttonText = options.buttonText or addon
-		CreateButton(string.format('%sButton',skin),buttonText,addon,skin,curX,curY)
-		curY = curY + 1
-		if curY > maxY then
-			curX = curX + 1
-			curY = 1
+		if options.ui ~= "ElvUI" then
+			CreateButton(string.format('%sButton',skin),buttonText,addon,skin,curX,curY)
+			curY = curY + 1
+			if curY > maxY then
+				curX = curX + 1
+				curY = 1
+			end
 		end
 	end
 
 	local Skins2 = {
 		["DBMSkinHalf"] = {
 			["buttonText"] = "DBM Half-Bar Skin",
-			["addon"] = "DBM-Core",
+			["addon"] = "DBM-Core"
 		},
 		["CLCProtSkin"] = {
 			["buttonText"] = "CLCProt Icons",
-			["addon"] = "CLCProt",
+			["addon"] = "CLCProt"
 		},
 		["CLCRetSkin"] = {
 			["buttonText"] = "CLCRet Icons",
-			["addon"] = "CLCRet",
+			["addon"] = "CLCRet"
 		},
 		["PowerAurasIconsSkin"] = {
 			["buttonText"] = "PowerAuras Icons",
-			["addon"] = "PowerAuras",
+			["addon"] = "PowerAuras"
 		},
-		--["WeakAurasSkin"] = {
-		--	["buttonText"] = "WeakAuras Icons",
-		--	["addon"] = "WeakAuras",
-		--},
+		["WeakAurasSkin"] = {
+			["buttonText"] = "WeakAuras Icons",
+			["addon"] = "WeakAuras"
+		},
 	}
 
 	curY = 1
@@ -454,6 +456,7 @@ function ColorTukui()
 		"CombatLogQuickButtonFrame_Custom",
 		"TukuiBar5ButtonBottom",
 		"TukuiBar5ButtonTop",
+		"TukuiButtonCF1",
 		}
 
 	local GameTooltips = {
@@ -507,12 +510,23 @@ function ColorTukui()
 		if _G["ActionButton"..i] then cUpdateColor(_G["ActionButton"..i].backdrop) end
 		if _G["PetActionButton"..i] then cUpdateColor(_G["PetActionButton"..i].backdrop) end
 	end
-	--Need to talk to Tukz about this.
-	--for i = 1, 99 do
-	--	_G["TukuiAurasPlayerBuffsAuraButton"..i]:Show()
-	--	if _G["TukuiAurasPlayerBuffsAuraButton"..i] then cUpdateColor(_G["TukuiAurasPlayerBuffsAuraButton"..i]) end
-	--	if _G["TukuiAurasPlayerBuffsAuraButton"..i].Holder then cUpdateColor(_G["TukuiAurasPlayerBuffsAuraButton"..i].Holder) end
-	--end
+
+	local function RecolorBuffs()
+		for i = 1, 99 do
+			if _G["TukuiAurasPlayerBuffsAuraButton"..i] then
+				cUpdateColor(_G["TukuiAurasPlayerBuffsAuraButton"..i])
+
+				if _G["TukuiAurasPlayerBuffsAuraButton"..i].Holder then
+					cUpdateColor(_G["TukuiAurasPlayerBuffsAuraButton"..i].Holder)
+				end
+			end
+		end
+	end
+	if not TSBuffColorer then
+		TSBuffColorer = CreateFrame("Frame", "TSBuffColorer", UIParent)
+		TSBuffColorer:RegisterEvent("UNIT_AURA")
+		TSBuffColorer:SetScript("OnEvent", RecolorBuffs)
+	end
 end
 
 TSBorderColor = function(self)
