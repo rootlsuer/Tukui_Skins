@@ -159,6 +159,24 @@ local DefaultSetSkin = CreateFrame("Frame")
 	if(UISkinOptions.BagnonSkin == nil) then UISkinOptions.BagnonSkin = "Enabled" end
 	if(UISkinOptions.TomTomSkin == nil) then UISkinOptions.TomTomSkin = "Enabled" end
 	if(UISkinOptions.tComboSkin == nil) then UISkinOptions.tComboSkin = "Enabled" end
+	if(UISkinOptions.LinkWranglerSkin == nil) then UISkinOptions.LinkWranglerSkin = "Enabled" end
+	if(UISkinOptions.NumerationSkin == nil) then UISkinOptions.NumerationSkin = "Enabled" end
+	if(UISkinOptions.GupPetSkin == nil) then UISkinOptions.GupPetSkin = "Enabled" end
+	if(UISkinOptions.OneClickEnchantScrollSkin == nil) then UISkinOptions.OneClickEnchantScrollSkin = "Enabled" end
+	if(UISkinOptions.PetBattleTeamsSkin == nil) then UISkinOptions.PetBattleTeamsSkin = "Enabled" end
+	if(UISkinOptions.CoolLineSkin == nil) then UISkinOptions.CoolLineSkin = "Enabled" end
+	if(UISkinOptions.QuestItemBarSkin == nil) then UISkinOptions.QuestItemBarSkin = "Enabled" end
+	if(UISkinOptions.AuctionLiteSkin == nil) then UISkinOptions.AuctionLiteSkin = "Enabled" end
+	if(UISkinOptions.RavenSkin == nil) then UISkinOptions.RavenSkin = "Enabled" end
+	if(UISkinOptions.HealiumSkin == nil) then UISkinOptions.HealiumSkin = "Enabled" end
+	if(UISkinOptions.BigBrotherSkin == nil) then UISkinOptions.BigBrotherSkin = "Enabled" end
+	if(UISkinOptions.InspectEquipSkin == nil) then UISkinOptions.InspectEquipSkin = "Enabled" end
+	if(UISkinOptions.CombustionHelperSkin == nil) then UISkinOptions.CombustionHelperSkin = "Enabled" end
+	if(UISkinOptions.MogItSkin == nil) then UISkinOptions.MogItSkin = "Enabled" end
+	if(UISkinOptions.ExaminerSkin == nil) then UISkinOptions.ExaminerSkin = "Enabled" end
+	if(UISkinOptions.xMerchantSkin == nil) then UISkinOptions.xMerchantSkin = "Enabled" end
+	if(UISkinOptions.DresserSkin == nil) then UISkinOptions.DresserSkin = "Enabled" end
+	if(UISkinOptions.LinkWranglerSkin == nil) then UISkinOptions.LinkWranglerSkin = "Enabled" end
 	if(UISkinOptions.ShieldMonitorSkin == nil) then UISkinOptions.ShieldMonitorSkin = "Enabled" end
 	if(UISkinOptions.VengeanceStatusSkin == nil) then UISkinOptions.VengeanceStatusSkin = "Enabled" end
 	if(UISkinOptions.RecountBackdrop == nil) then UISkinOptions.RecountBackdrop = "Enabled" end
