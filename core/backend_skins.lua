@@ -100,6 +100,9 @@ U.Skins = {
 	["GupPetSkin"] = {
 		["addon"] = "GupPet",
 	},
+	["HealiumSkin"] = {
+		["addon"] = "Healium",
+	},
 	["IncomingSkin"] = {
 		["addon"] = "Incoming",
 	},

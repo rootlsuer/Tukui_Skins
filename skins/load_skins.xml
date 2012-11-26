@@ -30,6 +30,7 @@
 	<Script file="Factionizer.lua"/>
 	<Script file="FlightMap.lua"/>
 	<Script file="GupPet.lua"/>
+	<Script file="Healium.lua"/>
 	<Script file="Incoming.lua"/>
 	<Script file="KarniCrap.lua"/>
 	<Script file="Lightheaded.lua"/>
