@@ -49,15 +49,18 @@ U.Skins = {
 	["BagnonSkin"] = {
 		["addon"] = "Bagnon",
 	},
-	["BPTSkin"] = {
-		["buttonText"] = "Balance Power Tracker",
-		["addon"] = "BalancePowerTracker"
-	},
 	["BGDefenderSkin"] = {
 		["addon"] = "BGDefender",
 	},
+	["BigBrotherSkin"] = {
+		["addon"] = "BigBrother"
+	},
 	["BigWigsSkin"] = {
 		["addon"] = "BigWigs",
+	},
+	["BPTSkin"] = {
+		["buttonText"] = "Balance Power Tracker",
+		["addon"] = "BalancePowerTracker"
 	},
 	["BuyEmAllSkin"] = {
 		["addon"] = "BuyEmAll",
