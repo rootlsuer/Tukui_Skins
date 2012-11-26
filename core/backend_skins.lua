@@ -183,6 +183,9 @@ U.Skins = {
 		["buttonText"] = "Raid Buff Status",
 		["addon"] = "RaidBuffStatus",
 	},
+	["RavenSkin"] = {
+		["addon"] = "Raven",
+	},
 	["RecountSkin"] = {
 		["addon"] = "Recount",
 	},
