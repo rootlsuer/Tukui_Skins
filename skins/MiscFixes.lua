@@ -7,6 +7,10 @@ local MiscFixes = CreateFrame("Frame")
 	if IsAddOnLoaded("Numeration") and U.CheckOption("NumerationSkin") then
 		U.SkinFrame(NumerationFrame, true)
 	end
+	if IsAddOnLoaded("InspectEquip") and U.CheckOption("InspectEquipSkin") then
+		U.SkinFrame(InspectEquip_InfoWindow)
+		U.SkinCloseButton(InspectEquip_InfoWindow_CloseWindow)
+	end
 	if TukuiMinimap then Minimap:SetMaskTexture(c["media"].blank) end
 	if IsAddOnLoaded("TomTom") and (U.CheckOption("TomTomSkin")) then
 		if TomTomBlock then

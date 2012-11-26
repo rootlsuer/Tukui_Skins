@@ -109,6 +109,9 @@ U.Skins = {
 	["IncomingSkin"] = {
 		["addon"] = "Incoming",
 	},
+	["InspectEquipSkin"] = {
+		["addon"] = "InspectEquip",
+	},
 	["KarniCrapSkin"] = {
 		["buttonText"] = "Karni's Crap Filter",
 		["addon"] = "KarniCrap",
