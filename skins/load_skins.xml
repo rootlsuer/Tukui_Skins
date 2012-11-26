@@ -10,6 +10,7 @@
 	<Script file="AtlasLoot.lua"/>
 	<Script file="Auctionator.lua"/>
 	<Script file="Auctioneer.lua"/>
+	<Script file="AuctionLite.lua"/>
 	<Script file="Bagnon.lua"/>
 	<Script file="BGDefender.lua"/>
 	<Script file="BPT.lua"/>

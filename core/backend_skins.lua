@@ -43,6 +43,9 @@ U.Skins = {
 		["buttonText"] = "Auctioneer",
 		["addon"] = "Auc-Advanced"
 	},
+	["AuctionLiteSkin"] = {
+		["addon"] = "AuctionLite",
+	},
 	["BagnonSkin"] = {
 		["addon"] = "Bagnon",
 	},
