@@ -71,6 +71,9 @@ U.Skins = {
 	["CliqueSkin"] = {
 		["addon"] = "Clique",
 	},
+	["CombustionHelperSkin"] = {
+		["addon"] = "CombustionHelper",
+	},
 	["CoolLineSkin"] = {
 		["addon"] = "CoolLine",
 	},

@@ -22,6 +22,7 @@
 	<Script file="ChocolateBar.lua"/>
 	<Script file="Clique.lua"/>
 	<Script file="Coolline.lua"/>
+	<Script file="CombustionHelper.lua"/>
 	<Script file="DBM.lua"/>
 	<Script file="Dresser.lua"/>
 	<Script file="EasyMail.lua"/>

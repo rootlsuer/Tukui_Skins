@@ -9,7 +9,7 @@ local MiscFixes = CreateFrame("Frame")
 	end
 	if IsAddOnLoaded("InspectEquip") and U.CheckOption("InspectEquipSkin") then
 		U.SkinFrame(InspectEquip_InfoWindow)
-		U.SkinCloseButton(InspectEquip_InfoWindow_CloseWindow)
+		U.SkinCloseButton(InspectEquip_InfoWindow_CloseButton)
 	end
 	if TukuiMinimap then Minimap:SetMaskTexture(c["media"].blank) end
 	if IsAddOnLoaded("TomTom") and (U.CheckOption("TomTomSkin")) then
