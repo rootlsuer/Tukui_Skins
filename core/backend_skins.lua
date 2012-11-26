@@ -43,6 +43,9 @@ U.Skins = {
 		["buttonText"] = "Auctioneer",
 		["addon"] = "Auc-Advanced"
 	},
+	["BagnonSkin"] = {
+		["addon"] = "Bagnon",
+	},
 	["BPTSkin"] = {
 		["buttonText"] = "Balance Power Tracker",
 		["addon"] = "BalancePowerTracker"
@@ -62,15 +65,24 @@ U.Skins = {
 	["CliqueSkin"] = {
 		["addon"] = "Clique",
 	},
+	["CoolLineSkin"] = {
+		["addon"] = "CoolLine",
+	},
 	["DBMSkin"] = {
 		["buttonText"] = "DBM",
 		["addon"] = "DBM-Core",
+	},
+	["DresserSkin"] = {
+		["addon"] = "Dresser",
 	},
 	["EasyMailSkin"] = {
 		["addon"] = "EasyMail",
 	},
 	["EnergyWatchSkin"] = {
 		["addon"] = "EnergyWatch",
+	},
+	["ExaminerSkin"] = {
+		["addon"] = "Examiner",
 	},
 	["ExtVendorSkin"] = {
 		["buttonText"] = "Extended Vendor",
@@ -82,6 +94,9 @@ U.Skins = {
 	["FlightMapSkin"] = {
 		["addon"] = "FlightMap",
 	},
+	["GupPetSkin"] = {
+		["addon"] = "GupPet",
+	},
 	["IncomingSkin"] = {
 		["addon"] = "Incoming",
 	},
@@ -91,6 +106,9 @@ U.Skins = {
 	},
 	["LightheadedSkin"] = {
 		["addon"] = "Lightheaded",
+	},
+	["LinkWranglerSkin"] = {
+		["addon"] = "LinkWrangler",
 	},
 	["LootCouncilLiteSkin"] = {
 		["buttonText"] = "LootCouncilLite",
@@ -105,6 +123,9 @@ U.Skins = {
 	["MinimalArchaeologySkin"] = {
 		["addon"] = "MinimalArchaeology",
 	},
+	["MogItSkin"] = {
+		["addon"] = "MogIt",
+	},
 	["MoveAnythingSkin"] = {
 		["addon"] = "MoveAnything",
 	},
@@ -115,6 +136,9 @@ U.Skins = {
 	["MyRolePlaySkin"] = {
 		["addon"] = "MyRolePlay",
 	},
+	["NumerationSkin"] = {
+		["addon"] = "Numeration",
+	},
 	["OdysseySkin"] = {
 		["addon"] = "Odyssey",
 	},
@@ -124,8 +148,14 @@ U.Skins = {
 	["OmenSkin"] = {
 		["addon"] = "Omen",
 	},
+	["OneClickEnchantScrollSkin"] = {
+		["addon"] = "OneClickEnchantScroll",
+	},
 	["OutfitterSkin"] = {
 		["addon"] = "Outfitter",
+	},
+	["PetBattleTeamsSkin"] = {
+		["addon"] = "PetBattleTeams",
 	},
 	--["PoisonerSkin"] = {
 	--	["addon"] = "Poisoner",
@@ -164,6 +194,10 @@ U.Skins = {
 		["buttonText"] = "SexyCooldown 2",
 		["addon"] = "SexyCooldown2",
 	},
+	["ShieldMonitorSkin"] = {
+		["buttonText"] = "Shield Monitor",
+		["addon"] = "shieldmonitor",
+	},
 	["SkadaSkin"] = {
 		["addon"] = "Skada",
 	},
@@ -181,6 +215,10 @@ U.Skins = {
 		["buttonText"] = "Swatter",
 		["addon"] = "!Swatter",
 	},
+	["tComboSkin"] = {
+		["buttonText"] = "Tukui Combo",
+		["addon"] = "tCombo",
+	},
 	["TellMeWhenSkin"] = {
 		["addon"] = "TellMeWhen",
 	},
@@ -191,8 +229,14 @@ U.Skins = {
 		["buttonText"] = "TitanPanel",
 		["addon"] = "Titan",
 	},
+	["TomTomSkin"] = {
+		["addon"] = "TomTom",
+	},
 	["TradeSkillDWSkin"] = {
 		["addon"] = "TradeSkillDW",
+	},
+	["VengeanceStatusSkin"] = {
+		["addon"] = "VengeanceStatus",
 	},
 	["WhollySkin"] = {
 		["addon"] = "Wholly",
@@ -200,53 +244,12 @@ U.Skins = {
 	["WowLuaSkin"] = {
 		["addon"] = "WowLua",
 	},
-	["ZygorSkin"] = {
-		["buttonText"] = "Zygor",
-		["addon"] = "ZygorGuidesViewer",
-	},
-	["PetBattleTeamsSkin"] = {
-		["addon"] = "PetBattleTeams",
-	},
-	["BagnonSkin"] = {
-		["addon"] = "Bagnon",
-	},
-	["VengeanceStatusSkin"] = {
-		["addon"] = "VengeanceStatus",
-	},
-	["TomTomSkin"] = {
-		["addon"] = "TomTom",
-	},
-	["tComboSkin"] = {
-		["buttonText"] = "Tukui Combo",
-		["addon"] = "tCombo",
-	},
-	["ShieldMonitorSkin"] = {
-		["buttonText"] = "Shield Monitor",
-		["addon"] = "shieldmonitor",
-	},
-	["DresserSkin"] = {
-		["addon"] = "Dresser",
-	},
-	["MogItSkin"] = {
-		["addon"] = "MogIt",
-	},
-	["GupPetSkin"] = {
-		["addon"] = "GupPet",
-	},
-	["ExaminerSkin"] = {
-		["addon"] = "Examiner",
-	},
-	["NumerationSkin"] = {
-		["addon"] = "Numeration",
-	},
-	["OneClickEnchantScrollSkin"] = {
-		["addon"] = "OneClickEnchantScroll",
-	},
 	["xMerchantSkin"] = {
 		["addon"] = "xMerchant",
 	},
-	["LinkWranglerSkin"] = {
-		["addon"] = "LinkWrangler",
+	["ZygorSkin"] = {
+		["buttonText"] = "Zygor",
+		["addon"] = "ZygorGuidesViewer",
 	},
 --DO NOT REMOVE THESE
 	["DBMSkinHalf"] = {
