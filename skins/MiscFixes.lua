@@ -4,7 +4,9 @@ local MiscFixes = CreateFrame("Frame")
 	local s = U.s
 	local c = U.c 
 	MiscFixes:SetScript("OnEvent", function(self)
-	if NumerationFrame then U.SkinFrame(NumerationFrame, true) end
+	if IsAddOnLoaded("Numeration") and U.CheckOption("NumerationSkin") then
+		U.SkinFrame(NumerationFrame, true)
+	end
 	if TukuiMinimap then Minimap:SetMaskTexture(c["media"].blank) end
 	if IsAddOnLoaded("TomTom") and (U.CheckOption("TomTomSkin")) then
 		if TomTomBlock then
