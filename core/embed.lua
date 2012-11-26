@@ -14,6 +14,7 @@ local EmbeddingWindow = CreateFrame("Frame", "EmbeddingWindow", UIParent)
 if event == "PLAYER_ENTERING_WORLD" then
 	
 	EmbedWindowResize()
+	if ChatFrame4Tab:IsShown() then ChatFrame4Hide = True end
 	EmbedToggleButton = CreateFrame("Button", "EmbedToggleButton", UIParent)
 	U.SkinButton(EmbedToggleButton)
 	EmbedToggleButton:Size(TukuiInfoRight:GetHeight()-4)
@@ -54,7 +55,13 @@ if event == "PLAYER_ENTERING_WORLD" then
 			end
 		end
 			else
-				if ChatFrame4Tab:IsShown() then ChatFrame4Tab:Hide() else ChatFrame4Tab:Show() end
+				if ChatFrame4Hide then
+					ChatFrame4Tab:IsShown() then
+						ChatFrame4Tab:Hide()
+					else
+						ChatFrame4Tab:Show()
+					end
+				end
 				if (U.CheckOption("EmbedRecount","Recount")) or (U.CheckOption("EmbedRO")) then
 					ToggleFrame(Recount_MainWindow)
 				end
@@ -430,7 +437,7 @@ end
 if event == "PLAYER_REGEN_DISABLED" or event == "PLAYER_ENTER_COMBAT" or InCombatLockdown() then
 --	print("Entering Combat")
 	if (U.CheckOption("EmbedOoC")) then
-		ChatFrame4Tab:Hide()
+		if ChatFrame4Hide then ChatFrame4Tab:Hide() end
 		if (U.CheckOption("EmbedRecount","Recount"))  then
 			Recount_MainWindow:Show()
 		end
@@ -455,7 +462,7 @@ if event == "PLAYER_REGEN_DISABLED" or event == "PLAYER_ENTER_COMBAT" or InComba
 else
 --	print("Exiting Combat")
 	if (U.CheckOption("EmbedOoC")) then
-		ChatFrame4Tab:Show()
+		if ChatFrame4Hide then ChatFrame4Tab:Show() end
 		if (U.CheckOption("EmbedRecount","Recount")) then
 			Recount_MainWindow:Hide()
 		end
