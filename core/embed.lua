@@ -56,7 +56,7 @@ if event == "PLAYER_ENTERING_WORLD" then
 		end
 			else
 				if ChatFrame4Hide then
-					ChatFrame4Tab:IsShown() then
+					if ChatFrame4Tab:IsShown() then
 						ChatFrame4Tab:Hide()
 					else
 						ChatFrame4Tab:Show()
