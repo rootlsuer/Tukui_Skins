@@ -245,6 +245,9 @@ U.Skins = {
 	["xMerchantSkin"] = {
 		["addon"] = "xMerchant",
 	},
+	["LinkWranglerSkin"] = {
+		["addon"] = "LinkWrangler",
+	},
 --DO NOT REMOVE THESE
 	["DBMSkinHalf"] = {
 		["buttonText"] = "DBM Half-Bar Skin",

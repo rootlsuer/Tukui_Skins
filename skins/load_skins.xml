@@ -31,6 +31,7 @@
 	<Script file="Incoming.lua"/>
 	<Script file="KarniCrap.lua"/>
 	<Script file="Lightheaded.lua"/>
+	<Script file="LinkWrangler.lua"/>
 	<Script file="LootCouncilLite.lua"/>
 	<Script file="MRT.lua"/>
 	<Script file="MageNuggets.lua"/>
