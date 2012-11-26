@@ -251,6 +251,9 @@ U.Skins = {
 		["buttonText"] = "Zygor",
 		["addon"] = "ZygorGuidesViewer",
 	},
+	["QuestItemBarSkin"] = {
+		["addon"] = "QuestItemBar",
+	},
 --DO NOT REMOVE THESE
 	["DBMSkinHalf"] = {
 		["buttonText"] = "DBM Half-Bar Skin",

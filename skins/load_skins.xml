@@ -52,6 +52,7 @@
 	<Script file="Postal.lua"/>
 	<Script file="PowerAuras.lua"/>
 	<Script file="Quartz.lua"/>
+	<Script file="QuestItemBar.lua"/>
 	<Script file="RBS.lua"/>
 	<Script file="RaidInviteOrganizer.lua"/>
 	<Script file="Recount.lua"/>
