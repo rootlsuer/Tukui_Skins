@@ -190,6 +190,7 @@ local DefaultSetSkin = CreateFrame("Frame")
 	if(UISkinOptions.QuestCompletistSkin == nil) then UISkinOptions.QuestCompletistSkin = "Enabled" end
 	if(UISkinOptions.CritlineSkin == nil) then UISkinOptions.CritlineSkin = "Enabled" end
 	if(UISkinOptions.SoundtrackSkin == nil) then UISkinOptions.SoundtrackSkin = "Enabled" end
+	if(UISkinOptions.WoWProSkin == nil) then UISkinOptions.WoWProSkin = "Enabled" end
 	--if(UISkinOptions.ColorTemplate == nil) then UISkinOptions.ColorTemplate = "ClassColor" end
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 end)

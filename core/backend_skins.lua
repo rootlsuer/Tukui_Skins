@@ -274,6 +274,9 @@ U.Skins = {
 	["WowLuaSkin"] = {
 		["addon"] = "WowLua",
 	},
+	["WoWProSkin"] = {
+		["addon"] = "WowPro",
+	},
 	["xMerchantSkin"] = {
 		["addon"] = "xMerchant",
 	},
