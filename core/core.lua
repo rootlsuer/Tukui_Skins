@@ -16,7 +16,7 @@ function cColorSwitch()
 	GameTooltip:HookScript("OnUpdate", function(self) cUpdateColor(self) end)
 	if IsAddOnLoaded("SpecSwitcher") then
 		cUpdateColor(SpecTalent)
-		cUpdateColor(SpecTalentBackdrop)
+		cUpdateColor(SpecTalent.backdrop)
 	end
 	if IsAddOnLoaded("Tukui_BuffsNotice") then
 		if TukuiBuffsWarningFrame then cUpdateColor(TukuiBuffsWarningFrame) end
