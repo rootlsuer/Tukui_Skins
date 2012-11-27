@@ -187,6 +187,12 @@ U.Skins = {
 	["QuartzSkin"] = {
 		["addon"] = "Quartz",
 	},
+	["QuestCompletistSkin"] = {
+		["addon"] = "QuestCompletist",
+	},
+	["QuestItemBarSkin"] = {
+		["addon"] = "QuestItemBar",
+	},
 	["RaidInviteOrganizerSkin"] = {
 		["buttonText"] = "Raid Invite Organizer",
 		["addon"] = "RaidInviteOrganizer",
@@ -268,9 +274,6 @@ U.Skins = {
 	["ZygorSkin"] = {
 		["buttonText"] = "Zygor",
 		["addon"] = "ZygorGuidesViewer",
-	},
-	["QuestItemBarSkin"] = {
-		["addon"] = "QuestItemBar",
 	},
 --DO NOT REMOVE THESE
 	["DBMSkinHalf"] = {
