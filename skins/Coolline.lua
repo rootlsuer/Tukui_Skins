@@ -8,7 +8,7 @@ local function SkinCoolLine(self)
 	CoolLineDB.border  = "None"
 	CoolLine.updatelook()
 	U.SkinBackdropFrame(CoolLine)
-	CoolLine.backdrop:SetOutside(CoolLine)
+	CoolLine.backdrop:SetAllPoints(CoolLine)
 	CoolLine.backdrop:CreateShadow()
 	if U.CheckOption("CoolLineEmbed") then
 		if not CoolLineDB.vertical then
