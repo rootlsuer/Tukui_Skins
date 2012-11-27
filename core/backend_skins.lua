@@ -231,6 +231,9 @@ U.Skins = {
 	["SkilletSkin"] = {
 		["addon"] = "Skillet",
 	},
+	["SoundtrackSkin"] = {
+		["addon"] = "Soundtrack",
+	},
 	["SpineCounterSkin"] = {
 		["buttonText"] = "Spine Blood Counter",
 		["addon"] = "SpineCounter",

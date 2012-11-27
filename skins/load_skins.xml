@@ -68,6 +68,7 @@
 	<Script file="ShieldMonitor.lua"/>
 	<Script file="Skada.lua"/>
 	<Script file="Skillet.lua"/>
+	<Script file="Soundtrack.lua"/>
 	<Script file="SpineCounter.lua"/>
 	<Script file="Spy.lua"/>
 	<Script file="Swatter.lua"/>
