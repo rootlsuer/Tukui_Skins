@@ -77,6 +77,9 @@ U.Skins = {
 	["CoolLineSkin"] = {
 		["addon"] = "CoolLine",
 	},
+	["CritlineSkin"] = {
+		["addon"] = "Critline",
+	},
 	["DBMSkin"] = {
 		["buttonText"] = "DBM",
 		["addon"] = "DBM-Core",

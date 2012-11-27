@@ -7,6 +7,10 @@ local MiscFixes = CreateFrame("Frame")
 	if IsAddOnLoaded("Numeration") and U.CheckOption("NumerationSkin") then
 		U.SkinFrame(NumerationFrame, true)
 	end
+	if IsAddOnLoaded("Critline") and U.CheckOption("CritlineSkin") then
+		U.SkinBackdropFrame(Critline.display, true)
+		Critline.display.backdrop:SetFrameStrata("BACKGROUND")
+	end	
 	if IsAddOnLoaded("InspectEquip") and U.CheckOption("InspectEquipSkin") then
 		U.SkinFrame(InspectEquip_InfoWindow)
 		U.SkinCloseButton(InspectEquip_InfoWindow_CloseButton)
