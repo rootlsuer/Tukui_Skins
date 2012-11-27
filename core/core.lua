@@ -13,6 +13,7 @@ function cColorSwitch()
 	for k, v in pairs(U.ColorScroll) do cColorScrollBar(v) end
 	for k, v in pairs(U.ColorSlider) do cColorSlideBar(v) end
 	ColorTukui()
+	if IsAddOnLoaded("AsphyxiaUI") then ColorAsphyxiaUI() end
 	GameTooltip:HookScript("OnUpdate", function(self) cUpdateColor(self) end)
 	if IsAddOnLoaded("SpecSwitcher") then
 		cUpdateColor(SpecTalent)

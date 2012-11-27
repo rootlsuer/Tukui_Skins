@@ -479,6 +479,8 @@ function ColorTukui()
 		"TukuiBar5ButtonBottom",
 		"TukuiBar5ButtonTop",
 		"TukuiButtonCF1",
+		"RaidBuffReminder",
+		"BNToastFrame",
 		}
 
 	local GameTooltips = {
