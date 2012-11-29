@@ -135,8 +135,8 @@ local DefaultSetSkin = CreateFrame("Frame")
 	if(UISkinOptions.PoisonerSkin == nil) then UISkinOptions.PoisonerSkin = "Enabled" end
 	if(UISkinOptions.PoMTrackerSkin == nil) then UISkinOptions.PoMTrackerSkin = "Enabled" end
 	if(UISkinOptions.PostalSkin == nil) then UISkinOptions.PostalSkin = "Enabled" end
-	if(UISkinOptions.PowerAurasSkin == nil) then UISkinOptions.PowerAurasSkin = "Enabled" end
-	if(UISkinOptions.PowerAurasIconsSkin == nil) then UISkinOptions.PowerAurasIconsSkin = "Enabled" end
+	if(UISkinOptions.PowerAurasSkin == nil) then UISkinOptions.PowerAurasSkin = nil end
+	if(UISkinOptions.PowerAurasIconsSkin == nil) then UISkinOptions.PowerAurasIconsSkin = nil end
 	if(UISkinOptions.ProfessionTabsSkin == nil) then UISkinOptions.ProfessionTabsSkin = "Enabled" end
 	if(UISkinOptions.QuartzSkin == nil) then UISkinOptions.QuartzSkin = "Enabled" end
 	if(UISkinOptions.RaidInviteOrganizerSkin == nil) then UISkinOptions.RaidInviteOrganizerSkin = "Enabled" end
@@ -431,10 +431,6 @@ local SkinOptions = CreateFrame("Frame", "SkinOptions", UIParent)
 		["CLCRetSkin"] = {
 			["buttonText"] = "CLCRet Icons",
 			["addon"] = "CLCRet"
-		},
-		["PowerAurasIconsSkin"] = {
-			["buttonText"] = "PowerAuras Icons",
-			["addon"] = "PowerAuras"
 		},
 		["WeakAurasSkin"] = {
 			["buttonText"] = "WeakAuras Icons",

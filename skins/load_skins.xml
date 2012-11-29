@@ -54,7 +54,6 @@
 	<Script file="PetBattleTeams.lua"/>
 	<Script file="PoMTracker.lua"/>
 	<Script file="Postal.lua"/>
-	<Script file="PowerAuras.lua"/>
 	<Script file="Quartz.lua"/>
 	<Script file="QuestCompletist.lua"/>
 	<Script file="QuestItemBar.lua"/>

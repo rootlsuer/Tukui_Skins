@@ -184,9 +184,6 @@ U.Skins = {
 	["PostalSkin"] = {
 		["addon"] = "Postal",
 	},
-	["PowerAurasSkin"] = {
-		["addon"] = "PowerAuras",
-	},
 	["QuartzSkin"] = {
 		["addon"] = "Quartz",
 	},
