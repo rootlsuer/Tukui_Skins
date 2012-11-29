@@ -1,6 +1,6 @@
 ## Interface: 50100
 ## Title: |cffC495DDTukui|r Skins
-## Version: 1.12b
+## Version: 1.13
 ## Author: Azilroka, Sortokk, and others see Credits.txt
 ## OptionalDeps: Tukui_ChatTweaks
 ## RequiredDeps: Tukui

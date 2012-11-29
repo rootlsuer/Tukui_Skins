@@ -103,12 +103,15 @@ local ArkInventory = LibStub("AceAddon-3.0"):GetAddon("ArkInventory")
 	ArkInventory.Frame_Item_Update_Border_ = ArkInventory.Frame_Item_Update_Border
 	ArkInventory.Frame_Item_Update_Border = function(frame)
 		ArkInventory.Frame_Item_Update_Border_(frame)
-		if not frame or not _G[frame:GetName().."ArkBorder"] then return end
+		if not frame or not _G[frame:GetName().."ArkBorder"] then print("no border")return end
 		local obj = _G[frame:GetName().."ArkBorder"]
 		local r,g,b,a = obj:GetBackdropBorderColor()
 		obj:Hide()
-		frame:SetTemplate("Transparent")
-		frame:SetBackdropBorderColor(r,g,b,a)
+		if _G[frame:GetName()] == ARKINV_Frame1ChangerWindowBag1 then ARKINV_Frame1ChangerWindowBag1IconTexture:SetTexture("interface\\icons\\inv_misc_bag_07_green") end
+		if _G[frame:GetName().."Background"] then _G[frame:GetName().."Background"]:Hide() print("hide background") end
+		--frame:SetTemplate("Transparent")
+		U.SkinIconButton(frame, true, false, true)
+		frame.backdrop:SetBackdropBorderColor(r,g,b,a)
 	end
 
 end
