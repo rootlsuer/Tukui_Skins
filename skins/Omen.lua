@@ -34,7 +34,7 @@ function EmbedOmen()
 		U.SkinFrameD(OmenBarList)
 		OmenAnchor:ClearAllPoints()
 		if not InCombatLockdown() then OmenBarList:SetInside(EmbeddingWindow) end
-		if TukuiChatBackgroundRight then OmenBarList:SetParent(TukuiChatBackgroundRight) end
+		if ChatBackgroundRight then OmenBarList:SetParent(ChatBackgroundRight) end
 		OmenBarList:SetFrameStrata("HIGH")
 end
 

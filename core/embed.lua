@@ -2,7 +2,7 @@ local U = unpack(select(2,...))
 local s = U.s
 local c = U.c
 local EmbeddingWindow = CreateFrame("Frame", "EmbeddingWindow", UIParent)
-	UIFont = [[Interface\AddOns\Tukui\medias\fonts\normal_font.ttf]]
+	UIFont = c["media"].font
 	EmbeddingWindow:Hide()
 	EmbeddingWindow:RegisterEvent("PLAYER_ENTERING_WORLD")
 	EmbeddingWindow:RegisterEvent("PLAYER_REGEN_DISABLED")
@@ -12,45 +12,35 @@ local EmbeddingWindow = CreateFrame("Frame", "EmbeddingWindow", UIParent)
 	EmbeddingWindow:SetScript("OnEvent", function(self, event)
 
 if event == "PLAYER_ENTERING_WORLD" then
-	
+
 	EmbedWindowResize()
+
+	ChatBackgroundRight:SetFrameStrata("Background")
+	ChatBackgroundLeft:SetFrameStrata("Background")
+	TabsRightBackground:SetParent(ChatBackgroundRight)
+	TabsLeftBackground:SetParent(ChatBackgroundLeft)
 	if ChatFrame4Tab:IsShown() then ChatFrame4Hide = True end
 	EmbedToggleButton = CreateFrame("Button", "EmbedToggleButton", UIParent)
 	U.SkinButton(EmbedToggleButton)
-	EmbedToggleButton:Size(TukuiInfoRight:GetHeight()-4)
+	EmbedToggleButton:Size(InfoRight:GetHeight()-4)
 	EmbedToggleButton:FontString("text", c["media"].pixelfont, 14, "MONOCHROMEOUTLINE")
 	EmbedToggleButton.text:SetText(">")
 	EmbedToggleButton.text:SetPoint("CENTER", 2, 2)
-	EmbedToggleButton:Point("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -(TukuiChatBackgroundRight and 28 or 38), 22)
-	if IsAddOnLoaded("AsphyxiaUI") then EmbedToggleButton:Point("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -9, 9) end
-	if IsAddOnLoaded("FlyingUI") then EmbedToggleButton:Point("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -10, 9) end
+	EmbedToggleButton:Point("RIGHT", InfoRight, "RIGHT", -2, 0)
 	EmbedToggleButton:RegisterForClicks("LeftButtonDown", "RightButtonDown");
 	UIFrameFadeOut(EmbedToggleButton, 0.2, EmbedToggleButton:GetAlpha(), 0)
-	if AsphyxiaUILayoutSwitchButton then AsphyxiaUILayoutSwitchButton:SetParent(TukuiChatBackgroundRight) AsphyxiaUILayoutSwitchIcon:SetParent(AsphyxiaUILayoutSwitchButton) end
-		EmbedToggleButton:SetScript("OnClick", function(self, btn)
-			if btn == 'LeftButton' then
+	EmbedToggleButton:SetScript("OnClick", function(self, btn)
+		if btn == 'LeftButton' then
 		if IsAddOnLoaded("Tukui_ChatTweaks") and (ChatTweaksOptions.ChatHider == "Enabled") then
-			if TukuiChatBackgroundLeft then
-				if not InCombatLockdown() then
-					if TukuiInfoRight.Faded then
-						TukuiInfoRight.Faded = nil
-						TukuiChatBackgroundRight:Show()
-						TukuiTabsRightBackground:Show()
-						UIFrameFadeIn(TukuiInfoRight, 0.2, TukuiInfoRight:GetAlpha(), 1)
-						UIFrameFadeIn(TukuiChatBackgroundRight, 0.2, TukuiChatBackgroundRight:GetAlpha(), 1)
-						TukuiInfoRight:SetPoint("BOTTOM", TukuiChatBackgroundRight, "BOTTOM", 0, 5)
-					else
-						TukuiInfoRight.Faded = true
-						TukuiChatBackgroundRight:SetParent(UIParent)
-						TukuiChatBackgroundRight:SetFrameStrata("Background")
-						TukuiChatBackgroundRight:ClearAllPoints()
-						TukuiInfoRight:ClearAllPoints()
-						UIFrameFadeOut(TukuiInfoRight, 0.2, TukuiInfoRight:GetAlpha(), 0)
-						TukuiInfoRight:SetPoint("BOTTOM", TukuiChatBackgroundRight, "BOTTOM", UIParent:GetWidth(), 5)
-						TukuiChatBackgroundRight:Hide()
-						TukuiTabsRightBackground:Hide()
-						TukuiInfoRight.fadeInfo.finishedFunc = TukuiInfoRight.fadeFunc
-					end
+			if ChatBackgroundRight then
+				if InfoRight.Faded then
+					InfoRight.Faded = nil
+					UIFrameFadeIn(InfoRight, 0.2, InfoRight:GetAlpha(), 1)
+					UIFrameFadeIn(ChatBackgroundRight, 0.2, ChatBackgroundRight:GetAlpha(), 1)
+				else
+					InfoRight.Faded = true
+					UIFrameFadeOut(ChatBackgroundRight, 0.2, ChatBackgroundRight:GetAlpha(), 0)
+					UIFrameFadeOut(InfoRight, 0.2, InfoRight:GetAlpha(), 0)
 				end
 			end
 		end
@@ -86,47 +76,30 @@ if event == "PLAYER_ENTERING_WORLD" then
 		end)
 		LeftChatToggleButton = CreateFrame("Button", "LeftChatToggleButton", UIParent)
 		U.SkinButton(LeftChatToggleButton)
-		LeftChatToggleButton:Size(TukuiInfoRight:GetHeight()-4)
+		LeftChatToggleButton:Size(InfoRight:GetHeight()-4)
 		LeftChatToggleButton:FontString("text", c["media"].pixelfont, 14, "MONOCHROMEOUTLINE")
 		LeftChatToggleButton.text:SetText("<")
 		LeftChatToggleButton.text:SetPoint("CENTER", 2, 2)
-		LeftChatToggleButton:Point("BOTTOMLEFT", UIParent, "BOTTOMLEFT", (TukuiChatBackgroundLeft and 28 or 38), 22)
-		if IsAddOnLoaded("AsphyxiaUI") then LeftChatToggleButton:Point("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 9, 9) end
-		if IsAddOnLoaded("FlyingUI") then LeftChatToggleButton:Point("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 10, 9) end
+		LeftChatToggleButton:Point("LEFT", InfoLeft, "LEFT", 2, 0)
 		LeftChatToggleButton:RegisterForClicks("LeftButtonDown", "RightButtonDown");
 		UIFrameFadeOut(LeftChatToggleButton, 0.2, LeftChatToggleButton:GetAlpha(), 0)
 		LeftChatToggleButton:SetScript("OnClick", function(self, btn)
-		if not InCombatLockdown() then
 			if btn == 'LeftButton' then
-		if IsAddOnLoaded("Tukui_ChatTweaks") and (ChatTweaksOptions.ChatHider == "Enabled") then
-			if TukuiChatBackgroundLeft then
-				if TukuiInfoLeft.Faded then
-					TukuiInfoLeft.Faded = nil
-					TukuiChatBackgroundLeft:Show()
-					TukuiTabsLeftBackground:Show()
-					GeneralDockManager:Show()
-					if AsphyxiaUIChatBar then AsphyxiaUIChatBar:Show() end
-					UIFrameFadeIn(TukuiInfoLeft, 0.2, TukuiInfoLeft:GetAlpha(), 1)
-					UIFrameFadeIn(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 1)
-					UIFrameFadeIn(TukuiChatBackgroundLeft, 0.2, TukuiChatBackgroundLeft:GetAlpha(), 1)
-					TukuiInfoLeft:Point("BOTTOM", TukuiChatBackgroundLeft, "BOTTOM", 0, 5)
-				else
-					TukuiInfoLeft.Faded = true
-					TukuiChatBackgroundLeft:SetParent(UIParent)
-					TukuiChatBackgroundLeft:SetFrameStrata("Background")
-					TukuiChatBackgroundLeft:ClearAllPoints()
-					TukuiInfoLeft:ClearAllPoints()
-					TukuiInfoLeft:Point("BOTTOM", TukuiChatBackgroundLeft, "BOTTOM", -UIParent:GetWidth(), 5)
-					UIFrameFadeOut(TukuiInfoLeft, 0.2, TukuiInfoLeft:GetAlpha(), 0)
-					UIFrameFadeOut(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 0)
-					TukuiChatBackgroundLeft:Hide()
-					TukuiTabsLeftBackground:Hide()
-					GeneralDockManager:Hide()
-					if AsphyxiaUIChatBar then AsphyxiaUIChatBar:Hide() end
-					TukuiInfoLeft.fadeInfo.finishedFunc = TukuiInfoLeft.fadeFunc
+			if IsAddOnLoaded("Tukui_ChatTweaks") and (ChatTweaksOptions.ChatHider == "Enabled") then
+				if ChatBackgroundLeft then
+					if InfoLeft.Faded then
+						InfoLeft.Faded = nil
+						UIFrameFadeIn(InfoLeft, 0.2, InfoLeft:GetAlpha(), 1)
+						UIFrameFadeIn(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 1)
+						UIFrameFadeIn(ChatBackgroundLeft, 0.2, ChatBackgroundLeft:GetAlpha(), 1)
+					else
+						InfoLeft.Faded = true
+						UIFrameFadeOut(InfoLeft, 0.2, InfoLeft:GetAlpha(), 0)
+						UIFrameFadeOut(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 0)
+						UIFrameFadeOut(ChatBackgroundLeft, 0.2, ChatBackgroundLeft:GetAlpha(), 0)
+					end
 				end
 			end
-		end
 			else
 				if SkinOptions:IsShown() or SkinOptions2:IsShown() or SkinOptions3:IsShown() then
 					SkinOptions:Hide()
@@ -141,14 +114,17 @@ if event == "PLAYER_ENTERING_WORLD" then
 					SkinOptions:Show()
 				end
 			end
-		end
 		end)
 		EmbedToggleButton:SetScript("OnEnter", function(self, ...)
 			UIFrameFadeIn(self, 0.2, self:GetAlpha(), 1)
+			if InfoRight.Faded then
+				UIFrameFadeIn(InfoRight, 0.2, InfoRight:GetAlpha(), 1)
+				UIFrameFadeIn(ChatBackgroundRight, 0.2, ChatBackgroundRight:GetAlpha(), 1)
+			end
 			GameTooltip:SetOwner(self, 'ANCHOR_TOPRIGHT', 0, 4)
 			GameTooltip:ClearLines()
 			if IsAddOnLoaded("Tukui_ChatTweaks") and (ChatTweaksOptions.ChatHider == "Enabled") then
-				if TukuiChatBackgroundRight then
+				if ChatBackgroundRight then
 					GameTooltip:AddDoubleLine('Left Click:', 'Toggle Right Chat Panel', 1, 1, 1)
 				end
 			end
@@ -157,14 +133,23 @@ if event == "PLAYER_ENTERING_WORLD" then
 		end)
 		EmbedToggleButton:SetScript("OnLeave", function(self, ...)
 			UIFrameFadeOut(self, 0.2, self:GetAlpha(), 0)
+			if InfoRight.Faded then
+				UIFrameFadeOut(ChatBackgroundRight, 0.2, ChatBackgroundRight:GetAlpha(), 0)
+				UIFrameFadeOut(InfoRight, 0.2, InfoRight:GetAlpha(), 0)
+			end
 			GameTooltip:Hide()
 		end)
 		LeftChatToggleButton:SetScript("OnEnter", function(self, ...)
 			UIFrameFadeIn(self, 0.2, self:GetAlpha(), 1)
+			if InfoLeft.Faded then
+				UIFrameFadeIn(InfoLeft, 0.2, InfoLeft:GetAlpha(), 1)
+				UIFrameFadeIn(ChatBackgroundLeft, 0.2, ChatBackgroundLeft:GetAlpha(), 1)
+				UIFrameFadeIn(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 1)
+			end
 			GameTooltip:SetOwner(self, 'ANCHOR_TOPLEFT', 0, 4)
 			GameTooltip:ClearLines()
 			if IsAddOnLoaded("Tukui_ChatTweaks") and (ChatTweaksOptions.ChatHider == "Enabled") then
-				if TukuiChatBackgroundLeft then
+				if ChatBackgroundLeft then
 					GameTooltip:AddDoubleLine('Left Click:', 'Toggle Left Chat Panel', 1, 1, 1)
 				end
 			end
@@ -173,6 +158,11 @@ if event == "PLAYER_ENTERING_WORLD" then
 		end)
 		LeftChatToggleButton:SetScript("OnLeave", function(self, ...)
 			UIFrameFadeOut(self, 0.2, self:GetAlpha(), 0)
+			if InfoLeft.Faded then
+				UIFrameFadeOut(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 0)
+				UIFrameFadeOut(ChatBackgroundLeft, 0.2, ChatBackgroundLeft:GetAlpha(), 0)
+				UIFrameFadeOut(InfoLeft, 0.2, InfoLeft:GetAlpha(), 0)
+			end
 			GameTooltip:Hide()
 		end)
 
@@ -550,9 +540,9 @@ function EmbedRecountOmen()
 		OmenAnchor:ClearAllPoints()
 		Recount:LockWindows(true)
 		Recount_MainWindow:ClearAllPoints()
-		if TukuiChatBackgroundRight then
-			OmenBarList:SetParent(TukuiChatBackgroundRight)
-			Recount_MainWindow:SetParent(TukuiChatBackgroundRight)
+		if ChatBackgroundRight then
+			OmenBarList:SetParent(ChatBackgroundRight)
+			Recount_MainWindow:SetParent(ChatBackgroundRight)
 		end
 		Recount_MainWindow:SetFrameStrata("HIGH")
 		OmenBarList:SetFrameStrata("HIGH")
@@ -560,13 +550,13 @@ function EmbedRecountOmen()
 end
 
 function EmbedRecountOmenResize()
-	if TukuiChatBackgroundRight then
-		OmenAnchor:SetWidth((TukuiChatBackgroundRight:GetWidth() / 3) - ( 10 + s.mult))
-		OmenAnchor:SetHeight(TukuiChatBackgroundRight:GetHeight() - 20)
-		OmenAnchor:SetPoint("TOPLEFT", TukuiChatBackgroundRight, "TOPLEFT", 6, 10)
-		Recount_MainWindow:SetWidth(((TukuiChatBackgroundRight:GetWidth() / 3) + (TukuiChatBackgroundRight:GetWidth() / 3)) - ( 1 + s.mult))
-		Recount_MainWindow:SetHeight(TukuiChatBackgroundRight:GetHeight() - 28)
-		Recount_MainWindow:SetPoint("TOPRIGHT", TukuiChatBackgroundRight,"TOPRIGHT", -6, 2)
+	if ChatBackgroundRight then
+		OmenAnchor:SetWidth((ChatBackgroundRight:GetWidth() / 3) - ( 10 + s.mult))
+		OmenAnchor:SetHeight(ChatBackgroundRight:GetHeight() - 20)
+		OmenAnchor:SetPoint("TOPLEFT", ChatBackgroundRight, "TOPLEFT", 6, 10)
+		Recount_MainWindow:SetWidth(((ChatBackgroundRight:GetWidth() / 3) + (ChatBackgroundRight:GetWidth() / 3)) - ( 1 + s.mult))
+		Recount_MainWindow:SetHeight(ChatBackgroundRight:GetHeight() - 28)
+		Recount_MainWindow:SetPoint("TOPRIGHT", ChatBackgroundRight,"TOPRIGHT", -6, 2)
 	else
 		OmenAnchor:SetWidth((EmbeddingWindow:GetWidth() / 3) - 2)
 		OmenAnchor:SetHeight(EmbeddingWindow:GetHeight() + 4)
@@ -578,12 +568,16 @@ function EmbedRecountOmenResize()
 end
 
 function EmbedWindowResize()
-	if not TukuiChatBackgroundRight then
-		EmbeddingWindow:SetPoint("BOTTOM", TukuiInfoRight, "TOP", 0, 2)
-		EmbeddingWindow:Size(TukuiInfoRight:GetWidth(), 142)			
+	if not ChatBackgroundRight then
+		EmbeddingWindow:SetPoint("BOTTOM", InfoRight, "TOP", 0, 2)
+		EmbeddingWindow:Size(InfoRight:GetWidth(), 142)			
 	else
-		EmbeddingWindow:SetPoint("TOP", TukuiChatBackgroundRight, "TOP", 0, -5)
-		EmbeddingWindow:Size(TukuiInfoRight:GetWidth(), (TukuiChatBackgroundRight:GetHeight() - 34))
+		if DuffedUI then
+			EmbeddingWindow:SetInside(ChatBackgroundRight, 5, 5)
+		else
+			EmbeddingWindow:SetPoint("TOP", ChatBackgroundRight, "TOP", 0, -5)
+			EmbeddingWindow:Size(InfoRight:GetWidth(), (ChatBackgroundRight:GetHeight() - 34))
+		end
 	end
 	if (U.CheckOption("EmbedRO","Recount","Omen")) then EmbedRecountOmenResize() end
 	if (U.CheckOption("EmbedTDPS","TinyDPS")) then EmbedTDPSResize() end

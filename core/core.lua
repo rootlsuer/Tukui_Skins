@@ -375,3 +375,31 @@ function TSSetOriginalBackdrop(self)
 		self:SetBackdropBorderColor(unpack(c["media"].bordercolor))
 	end
 end
+
+function UISetup()
+	if Tukui or AsphyxiaUI then
+		ChatBackgroundRight = TukuiChatBackgroundRight
+		ChatBackgroundLeft = TukuiChatBackgroundLeft
+		InfoLeft = TukuiInfoLeft
+		InfoRight = TukuiInfoRight
+		TabsRightBackground = TukuiTabsRightBackground
+		TabsLeftBackground = TukuiTabsLeftBackground
+		UIMinimap = TukuiMinimap
+	--elseif AsphyxiaUI then
+	--	ChatBackgroundRight = AsphyxiaUIChatBackgroundRight
+	--	ChatBackgroundLeft = AsphyxiaUIChatBackgroundLeft
+	--	InfoLeft = AsphyxiaUIDataPanelLeft
+	--	InfoRight = AsphyxiaUIDataPanelRight
+	--	TabsRightBackground = AsphyxiaUIChatTabBackgroundRight
+	--	TabsLeftBackground = AsphyxiaUIChatTabBackgroundLeft
+	--	UIMinimap = AsphyxiaUIMinimap
+	elseif DuffedUI then
+		ChatBackgroundRight = DuffedUIChatBackgroundRight
+		ChatBackgroundLeft = DuffedUIChatBackgroundLeft
+		InfoLeft = DuffedUIInfoLeft
+		InfoRight = DuffedUIInfoRight
+		TabsRightBackground = DuffedUITabsRightBackground
+		TabsLeftBackground = DuffedUITabsLeftBackground
+		UIMinimap = DuffedUIMinimap
+	end
+end

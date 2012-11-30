@@ -226,7 +226,7 @@ function EmbedRecount()
 	Recount:LockWindows(true)
 	Recount_MainWindow:ClearAllPoints()
 	EmbedRecountResize()
-	if TukuiChatBackgroundRight then Recount_MainWindow:SetParent(TukuiChatBackgroundRight) end
+	if ChatBackgroundRight then Recount_MainWindow:SetParent(ChatBackgroundRight) end
 	Recount.MainWindow:SetFrameStrata("HIGH")
 end
 

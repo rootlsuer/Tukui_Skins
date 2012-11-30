@@ -9,7 +9,6 @@ local barmod = Skada.displays["bar"]
 
 local name = "SkadaSkin"
 local function SkinSkada(self)
-
 	local function StripOptions(options)
 		options.baroptions.args.barspacing = nil
 		options.titleoptions.args.texture = nil
@@ -86,7 +85,7 @@ local function SkinSkada(self)
 			win.bargroup.button:SetFrameStrata("HIGH")
 			win.bargroup.button:SetFrameLevel(5)	
 			win.bargroup:SetFrameStrata("HIGH")
-			if TukuiChatBackgroundRight then win.bargroup:SetParent(TukuiChatBackgroundRight) end
+			if ChatBackgroundRight then win.bargroup:SetParent(ChatBackgroundRight) end
 		end
 	end
 end

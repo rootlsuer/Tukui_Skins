@@ -15,7 +15,7 @@ local MiscFixes = CreateFrame("Frame")
 		U.SkinFrame(InspectEquip_InfoWindow)
 		U.SkinCloseButton(InspectEquip_InfoWindow_CloseButton)
 	end
-	if TukuiMinimap then Minimap:SetMaskTexture(c["media"].blank) end
+	if UIMinimap then Minimap:SetMaskTexture(c["media"].blank) end
 	if IsAddOnLoaded("TomTom") and (U.CheckOption("TomTomSkin")) then
 		if TomTomBlock then
 			U.SkinFrame(TomTomBlock)

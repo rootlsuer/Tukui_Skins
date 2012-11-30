@@ -85,6 +85,7 @@ local XSFrame = CreateFrame("Frame",nil)
 XSFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 XSFrame:SetScript("OnEvent",function(self)
 	XS:Init()
+	UISetup()
 	if IsAddOnLoaded("Tukui_UIPackages_Skins") or IsAddOnLoaded("Tukui_ElvUI_Skins") then s.ShowPopup("OLD_SKIN_PACKAGE") end
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 end)

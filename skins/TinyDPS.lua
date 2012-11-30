@@ -12,7 +12,7 @@ local function SkinTinyDps(self)
 	local template
 	U.SkinFrame(frame)
 	if(tdps) then
-		tdps.width = TukuiMinimap:GetWidth()
+		tdps.width = UIMinimap:GetWidth()
 	end
 	if(status) then
 		tdpsStatusBar:SetBackdrop( {
@@ -36,7 +36,7 @@ U.RegisterSkin(name,SkinTinyDps)
 
 function EmbedTDPS()
 	if not IsAddOnLoaded("TinyDPS") then U.DisableOption("EmbedTDPS") return end
-	if TukuiChatBackgroundRight then tdpsFrame:SetParent(TukuiChatBackgroundRight) end
+	if ChatBackgroundRight then tdpsFrame:SetParent(ChatBackgroundRight) end
 	U.SkinFrameD(tdpsFrame)
 	tdpsFrame:SetFrameStrata("MEDIUM")
 	tdpsFrame.spacing = 0

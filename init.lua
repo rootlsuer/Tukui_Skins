@@ -13,7 +13,7 @@ AddOn.ColorScroll = {}
 AddOn.ColorSlider = {}
 AddOn.ColorBackdrop = {}
 
-local T, C, L = unpack(Tukui)
+local T, C, L, G = unpack(Tukui or AsphyxiaUI or DuffedUI)
 AddOn.s = T
 AddOn.c = C
 AddOn.ccolor = T.myclass
