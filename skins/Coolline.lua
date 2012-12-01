@@ -12,11 +12,34 @@ local function SkinCoolLine(self)
 	CoolLine.backdrop:CreateShadow()
 	if U.CheckOption("CoolLineEmbed") then
 		if not CoolLineDB.vertical then
-			CoolLine:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", -2, 4)
-			CoolLine:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", 2, 4)
+			if DuffedUI then
+				if C["actionbar"]["layout"] == 1 then
+					DuffedUIBar2:HookScript("OnShow", function() 
+						CoolLine:SetPoint("BOTTOMRIGHT", DuffedUIBar2, "TOPRIGHT", -2, 4)
+						CoolLine:SetPoint("BOTTOMLEFT", DuffedUIBar2, "TOPLEFT", 2, 4)
+					end)
+					DuffedUIBar2:HookScript("OnHide", function() 
+						CoolLine:SetPoint("BOTTOMRIGHT", DuffedUIBar1, "TOPRIGHT", -2, 4)
+						CoolLine:SetPoint("BOTTOMLEFT", DuffedUIBar1, "TOPLEFT", 2, 4)
+					end)
+				elseif C["actionbar"]["layout"] == 2 then
+					CoolLine:Point('BOTTOM', DuffedUIBar1, 'TOP', 0, 1)
+				elseif C["actionbar"]["layout"] == 3 then
+					return
+				end
+			end
+			if Tukui then
+				CoolLine:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", -2, 4)
+				CoolLine:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", 2, 4)
+			end
+			if AsphyxiaUI then
+				CoolLine:SetPoint("BOTTOMRIGHT", AsphyxiaUIActionBar1, "TOPRIGHT", -2, 4)
+				CoolLine:SetPoint("BOTTOMLEFT", AsphyxiaUIActionBar1, "TOPLEFT", 2, 4)				
+			end
 		else
 			print("Sorry will not embed a vertical frame.")
 		end
+	CoolLine.updatelook()
 	end
 end
 

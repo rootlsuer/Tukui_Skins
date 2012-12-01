@@ -27,11 +27,38 @@ local function SkinSexyCooldownBar(bar)
 	cRegisterForPetBattleHide(bar)
 	if(U.CheckOption("EmbedSexyCooldown")) then
 		bar:ClearAllPoints()
-		bar:Point('BOTTOM', InvTukuiActionBarBackground, 'TOP', 0, 1)
-		if IsAddOnLoaded("AzilSettings") then bar:Point('BOTTOM', InvTukuiActionBarBackground, 'TOP', 0, 16) end
+		if DuffedUI then
+			if C["actionbar"]["layout"] == 1 then
+				DuffedUIBar2:HookScript("OnShow", function() 
+					bar:Point('BOTTOM', DuffedUIBar2, 'TOP', 0, 1)
+					bar:SetHeight(ActionButton1:GetHeight())
+					bar:SetWidth(DuffedUIBar2:GetWidth())
+				end)
+				DuffedUIBar2:HookScript("OnHide", function() 
+					bar:Point('BOTTOM', DuffedUIBar1, 'TOP', 0, 1)
+					bar:SetHeight(ActionButton1:GetHeight())
+					bar:SetWidth(DuffedUIBar1:GetWidth())
+				end)
+			elseif C["actionbar"]["layout"] == 2 then
+				bar:Point('BOTTOM', DuffedUIBar1, 'TOP', 0, 1)
+			elseif C["actionbar"]["layout"] == 3 then
+				return
+			end
+		end
+		if Tukui then
+			bar:Point('BOTTOM', InvTukuiActionBarBackground, 'TOP', 0, 1)
+			bar:SetHeight(ActionButton1:GetHeight())
+			bar:SetWidth(TukuiBar1:GetWidth())
+		end
+		if AsphyxiaUI then
+			if IsAddOnLoaded("AzilSettings") then
+				bar:Point('BOTTOM', AsphyxiaUIActionBar1, 'TOP', 0, 16)
+			end
+			bar:Point('BOTTOM', AsphyxiaUIActionBar1, 'TOP', 0, 1)
+			bar:SetHeight(ActionButton1:GetHeight())
+			bar:SetWidth(AsphyxiaUIActionBar1:GetWidth())
+		end
 		bar:CreateShadow()
-		bar:SetHeight(ActionButton1:GetHeight())
-		bar:SetWidth(TukuiBar1:GetWidth())
 		bar:EnableMouse(false)
 	end
 end
