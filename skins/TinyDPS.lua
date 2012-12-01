@@ -1,6 +1,7 @@
 local U = unpack(select(2,...))
 local name = "TinyDPSSkin"
 local function SkinTinyDps(self)
+	UISetup()
 	local s = U.s
 	local c = U.c
 	local frame = tdpsFrame

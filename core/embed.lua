@@ -12,7 +12,7 @@ local EmbeddingWindow = CreateFrame("Frame", "EmbeddingWindow", UIParent)
 	EmbeddingWindow:SetScript("OnEvent", function(self, event)
 
 if event == "PLAYER_ENTERING_WORLD" then
-
+	UISetup()
 	EmbedWindowResize()
 
 	ChatBackgroundRight:SetFrameStrata("Background")
@@ -35,12 +35,12 @@ if event == "PLAYER_ENTERING_WORLD" then
 			if ChatBackgroundRight then
 				if InfoRight.Faded then
 					InfoRight.Faded = nil
-					UIFrameFadeIn(InfoRight, 0.2, InfoRight:GetAlpha(), 1)
+					if not DuffedUI then UIFrameFadeIn(InfoRight, 0.2, InfoRight:GetAlpha(), 1) end
 					UIFrameFadeIn(ChatBackgroundRight, 0.2, ChatBackgroundRight:GetAlpha(), 1)
 				else
 					InfoRight.Faded = true
 					UIFrameFadeOut(ChatBackgroundRight, 0.2, ChatBackgroundRight:GetAlpha(), 0)
-					UIFrameFadeOut(InfoRight, 0.2, InfoRight:GetAlpha(), 0)
+					if not DuffedUI then UIFrameFadeOut(InfoRight, 0.2, InfoRight:GetAlpha(), 0) end
 				end
 			end
 		end
@@ -89,12 +89,12 @@ if event == "PLAYER_ENTERING_WORLD" then
 				if ChatBackgroundLeft then
 					if InfoLeft.Faded then
 						InfoLeft.Faded = nil
-						UIFrameFadeIn(InfoLeft, 0.2, InfoLeft:GetAlpha(), 1)
+						if not DuffedUI then UIFrameFadeIn(InfoLeft, 0.2, InfoLeft:GetAlpha(), 1) end
 						UIFrameFadeIn(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 1)
 						UIFrameFadeIn(ChatBackgroundLeft, 0.2, ChatBackgroundLeft:GetAlpha(), 1)
 					else
 						InfoLeft.Faded = true
-						UIFrameFadeOut(InfoLeft, 0.2, InfoLeft:GetAlpha(), 0)
+						if not DuffedUI then UIFrameFadeOut(InfoLeft, 0.2, InfoLeft:GetAlpha(), 0) end
 						UIFrameFadeOut(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 0)
 						UIFrameFadeOut(ChatBackgroundLeft, 0.2, ChatBackgroundLeft:GetAlpha(), 0)
 					end
@@ -118,7 +118,7 @@ if event == "PLAYER_ENTERING_WORLD" then
 		EmbedToggleButton:SetScript("OnEnter", function(self, ...)
 			UIFrameFadeIn(self, 0.2, self:GetAlpha(), 1)
 			if InfoRight.Faded then
-				UIFrameFadeIn(InfoRight, 0.2, InfoRight:GetAlpha(), 1)
+				if not DuffedUI then UIFrameFadeIn(InfoRight, 0.2, InfoRight:GetAlpha(), 1) end
 				UIFrameFadeIn(ChatBackgroundRight, 0.2, ChatBackgroundRight:GetAlpha(), 1)
 			end
 			GameTooltip:SetOwner(self, 'ANCHOR_TOPRIGHT', 0, 4)
@@ -135,14 +135,14 @@ if event == "PLAYER_ENTERING_WORLD" then
 			UIFrameFadeOut(self, 0.2, self:GetAlpha(), 0)
 			if InfoRight.Faded then
 				UIFrameFadeOut(ChatBackgroundRight, 0.2, ChatBackgroundRight:GetAlpha(), 0)
-				UIFrameFadeOut(InfoRight, 0.2, InfoRight:GetAlpha(), 0)
+				if not DuffedUI then UIFrameFadeOut(InfoRight, 0.2, InfoRight:GetAlpha(), 0) end
 			end
 			GameTooltip:Hide()
 		end)
 		LeftChatToggleButton:SetScript("OnEnter", function(self, ...)
 			UIFrameFadeIn(self, 0.2, self:GetAlpha(), 1)
 			if InfoLeft.Faded then
-				UIFrameFadeIn(InfoLeft, 0.2, InfoLeft:GetAlpha(), 1)
+				if not DuffedUI then UIFrameFadeIn(InfoLeft, 0.2, InfoLeft:GetAlpha(), 1) end
 				UIFrameFadeIn(ChatBackgroundLeft, 0.2, ChatBackgroundLeft:GetAlpha(), 1)
 				UIFrameFadeIn(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 1)
 			end
@@ -161,7 +161,7 @@ if event == "PLAYER_ENTERING_WORLD" then
 			if InfoLeft.Faded then
 				UIFrameFadeOut(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 0)
 				UIFrameFadeOut(ChatBackgroundLeft, 0.2, ChatBackgroundLeft:GetAlpha(), 0)
-				UIFrameFadeOut(InfoLeft, 0.2, InfoLeft:GetAlpha(), 0)
+				if not DuffedUI then UIFrameFadeOut(InfoLeft, 0.2, InfoLeft:GetAlpha(), 0) end
 			end
 			GameTooltip:Hide()
 		end)
