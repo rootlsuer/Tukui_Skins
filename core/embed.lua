@@ -14,11 +14,12 @@ local EmbeddingWindow = CreateFrame("Frame", "EmbeddingWindow", UIParent)
 if event == "PLAYER_ENTERING_WORLD" then
 	UISetup()
 	EmbedWindowResize()
-
-	ChatBackgroundRight:SetFrameStrata("Background")
-	ChatBackgroundLeft:SetFrameStrata("Background")
-	TabsRightBackground:SetParent(ChatBackgroundRight)
-	TabsLeftBackground:SetParent(ChatBackgroundLeft)
+	if ChatBackgroundRight then
+		ChatBackgroundRight:SetFrameStrata("Background")
+		ChatBackgroundLeft:SetFrameStrata("Background")
+		TabsRightBackground:SetParent(ChatBackgroundRight)
+		TabsLeftBackground:SetParent(ChatBackgroundLeft)
+	end
 	if ChatFrame4Tab:IsShown() then ChatFrame4Hide = True end
 	EmbedToggleButton = CreateFrame("Button", "EmbedToggleButton", UIParent)
 	U.SkinButton(EmbedToggleButton)
