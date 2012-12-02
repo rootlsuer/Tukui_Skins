@@ -377,7 +377,7 @@ function TSSetOriginalBackdrop(self)
 end
 
 function UISetup()
-	if Tukui or AsphyxiaUI then
+	if Tukui then
 		ChatBackgroundRight = TukuiChatBackgroundRight
 		ChatBackgroundLeft = TukuiChatBackgroundLeft
 		InfoLeft = TukuiInfoLeft
@@ -385,14 +385,14 @@ function UISetup()
 		TabsRightBackground = TukuiTabsRightBackground
 		TabsLeftBackground = TukuiTabsLeftBackground
 		UIMinimap = TukuiMinimap
-	--elseif AsphyxiaUI then
-	--	ChatBackgroundRight = AsphyxiaUIChatBackgroundRight
-	--	ChatBackgroundLeft = AsphyxiaUIChatBackgroundLeft
-	--	InfoLeft = AsphyxiaUIDataPanelLeft
-	--	InfoRight = AsphyxiaUIDataPanelRight
-	--	TabsRightBackground = AsphyxiaUIChatTabBackgroundRight
-	--	TabsLeftBackground = AsphyxiaUIChatTabBackgroundLeft
-	--	UIMinimap = AsphyxiaUIMinimap
+	elseif AsphyxiaUI then
+		ChatBackgroundRight = AsphyxiaUIChatBackgroundRight
+		ChatBackgroundLeft = AsphyxiaUIChatBackgroundLeft
+		InfoLeft = AsphyxiaUIDataPanelLeft
+		InfoRight = AsphyxiaUIDataPanelRight
+		TabsRightBackground = AsphyxiaUIChatTabBackgroundRight
+		TabsLeftBackground = AsphyxiaUIChatTabBackgroundLeft
+		UIMinimap = AsphyxiaUIMinimap
 	elseif DuffedUI then
 		ChatBackgroundRight = DuffedUIChatBackgroundRight
 		ChatBackgroundLeft = DuffedUIChatBackgroundLeft
