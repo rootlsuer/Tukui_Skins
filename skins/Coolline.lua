@@ -24,8 +24,6 @@ local function SkinCoolLine(self)
 					end)
 				elseif C["actionbar"]["layout"] == 2 then
 					CoolLine:Point('BOTTOM', DuffedUIBar1, 'TOP', 0, 1)
-				elseif C["actionbar"]["layout"] == 3 then
-					return
 				end
 			end
 			if Tukui then
