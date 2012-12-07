@@ -33,7 +33,10 @@ function EmbedOmen()
 		OmenTitle:Kill()
 		U.SkinFrameD(OmenBarList)
 		OmenAnchor:ClearAllPoints()
-		if not InCombatLockdown() then OmenBarList:SetInside(EmbeddingWindow) end
+		if not InCombatLockdown() then
+			OmenBarList:SetPoint("TOPLEFT", EmbeddingWindow, "TOPLEFT", 0, 0)
+			OmenBarList:SetPoint("BOTTOMRIGHT", EmbeddingWindow, "BOTTOMRIGHT", 0, 2)
+		end
 		if ChatBackgroundRight then OmenBarList:SetParent(ChatBackgroundRight) end
 		OmenBarList:SetFrameStrata("HIGH")
 end

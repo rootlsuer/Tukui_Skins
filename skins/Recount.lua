@@ -231,7 +231,10 @@ function EmbedRecount()
 end
 
 function EmbedRecountResize()
-	if not InCombatLockdown() then Recount_MainWindow:SetInside(EmbeddingWindow) end
+	if not InCombatLockdown() then
+		Recount_MainWindow:SetPoint("TOPLEFT", EmbeddingWindow,"TOPLEFT", 0, 7)
+		Recount_MainWindow:SetPoint("BOTTOMRIGHT", EmbeddingWindow,"BOTTOMRIGHT", 0, 2)
+	end
 end
 
 SLASH_RECOUNTEMBEDDED1, SLASH_RECOUNTEMBEDDED2 = '/er', '/embedrecount';
