@@ -20,7 +20,7 @@ local function SkinButton(ButtonOrSpellID) -- Thanks to SinaC
 	end
 
 	if texture then
-		U.SkinFrame(button)
+		button:SetTemplate()
 		texture:SetDrawLayer('OVERLAY') -- Make sure we can see the Icons.
 		texture:ClearAllPoints()
 		texture:Point("TOPLEFT", 2, -2)
@@ -52,7 +52,7 @@ local function SkinGuildRecipes(ButtonOrSpellID)
 	end
 	
 	if texture then
-		U.SkinFrame(button)
+		button:SetTemplate()
 		texture:SetDrawLayer('OVERLAY') -- Make sure we can see the Icons.
 		texture:ClearAllPoints()
 		texture:Point("TOPLEFT", 2, -2)
@@ -75,11 +75,10 @@ local function SkinReagentButton(ButtonName)
 	end
 
 	if texture then
-		U.SkinFrame(button)
+		button:SetTemplate()
 		texture:SetDrawLayer('OVERLAY') -- Make sure we can see the Icons.
 		texture:ClearAllPoints()
-		texture:Point("TOPLEFT", 2, -2)
-		texture:Point("BOTTOMRIGHT", -2, 2)
+		texture:SetInside(button)
 		texture:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 		end
 	end

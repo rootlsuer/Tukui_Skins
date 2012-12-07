@@ -199,7 +199,7 @@ end)
 local SkinOptions = CreateFrame("Frame", "SkinOptions", UIParent)
 	SkinOptions:RegisterEvent("PLAYER_ENTERING_WORLD")
 	SkinOptions:SetScript("OnEvent", function(self)
-	print("|cffC495DDTukui|r Skins Version "..U.Version.." Loaded!")
+	print("|cffC495DDTukui|r Skins by |cffD38D01Azilroka|r - Version: |cff1784d1"..U.Version.."|r Loaded!")
 	UIFont = c["media"].font
 	UIFontSize = 12
 	SkinOptions:Hide()
