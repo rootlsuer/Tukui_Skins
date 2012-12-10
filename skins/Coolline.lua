@@ -10,6 +10,8 @@ local function SkinCoolLine(self)
 	U.SkinBackdropFrame(CoolLine)
 	CoolLine.backdrop:SetAllPoints(CoolLine)
 	CoolLine.backdrop:CreateShadow()
+	PetBattleFrame:HookScript("OnShow", function() CoolLine:Hide() end)
+	PetBattleFrame:HookScript("OnHide", function() CoolLine:Show() end)
 	if U.CheckOption("CoolLineEmbed") then
 		if not CoolLineDB.vertical then
 			if DuffedUI then

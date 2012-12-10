@@ -3,7 +3,7 @@
 	All rights reserved.
 --]]
 if not IsAddOnLoaded("BigWigs") then return end
-local T, C, L = unpack(Tukui)
+local T, C, L = unpack(Tukui or AsphyxiaUI or DuffedUI)
 
 local buttonsize = 19
 
