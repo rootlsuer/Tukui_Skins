@@ -1,4 +1,4 @@
--- init for Tukui_Skins
+if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 
 local addon,Engine = ...
 

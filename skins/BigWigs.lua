@@ -1,3 +1,4 @@
+if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 --[[
 	Author: Affli@RU-Howling Fjord, 
 	All rights reserved.

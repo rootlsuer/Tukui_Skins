@@ -1,3 +1,4 @@
+if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
 local MiscFixes = CreateFrame("Frame")
 	MiscFixes:RegisterEvent("PLAYER_ENTERING_WORLD")

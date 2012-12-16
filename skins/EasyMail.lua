@@ -1,4 +1,5 @@
-﻿local U = unpack(select(2,...))
+﻿if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
+local U = unpack(select(2,...))
 local name = "EasyMailSkin"
 local function SkinEasyMail(self,event)
 	if event == "PLAYER_ENTERING_WORLD" then return end

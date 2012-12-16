@@ -1,4 +1,5 @@
-﻿local U = unpack(select(2,...))
+﻿if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
+local U = unpack(select(2,...))
 local function desat(self, event, ...)
 	for i = 1, 15 do
 		U.Desaturate(_G["ReputationBar"..i.."ExpandOrCollapseButton"])

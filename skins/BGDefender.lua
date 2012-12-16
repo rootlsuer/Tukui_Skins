@@ -1,4 +1,5 @@
-﻿local U = unpack(select(2,...))
+﻿if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
+local U = unpack(select(2,...))
 local function OnEnter11(Self)
   GameTooltip:SetOwner(Self, "ANCHOR_CURSOR")
   GameTooltip:AddLine("Lock or Make Moveable", 1, 1, 1)

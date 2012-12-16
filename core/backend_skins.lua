@@ -1,3 +1,4 @@
+if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local addon = select(1,...)
 local U = unpack(select(2,...))
 
@@ -201,9 +202,9 @@ U.Skins = {
 		["buttonText"] = "Raid Buff Status",
 		["addon"] = "RaidBuffStatus",
 	},
-	["RavenSkin"] = {
-		["addon"] = "Raven",
-	},
+	--["RavenSkin"] = {
+	--	["addon"] = "Raven",
+	--},
 	["RecountSkin"] = {
 		["addon"] = "Recount",
 	},

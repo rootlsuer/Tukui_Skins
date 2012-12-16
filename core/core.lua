@@ -1,3 +1,4 @@
+if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 -- Camealion's Functions File
 -- Added ccolor for class coloring. - Azilroka
 -- Restructured Functions file. - Azilroka

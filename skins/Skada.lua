@@ -1,3 +1,4 @@
+if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 if not IsAddOnLoaded("Skada") then return end
 local U = unpack(select(2,...))
 local s = U.s

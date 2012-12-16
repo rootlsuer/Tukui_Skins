@@ -1,4 +1,5 @@
-﻿local U = unpack(select(2,...))
+﻿if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
+local U = unpack(select(2,...))
 local name = "QuartzSkin"
 local function SkinQuartz(self)
 	local Q3 = LibStub("AceAddon-3.0"):GetAddon("Quartz3")
