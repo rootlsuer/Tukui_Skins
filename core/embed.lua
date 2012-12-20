@@ -169,10 +169,8 @@ if event == "PLAYER_ENTERING_WORLD" then
 		end)
 
 --Embed Check
-	if not IsAddOnLoaded("Omen") then U.DisableOption("EmbedRO") U.DisableOption("EmbedOmen") end
-	if not IsAddOnLoaded("Recount") then U.DisableOption("EmbedRO") end
-	if U.CheckOption("EmbedRO") then EmbedRecountOmen() end
-	if U.CheckOption("EmbedOmen") then EmbedOmen() end
+	if (U.CheckOption("EmbedRO","Recount","Omen")) then EmbedRecountOmen() end
+	if (U.CheckOption("EmbedOmen","Omen")) then EmbedOmen() end
 --Embed Check Finished
 	SkadaEmbedButton = CreateFrame("Button", "SkadaEmbedButton", SkinOptions3)
 	SkadaEmbedButton:SetPoint("TOPLEFT", 12, -30)
