@@ -1,47 +1,6 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
 
-function EmbedOmen()
-	if not IsAddOnLoaded("Omen") then U.DisableOption("EmbedOmen") return end
-	if (U.CheckOption("EmbedOoC")) then
-		if (U.CheckOption("EmbedOmen")) then
-			OmenBarList:Hide()
-		end
-	end
-		Omen.db.profile.Locked = true
-		Omen:UpdateGrips()
-		Omen.UpdateGrips = function(...)
-			local db = Omen.db.profile
-				Omen.VGrip1:ClearAllPoints()
-				Omen.VGrip1:SetPoint("TOPLEFT", Omen.BarList, "TOPLEFT", db.VGrip1, 0)
-				Omen.VGrip1:SetPoint("BOTTOMLEFT", Omen.BarList, "BOTTOMLEFT", db.VGrip1, 0)
-				Omen.VGrip2:ClearAllPoints()
-				Omen.VGrip2:SetPoint("TOPLEFT", Omen.BarList, "TOPLEFT", db.VGrip2, 0)
-				Omen.VGrip2:SetPoint("BOTTOMLEFT", Omen.BarList, "BOTTOMLEFT", db.VGrip2, 0)
-				Omen.Grip:Hide()
-				if db.Locked then
-					Omen.VGrip1:Hide()
-					Omen.VGrip2:Hide()
-				else
-					Omen.VGrip1:Show()
-					if db.Bar.ShowTPS then
-						Omen.VGrip2:Show()
-					else
-						Omen.VGrip2:Hide()
-					end
-				end
-		end
-		OmenTitle:Kill()
-		U.SkinFrameD(OmenBarList)
-		OmenAnchor:ClearAllPoints()
-		if not InCombatLockdown() then
-			OmenBarList:SetPoint("TOPLEFT", EmbeddingWindow, "TOPLEFT", 0, 0)
-			OmenBarList:SetPoint("BOTTOMRIGHT", EmbeddingWindow, "BOTTOMRIGHT", 0, 2)
-		end
-		if ChatBackgroundRight then OmenBarList:SetParent(ChatBackgroundRight) end
-		OmenBarList:SetFrameStrata("HIGH")
-end
-
 local name = "OmenSkin"
 local function SkinOmen(self)
 	local s = U.s

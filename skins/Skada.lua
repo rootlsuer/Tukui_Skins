@@ -1,15 +1,14 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-if not IsAddOnLoaded("Skada") then return end
 local U = unpack(select(2,...))
-local s = U.s
-local c = U.c
-local Skada = Skada
-local barSpacing = 1
-local borderWidth = 1
-local barmod = Skada.displays["bar"]
 
 local name = "SkadaSkin"
 local function SkinSkada(self)
+	local s = U.s
+	local c = U.c
+	local Skada = Skada
+	local barSpacing = 1
+	local borderWidth = 1
+	local barmod = Skada.displays["bar"]
 	local function StripOptions(options)
 		options.baroptions.args.barspacing = nil
 		options.titleoptions.args.texture = nil
@@ -90,120 +89,5 @@ local function SkinSkada(self)
 		end
 	end
 end
+
 U.RegisterSkin(name,SkinSkada)
-
-local function EmbedWindow(window, width, height, point, relativeFrame, relativePoint, ofsx, ofsy)
-	window.db.barwidth = width
-	window.db.background.height = height
-	window.db.spark = false
-	window.db.barslocked = true
-	window.bargroup:ClearAllPoints()
-	window.bargroup:SetPoint(point, relativeFrame, relativePoint, ofsx, ofsy)
-	
-	barmod.ApplySettings(barmod, window)
-end
-
-local windows = {}
-function EmbedSkada()
-	if(#windows == 1) then
-		EmbedWindow(windows[1], EmbeddingWindow:GetWidth() - 4, (EmbeddingWindow:GetHeight() - 19), "TOPRIGHT", EmbeddingWindow, "TOPRIGHT", -2, -17)
-	elseif(#windows == 2) then
-		EmbedWindow(windows[1], ((EmbeddingWindow:GetWidth() - 4) / 2) - (borderWidth + s.mult), EmbeddingWindow:GetHeight() - 19, "TOPRIGHT", EmbeddingWindow, "TOPRIGHT", -2, -17)
-		EmbedWindow(windows[2], ((EmbeddingWindow:GetWidth() - 4) / 2) - (borderWidth + s.mult), EmbeddingWindow:GetHeight() - 19, "TOPLEFT", EmbeddingWindow, "TOPLEFT", 2, -17)
-	end
-end
-
-for _, window in ipairs( Skada:GetWindows() ) do
-	window:UpdateDisplay()
-end
-
-Skada.CreateWindow_ = Skada.CreateWindow
-function Skada:CreateWindow(name, db)
-	Skada:CreateWindow_(name, db)
-
-	windows = {}
-	for _, window in ipairs(Skada:GetWindows()) do
-		tinsert(windows, window)
-	end
-	hooksecurefunc(Skada, "CreateWindow", function()	
-		if U.CheckOption("EmbedSkada") then
-			EmbedSkada()
-		end
-	end)
-end
-
-Skada.DeleteWindow_ = Skada.DeleteWindow
-function Skada:DeleteWindow( name )
-	Skada:DeleteWindow_( name )
-	windows = {}
-	for _, window in ipairs( Skada:GetWindows() ) do
-		tinsert( windows, window )
-	end	
-	if(U.CheckOption("EmbedSkada")) then
-		EmbedSkada()
-	end
-end
-
-	local Skada_Skin = CreateFrame("Frame",nil)
-		Skada_Skin:RegisterEvent("PLAYER_ENTERING_WORLD")
-		Skada_Skin:SetScript("OnEvent", function(self)
-			if U.CheckOption("EmbedSkada") then
-				EmbedSkada()
-			end
-		self:UnregisterEvent("PLAYER_ENTERING_WORLD")
-	end)
-
-StaticPopupDialogs["SKADA_RELOADUI"] = {
-	text = "Reload your User Interface?",
-        button1 = TEXT(ACCEPT),
-        button2 = TEXT(CANCEL),
-        OnAccept = function()
-            ReloadUI()
-        end,
-        OnCancel = function(data, reason)
-            if (reason == "timeout") then
-                ReloadUI()
-            else
-                StaticPopupDialogs["SKADA_RELOADUI"].reloadAccepted = false
-            end
-        end,
-        OnHide = function()
-            if (StaticPopupDialogs["SKADA_RELOADUI"].reloadAccepted) then
-                ReloadUI();
-            end
-        end,
-        OnShow = function()
-            StaticPopupDialogs["SKADA_RELOADUI"].reloadAccepted = true;
-        end,
-        timeout = 5,
-        hideOnEscape = 1,
-        exclusive = 1,
-        whileDead = 1
-}
-
-SLASH_SKADAEMBEDDED1, SLASH_SKADAEMBEDDED2 = '/es', '/embedskada';
-function SlashCmdList.SKADAEMBEDDED(msg, editbox)
-	if(not U.CheckOption("EmbedSkada")) then
-		U.EnableOption("EmbedSkada")
-		EmbedSkada()
-	else
-		U.DisableOption("EmbedSkada")
-		StaticPopup_Show("SKADA_RELOADUI")
-	end
-	if(U.CheckOption("EmbedSkada")) then
-	print("Skada Embedding to Embed Window is |cff00ff00Enabled|r.")
-	end
-	if(not U.CheckOption("EmbedSkada")) then
-	print("Skada Embedding to Embed Window is |cffff2020Disabled|r.")
-	print("Need to Reload UI to take effect /rl ")
-	end
-end
-
-SLASH_SKADABACKDROP1 = '/skadabackdrop';
-function SlashCmdList.SKADABACKDROP(msg, editbox)
-	if(not U.CheckOption("SkadaBackdrop")) then
-		U.EnableOption("SkadaBackdrop")
-	else
-		U.DisableOption("SkadaBackdrop")
-	end
-end

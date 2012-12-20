@@ -1,5 +1,6 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
+
 local name = "TinyDPSSkin"
 local function SkinTinyDps(self)
 	UISetup()
@@ -35,35 +36,3 @@ local function SkinTinyDps(self)
 end
 
 U.RegisterSkin(name,SkinTinyDps)
-
-function EmbedTDPS()
-	if not IsAddOnLoaded("TinyDPS") then U.DisableOption("EmbedTDPS") return end
-	if ChatBackgroundRight then tdpsFrame:SetParent(ChatBackgroundRight) end
-	U.SkinFrameD(tdpsFrame)
-	tdpsFrame:SetFrameStrata("MEDIUM")
-	tdpsFrame.spacing = 0
-	tdpsFrame.barHeight = 14
-	tdpsVisibleBars = 9
-	EmbedTDPSResize()
-	tdpsAnchor:Point("TOPLEFT", EmbeddingWindow, "TOPLEFT", 0, 0)
-
-	tdpsRefresh()
-	if (U.CheckOption("EmbedOoC")) then
-		if (U.CheckOption("EmbedTDPS")) then
-			tdpsFrame:Hide()
-		end
-	end
-end
-
-function EmbedTDPSResize()
-	tdpsFrame:SetWidth(EmbeddingWindow:GetWidth())
-	tdpsRefresh()
-end
-
-local TinyDPS_Embed = CreateFrame("Frame",nil)
-	TinyDPS_Embed:RegisterEvent("PLAYER_ENTERING_WORLD")
-	TinyDPS_Embed:SetScript("OnEvent", function(self)
-		if(U.CheckOption("EmbedTDPS")) then
-			EmbedTDPS()
-		end
-	end)
