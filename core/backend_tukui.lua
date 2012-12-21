@@ -193,6 +193,7 @@ local DefaultSetSkin = CreateFrame("Frame")
 	if(UISkinOptions.CritlineSkin == nil) then UISkinOptions.CritlineSkin = "Enabled" end
 	if(UISkinOptions.SoundtrackSkin == nil) then UISkinOptions.SoundtrackSkin = "Enabled" end
 	if(UISkinOptions.WoWProSkin == nil) then UISkinOptions.WoWProSkin = "Enabled" end
+	if(UISkinOptions.MiscFixes == nil) then UISkinOptions.MiscFixes = "Enabled" end
 	--if(UISkinOptions.ColorTemplate == nil) then UISkinOptions.ColorTemplate = "ClassColor" end
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 end)
@@ -558,6 +559,27 @@ local SkinOptions = CreateFrame("Frame", "SkinOptions", UIParent)
 		end
 	end)
 
+	EmbedCoolLineButton = CreateFrame("Button", "EmbedCoolLineButton", SkinOptions3)
+	EmbedCoolLineButton:SetPoint("TOPLEFT", 12, -180)
+	EmbedCoolLineButton:Size(16)
+	U.SkinBackdropFrame(EmbedCoolLineButton)
+	EmbedCoolLineButton:SetBackdrop({bgFile = c.media.normTex, edgeFile = nil, tile = false, tileSize = 0, edgeSize = 0, insets = { left = 0, right = 0, top = 0, bottom = 0 }});
+	EmbedCoolLineButton.text = EmbedCoolLineButton:CreateFontString(nil, "OVERLAY")
+	EmbedCoolLineButton.text:SetFont(UIFont, 12, "OUTLINE")
+	EmbedCoolLineButton.text:SetPoint("LEFT", EmbedCoolLineButton, "RIGHT", 10, 0)
+	EmbedCoolLineButton.text:SetText("CoolLine")
+	if (U.CheckOption("CoolLineEmbed")) then EmbedCoolLineButton:SetBackdropColor(0.11,0.66,0.11,1) end
+	if (not U.CheckOption("CoolLineEmbed")) then EmbedCoolLineButton:SetBackdropColor(0.68,0.14,0.14,1) end
+	EmbedCoolLineButton:SetScript("OnClick", function()
+		if (U.CheckOption("CoolLineEmbed")) then
+			U.DisableOption("CoolLineEmbed")
+			EmbedCoolLineButton:SetBackdropColor(0.68,0.14,0.14,1)
+		else
+			U.EnableOption("CoolLineEmbed")
+			EmbedCoolLineButton:SetBackdropColor(0.11,0.66,0.11,1)
+		end
+	end)
+
 --Buttons
 	SkinOptionsButton = CreateFrame("Button", "SkinOptionsButton", GameMenuFrame, "GameMenuButtonTemplate")
 	SkinOptionsButton:Point("TOP", GameMenuButtonMacros, "BOTTOM", 0 , -1)
@@ -631,7 +653,7 @@ local SkinOptions = CreateFrame("Frame", "SkinOptions", UIParent)
 	for skin,options in pairsByKeys(Skins) do
 		local addon = options.addon
 		local buttonText = options.buttonText or addon
-		if options.ui ~= "ElvUI" then
+		if options.hide ~= "True" then
 			if IsAddOnLoaded(addon) then
 				CreateButton(string.format('%sButton',skin),buttonText,addon,skin,curX,curY)
 				SkinOptions:Height(100+(curY*20))

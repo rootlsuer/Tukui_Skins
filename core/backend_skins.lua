@@ -284,29 +284,28 @@ U.Skins = {
 	},
 --DO NOT REMOVE THESE
 	["DBMSkinHalf"] = {
-		["buttonText"] = "DBM Half-Bar Skin",
 		["addon"] = "DBM-Core",
-		["ui"] = "ElvUI",
+		["hide"] = "True",
 	},
 	["CLCProtSkin"] = {
-		["buttonText"] = "CLCProt Icons",
 		["addon"] = "CLCProt",
-		["ui"] = "ElvUI",
+		["hide"] = "True",
 	},
 	["CLCRetSkin"] = {
-		["buttonText"] = "CLCRet Icons",
 		["addon"] = "CLCRet",
-		["ui"] = "ElvUI",
+		["hide"] = "True",
 	},
 	["PowerAurasIconsSkin"] = {
-		["buttonText"] = "PowerAuras Icons",
 		["addon"] = "PowerAuras",
-		["ui"] = "ElvUI",
+		["hide"] = "True",
 	},
 	["WeakAurasSkin"] = {
-		["buttonText"] = "WeakAuras Icons",
 		["addon"] = "WeakAuras",
-		["ui"] = "ElvUI",
+		["hide"] = "True",
+	},
+	["MiscFixes"] = {
+		["addon"] = "Tukui_Skins",
+		["hide"] = "True",
 	},
 --
 }

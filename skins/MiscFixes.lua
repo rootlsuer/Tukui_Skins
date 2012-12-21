@@ -1,32 +1,39 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
-local MiscFixes = CreateFrame("Frame")
-	MiscFixes:RegisterEvent("PLAYER_ENTERING_WORLD")
-	local s = U.s
-	local c = U.c 
-	MiscFixes:SetScript("OnEvent", function(self)
+local name = "MiscFixes"
+
+local function MiscFixes(self)
+local s = U.s
+local c = U.c
+
 	if IsAddOnLoaded("Numeration") and U.CheckOption("NumerationSkin") then
 		U.SkinFrame(NumerationFrame, true)
 	end
+
 	if IsAddOnLoaded("Critline") and U.CheckOption("CritlineSkin") then
 		U.SkinBackdropFrame(Critline.display, true)
 		Critline.display.backdrop:SetFrameStrata("BACKGROUND")
 	end	
+
 	if IsAddOnLoaded("InspectEquip") and U.CheckOption("InspectEquipSkin") then
 		U.SkinFrame(InspectEquip_InfoWindow)
 		U.SkinCloseButton(InspectEquip_InfoWindow_CloseButton)
 	end
+
 	if UIMinimap then Minimap:SetMaskTexture(c["media"].blank) end
+
 	if IsAddOnLoaded("TomTom") and (U.CheckOption("TomTomSkin")) then
 		if TomTomBlock then
 			U.SkinFrame(TomTomBlock)
 		end
 	end
+
 	if IsAddOnLoaded("SymbiosisTip") then
 		SymbiosisTip:HookScript("OnShow", function(self) self:SetTemplate("Transparent") cUpdateColor(self) end)
 	end
+
 	if IsAddOnLoaded("VengeanceStatus") and (U.CheckOption("VengeanceStatusSkin")) then
-			U.SkinStatusBar(VengeanceStatus_StatusBar)
+		U.SkinStatusBar(VengeanceStatus_StatusBar)
 	end
 	
 	LoadAddOn("acb_CastBar")
@@ -37,4 +44,19 @@ local MiscFixes = CreateFrame("Frame")
 		U.SkinBackdropFrame(AzCastBarPluginMirror)
 		U.SkinBackdropFrame(AzCastBarPluginPet)
 	end
-end)
+
+	if IsAddOnLoaded("BloodShieldTracker") and not IsAddOnLoaded("Tukui") then
+		U.SkinStatusBar(BloodShieldTracker_EstimateBar)
+		U.SkinStatusBar(BloodShieldTracker_HealthBar)
+		U.SkinStatusBar(BloodShieldTracker_ShieldBar)
+		U.SkinStatusBar(BloodShieldTracker_EstimateBar)
+		U.SkinStatusBar(BloodShieldTracker_BloodChargeBar)
+		U.SkinStatusBar(BloodShieldTracker_TotalAbsorbsBar)
+		U.SkinStatusBar(BloodShieldTracker_PWSBar)
+		U.SkinStatusBar(BloodShieldTracker_IllumBar)
+		U.SkinStatusBar(BloodShieldTracker_AMSBar)
+		U.SkinStatusBar(BloodShieldTracker_PurgatoryBar)
+	end
+end
+
+U.RegisterSkin(name,MiscFixes)
