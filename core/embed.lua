@@ -174,20 +174,33 @@ if event == "PLAYER_ENTERING_WORLD" then
 	if (U.CheckOption("EmbedSkada","Skada")) then EmbedSkada() end
 	if (U.CheckOption("EmbedTDPS","TinyDPS")) then EmbedTDPS() end
 --Embed Check Finished
+
 	local function EmbedTooltip(self)
+		local r, l, b, t = self:GetRight(), EmbeddingWindow:GetLeft(), self:GetBottom(), EmbeddingWindow:GetTop()
+		if not r or not l or not b or not t or r < l or b > t then return end
 		local point, relativeTo, relativePoint, xOffset, yOffset = self:GetPoint(1)
 		if relativeTo == TukuiTooltipAnchor and point == "BOTTOMRIGHT" and relativePoint == "TOPRIGHT" then
-			if Skada then
-				local found = false
+			local found = false
+			if U.CheckOption("EmbedSkada","Skada") and Skada and Skada.GetWindows then
 				for _, window in ipairs(Skada:GetWindows()) do if window:IsShown() then found = true end end
-				if found then
-					self:ClearAllPoints()
-					self:SetPoint(point, EmbeddingWindow, relativePoint, xOffset, yOffset)
-				end
+			end
+			if (U.CheckOption("EmbedOmen","Omen")) or (U.CheckOption("EmbedRO")) then
+				if OmenBarList and OmenBarList:IsVisible() then found = true end
+			end
+			if (U.CheckOption("EmbedRecount","Recount")) or (U.CheckOption("EmbedRO")) then
+				if Recount_MainWindow and Recount_MainWindow:IsShown() then found = true end
+			end
+			if (U.CheckOption("EmbedTDPS","TinyDPS")) then
+				if tdpsFrame and tdpsFrame:IsShown() then found = true end
+			end
+			if found then
+				self:ClearAllPoints()
+				self:SetPoint(point, EmbeddingWindow, relativePoint, xOffset, yOffset)
 			end
 		end
 	end
 	GameTooltip:HookScript("OnUpdate", function(self, ...) EmbedTooltip(self) end)
+
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 end
 
