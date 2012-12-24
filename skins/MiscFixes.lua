@@ -19,7 +19,7 @@ local c = U.c
 		U.SkinFrame(InspectEquip_InfoWindow)
 		U.SkinCloseButton(InspectEquip_InfoWindow_CloseButton)
 	end
-
+	UISetup()
 	if UIMinimap then Minimap:SetMaskTexture(c["media"].blank) end
 
 	if IsAddOnLoaded("TomTom") and (U.CheckOption("TomTomSkin")) then
@@ -56,6 +56,13 @@ local c = U.c
 		U.SkinStatusBar(BloodShieldTracker_IllumBar)
 		U.SkinStatusBar(BloodShieldTracker_AMSBar)
 		U.SkinStatusBar(BloodShieldTracker_PurgatoryBar)
+	end
+	if IsAddOnLoaded("GuildMemberInfo_TradeSkills") then
+		U.SkinFrame(GMIFrame)
+		U.SkinIconButton(GMItsButton1, true, true, true)
+		U.SkinIconButton(GMItsButton2, true, true, true)
+		GMItsIcon1:SetTexCoord(0.12, 0.88, 0.12, 0.88)
+		GMItsIcon2:SetTexCoord(0.12, 0.88, 0.12, 0.88)
 	end
 end
 
