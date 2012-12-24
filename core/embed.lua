@@ -174,7 +174,20 @@ if event == "PLAYER_ENTERING_WORLD" then
 	if (U.CheckOption("EmbedSkada","Skada")) then EmbedSkada() end
 	if (U.CheckOption("EmbedTDPS","TinyDPS")) then EmbedTDPS() end
 --Embed Check Finished
-
+	local function EmbedTooltip(self)
+		local point, relativeTo, relativePoint, xOffset, yOffset = self:GetPoint(1)
+		if relativeTo == TukuiTooltipAnchor and point == "BOTTOMRIGHT" and relativePoint == "TOPRIGHT" then
+			if Skada then
+				local found = false
+				for _, window in ipairs(Skada:GetWindows()) do if window:IsShown() then found = true end end
+				if found then
+					self:ClearAllPoints()
+					self:SetPoint(point, EmbeddingWindow, relativePoint, xOffset, yOffset)
+				end
+			end
+		end
+	end
+	GameTooltip:HookScript("OnUpdate", function(self, ...) EmbedTooltip(self) end)
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 end
 
