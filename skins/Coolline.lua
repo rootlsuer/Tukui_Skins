@@ -10,6 +10,7 @@ local function SkinCoolLine(self)
 	CoolLine.updatelook()
 	U.SkinBackdropFrame(CoolLine)
 	CoolLine.backdrop:SetAllPoints(CoolLine)
+	if IsAddOnLoaded("AzilSettings") then CoolLine.backdrop:CreateBackdrop() end
 	CoolLine.backdrop:CreateShadow()
 	PetBattleFrame:HookScript("OnShow", function() CoolLine:Hide() end)
 	PetBattleFrame:HookScript("OnHide", function() CoolLine:Show() end)
