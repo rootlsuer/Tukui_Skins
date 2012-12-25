@@ -203,14 +203,11 @@ end
 
 U.SkinStatusBar = cSkinStatusBar
 
-local function cSkinTooltip(self, scale)
-	self:HookScript("OnShow", function(self)
+local function cSkinTooltip(tooltip, scale)
+	tooltip:HookScript("OnShow", function(self)
 		self:SetTemplate("Transparent")
 		if scale then self:SetScale(c["general"].uiscale) end
 	end)
---	local r, g, b = GetItemQualityColor(select(3,GetItemInfo(link)))
---	frame:SetTemplate("Default")
---	frame:SetBackdropBorderColor(r,g,b)
 end
 
 U.SkinTooltip = cSkinTooltip

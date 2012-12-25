@@ -226,7 +226,7 @@ local function SkinAL(self)
 	AtlasLootDefaultFrame:HookScript("OnShow", AL_OnShow)
 	AtlasLootCompareFrame:HookScript("OnShow", Compare_OnShow)
 	AtlasLootPanel:HookScript("OnUpdate", function(self) self:SetWidth(AtlasLootDefaultFrame:GetWidth()) end)
-	U.SkinTooltip(AtlasLootTooltip)
+	if AtlasLootTooltip:GetName() ~= "GameTooltip" then U.SkinTooltip(AtlasLootTooltip) end
 end
 
 U.RegisterSkin(name,SkinAL)
