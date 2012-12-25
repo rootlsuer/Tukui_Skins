@@ -13,7 +13,7 @@ function cColorSwitch()
 	for k, v in pairs(U.ColorFrame) do cUpdateColor(v) end
 	for k, v in pairs(U.ColorScroll) do cColorScrollBar(v) end
 	for k, v in pairs(U.ColorSlider) do cColorSlideBar(v) end
-	ColorTukui()
+	if IsAddOnLoaded("Tukui") then ColorTukui() end
 	if IsAddOnLoaded("AsphyxiaUI") then ColorAsphyxiaUI() end
 	GameTooltip:HookScript("OnUpdate", function(self) cUpdateColor(self) end)
 	if IsAddOnLoaded("SpecSwitcher") then
@@ -202,6 +202,18 @@ local function cSkinStatusBar(self, ClassColor)
 end
 
 U.SkinStatusBar = cSkinStatusBar
+
+local function cSkinTooltip(self, scale)
+	self:HookScript("OnShow", function(self)
+		self:SetTemplate("Transparent")
+		if scale then self:SetScale(c["general"].uiscale) end
+	end)
+--	local r, g, b = GetItemQualityColor(select(3,GetItemInfo(link)))
+--	frame:SetTemplate("Default")
+--	frame:SetBackdropBorderColor(r,g,b)
+end
+
+U.SkinTooltip = cSkinTooltip
 
 local function cSkinIconButton(self, strip, style, shrinkIcon)
 	if self.isSkinned then return end

@@ -6,7 +6,7 @@ local name = "AltoholicSkin"
 local function SkinAltoholic(self)
 	LoadAddOn("Altoholic_Characters")
 	AltoholicFrame.IsSkinned = "False"
-	AltoTooltip:HookScript("OnShow", function(self) self:SetTemplate("Transparent") cUpdateColor(self) end)
+	U.SkinTooltip(AltoTooltip)
 	AltoholicFramePortrait:Kill()
 	U.SkinFrame(AltoholicFrame)
 	U.SkinFrame(AltoMsgBox)

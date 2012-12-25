@@ -13,7 +13,8 @@ local function SkinQuestCompletist(self)
 
 	for _, object in pairs(tooltips) do
 		if _G[object] then
-			_G[object]:HookScript("OnShow", function(self) self:SetFrameStrata("DIALOG") U.SkinFrame(self) end)
+			_G[object]:SetFrameStrata("DIALOG")
+			U.SkinTooltip(_G[object])
 		end
 	end
 

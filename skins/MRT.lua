@@ -36,8 +36,8 @@ local function SkinMRT(self)
 		U.SkinScrollBar(_G["ScrollTable"..i.."ScrollFrameScrollBar"])
 	end
 
-	MRT_GUI_ItemTT:HookScript("OnShow", function(self) self:SetTemplate("Transparent") end)
-	MRT_GUI_TT:HookScript("OnShow", function(self) self:SetTemplate("Transparent") end)
+	U.SkinTooltip(MRT_GUI_ItemTT)
+	U.SkinTooltip(MRT_GUI_TT)
 end
 
 U.RegisterSkin(name,SkinMRT)

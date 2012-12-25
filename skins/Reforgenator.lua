@@ -15,8 +15,8 @@ local function SkinReforgenator(self)
 		local iconTexture = _G["ReforgenatorPanel_Item" .. index .. "IconTexture"]
 		local checked = _G["ReforgenatorPanel_Item" .. index .. "Checked"]
 		U.SkinBackdropFrame(item)
-	    local texture = select(10, GetItemInfo(itemDescriptor.itemLink))
-	    iconTexture:SetTexture(texture)
+		local texture = select(10, GetItemInfo(itemDescriptor.itemLink))
+		iconTexture:SetTexture(texture)
 		U.SkinCheckBox(checked)
 	end)
 end

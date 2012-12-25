@@ -64,7 +64,7 @@ local function SkinOdyssey(self)
 		U.SkinBackdropFrame(_G["OdysseyFrameRealmSummaryEntry8Item"..i], true, true)
 	end
 
-	OdyTooltip:HookScript("OnShow", function(self) self:SetTemplate("Transparent") cUpdateColor(self) end)
+	U.SkinTooltip(OdyTooltip)
 
 end
 

@@ -101,7 +101,7 @@ local function SkinATSW(self)
 	ATSWNameSortButton:Point("TOPLEFT", ATSWFrame, "TOPLEFT", 20, -49)
 	ATSWDifficultySortButton:Point("TOPLEFT", ATSWFrame, "TOPLEFT", 20, -32)
 
-	U.SkinFrame(ATSWTradeskillTooltip)
+	U.SkinTooltip(ATSWTradeskillTooltip)
 	U.SkinFrame(ATSWReagentFrame)
 	U.SkinFrame(ATSWOptionsFrame)
 	ATSWOptionsFrame:SetScale(c.general.uiscale)

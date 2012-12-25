@@ -61,7 +61,7 @@ if event == "PLAYER_ENTERING_WORLD" then
 					Skada:ToggleWindow()
 				end
 				if (U.CheckOption("EmbedOmen","Omen")) or (U.CheckOption("EmbedRO")) then
-					if OmenBarList:IsShown() then
+					if OmenBarList:IsVisible() then
 						OmenBarList:Hide()
 					else
 						OmenBarList:Show()

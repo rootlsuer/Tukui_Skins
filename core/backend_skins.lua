@@ -211,6 +211,9 @@ U.Skins = {
 	["ReforgenatorSkin"] = {
 		["addon"] = "Reforgenator",
 	},
+	["ReforgeradeSkin"] = {
+		["addon"] = "Reforgerade",
+	},
 	["SearingPlasmaTrackerSkin"] = {
 		["buttonText"] = "Searing Plasma Tracker",
 		["addon"] = "SearingPlasmaTracker",

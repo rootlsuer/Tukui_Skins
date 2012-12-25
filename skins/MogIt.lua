@@ -42,16 +42,13 @@ local function SkinMogIt(self)
 
 	hooksecurefunc(MogIt, "CreatePreview", SkinMogItPreview)
 
-	MogItTooltip:HookScript("OnShow", function(self) U.SkinFrame(self, true) end)
+	U.SkinTooltip(MogItTooltip)
 
 	U.SkinCloseButton(MogItFrameCloseButton)
 	U.SkinCloseButton(MogItFiltersCloseButton)
 	MogItFrameFiltersDefaults:StripTextures(True)
 	U.SkinButton(MogItFrameFiltersDefaults, true)
 
-	--Skin the Scrollbars
-	--MogItScroll:StripTextures()
-	--MogItScroll:SetTemplate("Default")
 	U.SkinScrollBar(MogItScroll)
 	U.SkinScrollBar(MogItFiltersScrollScrollBar)
 

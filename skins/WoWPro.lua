@@ -5,7 +5,7 @@ local name = "WoWProSkin"
 local function SkinWoWPro(self)
 	U.SkinFrame(Titlebar)
 	U.SkinBackdropFrame(WoWPro.MainFrame)
-	_G["Mouseover Note Tooltip"]:HookScript("OnShow", function(self) self:SetTemplate() end)
+	U.SkinTooltip(_G["Mouseover Note Tooltip"])
 end
 
 U.RegisterSkin(name,SkinWoWPro)

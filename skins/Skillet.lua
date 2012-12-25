@@ -209,7 +209,7 @@ local function SkilletFrameOnShow(self)
 		SkilletTradeSkillLinkButton:SetPoint("RIGHT", SkilletShowOptionsButton, "LEFT", 0, 0)
 		SkilletViewCraftersButton:SetPoint("RIGHT", SkilletQueueManagementButton, "LEFT", -5, 0)
 		
-		U.SkinFrameD(SkilletTradeskillTooltip)
+		U.SkinTooltip(SkilletTradeskillTooltip)
 
 		U.SkinScrollBar(SkilletQueueListScrollBar)
 

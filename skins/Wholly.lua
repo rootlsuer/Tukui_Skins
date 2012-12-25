@@ -21,7 +21,7 @@ local function SkinWhollyFrame()
 end
 
 local function SkinWholly(self)
-   com_mithrandir_whollyFrame:HookScript("OnShow",function(self) SkinWhollyFrame() end)
+	com_mithrandir_whollyFrame:HookScript("OnShow",function(self) SkinWhollyFrame() end)
 end
 
 U.RegisterSkin(name,SkinWholly)

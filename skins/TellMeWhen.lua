@@ -4,7 +4,6 @@ local s = U.s
 local c = U.c
 
 local function LoadSkin()
-	LoadAddOn("TellMeWhen_Options")
 	if (not U.CheckOption("TellMeWhenSkin")) then return end
 	TellMeWhen_IconEditorMain:StripTextures()
 	TellMeWhen_IconEditorConditions:StripTextures()

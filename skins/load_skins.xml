@@ -62,6 +62,7 @@
 	<Script file="Raven.lua"/>
 	<Script file="Recount.lua"/>
 	<Script file="Reforgenator.lua"/>
+	<Script file="Reforgerade.lua"/>
 	<Script file="SearingPlasmaTracker.lua"/>
 	<Script file="SexyCooldown.lua"/>
 	<Script file="ShieldMonitor.lua"/>

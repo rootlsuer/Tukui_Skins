@@ -48,7 +48,7 @@ local function SkinLightHeaded(self)
 	U.SkinFrame(LightHeadedFrame)
 	U.SkinFrame(LightHeadedFrameSub)
 	U.SkinFrame(LightHeadedSearchBox)
-	LightHeadedTooltip:HookScript("OnShow", function(self) self:SetTemplate("Transparent") cUpdateColor(self) end)
+	U.SkinTooltip(LightHeadedTooltip)
 						
 	LightHeadedScrollFrame:StripTextures()
 	

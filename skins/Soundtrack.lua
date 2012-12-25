@@ -120,7 +120,7 @@ local function SkinSoundtrack(self)
 	U.SkinDropDownBox(SoundtrackFrame_SilenceDropDown)
 	U.SkinDropDownBox(SoundtrackFrame_ProjectDropDown)
 
-	SoundtrackTooltip:HookScript("OnShow", function(self) self:SetTemplate("Transparent") end)
+	U.SkinTooltip(SoundtrackTooltip)
 	NowPlayingTextFrame:Show()
 	NowPlayingTextFrame:Hide()
 	NowPlayingTextFrame:Size(200, 40)

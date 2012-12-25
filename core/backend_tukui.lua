@@ -194,6 +194,7 @@ local DefaultSetSkin = CreateFrame("Frame")
 	if(UISkinOptions.SoundtrackSkin == nil) then UISkinOptions.SoundtrackSkin = "Enabled" end
 	if(UISkinOptions.WoWProSkin == nil) then UISkinOptions.WoWProSkin = "Enabled" end
 	if(UISkinOptions.MiscFixes == nil) then UISkinOptions.MiscFixes = "Enabled" end
+	if(UISkinOptions.ReforgeradeSkin == nil) then UISkinOptions.ReforgeradeSkin = "Enabled" end
 	--if(UISkinOptions.ColorTemplate == nil) then UISkinOptions.ColorTemplate = "ClassColor" end
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 end)

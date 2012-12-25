@@ -2,39 +2,39 @@ if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("
 local U = unpack(select(2,...))
 local name = "ACPSkin"
 local function cbResize(self, event, ...)
-    for i=1,20,1 do
-        local checkbox = _G["ACP_AddonListEntry" .. i .. "Enabled"]
-        local collapse = _G["ACP_AddonListEntry" .. i .. "Collapse"]
-        local security = _G["ACP_AddonListEntry" .. i .. "Security"]
-        local curr_category = ""
+	for i=1,20,1 do
+		local checkbox = _G["ACP_AddonListEntry" .. i .. "Enabled"]
+		local collapse = _G["ACP_AddonListEntry" .. i .. "Collapse"]
+		local security = _G["ACP_AddonListEntry" .. i .. "Security"]
+		local curr_category = ""
 
-            if curr_category == "" then
-                checkbox:SetPoint("LEFT", 5, 0)
-                    if collapse:IsShown() then
-                        checkbox:SetWidth(26)
-                        checkbox:SetHeight(26)
-                    else
-                        checkbox:SetPoint("LEFT", 15, 0)
-                        checkbox:SetWidth(20)
-                        checkbox:SetHeight(20)
-                    end
-            end
-                    if security:IsShown() then
-                        checkbox:SetPoint("LEFT", 5, 0)
-                        checkbox:SetWidth(26)
-                        checkbox:SetHeight(26)
-                    end
-   end
-end 
+		if curr_category == "" then
+			checkbox:SetPoint("LEFT", 5, 0)
+			if collapse:IsShown() then
+				checkbox:SetWidth(26)
+				checkbox:SetHeight(26)
+			else
+				checkbox:SetPoint("LEFT", 15, 0)
+				checkbox:SetWidth(20)
+				checkbox:SetHeight(20)
+			end
+		end
+		if security:IsShown() then
+			checkbox:SetPoint("LEFT", 5, 0)
+			checkbox:SetWidth(26)
+			checkbox:SetHeight(26)
+		end
+	end
+end
 
 local function SkinACP(self)
 	U.SkinFrame(ACP_AddonList)
 	U.SkinFrame(ACP_AddonList_ScrollFrame)
-	
+
 	local buttons = {
-        	"ACP_AddonListSetButton",
+		"ACP_AddonListSetButton",
 	        "ACP_AddonListDisableAll",
-        	"ACP_AddonListEnableAll",
+		"ACP_AddonListEnableAll",
 	        "ACP_AddonList_ReloadUI",
 		"ACP_AddonListBottomClose",
 		}

@@ -29,7 +29,7 @@ local c = U.c
 	end
 
 	if IsAddOnLoaded("SymbiosisTip") then
-		SymbiosisTip:HookScript("OnShow", function(self) self:SetTemplate("Transparent") cUpdateColor(self) end)
+		U.SkinTooltip(SymbiosisTip)
 	end
 
 	if IsAddOnLoaded("VengeanceStatus") and (U.CheckOption("VengeanceStatusSkin")) then
@@ -59,8 +59,8 @@ local c = U.c
 	end
 	if IsAddOnLoaded("GuildMemberInfo_TradeSkills") then
 		U.SkinFrame(GMIFrame)
-		U.SkinIconButton(GMItsButton1, true, true, true)
-		U.SkinIconButton(GMItsButton2, true, true, true)
+		U.SkinIconButton(GMItsButton1, true)
+		U.SkinIconButton(GMItsButton2, true)
 		GMItsIcon1:SetTexCoord(0.12, 0.88, 0.12, 0.88)
 		GMItsIcon2:SetTexCoord(0.12, 0.88, 0.12, 0.88)
 	end
