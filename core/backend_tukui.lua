@@ -94,93 +94,6 @@ end)
 local DefaultSetSkin = CreateFrame("Frame")
 	DefaultSetSkin:RegisterEvent( "PLAYER_ENTERING_WORLD" )
 	DefaultSetSkin:SetScript( "OnEvent", function(self)
-	if(UISkinOptions.ACPSkin == nil) then UISkinOptions.ACPSkin = "Enabled" end
-	if(UISkinOptions.AdiBagsSkin == nil) then UISkinOptions.AdiBagsSkin = "Enabled" end
-	if(UISkinOptions.AltoholicSkin == nil) then UISkinOptions.AltoholicSkin = "Enabled" end
-	if(UISkinOptions.ArchySkin == nil) then UISkinOptions.ArchySkin = "Enabled" end
-	if(UISkinOptions.ArkInventorySkin == nil) then UISkinOptions.ArkInventorySkin = "Enabled" end
-	if(UISkinOptions.AtlasLootSkin == nil) then UISkinOptions.AtlasLootSkin = "Enabled" end
-	if(UISkinOptions.ATSWSkin == nil) then UISkinOptions.ATSWSkin = "Enabled" end
-	if(UISkinOptions.AuctionatorSkin == nil) then UISkinOptions.AuctionatorSkin = "Enabled" end
-	if(UISkinOptions.AuctioneerSkin == nil) then UISkinOptions.AuctioneerSkin = "Enabled" end
-	if(UISkinOptions.BPTSkin == nil) then UISkinOptions.BPTSkin = "Enabled" end
-	if(UISkinOptions.BigWigsSkin == nil) then UISkinOptions.BigWigsSkin = "Enabled" end
-	if(UISkinOptions.BGDefenderSkin == nil) then UISkinOptions.BGDefenderSkin = "Enabled" end
-	if(UISkinOptions.BuyEmAllSkin == nil) then UISkinOptions.BuyEmAllSkin = "Enabled" end
-	if(UISkinOptions.ChocolateBarSkin == nil) then UISkinOptions.ChocolateBarSkin = "Enabled" end
-	if(UISkinOptions.CliqueSkin == nil) then UISkinOptions.CliqueSkin = "Enabled" end
-	if(UISkinOptions.CLCInfoSkin == nil) then UISkinOptions.CLCInfoSkin = "Enabled" end
-	if(UISkinOptions.CLCProtSkin == nil) then UISkinOptions.CLCProtSkin = "Enabled" end
-	if(UISkinOptions.CLCRetSkin == nil) then UISkinOptions.CLCRetSkin = "Enabled" end
-	if(UISkinOptions.DBMSkin == nil) then UISkinOptions.DBMSkin = "Enabled" end
-	if(UISkinOptions.DBMSkinHalf == nil) then UISkinOptions.DBMSkinHalf = "Disabled" end
-	if(UISkinOptions.DXESkin == nil) then UISkinOptions.DXESkin = "Disabled" end
-	if(UISkinOptions.EasyMailSkin == nil) then UISkinOptions.EasyMailSkin = "Enabled" end
-	if(UISkinOptions.EnergyWatchSkin == nil) then UISkinOptions.EnergyWatchSkin = "Enabled" end
-	if(UISkinOptions.ExtVendorSkin == nil) then UISkinOptions.ExtVendorSkin = "Enabled" end
-	if(UISkinOptions.FactionizerSkin == nil) then UISkinOptions.FactionizerSkin = "Enabled" end
-	if(UISkinOptions.FlightMapSkin == nil) then UISkinOptions.FlightMapSkin = "Enabled" end
-	if(UISkinOptions.KarniCrapSkin == nil) then UISkinOptions.KarniCrapSkin = "Enabled" end
-	if(UISkinOptions.LightheadedSkin == nil) then UISkinOptions.LightheadedSkin = "Enabled" end
-	if(UISkinOptions.LootCouncilLiteSkin == nil) then UISkinOptions.LootCouncilLiteSkin = "Enabled" end
-	if(UISkinOptions.MageNuggetsSkin == nil) then UISkinOptions.MageNuggetsSkin = "Enabled" end
-	if(UISkinOptions.MasterLootManagerRemixSkin == nil) then UISkinOptions.MasterLootManagerRemixSkin = "Enabled" end
-	if(UISkinOptions.MinimalArchaeologySkin == nil) then UISkinOptions.MinimalArchaeologySkin = "Enabled" end
-	if(UISkinOptions.MoveAnythingSkin == nil) then UISkinOptions.MoveAnythingSkin = "Enabled" end
-	if(UISkinOptions.MRTSkin == nil) then UISkinOptions.MRTSkin = "Enabled" end
-	if(UISkinOptions.MyRolePlaySkin == nil) then UISkinOptions.MyRolePlaySkin = "Enabled" end
-	if(UISkinOptions.OdysseySkin == nil) then UISkinOptions.OdysseySkin = "Enabled" end
-	if(UISkinOptions.OgriLazySkin == nil) then UISkinOptions.OgriLazySkin = "Enabled" end
-	if(UISkinOptions.OmenSkin == nil) then UISkinOptions.OmenSkin = "Enabled" end	
-	if(UISkinOptions.OutfitterSkin == nil) then UISkinOptions.OutfitterSkin = "Enabled" end
-	if(UISkinOptions.PlayerScoreSkin == nil) then UISkinOptions.PlayerScoreSkin = "Enabled" end
-	if(UISkinOptions.PoisonerSkin == nil) then UISkinOptions.PoisonerSkin = "Enabled" end
-	if(UISkinOptions.PoMTrackerSkin == nil) then UISkinOptions.PoMTrackerSkin = "Enabled" end
-	if(UISkinOptions.PostalSkin == nil) then UISkinOptions.PostalSkin = "Enabled" end
-	if(UISkinOptions.PowerAurasSkin == nil) then UISkinOptions.PowerAurasSkin = nil end
-	if(UISkinOptions.PowerAurasIconsSkin == nil) then UISkinOptions.PowerAurasIconsSkin = nil end
-	if(UISkinOptions.ProfessionTabsSkin == nil) then UISkinOptions.ProfessionTabsSkin = "Enabled" end
-	if(UISkinOptions.QuartzSkin == nil) then UISkinOptions.QuartzSkin = "Enabled" end
-	if(UISkinOptions.RaidInviteOrganizerSkin == nil) then UISkinOptions.RaidInviteOrganizerSkin = "Enabled" end
-	if(UISkinOptions.RaidBuffStatusSkin == nil) then UISkinOptions.RaidBuffStatusSkin = "Enabled" end
-	if(UISkinOptions.RecountSkin == nil) then UISkinOptions.RecountSkin = "Enabled" end
-	if(UISkinOptions.SearingPlasmaTrackerSkin == nil) then UISkinOptions.SearingPlasmaTrackerSkin = "Enabled" end
-	if(UISkinOptions.SexyCooldownSkin == nil) then UISkinOptions.SexyCooldownSkin = "Enabled" end
-	if(UISkinOptions.SkadaSkin == nil) then UISkinOptions.SkadaSkin = "Enabled" end
-	if(UISkinOptions.SkilletSkin == nil) then UISkinOptions.SkilletSkin = "Enabled" end
-	if(UISkinOptions.SpineCounterSkin == nil) then UISkinOptions.SpineCounterSkin = "Enabled" end
-	if(UISkinOptions.SpySkin == nil) then UISkinOptions.SpySkin = "Enabled" end
-	if(UISkinOptions.SwatterSkin == nil) then UISkinOptions.SwatterSkin = "Enabled" end
-	if(UISkinOptions.TellMeWhenSkin == nil) then UISkinOptions.TellMeWhenSkin = "Enabled" end
-	if(UISkinOptions.TinyDPSSkin == nil) then UISkinOptions.TinyDPSSkin = "Enabled" end
-	if(UISkinOptions.TitanPanelSkin == nil) then UISkinOptions.TitanPanelSkin = "Enabled" end
-	if(UISkinOptions.WeakAurasSkin == nil) then UISkinOptions.WeakAurasSkin = "Enabled" end
-	if(UISkinOptions.WhollySkin == nil) then UISkinOptions.WhollySkin = "Enabled" end
-	if(UISkinOptions.WowLuaSkin == nil) then UISkinOptions.WowLuaSkin = "Enabled" end
-	if(UISkinOptions.ZygorSkin == nil) then UISkinOptions.ZygorSkin = "Enabled" end
-	if(UISkinOptions.BagnonSkin == nil) then UISkinOptions.BagnonSkin = "Enabled" end
-	if(UISkinOptions.TomTomSkin == nil) then UISkinOptions.TomTomSkin = "Enabled" end
-	if(UISkinOptions.tComboSkin == nil) then UISkinOptions.tComboSkin = "Enabled" end
-	if(UISkinOptions.LinkWranglerSkin == nil) then UISkinOptions.LinkWranglerSkin = "Enabled" end
-	if(UISkinOptions.NumerationSkin == nil) then UISkinOptions.NumerationSkin = "Enabled" end
-	if(UISkinOptions.GupPetSkin == nil) then UISkinOptions.GupPetSkin = "Enabled" end
-	if(UISkinOptions.OneClickEnchantScrollSkin == nil) then UISkinOptions.OneClickEnchantScrollSkin = "Enabled" end
-	if(UISkinOptions.PetBattleTeamsSkin == nil) then UISkinOptions.PetBattleTeamsSkin = "Enabled" end
-	if(UISkinOptions.CoolLineSkin == nil) then UISkinOptions.CoolLineSkin = "Enabled" end
-	if(UISkinOptions.QuestItemBarSkin == nil) then UISkinOptions.QuestItemBarSkin = "Enabled" end
-	if(UISkinOptions.AuctionLiteSkin == nil) then UISkinOptions.AuctionLiteSkin = "Enabled" end
-	if(UISkinOptions.RavenSkin == nil) then UISkinOptions.RavenSkin = "Enabled" end
-	if(UISkinOptions.HealiumSkin == nil) then UISkinOptions.HealiumSkin = "Enabled" end
-	if(UISkinOptions.BigBrotherSkin == nil) then UISkinOptions.BigBrotherSkin = "Enabled" end
-	if(UISkinOptions.InspectEquipSkin == nil) then UISkinOptions.InspectEquipSkin = "Enabled" end
-	if(UISkinOptions.CombustionHelperSkin == nil) then UISkinOptions.CombustionHelperSkin = "Enabled" end
-	if(UISkinOptions.MogItSkin == nil) then UISkinOptions.MogItSkin = "Enabled" end
-	if(UISkinOptions.ExaminerSkin == nil) then UISkinOptions.ExaminerSkin = "Enabled" end
-	if(UISkinOptions.xMerchantSkin == nil) then UISkinOptions.xMerchantSkin = "Enabled" end
-	if(UISkinOptions.DresserSkin == nil) then UISkinOptions.DresserSkin = "Enabled" end
-	if(UISkinOptions.LinkWranglerSkin == nil) then UISkinOptions.LinkWranglerSkin = "Enabled" end
-	if(UISkinOptions.ShieldMonitorSkin == nil) then UISkinOptions.ShieldMonitorSkin = "Enabled" end
-	if(UISkinOptions.VengeanceStatusSkin == nil) then UISkinOptions.VengeanceStatusSkin = "Enabled" end
 	if(UISkinOptions.RecountBackdrop == nil) then UISkinOptions.RecountBackdrop = "Enabled" end
 	if(UISkinOptions.SkadaBackdrop == nil) then UISkinOptions.SkadaBackdrop = "Enabled" end
 	if(UISkinOptions.EmbedOoC == nil) then UISkinOptions.EmbedOoC = "Disabled" end
@@ -189,12 +102,6 @@ local DefaultSetSkin = CreateFrame("Frame")
 	if(UISkinOptions.EmbedSkada == nil) then UISkinOptions.EmbedSkada = "Disabled" end
 	if(UISkinOptions.EmbedRecount == nil) then UISkinOptions.EmbedRecount = "Disabled" end
 	if(UISkinOptions.EmbedRO == nil) then UISkinOptions.EmbedRO = "Disabled" end
-	if(UISkinOptions.QuestCompletistSkin == nil) then UISkinOptions.QuestCompletistSkin = "Enabled" end
-	if(UISkinOptions.CritlineSkin == nil) then UISkinOptions.CritlineSkin = "Enabled" end
-	if(UISkinOptions.SoundtrackSkin == nil) then UISkinOptions.SoundtrackSkin = "Enabled" end
-	if(UISkinOptions.WoWProSkin == nil) then UISkinOptions.WoWProSkin = "Enabled" end
-	if(UISkinOptions.MiscFixes == nil) then UISkinOptions.MiscFixes = "Enabled" end
-	if(UISkinOptions.ReforgeradeSkin == nil) then UISkinOptions.ReforgeradeSkin = "Enabled" end
 	--if(UISkinOptions.ColorTemplate == nil) then UISkinOptions.ColorTemplate = "ClassColor" end
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 end)
@@ -656,6 +563,7 @@ local SkinOptions = CreateFrame("Frame", "SkinOptions", UIParent)
 		local buttonText = options.buttonText or addon
 		if options.hide ~= "True" then
 			if IsAddOnLoaded(addon) then
+				if UISkinOptions[skin] == nil then UISkinOptions[skin] = "Enabled" end
 				CreateButton(string.format('%sButton',skin),buttonText,addon,skin,curX,curY)
 				SkinOptions:Height(100+(curY*20))
 				SkinOptions2:Height(100+(curY*20))
