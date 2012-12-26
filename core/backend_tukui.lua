@@ -565,9 +565,9 @@ local SkinOptions = CreateFrame("Frame", "SkinOptions", UIParent)
 			if IsAddOnLoaded(addon) then
 				if UISkinOptions[skin] == nil then UISkinOptions[skin] = "Enabled" end
 				CreateButton(string.format('%sButton',skin),buttonText,addon,skin,curX,curY)
-				SkinOptions:Height(100+(curY*20))
-				SkinOptions2:Height(100+(curY*20))
-				SkinOptions3:Height(100+(curY*20))
+				SkinOptions:Height(110+(curY*20))
+				SkinOptions2:Height(110+(curY*20))
+				SkinOptions3:Height(110+(curY*20))
 				curY = curY + 1
 				if curY > maxY then
 					curX = curX + 1
