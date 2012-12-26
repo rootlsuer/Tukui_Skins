@@ -1,3 +1,4 @@
+if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 function ColorAsphyxiaUI()
 	local AsphyxiaUIFrames = {
 		"AsphyxiaUIDataBar1_Panel",
