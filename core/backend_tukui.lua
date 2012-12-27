@@ -95,7 +95,7 @@ local DefaultSetSkin = CreateFrame("Frame")
 	if(UISkinOptions.EmbedSkada == nil) then UISkinOptions.EmbedSkada = "Disabled" end
 	if(UISkinOptions.EmbedRecount == nil) then UISkinOptions.EmbedRecount = "Disabled" end
 	if(UISkinOptions.EmbedRO == nil) then UISkinOptions.EmbedRO = "Disabled" end
-	if(UISkinOptions.MiscFixes == nil) then UISkinOptions.MiscFixes = "Disabled" end
+	UISkinOptions.MiscFixes = "Enabled"
 	--if(UISkinOptions.ColorTemplate == nil) then UISkinOptions.ColorTemplate = "ClassColor" end
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 end)
@@ -553,9 +553,14 @@ local SkinOptions = CreateFrame("Frame", "SkinOptions", UIParent)
 			if IsAddOnLoaded(addon) then
 				if UISkinOptions[skin] == nil then UISkinOptions[skin] = "Enabled" end
 				CreateButton(string.format('%sButton',skin),buttonText,addon,skin,curX,curY)
-				SkinOptions:Height(110+(curY*20))
-				SkinOptions2:Height(110+(curY*20))
-				SkinOptions3:Height(110+(curY*20))
+				SkinOptions:Height(70+(curY*20))
+				SkinOptions2:Height(70+(curY*20))
+				SkinOptions3:Height(70+(curY*20))
+				if SkinOptions:GetHeight() < 210 then
+					SkinOptions:Height(210)
+					SkinOptions2:Height(210)
+					SkinOptions3:Height(210)
+				end
 				curY = curY + 1
 				if curY > maxY then
 					curX = curX + 1

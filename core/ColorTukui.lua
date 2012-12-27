@@ -98,6 +98,20 @@ function ColorTukui()
 		TSBuffColorer:RegisterEvent("UNIT_AURA")
 		TSBuffColorer:SetScript("OnEvent", RecolorBuffs)
 	end
+	if not TSTooltipColor then
+		local TSTooltipColor = CreateFrame("Frame")
+		TSTooltipColor:RegisterEvent("PLAYER_ENTERING_WORLD")
+		TSTooltipColor:RegisterEvent("ADDON_LOADED")
+		TSTooltipColor:SetScript("OnEvent", function()
+			if FrameStackTooltip then
+				FrameStackTooltip:HookScript("OnShow", function(self) cUpdateColor(self) end)
+			end
+			if EventTraceTooltip then
+				EventTraceTooltip:HookScript("OnShow", function(self) cUpdateColor(self) end)
+			end
+		end)
+	end
+
 end
 
 TSBorderColor = function(self)
@@ -158,15 +172,3 @@ TSSetStyle = function(self)
 	self:SetTemplate("Default")
 	TSBorderColor(self)
 end
-
-local TSTooltipColor = CreateFrame("Frame")
-TSTooltipColor:RegisterEvent("PLAYER_ENTERING_WORLD")
-TSTooltipColor:RegisterEvent("ADDON_LOADED")
-TSTooltipColor:SetScript("OnEvent", function()
-	if FrameStackTooltip then
-		FrameStackTooltip:HookScript("OnShow", function(self) cUpdateColor(self) end)
-	end
-	if EventTraceTooltip then
-		EventTraceTooltip:HookScript("OnShow", function(self) cUpdateColor(self) end)
-	end
-end)
