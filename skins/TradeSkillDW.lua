@@ -103,6 +103,7 @@ local function SkinTradeSkillDW(self)
 	TradeSkillDW_QueueFrameDetailScrollFrameChildFrameReagent7:StripTextures()
 	TradeSkillDW_QueueFrameDetailScrollFrameChildFrameReagent8:StripTextures()
 	U.SkinScrollBar(TradeSkillDW_QueueFrameDetailScrollFrameScrollBar)
+	TradeSkillListScrollFrame:StripTextures()
 end
 
 U.RegisterSkin(name,SkinTradeSkillDW)
