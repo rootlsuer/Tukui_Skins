@@ -1,4 +1,7 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
+local U = unpack(select(2,...))
+local s = U.s
+local c = U.c 
 function ColorTukui()
 	local TukuiFrames = {
 		"TukuiLineToABLeft",
