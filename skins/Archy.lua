@@ -63,7 +63,7 @@ local function SkinArchy(self)
 	ArchyDistanceIndicatorFrameSurveyButton:SetFrameLevel(ArchyDistanceIndicatorFrameSurveyButton:GetFrameLevel() + 5)
 	U.SkinButton(ArchyDistanceIndicatorFrameCrateButton)
 	ArchyDistanceIndicatorFrameCrateButton:SetFrameLevel(ArchyDistanceIndicatorFrameCrateButton:GetFrameLevel() + 5)
-	hooksecurefunc(Archy, "LDBTooltipShow", function(self) Archy.LDB_Tooltip:SetTemplate("Transparent") end)
+	hooksecurefunc(Archy, "LDBTooltipShow", function(self) self.LDB_Tooltip:SetTemplate("Transparent") end)
 end
 
 U.RegisterSkin(name,SkinArchy)
