@@ -10,23 +10,6 @@ local function SkinOmen(self)
 
 local borderWidth = 2
 
-Omen.UpdateBarTextureSettings_ = Omen.UpdateBarTextureSettings
-Omen.UpdateBarTextureSettings = function(self)
-	for i, v in ipairs(self.Bars) do
-		v.texture:SetTexture(c["media"].normTex)
-	end
-end
-
-Omen.UpdateBarLabelSettings_ = Omen.UpdateBarLabelSettings
-Omen.UpdateBarLabelSettings = function(self)
-	self:UpdateBarLabelSettings_()
-	for i, v in ipairs(self.Bars) do
-		v.Text1:SetFont(c["media"].font, c["datatext"].fontsize)
-		v.Text2:SetFont(c["media"].font, c["datatext"].fontsize)
-		v.Text3:SetFont(c["media"].font, c["datatext"].fontsize)
-	end
-end
-
 Omen.UpdateTitleBar_ = Omen.UpdateTitleBar
 Omen.UpdateTitleBar = function(self)
 	Omen.db.profile.Scale = 1
@@ -35,7 +18,6 @@ Omen.UpdateTitleBar = function(self)
 	Omen.db.profile.TitleBar.UseSameBG = true
 	self:UpdateTitleBar_()
 	self.Title:SetHeight(23)
-	self.TitleText:SetFont(c["media"].font, c["datatext"].fontsize)
 	self.TitleText:ClearAllPoints()
 	self.TitleText:SetPoint("CENTER")
 	self.BarList:SetPoint("TOPLEFT", self.Title, "BOTTOMLEFT", 0, 1)
@@ -47,8 +29,10 @@ Omen.UpdateBackdrop = function(self)
 	Omen.db.profile.Background.EdgeSize = 1
 	Omen.db.profile.Background.BarInset = borderWidth
 	self:UpdateBackdrop_()
-	U.SkinFrameD(self.BarList)
-	U.SkinFrameD(self.Title)
+	if (U.CheckOption("EmbedOmen")) then
+		U.SkinFrameD(self.BarList)
+		U.SkinFrameD(self.Title)
+	end
 	self.BarList:SetPoint("TOPLEFT", self.Title, "BOTTOMLEFT", 0, 1)
 end
 
