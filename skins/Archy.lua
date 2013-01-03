@@ -21,14 +21,14 @@ local function SkinArchy(self)
 				local solveButton = _G['ArchyArtifactChildFrame'..i..'SolveButton']
 
 				if icon then
-					U.SkinFrame(icon, true)
+					U.SkinFrame(icon, false, true)
 					icon:SetSize(solveButton:GetHeight(),solveButton:GetHeight())
 					icon.texture:SetTexCoord(.08, .92, .08, .92)
 					icon.texture:SetInside()
 				end
 				
 				if solveButton then
-					U.SkinFrame(solveButton, true)
+					U.SkinFrame(solveButton, false, true)
 					solveButton:GetNormalTexture():SetTexCoord(.08, .92, .08, .92)
 					solveButton:GetNormalTexture():SetInside()	
 					solveButton:GetDisabledTexture():SetTexCoord(.08, .92, .08, .92)

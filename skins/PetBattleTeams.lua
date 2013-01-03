@@ -2,6 +2,7 @@ if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("
 local U = unpack(select(2,...))
 local name = "PetBattleTeamsSkin"
 local function SkinPetBattleTeams(self)
+	cDelay(6, function()
 		U.SkinFrame(PetBattleTeamFrame)
 		U.SkinScrollBar(PetBattleTeamsScrollFrameScrollBar)
 
@@ -17,9 +18,9 @@ local function SkinPetBattleTeams(self)
 			self.BorderBottom:SetTexture(nil)
 			self.BorderBottomRight:SetTexture(nil)
 			self.BorderBottomLeft:SetTexture(nil)
-			U.SkinFrame(self, true)
+			U.SkinFrame(self, false, true)
 		end)
-
+	end)
 end
 
-U.RegisterSkin(name,SkinPetBattleTeams)
+U.RegisterSkin(name,SkinPetBattleTeams,"ADDON_LOADED")

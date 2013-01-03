@@ -21,10 +21,10 @@ local T = unpack(Tukui)
 		if TPBar2and3Width == nil then TPBar2and3Width = 125 end 
 		if TPBar2and3Position == nil then TPBar2and3Position = WorldFrame:GetWidth()/5 end
 
-		U.SkinFrameD(Titan_Bar__Display_Bar)
-		U.SkinFrameD(Titan_Bar__Display_Bar2)
-		U.SkinFrameD(Titan_Bar__Display_AuxBar)
-		U.SkinFrameD(Titan_Bar__Display_AuxBar2)
+		U.SkinFrame(Titan_Bar__Display_Bar,"Default")
+		U.SkinFrame(Titan_Bar__Display_Bar2,"Default")
+		U.SkinFrame(Titan_Bar__Display_AuxBar,"Default")
+		U.SkinFrame(Titan_Bar__Display_AuxBar2,"Default")
 
 		local TP_Skin_OptionsFrame = CreateFrame("FRAME", "TP_Skin_OptionsFrame", UIParent)
 		TP_Skin_OptionsFrame:SetMovable(true)
@@ -146,7 +146,7 @@ local T = unpack(Tukui)
 	end)
 
 	if TPEnableSpecialBars == true then
-		if Titan_Bar__Display_Bar2 and Titan_Bar__Display_AuxBar2 then -- Do they really exist!
+		if Titan_Bar__Display_Bar2 and Titan_Bar__Display_AuxBar2 then
 		
 		if TPBar2and3Position == nil then
 			x = WorldFrame:GetWidth()/5 
@@ -156,7 +156,7 @@ local T = unpack(Tukui)
 
 		local y = Titan_Bar__Display_Bar:GetHeight() + Titan_Bar__Display_Bar2:GetHeight()/2 + 1
 
-				Titan_Bar__Display_Bar2:SetFrameStrata("FULLSCREEN")-- Sets them above cbBar 1.
+				Titan_Bar__Display_Bar2:SetFrameStrata("FULLSCREEN")
 				if TPBar2and3Width == nil then 
 					Titan_Bar__Display_Bar2:SetWidth(125)
 				else
@@ -179,33 +179,33 @@ local T = unpack(Tukui)
 
 	local x = Titan_Bar__Display_Bar2:GetWidth()/4
 		
-		cbBar2Left = CreateFrame('Frame', nil, Titan_Bar__Display_Bar2)
-		cbBar2Left:Point('BOTTOM', Titan_Bar__Display_Bar2, 'TOP',-x,0)
-		cbBar2Left:Width(2)
-		cbBar2Left:Height(Titan_Bar__Display_Bar2:GetHeight()/2)
-		U.SkinFrameD(cbBar2Left)
-		cbBar2Left:SetFrameLevel(Titan_Bar__Display_Bar2:GetFrameLevel())
+		tpBar2Left = CreateFrame('Frame', nil, Titan_Bar__Display_Bar2)
+		tpBar2Left:Point('BOTTOM', Titan_Bar__Display_Bar2, 'TOP',-x,0)
+		tpBar2Left:Width(2)
+		tpBar2Left:Height(Titan_Bar__Display_Bar2:GetHeight()/2)
+		U.SkinFrame(tpBar2Left,"Default")
+		tpBar2Left:SetFrameLevel(Titan_Bar__Display_Bar2:GetFrameLevel())
 
-		cbBar2Right = CreateFrame('Frame', nil, Titan_Bar__Display_Bar2)
-		cbBar2Right:Point('BOTTOM', Titan_Bar__Display_Bar2, 'TOP', x,0)
-		cbBar2Right:Width(2)
-		cbBar2Right:Height(Titan_Bar__Display_Bar2:GetHeight()/2)
-		U.SkinFrameD(cbBar2Right)
-		cbBar2Right:SetFrameLevel(Titan_Bar__Display_Bar2:GetFrameLevel())
+		tpBar2Right = CreateFrame('Frame', nil, Titan_Bar__Display_Bar2)
+		tpBar2Right:Point('BOTTOM', Titan_Bar__Display_Bar2, 'TOP', x,0)
+		tpBar2Right:Width(2)
+		tpBar2Right:Height(Titan_Bar__Display_Bar2:GetHeight()/2)
+		U.SkinFrame(tpBar2Right,"Default")
+		tpBar2Right:SetFrameLevel(Titan_Bar__Display_Bar2:GetFrameLevel())
 
-		cbBar3Left = CreateFrame('Frame', nil, Titan_Bar__Display_AuxBar2)
-		cbBar3Left:Point('BOTTOM', Titan_Bar__Display_AuxBar2, 'TOP',-x,0)
-		cbBar3Left:Width(2)
-		cbBar3Left:Height(Titan_Bar__Display_AuxBar2:GetHeight()/2)
-		U.SkinFrameD(cbBar3Left)
-		cbBar3Left:SetFrameLevel(Titan_Bar__Display_AuxBar2:GetFrameLevel())
+		tpBar3Left = CreateFrame('Frame', nil, Titan_Bar__Display_AuxBar2)
+		tpBar3Left:Point('BOTTOM', Titan_Bar__Display_AuxBar2, 'TOP',-x,0)
+		tpBar3Left:Width(2)
+		tpBar3Left:Height(Titan_Bar__Display_AuxBar2:GetHeight()/2)
+		U.SkinFrame(tpBar3Left,"Default")
+		tpBar3Left:SetFrameLevel(Titan_Bar__Display_AuxBar2:GetFrameLevel())
 		
-		cbBar3Right = CreateFrame('Frame', nil, Titan_Bar__Display_AuxBar2)
-		cbBar3Right:Point('BOTTOM', Titan_Bar__Display_AuxBar2, 'TOP', x,0)
-		cbBar3Right:Width(2)
-		cbBar3Right:Height(Titan_Bar__Display_AuxBar2:GetHeight()/2)
-		U.SkinFrameD(cbBar3Right)
-		cbBar3Right:SetFrameLevel(Titan_Bar__Display_AuxBar2:GetFrameLevel())
+		tpBar3Right = CreateFrame('Frame', nil, Titan_Bar__Display_AuxBar2)
+		tpBar3Right:Point('BOTTOM', Titan_Bar__Display_AuxBar2, 'TOP', x,0)
+		tpBar3Right:Width(2)
+		tpBar3Right:Height(Titan_Bar__Display_AuxBar2:GetHeight()/2)
+		U.SkinFrame(tpBar3Right,"Default")
+		tpBar3Right:SetFrameLevel(Titan_Bar__Display_AuxBar2:GetFrameLevel())
 	end
 		local Enabled = _G["Titan_Bar__Display_AuxBar2"]
 		Enabled:SetScript("OnUpdate", SetEnabled)

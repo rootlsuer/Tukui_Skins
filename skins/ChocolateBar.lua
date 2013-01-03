@@ -12,7 +12,7 @@ local T = unpack(Tukui)
 		for i = 1, 20 do   	
 		local f = _G["ChocolateBar"..i]
 			if f then
-				U.SkinFrameD(f)
+				U.SkinFrame(f,"Default")
 			end
 		end
 
@@ -153,28 +153,28 @@ local T = unpack(Tukui)
 		cbBar2Left:Point('BOTTOM', ChocolateBar2, 'TOP',-x,0)
 		cbBar2Left:Width(2)
 		cbBar2Left:Height(ChocolateBar2:GetHeight()/2)
-		U.SkinFrameD(cbBar2Left)
+		U.SkinFrame(cbBar2Left,"Default")
 		cbBar2Left:SetFrameLevel(ChocolateBar2:GetFrameLevel())
 
 		cbBar2Right = CreateFrame('Frame', nil, ChocolateBar2)
 		cbBar2Right:Point('BOTTOM', ChocolateBar2, 'TOP', x,0)
 		cbBar2Right:Width(2)
 		cbBar2Right:Height(ChocolateBar2:GetHeight()/2)
-		U.SkinFrameD(cbBar2Right)
+		U.SkinFrame(cbBar2Right,"Default")
 		cbBar2Right:SetFrameLevel(ChocolateBar2:GetFrameLevel())
 
 		cbBar3Left = CreateFrame('Frame', nil, ChocolateBar3)
 		cbBar3Left:Point('BOTTOM', ChocolateBar3, 'TOP',-x,0)
 		cbBar3Left:Width(2)
 		cbBar3Left:Height(ChocolateBar3:GetHeight()/2)
-		U.SkinFrameD(cbBar3Left)
+		U.SkinFrame(cbBar3Left,"Default")
 		cbBar3Left:SetFrameLevel(ChocolateBar3:GetFrameLevel())
 
 		cbBar3Right = CreateFrame('Frame', nil, ChocolateBar3)
 		cbBar3Right:Point('BOTTOM', ChocolateBar3, 'TOP', x,0)
 		cbBar3Right:Width(2)
 		cbBar3Right:Height(ChocolateBar3:GetHeight()/2)
-		U.SkinFrameD(cbBar3Right)
+		U.SkinFrame(cbBar3Right,"Default")
 		cbBar3Right:SetFrameLevel(ChocolateBar3:GetFrameLevel())
 	end
 end

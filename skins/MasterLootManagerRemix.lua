@@ -61,11 +61,11 @@ local function SkinMLM(self)
 	end	
 
 	for _, object in pairs(SetTemplateD) do
-		U.SkinFrameD(_G[object],true)
+		U.SkinFrame(_G[object],"Default",true)
 	end	
 
 	for _, object in pairs(SetTemplateT) do
-		U.SkinFrame(_G[object],true)
+		U.SkinFrame(_G[object], false, true)
 	end	
 
 	-- Skin Buttons

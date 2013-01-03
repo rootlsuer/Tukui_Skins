@@ -154,7 +154,7 @@ local function SkinAL(self)
 	end	
 
 	for _, object in pairs(SetTemplateD) do
-		U.SkinFrameD(_G[object])
+		U.SkinFrame(_G[object],"Default")
 	end	
 
 	for _, object in pairs(SetTemplateT) do

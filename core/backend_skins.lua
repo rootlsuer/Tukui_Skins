@@ -173,6 +173,9 @@ U.Skins = {
 	["OutfitterSkin"] = {
 		["addon"] = "Outfitter",
 	},
+	["OvaleSkin"] = {
+		["addon"] = "Ovale",
+	},
 	["PetBattleTeamsSkin"] = {
 		["addon"] = "PetBattleTeams",
 	},

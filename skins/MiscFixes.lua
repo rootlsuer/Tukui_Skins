@@ -7,7 +7,7 @@ local s = U.s
 local c = U.c
 
 	if IsAddOnLoaded("Numeration") and U.CheckOption("NumerationSkin") then
-		U.SkinFrame(NumerationFrame, true)
+		U.SkinFrame(NumerationFrame, false, true)
 	end
 
 	if IsAddOnLoaded("Critline") and U.CheckOption("CritlineSkin") then
@@ -87,7 +87,7 @@ local c = U.c
 	if IsAddOnLoaded("ShieldBars") then
 		hooksecurefunc(ShieldBars, "DisplayShields", function()
 			for i = 1, 20 do
-				if _G["ShieldBarsStatusBar"..i.."Frame"] then U.SkinFrame(_G["ShieldBarsStatusBar"..i.."Frame"], true) end
+				if _G["ShieldBarsStatusBar"..i.."Frame"] then U.SkinFrame(_G["ShieldBarsStatusBar"..i.."Frame"], false, true) end
 			end
 		end)
 	end
@@ -159,8 +159,8 @@ local c = U.c
 	LoadAddOn("Blizzard_TrainerUI")
 	ClassTrainerFrame:HookScript("OnShow", function()
 		if ClassTrainerTrainAllButton then
-			U.SkinFrameD(ClassTrainerTrainAllButton)
-			U.SkinFrameD(ClassTrainerTrainButton)
+			U.SkinFrame(ClassTrainerTrainAllButton,"Default")
+			U.SkinFrame(ClassTrainerTrainButton,"Default")
 		end
 	end)
 end

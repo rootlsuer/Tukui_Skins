@@ -7,7 +7,6 @@ local name = "AdiBagsSkin"
 local function SkinFrame(frame)
 	local region = frame.HeaderRightRegion
 	U.SkinFrame(frame)
-	U.SkinFrame(_G[frame:GetName()..'Bags'])
 	U.SkinFrameD(_G[frame:GetName()..'Bags'], true)
 	U.SkinCloseButton(frame.CloseButton)
 	for i = 1, 3 do

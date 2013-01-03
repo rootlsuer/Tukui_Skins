@@ -51,6 +51,7 @@
 	<Script file="Omen.lua"/>
 	<Script file="OneClickEnchantScroll.lua"/>
 	<Script file="Outfitter.lua"/>
+	<Script file="Ovale.lua"/>
 	<Script file="PetBattleTeams.lua"/>
 	<Script file="PoMTracker.lua"/>
 	<Script file="Postal.lua"/>
@@ -73,7 +74,6 @@
 	<Script file="Spy.lua"/>
 	<Script file="Swatter.lua"/>
 	<Script file="tCombo.lua"/>
-	<Script file="TellMeWhen.lua"/>
 	<Script file="TinyDPS.lua"/>
 	<Script file="TitanPanel.lua"/>
 	<Script file="TradeSkillDW.lua"/>

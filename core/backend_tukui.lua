@@ -22,6 +22,7 @@ XS.Init = function(self)
 	for skin,alldata in pairs(self.register) do
 		for _,data in pairs(alldata) do
 			if IsAddOnLoaded(Skins[skin].addon) then
+				if UISkinOptions[skin] == nil then UISkinOptions[skin] = "Enabled" end
 				self:RegisterSkin(skin,data.func,data.events)
 			end
 		end
@@ -100,7 +101,6 @@ local DefaultSetSkin = CreateFrame("Frame")
 	if(UISkinOptions.DBMSkinHalf == nil) then UISkinOptions.DBMSkinHalf = "Disabled" end
 	if(UISkinOptions.WeakAurasSkin == nil) then UISkinOptions.WeakAurasSkin = "Enabled" end
 	UISkinOptions.MiscFixes = "Enabled"
-	--if(UISkinOptions.ColorTemplate == nil) then UISkinOptions.ColorTemplate = "ClassColor" end
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 end)
 
@@ -555,7 +555,6 @@ local SkinOptions = CreateFrame("Frame", "SkinOptions", UIParent)
 		local buttonText = options.buttonText or addon
 		if options.hide ~= "True" then
 			if IsAddOnLoaded(addon) then
-				if UISkinOptions[skin] == nil then UISkinOptions[skin] = "Enabled" end
 				CreateButton(string.format('%sButton',skin),buttonText,addon,skin,curX,curY)
 				SkinOptions:Height(70+(curY*22))
 				SkinOptions2:Height(70+(curY*22))

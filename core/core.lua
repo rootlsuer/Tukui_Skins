@@ -8,75 +8,14 @@ local U = unpack(select(2,...))
 local s = U.s
 local c = U.c
 
-function cColorSwitch()
-	for k, v in pairs(U.ColorBackdrop) do cUpdateColor(v) end
-	for k, v in pairs(U.ColorFrame) do cUpdateColor(v) end
-	for k, v in pairs(U.ColorScroll) do cColorScrollBar(v) end
-	for k, v in pairs(U.ColorSlider) do cColorSlideBar(v) end
-	if IsAddOnLoaded("Tukui") then ColorTukui() end
-	if IsAddOnLoaded("AsphyxiaUI") then ColorAsphyxiaUI() end
-	GameTooltip:HookScript("OnUpdate", function(self) cUpdateColor(self) end)
-	if IsAddOnLoaded("SpecSwitcher") then
-		cUpdateColor(SpecTalent)
-		cUpdateColor(SpecTalent.backdrop)
-	end
-	if IsAddOnLoaded("Tukui_BuffsNotice") then
-		if TukuiBuffsWarningFrame then cUpdateColor(TukuiBuffsWarningFrame) end
-		if TukuiBuffsWarningFrame2 then cUpdateColor(TukuiBuffsWarningFrame2) end
-		if TukuiEnchantsWarningFrame then cUpdateColor(TukuiEnchantsWarningFrame) end
-	end
-end
-
-function cUpdateColor(self)
-	if UISkinOptions.ColorTemplate == "ClassColor" then
-		local color = RAID_CLASS_COLORS[U.ccolor]
-		self:SetBackdropBorderColor(color.r, color.g, color.b)
-	else
-		self:SetBackdropBorderColor(unpack(c["media"].bordercolor))
-	end
-end
-
-function cColorScrollBar(self)
-	if _G[self:GetName().."ScrollUpButton"] and _G[self:GetName().."ScrollDownButton"] then
-		cUpdateColor(_G[self:GetName().."ScrollUpButton"])
-		cUpdateColor(_G[self:GetName().."ScrollDownButton"])
-		if UISkinOptions.ColorTemplate == "ClassColor" then
-			local color = RAID_CLASS_COLORS[U.ccolor]
-			_G[self:GetName().."ScrollUpButton"].texture:SetVertexColor(color.r, color.g, color.b)
-			_G[self:GetName().."ScrollDownButton"].texture:SetVertexColor(color.r, color.g, color.b)
-		else
-			_G[self:GetName().."ScrollUpButton"].texture:SetVertexColor(unpack(c["media"].bordercolor))
-			_G[self:GetName().."ScrollDownButton"].texture:SetVertexColor(unpack(c["media"].bordercolor))
-		end
-	end
-	if self.trackbg then cUpdateColor(self.trackbg) end
-	if self.thumbbg then cUpdateColor(self.thumbbg) end
-end
-
-function cColorSlideBar(self)
-	cUpdateColor(self)
-	if UISkinOptions.ColorTemplate == "ClassColor" then
-		local color = RAID_CLASS_COLORS[U.ccolor]
-		self:GetThumbTexture():SetVertexColor(color.r, color.g, color.b)
-	else
-		self:GetThumbTexture():SetVertexColor(unpack(c["media"].bordercolor))
-	end
-end
-
 local function cSkinButton(self,strip)
 	self:SkinButton(strip)
-	tinsert(U.ColorFrame, self)
-	cUpdateColor(self)
-	self:HookScript("OnEnter", TSSetModifiedBackdrop)
-	self:HookScript("OnLeave", TSSetOriginalBackdrop)
 end
 
 U.SkinButton = cSkinButton
 
 local function cSkinScrollBar(self)
 	self:SkinScrollBar()
-	tinsert(U.ColorScroll, self)
-	cColorScrollBar(self)
 end
 
 U.SkinScrollBar = cSkinScrollBar
@@ -84,26 +23,18 @@ U.SkinScrollBar = cSkinScrollBar
 local function cSkinTab(self, strip, hook)
 	if strip then self:StripTextures(True) end
 	self:SkinTab()
-	tinsert(U.ColorBackdrop, self.backdrop)
-	cUpdateColor(self.backdrop)
-	self:HookScript("OnEnter", TSSetModifiedBackdrop)
-	self:HookScript("OnLeave", TSSetOriginalBackdrop)
 end
 
 U.SkinTab = cSkinTab
 
 local function cSkinNextPrevButton(self, horizonal)
 	self:SkinNextPrevButton(horizonal)
-	tinsert(U.ColorFrame, self)
-	cUpdateColor(self)
 end
 
 U.SkinNextPrevButton = cSkinNextPrevButton
 
 local function cSkinRotateButton(self)
 	self:SkinRotateButton()
-	tinsert(U.ColorFrame, self)
-	cUpdateColor(self)
 end
 
 U.SkinRotateButton = cSkinRotateButton
@@ -112,27 +43,18 @@ local function cSkinEditBox(self, width, height)
 	self:SkinEditBox()
 	if width then self:SetWidth(width) end
 	if height then self:SetHeight(height) end
-	tinsert(U.ColorBackdrop, self.backdrop)
-	cUpdateColor(self.backdrop)
 end
 
 U.SkinEditBox = cSkinEditBox
 
 local function cSkinDropDownBox(self, width)
 	self:SkinDropDownBox(width)
-	tinsert(U.ColorBackdrop, self.backdrop)
-	cUpdateColor(self.backdrop)
-	local button = _G[self:GetName().."Button"]
-	cUpdateColor(button)
-	tinsert(U.ColorFrame, button)
 end
 
 U.SkinDropDownBox = cSkinDropDownBox
 
 local function cSkinCheckBox(self)
 	self:SkinCheckBox()
-	tinsert(U.ColorBackdrop, self.backdrop)
-	cUpdateColor(self.backdrop)
 end
 
 U.SkinCheckBox = cSkinCheckBox
@@ -145,8 +67,6 @@ U.SkinCloseButton = cSkinCloseButton
 
 local function cSkinSlideBar(self, height, movetext)
 	self:SkinSlideBar(height, movetext)
-	tinsert(U.ColorSlider, self)
-	cColorSlideBar(self)
 end
 
 U.SkinSlideBar = cSkinSlideBar
@@ -157,30 +77,18 @@ function cRegisterForPetBattleHide(frame)
 	end
 end
 
-local function cSkinFrame(self, overridestrip)
+local function cSkinFrame(self, template, overridestrip)
+	if not template then template = "Transparent" end
 	if not overridestrip then self:StripTextures(True) end
-	self:SetTemplate("Transparent")
-	tinsert(U.ColorFrame, self)
-	cUpdateColor(self)
+	self:SetTemplate(template)
 end
 
 U.SkinFrame = cSkinFrame
-
-local function cSkinFrameD(self, overridestrip)
-	if not overridestrip then self:StripTextures(True) end
-	self:SetTemplate()
-	tinsert(U.ColorFrame, self)
-	cUpdateColor(self)
-end
-
-U.SkinFrameD = cSkinFrameD
 
 local function cSkinBackdropFrame(self, strip, icon)
 	if strip then self:StripTextures(True) end
 	if not icon then
 		self:CreateBackdrop()
-		cUpdateColor(self.backdrop)
-		tinsert(U.ColorBackdrop, self.backdrop)
 	else
 		if self.icon then self.icon:SetTexCoord(0.12, 0.88, 0.12, 0.88) end
 		if _G[self:GetName().."_Background"] then _G[self:GetName().."_Background"]:SetTexCoord(0.12, 0.88, 0.12, 0.88) end
@@ -190,10 +98,8 @@ end
 U.SkinBackdropFrame = cSkinBackdropFrame
 
 local function cSkinStatusBar(self, ClassColor)
-	local s = U.s
 	local c = U.c
 	cSkinBackdropFrame(self, true)
-	cUpdateColor(self.backdrop)
 	self:SetStatusBarTexture(c["media"].normTex)
 	if ClassColor then
 		local color = RAID_CLASS_COLORS[U.ccolor]
@@ -218,9 +124,6 @@ local function cSkinIconButton(self, strip, style, shrinkIcon)
 	if strip then self:StripTextures() end
 	self:CreateBackdrop("Default", true)
 	if style then self:StyleButton() end
-
-	cUpdateColor(self.backdrop)
-	tinsert(U.ColorBackdrop, self.backdrop)
 
 	local icon = self.icon
 	if self:GetName() and _G[self:GetName().."IconTexture"] then
@@ -370,20 +273,6 @@ function cDelay(delay, func, ...)
 	end
 	tinsert(waitTable,{delay,func,{...}})
 	return true
-end
-
-function TSSetModifiedBackdrop(self)
-	local color = RAID_CLASS_COLORS[U.ccolor]
-	self:SetBackdropBorderColor(color.r, color.g, color.b)
-end
-
-function TSSetOriginalBackdrop(self)
-	local color = RAID_CLASS_COLORS[U.ccolor]
-	if UISkinOptions.ColorTemplate == "ClassColor" then
-		self:SetBackdropBorderColor(color.r, color.g, color.b)
-	else
-		self:SetBackdropBorderColor(unpack(c["media"].bordercolor))
-	end
 end
 
 function UISetup()

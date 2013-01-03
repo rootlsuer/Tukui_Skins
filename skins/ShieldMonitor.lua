@@ -5,13 +5,13 @@ local c = U.c
 local name = "ShieldMonitorSkin"
 local function SkinShieldMonitor(self)
 
-	U.SkinFrameD(shieldmonitor_Frame)
+	U.SkinFrame(shieldmonitor_Frame,"Default")
 	shieldmonitor_Frame:HookScript("OnShow", function(self)
-		U.SkinFrameD(self, true)
+		U.SkinFrame(self, "Default", true)
 	end)
 	shieldmonitor_Frame:RegisterEvent("UNIT_AURA")
 	shieldmonitor_Frame:HookScript("OnEvent", function(self)
-		U.SkinFrameD(self, true)
+		U.SkinFrame(self, "Default", true)
 	end)
 	shieldmonitor_Frame:SetSize(209, 20)
 
@@ -20,7 +20,7 @@ local function SkinShieldMonitor(self)
 	shieldmonitor_Bar:SetInside()
 
 	local IconBorder = CreateFrame("Frame", "ShieldIconBorder", shieldmonitor_Frame)
-	U.SkinFrameD(IconBorder)
+	U.SkinFrame(IconBorder,"Default")
 	IconBorder:SetSize(20, 20)
 	IconBorder:SetPoint("RIGHT", shieldmonitor_Frame, "LEFT", -3, 0)
 

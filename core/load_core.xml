@@ -3,6 +3,4 @@
 	<Script file="backend_skins.lua"/>
 	<Script file="backend_tukui.lua"/>
 	<Script file="embed.lua"/>
-	<Script file="ColorAsphyxiaUI.lua"/>
-	<Script file="ColorTukui.lua"/>
 </Ui>
