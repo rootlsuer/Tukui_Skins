@@ -306,7 +306,7 @@ function EmbedRecountOmen()
 					end
 				end
 		end
-		U.SkinFrameD(OmenBarList)
+		U.SkinFrame(OmenBarList, "Default")
 		OmenAnchor:ClearAllPoints()
 		Recount:LockWindows(true)
 		Recount_MainWindow:ClearAllPoints()
@@ -368,7 +368,7 @@ function EmbedOmen()
 				end
 		end
 		OmenTitle:Kill()
-		U.SkinFrameD(OmenBarList)
+		U.SkinFrame(OmenBarList, "Default")
 		OmenAnchor:ClearAllPoints()
 		if not InCombatLockdown() then
 			OmenBarList:SetPoint("TOPLEFT", EmbeddingWindow, "TOPLEFT", 0, 0)
@@ -381,7 +381,7 @@ end
 function EmbedTDPS()
 	if not IsAddOnLoaded("TinyDPS") then U.DisableOption("EmbedTDPS") return end
 	if ChatBackgroundRight then tdpsFrame:SetParent(ChatBackgroundRight) end
-	U.SkinFrameD(tdpsFrame)
+	U.SkinFrame(tdpsFrame, "Default")
 	tdpsFrame:SetFrameStrata("MEDIUM")
 	tdpsFrame.spacing = 0
 	tdpsFrame.barHeight = 14

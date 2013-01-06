@@ -188,11 +188,6 @@ local function AtrSkin(self,event)
 	for i = 4, AuctionFrame.numTabs do
 		U.SkinTab(_G["AuctionFrameTab"..i])
 	end
-	AuctionFrameTab4:HookScript("OnUpdate", function()
-		for i = 4, AuctionFrame.numTabs do
-			cUpdateColor(_G["AuctionFrameTab"..i].backdrop)
-		end
-	end)
 	AuctionFrameTab1:Point("TOPLEFT", AuctionFrame, "BOTTOMLEFT", 5, 2)
 	U.UnregisterEvent(name, self, event)
 end
