@@ -7,6 +7,7 @@ local function SkinSoundtrack(self)
 		"SoundtrackFrameEventList",
 		"SoundtrackFrameTrackList",
 		"SoundtrackFrame_AssignedFrame",
+		"SoundtrackReportFrame",
 	}
 
 	local buttons = {
@@ -32,6 +33,12 @@ local function SkinSoundtrack(self)
 		"SoundtrackFrameAddPlaylistButton",
 		"SoundtrackFrame_LoadProject",
 		"SoundtrackFrame_RemoveProject",
+		"SoundtrackReportFrame_Say",
+		"SoundtrackReportFrame_Party",
+		"SoundtrackReportFrame_Guild",
+		"SoundtrackReportFrame_Whisper",
+		"SoundtrackReportFrame_Channel",
+		"SoundtrackReportFrame_Cancel",
 	}
 
 	local cboxes = {
@@ -119,7 +126,14 @@ local function SkinSoundtrack(self)
 	U.SkinDropDownBox(SoundtrackFrame_LowHealthPercentDropDown)
 	U.SkinDropDownBox(SoundtrackFrame_SilenceDropDown)
 	U.SkinDropDownBox(SoundtrackFrame_ProjectDropDown)
-
+	U.SkinBackdropFrame(SoundtrackControlFrame)
+	U.SkinStatusBar(SoundtrackControlFrame_StatusBarTrack)
+	SoundtrackControlFrame_StatusBarTrackBorder:Kill()
+	U.SkinStatusBar(SoundtrackControlFrame_StatusBarEvent)
+	SoundtrackControlFrame_StatusBarEventBorder:Kill()
+	U.SkinEditBox(SoundtrackReportFrame_WhisperEditBox)
+	U.SkinEditBox(SoundtrackReportFrame_ChannelEditBox)
+	
 	U.SkinTooltip(SoundtrackTooltip)
 	NowPlayingTextFrame:Show()
 	NowPlayingTextFrame:Hide()

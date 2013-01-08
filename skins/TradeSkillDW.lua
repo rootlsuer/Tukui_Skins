@@ -36,13 +36,13 @@ local function SkinTradeSkillDW(self)
 	TradeSkillLinkButton:Point("LEFT", TradeSkillLinkFrame, "LEFT", 5, -1)
 	U.SkinEditBox(TradeSkillFrameSearchBox)
 	U.SkinEditBox(TradeSkillInputBox)
-	U.SkinNextPrevButton(TradeSkillDecrementButton)
-	U.SkinNextPrevButton(TradeSkillIncrementButton)
+	--U.SkinNextPrevButton(TradeSkillDecrementButton)
+	--U.SkinNextPrevButton(TradeSkillIncrementButton)
 	TradeSkillIncrementButton:Point("RIGHT", TradeSkillCreateButton, "LEFT", -13, 0)
 
 	U.SkinCloseButton(TradeSkillFrameCloseButton)
 	U.SkinScrollBar(TradeSkillDetailScrollFrameScrollBar)
-	U.SkinScrollBar(TradeSkillListScrollFrameScrollBar)
+	--U.SkinScrollBar(TradeSkillListScrollFrameScrollBar)
 
 	local once = false
 	hooksecurefunc("TradeSkillFrame_SetSelection", function(id)

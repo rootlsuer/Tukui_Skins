@@ -5,11 +5,10 @@ if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("
 	All rights reserved.
 ]]--
 local U = unpack(select(2,...))
-local croprwicons = true			-- crops blizz shitty borders from icons in RaidWarning messages
-local rwiconsize = 18			-- RaidWarning icon size, because 12 is small for me. Works only if croprwicons=true
-local buttonsize = 22
 
 local function LoadSkin()
+	local croprwicons = false
+	local buttonsize = 22
 	local s = U.s
 	local c = U.c
 	local function SkinBars(self)
@@ -225,12 +224,14 @@ local function LoadSkin()
 	DBMInfoFrame:HookScript("OnShow",function(self)
 		U.SkinFrame(self)
 	end)
-	local RaidNotice_AddMessage_=RaidNotice_AddMessage
-	RaidNotice_AddMessage=function(noticeFrame, textString, colorInfo)
-		if textString:find(" |T") then
-			textString = string.gsub(textString,"(:12:12)",":18:18:0:0:64:64:5:59:5:59")
+	if croprwicons then
+		local RaidNotice_AddMessage_ = RaidNotice_AddMessage
+		RaidNotice_AddMessage = function(noticeFrame, textString, colorInfo)
+			if textString:find(" |T") then
+				textString = string.gsub(textString,"(:12:12)",":18:18:0:0:64:64:5:59:5:59")
+			end
+			return RaidNotice_AddMessage_(noticeFrame, textString, colorInfo)
 		end
-		return RaidNotice_AddMessage_(noticeFrame, textString, colorInfo)
 	end
 end
 
