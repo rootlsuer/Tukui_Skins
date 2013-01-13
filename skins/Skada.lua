@@ -85,7 +85,11 @@ local function SkinSkada(self)
 			win.bargroup.button:SetFrameStrata("HIGH")
 			win.bargroup.button:SetFrameLevel(5)	
 			win.bargroup:SetFrameStrata("HIGH")
-			if ChatBackgroundRight then win.bargroup:SetParent(ChatBackgroundRight) end
+			if UISkinOptions.EmbedLeft == "Skada" then
+				win.bargroup:SetParent(EmbeddingWindowLeft)
+			else
+				win.bargroup:SetParent(EmbeddingWindow)
+			end
 		end
 	end
 end

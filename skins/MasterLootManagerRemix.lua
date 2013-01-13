@@ -3,61 +3,60 @@ local U = unpack(select(2,...))
 local name = "MasterLootManagerRemixSkin"
 local function SkinMLM(self)
 	local StripAllTextures = {
-				"MasterLootManagerMain",
-				"MasterLootLoggerFrame",
-				"MasterLootLoggerFrameContentScrollFrame",
-				"MasterLootLoggerAddEditFrame",
-				}
-
+		"MasterLootManagerMain",
+		"MasterLootLoggerFrame",
+		"MasterLootLoggerFrameContentScrollFrame",
+		"MasterLootLoggerAddEditFrame",
+	}
 	local SetTemplateD = { 
-				"MasterLootLoggerFrameContentColumnHeader1",
-				"MasterLootLoggerFrameContentColumnHeader2",
-				"MasterLootLoggerFrameContentColumnHeader3",
-				"MasterLootLoggerFrameContentColumnHeader4",
-				"MasterLootLoggerFrameContentColumnHeader5",
-				"MasterLootLoggerFrameContentColumnHeader6",																			
-				}
+		"MasterLootLoggerFrameContentColumnHeader1",
+		"MasterLootLoggerFrameContentColumnHeader2",
+		"MasterLootLoggerFrameContentColumnHeader3",
+		"MasterLootLoggerFrameContentColumnHeader4",
+		"MasterLootLoggerFrameContentColumnHeader5",
+		"MasterLootLoggerFrameContentColumnHeader6",																			
+	}
 
 	local SetTemplateT = {
-				"MasterLootManagerMain",
-				"MasterLootManagerMain_ScrollFrame",
-				"MasterLootLoggerFrame",
-				"MasterLootLoggerAddEditFrame",
-				}	
+		"MasterLootManagerMain",
+		"MasterLootManagerMain_ScrollFrame",
+		"MasterLootLoggerFrame",
+		"MasterLootLoggerAddEditFrame",
+	}	
 
 	local buttons = {
-				"MasterLootManagerMain_Countdown",
-				"MasterLootManagerMain_SelectItem",
-				"MasterLootManagerMain_AnnounceLoot",
-				"MasterLootManagerMain_AnnounceMainSpec",
-				"MasterLootManagerMain_AnnounceOffSpec",
-				"MasterLootManagerMain_AnnounceNoSpec",
-				"MasterLootManagerMain_AwardLoot",
-				"MasterLootManagerMain_Settings",
-				"MasterLootManagerMain_AssignDE",
-				"MasterLootManagerMain_AssignBank",
-				"MasterLootLoggerFrameContentExportButton",
-				"MasterLootLoggerFrameContentClearButton",
-				"MasterLootLoggerFrameContentAddButton",
-				"MasterLootLoggerFrameContentEditButton",
-				"MasterLootLoggerFrameContentDeleteButton",
-				"MasterLootLoggerAddEditFrameConfirm",
-				}
+		"MasterLootManagerMain_Countdown",
+		"MasterLootManagerMain_SelectItem",
+		"MasterLootManagerMain_AnnounceLoot",
+		"MasterLootManagerMain_AnnounceMainSpec",
+		"MasterLootManagerMain_AnnounceOffSpec",
+		"MasterLootManagerMain_AnnounceNoSpec",
+		"MasterLootManagerMain_AwardLoot",
+		"MasterLootManagerMain_Settings",
+		"MasterLootManagerMain_AssignDE",
+		"MasterLootManagerMain_AssignBank",
+		"MasterLootLoggerFrameContentExportButton",
+		"MasterLootLoggerFrameContentClearButton",
+		"MasterLootLoggerFrameContentAddButton",
+		"MasterLootLoggerFrameContentEditButton",
+		"MasterLootLoggerFrameContentDeleteButton",
+		"MasterLootLoggerAddEditFrameConfirm",
+	}
 
 	local checkboxes = {
-				"MasterLootLoggerAddEditFrameItem",
-				"MasterLootLoggerAddEditFrameSource",
-				"MasterLootLoggerAddEditFrameWinner",
-				"MasterLootLoggerAddEditFrameValue",
-				"MasterLootLoggerAddEditFrameMonth",
-				"MasterLootLoggerAddEditFrameDay",
-				"MasterLootLoggerAddEditFrameYear",
-				"MasterLootLoggerAddEditFrameHour",
-				"MasterLootLoggerAddEditFrameMinute",
-				}
+		"MasterLootLoggerAddEditFrameItem",
+		"MasterLootLoggerAddEditFrameSource",
+		"MasterLootLoggerAddEditFrameWinner",
+		"MasterLootLoggerAddEditFrameValue",
+		"MasterLootLoggerAddEditFrameMonth",
+		"MasterLootLoggerAddEditFrameDay",
+		"MasterLootLoggerAddEditFrameYear",
+		"MasterLootLoggerAddEditFrameHour",
+		"MasterLootLoggerAddEditFrameMinute",
+	}
 
 	for _, object in pairs(StripAllTextures) do
-                _G[object]:StripTextures()
+		_G[object]:StripTextures()
 	end	
 
 	for _, object in pairs(SetTemplateD) do

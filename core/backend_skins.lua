@@ -10,11 +10,16 @@ U.Skins = {
 		["addon"] = "ACP",
 	},
 	["AdiBagsSkin"] = {
-		["buttonText"] = "AdiBags",
 		["addon"] = "AdiBags",
+	},
+	["AffDotsSkin"] = {
+		["addon"] = "AffDots",
 	},
 	["AltoholicSkin"] = {
 		["addon"] = "Altoholic",
+	},
+	["AnalystSkin"] = {
+		["addon"] = "Analyst",
 	},
 	["AraBrokerGuildFriendsSkin"] = {
 		["buttonText"] = "Ara Broker Guild Friends",
@@ -24,7 +29,7 @@ U.Skins = {
 		["addon"] = "Archy",
 	},
 	['ArhSkin'] = {
-		["buttonText"] = "ArchaeologyHelper",
+		["buttonText"] = "Archaeology Helper",
 		["addon"] = "Arh",
 	},
 	["ArkInventorySkin"] = {
@@ -59,6 +64,9 @@ U.Skins = {
 	["BigWigsSkin"] = {
 		["addon"] = "BigWigs",
 	},
+	["BloodShieldTrackerSkin"] = {
+		["addon"] = "BloodShieldTracker",
+	},
 	["BPTSkin"] = {
 		["buttonText"] = "Balance Power Tracker",
 		["addon"] = "BalancePowerTracker"
@@ -78,6 +86,9 @@ U.Skins = {
 	["CoolLineSkin"] = {
 		["addon"] = "CoolLine",
 	},
+	["CorkSkin"] = {
+		["addon"] = "Cork",
+	},
 	["CritlineSkin"] = {
 		["addon"] = "Critline",
 	},
@@ -91,6 +102,9 @@ U.Skins = {
 	["EasyMailSkin"] = {
 		["addon"] = "EasyMail",
 	},
+	["EavesDropSkin"] = {
+		["addon"] = "EavesDrop",
+	},
 	["EnergyWatchSkin"] = {
 		["addon"] = "EnergyWatch",
 	},
@@ -101,11 +115,20 @@ U.Skins = {
 		["buttonText"] = "Extended Vendor",
 		["addon"] = "ExtVendor",
 	},
+	["EveryGoldToBankerSkin"] = {
+		["addon"] = "EveryGoldToBanker",
+	},
 	["FactionizerSkin"] = {
 		["addon"] = "Factionizer",
 	},
 	["FlightMapSkin"] = {
 		["addon"] = "FlightMap",
+	},
+	["FlightMapEnhancedSkin"] = {
+		["addon"] = "FlightMapEnhanced",
+	},
+	["GuildMemberInfo_TradeSkillsSkin"] = {
+		["addon"] = "GuildMemberInfo_TradeSkills",
 	},
 	["GupPetSkin"] = {
 		["addon"] = "GupPet",
@@ -205,9 +228,6 @@ U.Skins = {
 		["buttonText"] = "Raid Buff Status",
 		["addon"] = "RaidBuffStatus",
 	},
-	--["RavenSkin"] = {
-	--	["addon"] = "Raven",
-	--},
 	["RecountSkin"] = {
 		["addon"] = "Recount",
 	},
@@ -224,6 +244,9 @@ U.Skins = {
 	["SexyCooldownSkin"] = {
 		["buttonText"] = "SexyCooldown 2",
 		["addon"] = "SexyCooldown2",
+	},
+	["ShieldBarsSkin"] = {
+		["addon"] = "ShieldBars",
 	},
 	["ShieldMonitorSkin"] = {
 		["buttonText"] = "Shield Monitor",
@@ -248,6 +271,9 @@ U.Skins = {
 	["SwatterSkin"] = {
 		["buttonText"] = "Swatter",
 		["addon"] = "!Swatter",
+	},
+	["SymbiosisTipSkin"] = {
+		["addon"] = "SymbiosisTip",
 	},
 	["tComboSkin"] = {
 		["buttonText"] = "Tukui Combo",
