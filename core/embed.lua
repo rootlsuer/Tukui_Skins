@@ -156,7 +156,7 @@ if event == "PLAYER_ENTERING_WORLD" then
 --Embed Check
 	if (U.CheckOption("EmbedOmen","Omen")) then EmbedOmen() end
 	if (U.CheckOption("EmbedSkada","Skada")) then EmbedSkada() end
-	if (U.CheckOption("EmbedTDPS","TinyDPS")) then EmbedTDPS() end
+	if (U.CheckOption("EmbedTinyDPS","TinyDPS")) then EmbedTDPS() end
 	if (U.CheckOption("EmbedRecount","Recount")) then EmbedRecount() end
 --Embed Check Finished
 
@@ -175,7 +175,7 @@ if event == "PLAYER_ENTERING_WORLD" then
 			if (U.CheckOption("EmbedRecount","Recount")) then
 				if Recount_MainWindow and Recount_MainWindow:IsShown() then found = true end
 			end
-			if (U.CheckOption("EmbedTDPS","TinyDPS")) then
+			if (U.CheckOption("EmbedTinyDPS","TinyDPS")) then
 				if tdpsFrame and tdpsFrame:IsShown() then found = true end
 			end
 			if found then
@@ -395,7 +395,7 @@ function EmbedWindowResize()
 		end
 	end
 	if (U.CheckOption("EmbedRO","Recount","Omen")) then EmbedRecountOmenResize() end
-	if (U.CheckOption("EmbedTDPS","TinyDPS")) then EmbedTDPSResize() end
+	if (U.CheckOption("EmbedTinyDPS","TinyDPS")) then EmbedTDPSResize() end
 	if (U.CheckOption("EmbedRecount","Recount")) then EmbedRecountResize() end
 	if (U.CheckOption("EmbedOmen","Omen")) then EmbedOmenResize() end
 end

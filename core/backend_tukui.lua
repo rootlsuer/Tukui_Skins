@@ -90,7 +90,7 @@ local DefaultSetSkin = CreateFrame("Frame")
 	if(UISkinOptions.SkadaBackdrop == nil) then UISkinOptions.SkadaBackdrop = "Enabled" end
 	if(UISkinOptions.EmbedOoC == nil) then UISkinOptions.EmbedOoC = "Disabled" end
 	if(UISkinOptions.EmbedOmen == nil) then UISkinOptions.EmbedOmen = "Disabled" end
-	if(UISkinOptions.EmbedTDPS == nil) then UISkinOptions.EmbedTDPS = "Disabled" end
+	if(UISkinOptions.EmbedTinyDPS == nil) then UISkinOptions.EmbedTinyDPS = "Disabled" end
 	if(UISkinOptions.EmbedSkada == nil) then UISkinOptions.EmbedSkada = "Disabled" end
 	if(UISkinOptions.EmbedRecount == nil) then UISkinOptions.EmbedRecount = "Disabled" end
 	if(UISkinOptions.CLCProtSkin == nil) then UISkinOptions.CLCProtSkin = "Enabled" end
@@ -180,13 +180,13 @@ local SkinOptionsLoader = CreateFrame("Frame")
 	local function ToggleEmbed()
 		U.DisableOption("EmbedOmen")
 		U.DisableOption("EmbedRecount")
-		U.DisableOption("EmbedTDPS")
+		U.DisableOption("EmbedTinyDPS")
 		U.DisableOption("EmbedSkada")
 		U.EnableOption("Embed"..UISkinOptions.EmbedRight)
 		U.EnableOption("Embed"..UISkinOptions.EmbedLeft)
 		if (U.CheckOption("EmbedOmen","Omen")) then EmbedOmen() end
 		if (U.CheckOption("EmbedSkada","Skada")) then EmbedSkada() end
-		if (U.CheckOption("EmbedTDPS","TinyDPS")) then EmbedTDPS() end
+		if (U.CheckOption("EmbedTinyDPS","TinyDPS")) then EmbedTDPS() end
 		if (U.CheckOption("EmbedRecount","Recount")) then EmbedRecount() end
 	end
 
