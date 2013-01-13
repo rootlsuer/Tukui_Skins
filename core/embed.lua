@@ -287,6 +287,11 @@ function EmbedTDPS()
 	tdpsFrame.spacing = 0
 	tdpsFrame.barHeight = 14
 	tdpsVisibleBars = 9
+	if UISkinOptions.EmbedLeft == "TinyDPS" then
+		tdpsAnchor:Point("TOPLEFT", EmbeddingWindowLeft, "TOPLEFT", 0, 0)
+	else
+		tdpsAnchor:Point("TOPLEFT", EmbeddingWindow, "TOPLEFT", 0, 0)
+	end
 	EmbedTDPSResize()
 
 	tdpsRefresh()
@@ -294,14 +299,10 @@ end
 
 function EmbedTDPSResize()
 	if not InCombatLockdown() then
-		tdpsFrame:ClearAllPoints()
-		tdpsAnchor:ClearAllPoints()
 		if UISkinOptions.EmbedLeft == "TinyDPS" then
 			tdpsFrame:SetWidth(EmbeddingWindowLeft:GetWidth())
-			tdpsAnchor:Point("TOPLEFT", EmbeddingWindowLeft, "TOPLEFT", 0, 0)
 		else
 			tdpsFrame:SetWidth(EmbeddingWindow:GetWidth())
-			tdpsAnchor:Point("TOPLEFT", EmbeddingWindow, "TOPLEFT", 0, 0)
 		end
 	end
 	tdpsRefresh()
