@@ -133,7 +133,11 @@ local SkinOptionsLoader = CreateFrame("Frame")
 
 	CreateOptionsFrame("SkinOptions2", "|cffC495DDTukui|r Module Options - Version ", SkinOptions)
 	CreateOptionsFrame("SkinOptions3", "|cffC495DDTukui|r Embed Options - Version ", SkinOptions)
-
+	SkinOptions3.text2 = SkinOptions3:CreateFontString(nil, "OVERLAY")
+	SkinOptions3.text2:SetFont(c["media"].font, 14, "OUTLINE")
+	SkinOptions3.text2:SetPoint("TOPRIGHT", SkinOptions3, "TOPRIGHT", -30, -38)
+	SkinOptions3.text2:SetText("|cff00AAFFAvailable Embeds|r:\n\nSkada\nRecount\nTinyDPS\nOmen")
+	
 	local function CreateOptionsButton(name, btntext, parent)
 		local frame = CreateFrame("Button", name.."Button", SkinOptions)
 		frame:Size(100,24)

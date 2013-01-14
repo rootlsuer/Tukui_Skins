@@ -284,16 +284,12 @@ function EmbedTDPS()
 	end
 	U.SkinFrame(tdpsFrame, "Default")
 	tdpsFrame:SetFrameStrata("MEDIUM")
-	tdpsFrame.spacing = 0
-	tdpsFrame.barHeight = 14
-	tdpsVisibleBars = 9
 	if UISkinOptions.EmbedLeft == "TinyDPS" then
 		tdpsAnchor:Point("TOPLEFT", EmbeddingWindowLeft, "TOPLEFT", 0, 0)
 	else
 		tdpsAnchor:Point("TOPLEFT", EmbeddingWindow, "TOPLEFT", 0, 0)
 	end
 	EmbedTDPSResize()
-
 	tdpsRefresh()
 end
 
@@ -304,8 +300,8 @@ function EmbedTDPSResize()
 		else
 			tdpsFrame:SetWidth(EmbeddingWindow:GetWidth())
 		end
+		tdpsRefresh()
 	end
-	tdpsRefresh()
 end
 
 if IsAddOnLoaded("Skada") then
@@ -328,20 +324,17 @@ if IsAddOnLoaded("Skada") then
 
 	local windows = {}
 	function EmbedSkada()
+		local EmbedParent
 		if UISkinOptions.EmbedLeft == "Skada" then
-			if(#windows == 1) then
-				EmbedWindow(windows[1], EmbeddingWindowLeft:GetWidth() - 4, (EmbeddingWindowLeft:GetHeight() - 19), "TOPRIGHT", EmbeddingWindowLeft, "TOPRIGHT", -2, -17)
-			elseif(#windows == 2) then
-				EmbedWindow(windows[1], ((EmbeddingWindowLeft:GetWidth() - 4) / 2) - (borderWidth + s.mult), EmbeddingWindowLeft:GetHeight() - 19, "TOPRIGHT", EmbeddingWindowLeft, "TOPRIGHT", -2, -17)
-				EmbedWindow(windows[2], ((EmbeddingWindowLeft:GetWidth() - 4) / 2) - (borderWidth + s.mult), EmbeddingWindowLeft:GetHeight() - 19, "TOPLEFT", EmbeddingWindowLeft, "TOPLEFT", 2, -17)
-			end
+			EmbedParent = EmbeddingWindowLeft
 		else
-			if(#windows == 1) then
-				EmbedWindow(windows[1], EmbeddingWindow:GetWidth() - 4, (EmbeddingWindow:GetHeight() - 19), "TOPRIGHT", EmbeddingWindow, "TOPRIGHT", -2, -17)
-			elseif(#windows == 2) then
-				EmbedWindow(windows[1], ((EmbeddingWindow:GetWidth() - 4) / 2) - (borderWidth + s.mult), EmbeddingWindow:GetHeight() - 19, "TOPRIGHT", EmbeddingWindow, "TOPRIGHT", -2, -17)
-				EmbedWindow(windows[2], ((EmbeddingWindow:GetWidth() - 4) / 2) - (borderWidth + s.mult), EmbeddingWindow:GetHeight() - 19, "TOPLEFT", EmbeddingWindow, "TOPLEFT", 2, -17)
-			end
+			EmbedParent = EmbeddingWindow
+		end
+		if(#windows == 1) then
+			EmbedWindow(windows[1], EmbedParent:GetWidth() - 4, (EmbedParent:GetHeight() - 19), "TOPRIGHT", EmbedParent, "TOPRIGHT", -2, -17)
+		elseif(#windows == 2) then
+			EmbedWindow(windows[1], ((EmbedParent:GetWidth() - 4) / 2) - (borderWidth + s.mult), EmbedParent:GetHeight() - 19, "TOPRIGHT", EmbedParent, "TOPRIGHT", -2, -17)
+			EmbedWindow(windows[2], ((EmbedParent:GetWidth() - 4) / 2) - (borderWidth + s.mult), EmbedParent:GetHeight() - 19, "TOPLEFT", EmbedParent, "TOPLEFT", 2, -17)
 		end
 	end
 
@@ -395,7 +388,7 @@ function EmbedWindowResize()
 			EmbeddingWindowLeft:Size(InfoLeft:GetWidth(), (ChatBackgroundLeft:GetHeight() - 34))
 		end
 	end
-	if (U.CheckOption("EmbedRO","Recount","Omen")) then EmbedRecountOmenResize() end
+	if (U.CheckOption("EmbedSkada","Skada")) then EmbedSkada() end
 	if (U.CheckOption("EmbedTinyDPS","TinyDPS")) then EmbedTDPSResize() end
 	if (U.CheckOption("EmbedRecount","Recount")) then EmbedRecountResize() end
 	if (U.CheckOption("EmbedOmen","Omen")) then EmbedOmenResize() end
