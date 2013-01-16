@@ -28,8 +28,6 @@ local function SkinButton(ButtonOrSpellID) -- Thanks to SinaC
 		texture:Point("BOTTOMRIGHT", -2, 2)
 		texture:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 		button:SetHighlightTexture(nil)
-		button:HookScript("OnEnter", TSSetModifiedBackdrop)
-		button:HookScript("OnLeave", TSSetOriginalBackdrop)
 		end
 	end
 end
@@ -60,8 +58,6 @@ local function SkinGuildRecipes(ButtonOrSpellID)
 		texture:Point("BOTTOMRIGHT", -2, 2)
 		texture:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 		button:SetHighlightTexture(nil)
-		button:HookScript("OnEnter", TSSetModifiedBackdrop)
-		button:HookScript("OnLeave", TSSetOriginalBackdrop)
 		end
 	end	
 end
