@@ -277,30 +277,12 @@ end
 
 function GetUIFrame(name)
 	local frame
-	if Tukui then
-		if name == "ChatBackgroundRight" then frame = "TukuiChatBackgroundRight" end
-		if name == "ChatBackgroundLeft" then frame = "TukuiChatBackgroundLeft" end
-		if name == "InfoLeft" then frame = "TukuiInfoLeft" end
-		if name == "InfoRight" then frame = "TukuiInfoRight" end
-		if name == "TabsRightBackground" then frame = "TukuiTabsRightBackground" end
-		if name == "TabsLeftBackground" then frame = "TukuiTabsLeftBackground" end
-		if name == "UIMinimap" then frame = "TukuiMinimap" end
-	elseif AsphyxiaUI then
-		if name == "ChatBackgroundRight" then frame = "AsphyxiaUIChatBackgroundRight" end
-		if name == "ChatBackgroundLeft" then frame = "AsphyxiaUIChatBackgroundLeft" end
-		if name == "InfoLeft" then frame = "AsphyxiaUIDataPanelLeft" end
-		if name == "InfoRight" then frame = "AsphyxiaUIDataPanelRight" end
-		if name == "TabsRightBackground" then frame = "AsphyxiaUIChatTabBackgroundRight" end
-		if name == "TabsLeftBackground" then frame = "AsphyxiaUIChatTabBackgroundLeft" end
-		if name == "UIMinimap" then frame = "AsphyxiaUIMinimap" end
-	elseif DuffedUI then
-		if name == "ChatBackgroundRight" then frame = "DuffedUIChatBackgroundRight" end
-		if name == "ChatBackgroundLeft" then frame = "DuffedUIChatBackgroundLeft" end
-		if name == "InfoLeft" then frame = "DuffedUIInfoLeft" end
-		if name == "InfoRight" then frame = "DuffedUIInfoRight" end
-		if name == "TabsRightBackground" then frame = "DuffedUITabsRightBackground" end
-		if name == "TabsLeftBackground" then frame = "DuffedUITabsLeftBackground" end
-		if name == "UIMinimap" then frame = "DuffedUIMinimap" end
-	end
+	if name == "ChatBackgroundRight" then frame = Tukui and "TukuiChatBackgroundRight" or AsphyxiaUI and "AsphyxiaUIChatBackgroundRight" or DuffedUI and "DuffedUIChatBackgroundRight" end
+	if name == "ChatBackgroundLeft" then frame = Tukui and "TukuiChatBackgroundLeft" or AsphyxiaUI and "AsphyxiaUIChatBackgroundLeft" or DuffedUI and "DuffedUIChatBackgroundLeft" end
+	if name == "InfoLeft" then frame = Tukui and "TukuiInfoLeft" or AsphyxiaUI and "AsphyxiaUIDataPanelLeft" or DuffedUI and "DuffedUIInfoLeft" end
+	if name == "InfoRight" then frame = Tukui and "TukuiInfoRight" or AsphyxiaUI and "AsphyxiaUIDataPanelRight" or DuffedUI and "DuffedUIInfoRight" end
+	if name == "TabsRightBackground" then frame = Tukui and "TukuiTabsRightBackground" or AsphyxiaUI and "AsphyxiaUIChatTabBackgroundRight" or DuffedUI and "DuffedUITabsRightBackground" end
+	if name == "TabsLeftBackground" then frame = Tukui and "TukuiTabsLeftBackground" or AsphyxiaUI and "AsphyxiaUIChatTabBackgroundLeft" or DuffedUI and "DuffedUITabsLeftBackground" end
+	if name == "UIMinimap" then frame = Tukui and "TukuiMinimap" or AsphyxiaUI and "AsphyxiaUIMinimap" or DuffedUI and "DuffedUIMinimap" end
 	return frame
 end
