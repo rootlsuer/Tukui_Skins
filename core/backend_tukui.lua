@@ -78,7 +78,6 @@ end
 local XSFrame = CreateFrame("Frame",nil)
 XSFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 XSFrame:SetScript("OnEvent",function(self)
-	UISetup()
 	XS:Init()
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 end)

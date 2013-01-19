@@ -275,30 +275,32 @@ function cDelay(delay, func, ...)
 	return true
 end
 
-function UISetup()
+function GetUIFrame(name)
+	local frame
 	if Tukui then
-		ChatBackgroundRight = TukuiChatBackgroundRight
-		ChatBackgroundLeft = TukuiChatBackgroundLeft
-		InfoLeft = TukuiInfoLeft
-		InfoRight = TukuiInfoRight
-		TabsRightBackground = TukuiTabsRightBackground
-		TabsLeftBackground = TukuiTabsLeftBackground
-		UIMinimap = TukuiMinimap
+		if name == "ChatBackgroundRight" then frame = "TukuiChatBackgroundRight" end
+		if name == "ChatBackgroundLeft" then frame = "TukuiChatBackgroundLeft" end
+		if name == "InfoLeft" then frame = "TukuiInfoLeft" end
+		if name == "InfoRight" then frame = "TukuiInfoRight" end
+		if name == "TabsRightBackground" then frame = "TukuiTabsRightBackground" end
+		if name == "TabsLeftBackground" then frame = "TukuiTabsLeftBackground" end
+		if name == "UIMinimap" then frame = "TukuiMinimap" end
 	elseif AsphyxiaUI then
-		ChatBackgroundRight = AsphyxiaUIChatBackgroundRight
-		ChatBackgroundLeft = AsphyxiaUIChatBackgroundLeft
-		InfoLeft = AsphyxiaUIDataPanelLeft
-		InfoRight = AsphyxiaUIDataPanelRight
-		TabsRightBackground = AsphyxiaUIChatTabBackgroundRight
-		TabsLeftBackground = AsphyxiaUIChatTabBackgroundLeft
-		UIMinimap = AsphyxiaUIMinimap
+		if name == "ChatBackgroundRight" then frame = "AsphyxiaUIChatBackgroundRight" end
+		if name == "ChatBackgroundLeft" then frame = "AsphyxiaUIChatBackgroundLeft" end
+		if name == "InfoLeft" then frame = "AsphyxiaUIDataPanelLeft" end
+		if name == "InfoRight" then frame = "AsphyxiaUIDataPanelRight" end
+		if name == "TabsRightBackground" then frame = "AsphyxiaUIChatTabBackgroundRight" end
+		if name == "TabsLeftBackground" then frame = "AsphyxiaUIChatTabBackgroundLeft" end
+		if name == "UIMinimap" then frame = "AsphyxiaUIMinimap" end
 	elseif DuffedUI then
-		ChatBackgroundRight = DuffedUIChatBackgroundRight
-		ChatBackgroundLeft = DuffedUIChatBackgroundLeft
-		InfoLeft = DuffedUIInfoLeft
-		InfoRight = DuffedUIInfoRight
-		TabsRightBackground = DuffedUITabsRightBackground
-		TabsLeftBackground = DuffedUITabsLeftBackground
-		UIMinimap = DuffedUIMinimap
+		if name == "ChatBackgroundRight" then frame = "DuffedUIChatBackgroundRight" end
+		if name == "ChatBackgroundLeft" then frame = "DuffedUIChatBackgroundLeft" end
+		if name == "InfoLeft" then frame = "DuffedUIInfoLeft" end
+		if name == "InfoRight" then frame = "DuffedUIInfoRight" end
+		if name == "TabsRightBackground" then frame = "DuffedUITabsRightBackground" end
+		if name == "TabsLeftBackground" then frame = "DuffedUITabsLeftBackground" end
+		if name == "UIMinimap" then frame = "DuffedUIMinimap" end
 	end
+	return frame
 end

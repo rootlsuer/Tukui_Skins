@@ -3,7 +3,6 @@ local U = unpack(select(2,...))
 
 local name = "TinyDPSSkin"
 local function SkinTinyDps(self)
-	UISetup()
 	local s = U.s
 	local c = U.c
 	local frame = tdpsFrame
@@ -15,7 +14,7 @@ local function SkinTinyDps(self)
 	local template
 	U.SkinFrame(frame)
 	if(tdps) then
-		tdps.width = UIMinimap:GetWidth()
+		tdps.width = _G[GetUIFrame("UIMinimap")]:GetWidth()
 	end
 	if(status) then
 		tdpsStatusBar:SetBackdrop( {
