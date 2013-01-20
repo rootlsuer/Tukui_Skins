@@ -284,5 +284,5 @@ function GetUIFrame(name)
 	if name == "TabsRightBackground" then frame = Tukui and "TukuiTabsRightBackground" or AsphyxiaUI and "AsphyxiaUIChatTabBackgroundRight" or DuffedUI and "DuffedUITabsRightBackground" end
 	if name == "TabsLeftBackground" then frame = Tukui and "TukuiTabsLeftBackground" or AsphyxiaUI and "AsphyxiaUIChatTabBackgroundLeft" or DuffedUI and "DuffedUITabsLeftBackground" end
 	if name == "UIMinimap" then frame = Tukui and "TukuiMinimap" or AsphyxiaUI and "AsphyxiaUIMinimap" or DuffedUI and "DuffedUIMinimap" end
-	return frame
+	return _G[frame]
 end

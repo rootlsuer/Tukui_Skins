@@ -12,34 +12,34 @@ local EmbeddingWindow = CreateFrame("Frame", "EmbeddingWindow", UIParent)
 
 if event == "PLAYER_ENTERING_WORLD" then
 	EmbedWindowResize()
-	if _G[GetUIFrame("ChatBackgroundRight")] then
-		_G[GetUIFrame("ChatBackgroundRight")]:SetFrameStrata("Background")
-		_G[GetUIFrame("ChatBackgroundLeft")]:SetFrameStrata("Background")
-		_G[GetUIFrame("TabsRightBackground")]:SetParent(_G[GetUIFrame("ChatBackgroundRight")])
-		_G[GetUIFrame("TabsLeftBackground")]:SetParent(_G[GetUIFrame("ChatBackgroundLeft")])
+	if GetUIFrame("ChatBackgroundRight") then
+		GetUIFrame("ChatBackgroundRight"):SetFrameStrata("Background")
+		GetUIFrame("ChatBackgroundLeft"):SetFrameStrata("Background")
+		GetUIFrame("TabsRightBackground"):SetParent(GetUIFrame("ChatBackgroundRight"))
+		GetUIFrame("TabsLeftBackground"):SetParent(GetUIFrame("ChatBackgroundLeft"))
 	end
 	if ChatFrame4Tab:IsShown() then ChatFrame4Hide = True end
 	EmbedToggleButton = CreateFrame("Button", "EmbedToggleButton", UIParent)
 	U.SkinButton(EmbedToggleButton)
-	EmbedToggleButton:Size(_G[GetUIFrame("InfoRight")]:GetHeight()-4)
+	EmbedToggleButton:Size(GetUIFrame("InfoRight"):GetHeight()-4)
 	EmbedToggleButton:FontString("text", c["media"].pixelfont, 14, "MONOCHROMEOUTLINE")
 	EmbedToggleButton.text:SetText(">")
 	EmbedToggleButton.text:SetPoint("CENTER", 2, 2)
-	EmbedToggleButton:Point("RIGHT", _G[GetUIFrame("InfoRight")], "RIGHT", -2, 0)
+	EmbedToggleButton:Point("RIGHT", GetUIFrame("InfoRight"), "RIGHT", -2, 0)
 	EmbedToggleButton:RegisterForClicks("LeftButtonDown", "RightButtonDown");
 	UIFrameFadeOut(EmbedToggleButton, 0.2, EmbedToggleButton:GetAlpha(), 0)
 	EmbedToggleButton:SetScript("OnClick", function(self, btn)
 		if btn == 'LeftButton' then
 		if IsAddOnLoaded("Tukui_ChatTweaks") and (ChatTweaksOptions.ChatHider == "Enabled") then
-			if _G[GetUIFrame("ChatBackgroundRight")] then
-				if _G[GetUIFrame("InfoRight")].Faded then
-					_G[GetUIFrame("InfoRight")].Faded = nil
-					if not DuffedUI then UIFrameFadeIn(_G[GetUIFrame("InfoRight")], 0.2, _G[GetUIFrame("InfoRight")]:GetAlpha(), 1) end
-					UIFrameFadeIn(_G[GetUIFrame("ChatBackgroundRight")], 0.2, _G[GetUIFrame("ChatBackgroundRight")]:GetAlpha(), 1)
+			if GetUIFrame("ChatBackgroundRight") then
+				if GetUIFrame("InfoRight").Faded then
+					GetUIFrame("InfoRight").Faded = nil
+					if not DuffedUI then UIFrameFadeIn(GetUIFrame("InfoRight"), 0.2, GetUIFrame("InfoRight"):GetAlpha(), 1) end
+					UIFrameFadeIn(GetUIFrame("ChatBackgroundRight"), 0.2, GetUIFrame("ChatBackgroundRight"):GetAlpha(), 1)
 				else
-					_G[GetUIFrame("InfoRight")].Faded = true
-					UIFrameFadeOut(_G[GetUIFrame("ChatBackgroundRight")], 0.2, _G[GetUIFrame("ChatBackgroundRight")]:GetAlpha(), 0)
-					if not DuffedUI then UIFrameFadeOut(_G[GetUIFrame("InfoRight")], 0.2, _G[GetUIFrame("InfoRight")]:GetAlpha(), 0) end
+					GetUIFrame("InfoRight").Faded = true
+					UIFrameFadeOut(GetUIFrame("ChatBackgroundRight"), 0.2, GetUIFrame("ChatBackgroundRight"):GetAlpha(), 0)
+					if not DuffedUI then UIFrameFadeOut(GetUIFrame("InfoRight"), 0.2, GetUIFrame("InfoRight"):GetAlpha(), 0) end
 				end
 			end
 		end
@@ -62,27 +62,27 @@ if event == "PLAYER_ENTERING_WORLD" then
 		end)
 		LeftChatToggleButton = CreateFrame("Button", "LeftChatToggleButton", UIParent)
 		U.SkinButton(LeftChatToggleButton)
-		LeftChatToggleButton:Size(_G[GetUIFrame("InfoRight")]:GetHeight()-4)
+		LeftChatToggleButton:Size(GetUIFrame("InfoRight"):GetHeight()-4)
 		LeftChatToggleButton:FontString("text", c["media"].pixelfont, 14, "MONOCHROMEOUTLINE")
 		LeftChatToggleButton.text:SetText("<")
 		LeftChatToggleButton.text:SetPoint("CENTER", 2, 2)
-		LeftChatToggleButton:Point("LEFT", _G[GetUIFrame("InfoLeft")], "LEFT", 2, 0)
+		LeftChatToggleButton:Point("LEFT", GetUIFrame("InfoLeft"), "LEFT", 2, 0)
 		LeftChatToggleButton:RegisterForClicks("LeftButtonDown", "RightButtonDown");
 		UIFrameFadeOut(LeftChatToggleButton, 0.2, LeftChatToggleButton:GetAlpha(), 0)
 		LeftChatToggleButton:SetScript("OnClick", function(self, btn)
 			if btn == 'LeftButton' then
 			if IsAddOnLoaded("Tukui_ChatTweaks") and (ChatTweaksOptions.ChatHider == "Enabled") then
-				if _G[GetUIFrame("ChatBackgroundLeft")] then
-					if _G[GetUIFrame("InfoLeft")].Faded then
-						_G[GetUIFrame("InfoLeft")].Faded = nil
-						if not DuffedUI then UIFrameFadeIn(_G[GetUIFrame("InfoLeft")], 0.2, _G[GetUIFrame("InfoLeft")]:GetAlpha(), 1) end
+				if GetUIFrame("ChatBackgroundLeft") then
+					if GetUIFrame("InfoLeft").Faded then
+						GetUIFrame("InfoLeft").Faded = nil
+						if not DuffedUI then UIFrameFadeIn(GetUIFrame("InfoLeft"), 0.2, GetUIFrame("InfoLeft"):GetAlpha(), 1) end
 						UIFrameFadeIn(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 1)
-						UIFrameFadeIn(_G[GetUIFrame("ChatBackgroundLeft")], 0.2, _G[GetUIFrame("ChatBackgroundLeft")]:GetAlpha(), 1)
+						UIFrameFadeIn(GetUIFrame("ChatBackgroundLeft"), 0.2, GetUIFrame("ChatBackgroundLeft"):GetAlpha(), 1)
 					else
-						_G[GetUIFrame("InfoLeft")].Faded = true
-						if not DuffedUI then UIFrameFadeOut(_G[GetUIFrame("InfoLeft")], 0.2, _G[GetUIFrame("InfoLeft")]:GetAlpha(), 0) end
+						GetUIFrame("InfoLeft").Faded = true
+						if not DuffedUI then UIFrameFadeOut(GetUIFrame("InfoLeft"), 0.2, GetUIFrame("InfoLeft"):GetAlpha(), 0) end
 						UIFrameFadeOut(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 0)
-						UIFrameFadeOut(_G[GetUIFrame("ChatBackgroundLeft")], 0.2, _G[GetUIFrame("ChatBackgroundLeft")]:GetAlpha(), 0)
+						UIFrameFadeOut(GetUIFrame("ChatBackgroundLeft"), 0.2, GetUIFrame("ChatBackgroundLeft"):GetAlpha(), 0)
 					end
 				end
 			end
@@ -103,14 +103,14 @@ if event == "PLAYER_ENTERING_WORLD" then
 		end)
 		EmbedToggleButton:SetScript("OnEnter", function(self, ...)
 			UIFrameFadeIn(self, 0.2, self:GetAlpha(), 1)
-			if _G[GetUIFrame("InfoRight")].Faded then
-				if not DuffedUI then UIFrameFadeIn(_G[GetUIFrame("InfoRight")], 0.2, _G[GetUIFrame("InfoRight")]:GetAlpha(), 1) end
-				UIFrameFadeIn(_G[GetUIFrame("ChatBackgroundRight")], 0.2, _G[GetUIFrame("ChatBackgroundRight")]:GetAlpha(), 1)
+			if GetUIFrame("InfoRight").Faded then
+				if not DuffedUI then UIFrameFadeIn(GetUIFrame("InfoRight"), 0.2, GetUIFrame("InfoRight"):GetAlpha(), 1) end
+				UIFrameFadeIn(GetUIFrame("ChatBackgroundRight"), 0.2, GetUIFrame("ChatBackgroundRight"):GetAlpha(), 1)
 			end
 			GameTooltip:SetOwner(self, 'ANCHOR_TOPRIGHT', 0, 4)
 			GameTooltip:ClearLines()
 			if IsAddOnLoaded("Tukui_ChatTweaks") and (ChatTweaksOptions.ChatHider == "Enabled") then
-				if _G[GetUIFrame("ChatBackgroundRight")] then
+				if GetUIFrame("ChatBackgroundRight") then
 					GameTooltip:AddDoubleLine('Left Click:', 'Toggle Right Chat Panel', 1, 1, 1)
 				end
 			end
@@ -119,23 +119,23 @@ if event == "PLAYER_ENTERING_WORLD" then
 		end)
 		EmbedToggleButton:SetScript("OnLeave", function(self, ...)
 			UIFrameFadeOut(self, 0.2, self:GetAlpha(), 0)
-			if _G[GetUIFrame("InfoRight")].Faded then
-				UIFrameFadeOut(_G[GetUIFrame("ChatBackgroundRight")], 0.2, _G[GetUIFrame("ChatBackgroundRight")]:GetAlpha(), 0)
-				if not DuffedUI then UIFrameFadeOut(_G[GetUIFrame("InfoRight")], 0.2, _G[GetUIFrame("InfoRight")]:GetAlpha(), 0) end
+			if GetUIFrame("InfoRight").Faded then
+				UIFrameFadeOut(GetUIFrame("ChatBackgroundRight"), 0.2, GetUIFrame("ChatBackgroundRight"):GetAlpha(), 0)
+				if not DuffedUI then UIFrameFadeOut(GetUIFrame("InfoRight"), 0.2, GetUIFrame("InfoRight"):GetAlpha(), 0) end
 			end
 			GameTooltip:Hide()
 		end)
 		LeftChatToggleButton:SetScript("OnEnter", function(self, ...)
 			UIFrameFadeIn(self, 0.2, self:GetAlpha(), 1)
-			if _G[GetUIFrame("InfoLeft")].Faded then
-				if not DuffedUI then UIFrameFadeIn(_G[GetUIFrame("InfoLeft")], 0.2, _G[GetUIFrame("InfoLeft")]:GetAlpha(), 1) end
-				UIFrameFadeIn(_G[GetUIFrame("ChatBackgroundLeft")], 0.2, _G[GetUIFrame("ChatBackgroundLeft")]:GetAlpha(), 1)
+			if GetUIFrame("InfoLeft").Faded then
+				if not DuffedUI then UIFrameFadeIn(GetUIFrame("InfoLeft"), 0.2, GetUIFrame("InfoLeft"):GetAlpha(), 1) end
+				UIFrameFadeIn(GetUIFrame("ChatBackgroundLeft"), 0.2, GetUIFrame("ChatBackgroundLeft"):GetAlpha(), 1)
 				UIFrameFadeIn(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 1)
 			end
 			GameTooltip:SetOwner(self, 'ANCHOR_TOPLEFT', 0, 4)
 			GameTooltip:ClearLines()
 			if IsAddOnLoaded("Tukui_ChatTweaks") and (ChatTweaksOptions.ChatHider == "Enabled") then
-				if _G[GetUIFrame("ChatBackgroundLeft")] then
+				if GetUIFrame("ChatBackgroundLeft") then
 					GameTooltip:AddDoubleLine('Left Click:', 'Toggle Left Chat Panel', 1, 1, 1)
 				end
 			end
@@ -144,10 +144,10 @@ if event == "PLAYER_ENTERING_WORLD" then
 		end)
 		LeftChatToggleButton:SetScript("OnLeave", function(self, ...)
 			UIFrameFadeOut(self, 0.2, self:GetAlpha(), 0)
-			if _G[GetUIFrame("InfoLeft")].Faded then
+			if GetUIFrame("InfoLeft").Faded then
 				UIFrameFadeOut(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 0)
-				UIFrameFadeOut(_G[GetUIFrame("ChatBackgroundLeft")], 0.2, _G[GetUIFrame("ChatBackgroundLeft")]:GetAlpha(), 0)
-				if not DuffedUI then UIFrameFadeOut(_G[GetUIFrame("InfoLeft")], 0.2, _G[GetUIFrame("InfoLeft")]:GetAlpha(), 0) end
+				UIFrameFadeOut(GetUIFrame("ChatBackgroundLeft"), 0.2, GetUIFrame("ChatBackgroundLeft"):GetAlpha(), 0)
+				if not DuffedUI then UIFrameFadeOut(GetUIFrame("InfoLeft"), 0.2, GetUIFrame("InfoLeft"):GetAlpha(), 0) end
 			end
 			GameTooltip:Hide()
 		end)
@@ -371,20 +371,20 @@ if IsAddOnLoaded("Skada") then
 end
 
 function EmbedWindowResize()
-	if not _G[GetUIFrame("ChatBackgroundRight")] then
-		EmbeddingWindow:SetPoint("BOTTOM", _G[GetUIFrame("InfoRight")], "TOP", 0, 2)
-		EmbeddingWindow:Size(_G[GetUIFrame("InfoRight")]:GetWidth(), 142)
-		EmbeddingWindowLeft:SetPoint("BOTTOM", _G[GetUIFrame("InfoLeft")], "TOP", 0, 2)
-		EmbeddingWindowLeft:Size(_G[GetUIFrame("InfoLeft")]:GetWidth(), 142)
+	if not GetUIFrame("ChatBackgroundRight") then
+		EmbeddingWindow:SetPoint("BOTTOM", GetUIFrame("InfoRight"), "TOP", 0, 2)
+		EmbeddingWindow:Size(GetUIFrame("InfoRight"):GetWidth(), 142)
+		EmbeddingWindowLeft:SetPoint("BOTTOM", GetUIFrame("InfoLeft"), "TOP", 0, 2)
+		EmbeddingWindowLeft:Size(GetUIFrame("InfoLeft"):GetWidth(), 142)
 	else
 		if DuffedUI then
-			EmbeddingWindow:SetInside(_G[GetUIFrame("ChatBackgroundRight")], 5, 5)
-			EmbeddingWindowLeft:SetInside(_G[GetUIFrame("ChatBackgroundLeft")], 5, 5)
+			EmbeddingWindow:SetInside(GetUIFrame("ChatBackgroundRight"), 5, 5)
+			EmbeddingWindowLeft:SetInside(GetUIFrame("ChatBackgroundLeft"), 5, 5)
 		else
-			EmbeddingWindow:SetPoint("TOP", _G[GetUIFrame("ChatBackgroundRight")], "TOP", 0, -5)
-			EmbeddingWindow:Size(_G[GetUIFrame("InfoRight")]:GetWidth(), (_G[GetUIFrame("ChatBackgroundRight")]:GetHeight() - 34))
-			EmbeddingWindowLeft:SetPoint("TOP", _G[GetUIFrame("ChatBackgroundLeft")], "TOP", 0, -5)
-			EmbeddingWindowLeft:Size(_G[GetUIFrame("InfoLeft")]:GetWidth(), (_G[GetUIFrame("ChatBackgroundLeft")]:GetHeight() - 34))
+			EmbeddingWindow:SetPoint("TOP", GetUIFrame("ChatBackgroundRight"), "TOP", 0, -5)
+			EmbeddingWindow:Size(GetUIFrame("InfoRight"):GetWidth(), (GetUIFrame("ChatBackgroundRight"):GetHeight() - 34))
+			EmbeddingWindowLeft:SetPoint("TOP", GetUIFrame("ChatBackgroundLeft"), "TOP", 0, -5)
+			EmbeddingWindowLeft:Size(GetUIFrame("InfoLeft"):GetWidth(), (GetUIFrame("ChatBackgroundLeft"):GetHeight() - 34))
 		end
 	end
 	if (U.CheckOption("EmbedSkada","Skada")) then EmbedSkada() end
