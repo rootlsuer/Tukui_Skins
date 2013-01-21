@@ -28,6 +28,10 @@ U.Skins = {
 		["buttonText"] = "Ara Broker Guild Friends",
 		["addon"] = "Ara_Broker_Guild_Friends",
 	},
+	["AraBrokerTradeskillsSkin"] = {
+		["buttonText"] = "Ara Broker Tradeskills",
+		["addon"] = "Ara_Broker_Tradeskills",
+	},
 	["ArchySkin"] = {
 		["addon"] = "Archy",
 	},
