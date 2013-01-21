@@ -18,6 +18,9 @@ U.Skins = {
 	["AltoholicSkin"] = {
 		["addon"] = "Altoholic",
 	},
+	["ALDamageMeterSkin"] = {
+		["addon"] = "ALDamageMeter",
+	},
 	["AnalystSkin"] = {
 		["addon"] = "Analyst",
 	},

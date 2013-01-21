@@ -3,6 +3,7 @@
 	<Script file="AdiBags.lua"/>
 	<Script file="AffDots.lua"/>
 	<Script file="ATSW.lua"/>
+	<Script file="ALDamageMeter.lua"/>
 	<Script file="Altoholic.lua"/>
 	<Script file="Analyst.lua"/>
 	<Script file="AraBrokerGuildFriends.lua"/>

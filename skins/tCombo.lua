@@ -2,14 +2,13 @@ if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("
 local U = unpack(select(2,...))
 
 local name = 'tComboSkin'
-local function SkintCombo(self)
-	cDelay(1,function()
+local function SkintCombo(self, event)
 		if tComboPoints then
 			U.SkinFrame(tComboPoints)
 		end
 		if tComboEnergyBar then
 			U.SkinFrame(tComboEnergyBar)
 		end
-	end)
 end
-U.RegisterSkin(name,SkintCombo)
+
+U.RegisterSkin(name,SkintCombo,"ADDON_LOADED","PLAYER_REGEN_ENABLED","PLAYER_REGEN_DISABLED")
