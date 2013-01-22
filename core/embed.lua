@@ -157,6 +157,7 @@ if event == "PLAYER_ENTERING_WORLD" then
 	if (U.CheckOption("EmbedSkada","Skada")) then EmbedSkada() end
 	if (U.CheckOption("EmbedTinyDPS","TinyDPS")) then EmbedTDPS() end
 	if (U.CheckOption("EmbedRecount","Recount")) then EmbedRecount() end
+	if (U.CheckOption("EmbedalDamageMeter","alDamageMeter")) then EmbedALDamageMeter() end
 --Embed Check Finished
 
 	local function EmbedTooltip(self)
@@ -303,6 +304,17 @@ function EmbedTDPSResize()
 	end
 end
 
+function EmbedALDamageMeter()
+	dmconf.maxbars = U.Round(EmbeddingWindow:GetHeight() / (dmconf.barheight + dmconf.spacing))
+	dmconf.width = EmbeddingWindow:GetWidth()
+	alDamageMeterFrame:ClearAllPoints()
+	if UISkinOptions.EmbedLeft == "alDamageMeter" then
+		alDamageMeterFrame:SetInside(EmbeddingWindowLeft, 1, 1)
+	else
+		alDamageMeterFrame:SetInside(EmbeddingWindow, 1, 1)
+	end
+end
+
 if IsAddOnLoaded("Skada") then
 
 	local Skada = Skada
@@ -391,4 +403,5 @@ function EmbedWindowResize()
 	if (U.CheckOption("EmbedTinyDPS","TinyDPS")) then EmbedTDPSResize() end
 	if (U.CheckOption("EmbedRecount","Recount")) then EmbedRecountResize() end
 	if (U.CheckOption("EmbedOmen","Omen")) then EmbedOmenResize() end
+	if (U.CheckOption("EmbedalDamageMeter","alDamageMeter")) then EmbedALDamageMeter() end
 end

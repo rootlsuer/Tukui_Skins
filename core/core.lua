@@ -8,6 +8,13 @@ local U = unpack(select(2,...))
 local s = U.s
 local c = U.c
 
+local function round(num, idp)
+	local mult = 10^(idp or 0)
+	return math.floor(num * mult + 0.5) / mult
+end
+
+U.Round = round
+
 local function cSkinButton(self,strip)
 	self:SkinButton(strip)
 end
