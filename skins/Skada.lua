@@ -115,14 +115,12 @@ local function SkinSkada(self)
 		skada.backdrop:Point("BOTTOMRIGHT", skada, "BOTTOMRIGHT", 2, -2)
 		if (not U.CheckOption("SkadaBackdrop")) then skada.backdrop:Hide() end
 		if (U.CheckOption("EmbedSkada")) then
-			win.bargroup.button:SetFrameStrata("HIGH")
-			win.bargroup.button:SetFrameLevel(5)	
-			win.bargroup:SetFrameStrata("HIGH")
 			if UISkinOptions.EmbedLeft == "Skada" then
 				win.bargroup:SetParent(EmbeddingWindowLeft)
 			else
 				win.bargroup:SetParent(EmbeddingWindow)
 			end
+			win.bargroup:SetFrameLevel(10)
 		end
 	end
 end

@@ -213,7 +213,7 @@ function EmbedRecount()
 	else
 		Recount_MainWindow:SetParent(EmbeddingWindow)
 	end
-	Recount.MainWindow:SetFrameStrata("HIGH")
+	Recount.MainWindow:SetFrameLevel(10)
 end
 
 function EmbedRecountResize()
@@ -260,7 +260,7 @@ function EmbedOmen()
 		else
 			OmenBarList:SetParent(EmbeddingWindow)
 		end
-		OmenBarList:SetFrameStrata("HIGH")
+		OmenBarList:SetFrameLevel(10)
 		EmbedOmenResize()
 end
 
@@ -283,7 +283,7 @@ function EmbedTDPS()
 		tdpsFrame:SetParent(EmbeddingWindow)
 	end
 	U.SkinFrame(tdpsFrame, "Default")
-	tdpsFrame:SetFrameStrata("MEDIUM")
+	tdpsFrame:SetFrameLevel(10)
 	if UISkinOptions.EmbedLeft == "TinyDPS" then
 		tdpsAnchor:Point("TOPLEFT", EmbeddingWindowLeft, "TOPLEFT", 0, 0)
 	else
@@ -310,9 +310,12 @@ function EmbedALDamageMeter()
 	alDamageMeterFrame:ClearAllPoints()
 	if UISkinOptions.EmbedLeft == "alDamageMeter" then
 		alDamageMeterFrame:SetInside(EmbeddingWindowLeft, 1, 1)
+		alDamageMeterFrame:SetParent(EmbeddingWindowLeft)
 	else
 		alDamageMeterFrame:SetInside(EmbeddingWindow, 1, 1)
+		alDamageMeterFrame:SetParent(EmbeddingWindow)
 	end
+	alDamageMeterFrame:SetFrameLevel(10)
 end
 
 if IsAddOnLoaded("Skada") then

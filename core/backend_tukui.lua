@@ -135,7 +135,7 @@ local SkinOptionsLoader = CreateFrame("Frame")
 	SkinOptions3.text2 = SkinOptions3:CreateFontString(nil, "OVERLAY")
 	SkinOptions3.text2:SetFont(c["media"].font, 14, "OUTLINE")
 	SkinOptions3.text2:SetPoint("TOPRIGHT", SkinOptions3, "TOPRIGHT", -30, -38)
-	SkinOptions3.text2:SetText("|cff00AAFFAvailable Embeds|r:\n\nSkada\nRecount\nTinyDPS\nOmen")
+	SkinOptions3.text2:SetText("|cff00AAFFAvailable Embeds|r:\n\nalDamageMeter\nOmen\nRecount\nSkada\nTinyDPS")
 	
 	local function CreateOptionsButton(name, btntext, parent)
 		local frame = CreateFrame("Button", name.."Button", SkinOptions)
