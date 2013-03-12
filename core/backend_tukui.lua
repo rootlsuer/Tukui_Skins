@@ -83,8 +83,8 @@ XSFrame:SetScript("OnEvent",function(self)
 end)
 
 local DefaultSetSkin = CreateFrame("Frame")
-	DefaultSetSkin:RegisterEvent( "PLAYER_ENTERING_WORLD" )
-	DefaultSetSkin:SetScript( "OnEvent", function(self)
+	DefaultSetSkin:RegisterEvent("PLAYER_ENTERING_WORLD")
+	DefaultSetSkin:SetScript("OnEvent", function(self)
 	if(UISkinOptions.RecountBackdrop == nil) then UISkinOptions.RecountBackdrop = "Enabled" end
 	if(UISkinOptions.SkadaBackdrop == nil) then UISkinOptions.SkadaBackdrop = "Enabled" end
 	if(UISkinOptions.EmbedOoC == nil) then UISkinOptions.EmbedOoC = "Disabled" end
