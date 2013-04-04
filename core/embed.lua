@@ -36,8 +36,8 @@ function EmbedCheck(login)
 	if (U.CheckOption("EmbedSkada","Skada")) then
 		EmbedSkada()
 		if login then 
-			hooksecurefunc(Skada, "CreateWindow", SkadaWindows)
-			hooksecurefunc(Skada, "DeleteWindow", SkadaWindows)
+			hooksecurefunc(Skada, "CreateWindow", EmbedSkada)
+			hooksecurefunc(Skada, "DeleteWindow", EmbedSkada)
 		end
 	end
 	if (U.CheckOption("EmbedTinyDPS","TinyDPS")) then EmbedTDPS() end
@@ -168,6 +168,10 @@ local function EmbedWindow(window, width, height, point, relativeFrame, relative
 end
 
 function EmbedSkada()
+	windows = {}
+	for _, window in ipairs(Skada:GetWindows()) do
+		tinsert(windows, window)
+	end
 	local EmbedParent
 	if UISkinOptions["EmbedLeft"] == "Skada" then
 		EmbedParent = EmbeddingWindowLeft
@@ -183,16 +187,6 @@ function EmbedSkada()
 		EmbedWindow(windows[1], ((EmbedParent:GetWidth() - 4) / 2) - (1 + s.mult), EmbedParent:GetHeight() - 19, "TOPRIGHT", EmbedParent, "TOPRIGHT", -2, -17)
 		EmbedWindow(windows[2], ((EmbedParent:GetWidth() - 4) / 2) - (1 + s.mult), (EmbedParent:GetHeight()/2) - 19, "TOPLEFT", EmbedParent, "TOPLEFT", 2, -17)
 		EmbedWindow(windows[3], ((EmbedParent:GetWidth() - 4) / 2) - (1 + s.mult), (EmbedParent:GetHeight()/2) - 19, "TOPLEFT", windows[2], "BOTTOMLEFT", 0, -2)
-	end
-end
-
-local function SkadaWindows()
-	windows = {}
-	for _, window in ipairs(Skada:GetWindows()) do
-		tinsert(windows, window)
-	end
-	if U.CheckOption("EmbedSkada") then
-		EmbedSkada()
 	end
 end
 

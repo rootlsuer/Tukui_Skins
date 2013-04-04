@@ -26,39 +26,39 @@ function U.SkinTab(self, strip)
 end
 
 function U.SkinNextPrevButton(self, horizonal)
-	if self:GetName() == nil then  return end
+	if self:GetName() == nil then return end
 	self:SkinNextPrevButton(horizonal)
 end
 
 function U.SkinRotateButton(self)
-	if self:GetName() == nil then  return end
+	if self:GetName() == nil then return end
 	self:SkinRotateButton()
 end
 
 function U.SkinEditBox(self, width, height)
-	if self:GetName() == nil then  return end
+	if self:GetName() == nil then return end
 	self:SkinEditBox()
 	if width then self:SetWidth(width) end
 	if height then self:SetHeight(height) end
 end
 
 function U.SkinDropDownBox(self, width)
-	if self:GetName() == nil then  return end
+	if self:GetName() == nil then return end
 	self:SkinDropDownBox(width)
 end
 
 function U.SkinCheckBox(self)
-	if self:GetName() == nil then  return end
+	if self:GetName() == nil then return end
 	self:SkinCheckBox()
 end
 
 function U.SkinCloseButton(self)
-	if self:GetName() == nil then  return end
+	if self:GetName() == nil then return end
 	self:SkinCloseButton()
 end
 
 function U.SkinSlideBar(self, height, movetext)
-	if self:GetName() == nil then  return end
+	if self:GetName() == nil then return end
 	self:SkinSlideBar(height, movetext)
 end
 
@@ -69,14 +69,14 @@ function U.RegisterForPetBattleHide(frame)
 end
 
 function U.SkinFrame(self, template, overridestrip)
-	if self:GetName() == nil then  return end
+	if self:GetName() == nil then return end
 	if not template then template = "Transparent" end
 	if not overridestrip then self:StripTextures(True) end
 	self:SetTemplate(template)
 end
 
 function U.SkinBackdropFrame(self, strip, icon)
-	if self:GetName() == nil then  return end
+	if self:GetName() == nil then return end
 	if strip then self:StripTextures(True) end
 	if not icon then
 		self:CreateBackdrop()
@@ -87,7 +87,7 @@ function U.SkinBackdropFrame(self, strip, icon)
 end
 
 function U.SkinStatusBar(self, ClassColor)
-	if self:GetName() == nil then  return end
+	if self:GetName() == nil then return end
 	local c = U.c
 	U.SkinBackdropFrame(self, true)
 	self:SetStatusBarTexture(c["media"].normTex)
@@ -106,7 +106,7 @@ function U.SkinTooltip(tooltip, scale)
 end
 
 function U.SkinIconButton(self, strip, style, shrinkIcon)
-	if self:GetName() == nil then  return end
+	if self:GetName() == nil then return end
 	if self.isSkinned then return end
 
 	if strip then self:StripTextures() end
@@ -135,7 +135,7 @@ function U.SkinIconButton(self, strip, style, shrinkIcon)
 end
 
 function U.Desaturate(self, point)
-	if self:GetName() == nil then  return end
+	if self:GetName() == nil then return end
 	for i = 1, self:GetNumRegions() do
 		local region = select(i, self:GetRegions())
 		if region:GetObjectType() == "Texture" then
