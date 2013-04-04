@@ -217,7 +217,6 @@ local function SkinRecount(self)
 		ResetFrame:Show()
 	end
 
-	if U.CheckOption("EmbedRecount") then EmbedRecount() end
 end
 
 U.RegisterSkin(name,SkinRecount)
