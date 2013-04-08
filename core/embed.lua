@@ -252,7 +252,7 @@ local function CreateToggleButton(name, buttontext, panel1, panel2, tooltiptext1
 	UIFrameFadeOut(frame, 0.2, frame:GetAlpha(), 0)
 	frame:SetScript("OnClick", function(self, btn)
 		if btn == 'LeftButton' then
-			if IsAddOnLoaded("Tukui_ChatTweaks") and (ChatTweaksOptions.ChatHider == "Enabled") then
+			if (IsAddOnLoaded("Tukui_ChatTweaks") and ChatTweaksOptions["ChatHider"] == "Enabled") then
 				if panel2 then
 					if self.Faded then
 						self.Faded = nil
@@ -267,11 +267,9 @@ local function CreateToggleButton(name, buttontext, panel1, panel2, tooltiptext1
 					end
 				end
 			end
-		else
 		end
 	end)
 	frame:SetScript("OnEnter", function(self, ...)
-		if ChatTweaksOptions["ChatHider"] == "Disabled" then return end
 		UIFrameFadeIn(self, 0.2, self:GetAlpha(), 1)
 		if self.Faded then
 			if not DuffedUI then UIFrameFadeIn(panel1, 0.2, panel1:GetAlpha(), 1) end
@@ -288,21 +286,19 @@ local function CreateToggleButton(name, buttontext, panel1, panel2, tooltiptext1
 		GameTooltip:AddDoubleLine("Right Click:", tooltiptext2, 1, 1, 1)
 	end)
 	frame:SetScript("OnLeave", function(self, ...)
-		if ChatTweaksOptions["ChatHider"] == "Disabled" then return end
+		UIFrameFadeOut(self, 0.2, self:GetAlpha(), 0)
 		if self.Faded then
 			if not DuffedUI then UIFrameFadeOut(panel1, 0.2, panel1:GetAlpha(), 0) end
 			UIFrameFadeOut(panel2, 0.2, panel2:GetAlpha(), 0)
 			if name == "LeftToggleButton" then UIFrameFadeOut(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 0) end
 		end
-		UIFrameFadeOut(self, 0.2, self:GetAlpha(), 0)
 	end)
 end
 
 CreateToggleButton("RightToggleButton", ">", U.InfoRight, U.ChatBackgroundRight, "Toggle Right Chat Panel", "Toggle Embedded AddOn")
 RightToggleButton:Point("RIGHT", U.InfoRight, "RIGHT", -2, 0)
 RightToggleButton:HookScript("OnClick", function(self, btn)
-	if btn == 'LeftButton' then
-	else
+	if btn == "RightButton" then
 		if EmbeddingWindow:IsShown() then
 			EmbeddingWindow:Hide()
 			EmbeddingWindowLeft:Hide()
@@ -319,8 +315,7 @@ RightToggleButton:SetScript("PreClick", function(self) if ChatFrame4Tab:IsShown(
 CreateToggleButton("LeftToggleButton", "<", U.InfoLeft, U.ChatBackgroundLeft, "Toggle Left Chat Panel", "Toggle Extra Skins/Options")
 LeftToggleButton:Point("LEFT", U.InfoLeft, "LEFT", 2, 0)
 LeftToggleButton:HookScript("OnClick", function(self, btn)
-	if btn == 'LeftButton' then
-	else
+	if btn == "RightButton" then
 		if SkinOptions:IsShown() or SkinOptions2:IsShown() or SkinOptions3:IsShown() then
 			SkinOptions:Hide()
 			SkinOptions2:Hide()
