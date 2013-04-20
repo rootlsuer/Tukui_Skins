@@ -7,6 +7,7 @@ AddOn.FrameLocks = {}
 Engine[1] = AddOn
 UISkins = Engine
 
+AddOn.A = A
 AddOn.Version = GetAddOnMetadata(AddOnName,"Version")
 AddOn.Title = select(2, GetAddOnInfo(AddOnName))
 AddOn.Blank = C["media"].blank
