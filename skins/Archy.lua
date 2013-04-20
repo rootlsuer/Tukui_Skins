@@ -60,6 +60,10 @@ local function SkinArchy(self)
 	ArchyDistanceIndicatorFrameSurveyButtonIcon:SetDrawLayer("OVERLAY")
 	U.SkinButton(ArchyDistanceIndicatorFrameCrateButton)
  	ArchyDistanceIndicatorFrameCrateButtonIcon:SetDrawLayer("OVERLAY")
+ 	if ArchyDistanceIndicatorFrameLorItemButton then
+		U.SkinButton(ArchyDistanceIndicatorFrameLorItemButton)
+		ArchyDistanceIndicatorFrameLorItemButtonIcon:SetDrawLayer("OVERLAY")
+	end
 end
 
 U.RegisterSkin(name, SkinArchy)
