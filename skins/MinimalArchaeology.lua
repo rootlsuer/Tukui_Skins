@@ -20,7 +20,7 @@ local function SkinMinimalArchaeology(self)
 	U.SkinFrame(MinArchHist)
 	U.SkinCloseButton(MinArchHistButtonClose)
 
-	for i = 1, 11 do
+	for i = 1, 12 do
 		U.SkinStatusBar(_G["MinArchMainArtifactBar"..i])
 		_G["MinArchMainArtifactBar"..i]:SetStatusBarColor(1.0, 0.4, 0)
 		U.SkinButton(_G["MinArchMainArtifactBar"..i.."ButtonSolve"])
@@ -86,6 +86,11 @@ local function SkinMinimalArchaeology(self)
 	MinArchMainButtonOpenADI:Point("RIGHT", MinArchMainButtonOpenHist, "LEFT", -3, 0)
 	MinArchMainButtonOpenHist:Point("RIGHT", MinArchMainButtonOpenArch, "LEFT", -3, 0)
 	MinArchMainButtonOpenArch:Point("BOTTOMRIGHT", MinArchMain, "BOTTOMRIGHT", -6, 3)
+	U.SkinFrame(MinArchOptionPanelHideArtifact)
+	U.SkinFrame(MinArchOptionPanelFragmentCap)
+	U.SkinFrame(MinArchOptionPanelUseKeystones)
+	U.SkinFrame(MinArchOptionPanelMiscOptions)
+	U.SkinFrame(MinArchOptionPanelFrameScale)
 end
 
 U.RegisterSkin(name, SkinMinimalArchaeology)
