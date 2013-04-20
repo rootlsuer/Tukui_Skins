@@ -1,9 +1,8 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
+
 local name = 'BagnonSkin'
 local function SkinBagnon(self,event)
-	local s = U.s
-	local c = U.c
 	if event == "PLAYER_ENTERING_WORLD" then
 		ToggleBackpack()
 		U.SkinFrame(BagnonFrameinventory)
@@ -27,4 +26,5 @@ local function SkinBagnon(self,event)
 		end
 	end
 end
-U.RegisterSkin(name,SkinBagnon,"BANKFRAME_OPENED","GUILDBANKFRAME_OPENED","VOID_STORAGE_OPEN")
+
+U.RegisterSkin(name, SkinBagnon, "BANKFRAME_OPENED", "GUILDBANKFRAME_OPENED", "VOID_STORAGE_OPEN")

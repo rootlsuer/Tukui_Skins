@@ -5,4 +5,5 @@ local name = "ALDamageMeterSkin"
 local function SkinALDamageMeter()
 	U.SkinFrame(alDamageMeterFrame.bg)
 end
+
 U.RegisterSkin(name, SkinALDamageMeter)

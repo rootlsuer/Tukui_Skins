@@ -1,5 +1,6 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
+
 local name = "SoundtrackSkin"
 local function SkinSoundtrack(self)
 	local frames = {
@@ -138,7 +139,6 @@ local function SkinSoundtrack(self)
 	NowPlayingTextFrame:Show()
 	NowPlayingTextFrame:Hide()
 	NowPlayingTextFrame:Size(200, 40)
-
 end
 
-U.RegisterSkin(name,SkinSoundtrack)
+U.RegisterSkin(name, SkinSoundtrack)

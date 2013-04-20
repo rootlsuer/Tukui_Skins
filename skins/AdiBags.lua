@@ -1,7 +1,5 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
-local s = U.s
-local c = U.c
 
 local name = "AdiBagsSkin"
 local function SkinFrame(frame)
@@ -28,4 +26,4 @@ local function AdiSkin(self,event)
 	end
 end
 
-U.RegisterSkin(name,AdiSkin,"BANKFRAME_OPENED")
+U.RegisterSkin(name, AdiSkin, "BANKFRAME_OPENED")

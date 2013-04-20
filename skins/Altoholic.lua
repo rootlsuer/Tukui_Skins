@@ -1,7 +1,6 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
-local s = U.s
-local c = U.c 
+
 local name = "AltoholicSkin"
 local function SkinAltoholic(self, event, addon)
 	LoadAddOn("Altoholic_Characters")
@@ -13,8 +12,8 @@ local function SkinAltoholic(self, event, addon)
 	U.SkinButton(AltoMsgBoxYesButton)
 	U.SkinButton(AltoMsgBoxNoButton)
 
-	AltoholicFrame:HookScript("OnShow", function(self) if AltoholicFrame.IsSkinned == "True" then return end
-		AltoholicFrame.IsSkinned = "True"
+	AltoholicFrame:HookScript("OnShow", function(self) if AltoholicFrame.IsSkinned == "true" then return end
+		AltoholicFrame.IsSkinned = "true"
 		U.SkinFrame(AltoholicFrameSummary)
 		U.SkinFrame(AltoholicFrameActivity)
 		U.SkinFrame(AltoholicFrameBagUsage)
@@ -51,13 +50,13 @@ local function SkinAltoholic(self, event, addon)
 		U.SkinButton(AltoholicTabCharacters_Sort2)
 		U.SkinButton(AltoholicTabCharacters_Sort3)
 
-		AltoholicFrameContainersScrollFrame:StripTextures(True)
-		AltoholicFrameQuestsScrollFrame:StripTextures(True)
-		AltoholicFrameSummaryScrollFrame:StripTextures(True)
-		AltoholicFrameBagUsageScrollFrame:StripTextures(True)
-		AltoholicFrameSkillsScrollFrame:StripTextures(True)
-		AltoholicFrameActivityScrollFrame:StripTextures(True)
-		AltoholicFrameRecipesScrollFrame:StripTextures(True)
+		AltoholicFrameContainersScrollFrame:StripTextures(true)
+		AltoholicFrameQuestsScrollFrame:StripTextures(true)
+		AltoholicFrameSummaryScrollFrame:StripTextures(true)
+		AltoholicFrameBagUsageScrollFrame:StripTextures(true)
+		AltoholicFrameSkillsScrollFrame:StripTextures(true)
+		AltoholicFrameActivityScrollFrame:StripTextures(true)
+		AltoholicFrameRecipesScrollFrame:StripTextures(true)
 
 		AltoholicFrame_ResetButton:Size(85, 24)
 		AltoholicFrame_SearchButton:Size(85, 24)
@@ -94,8 +93,8 @@ local function SkinAltoholic(self, event, addon)
 	local function LoadSkinAchievements()
 
 		U.SkinBackdropFrame(AltoholicFrameAchievements, true)
-		AltoholicFrameAchievementsScrollFrame:StripTextures(True)
-		AltoholicAchievementsMenuScrollFrame:StripTextures(True)
+		AltoholicFrameAchievementsScrollFrame:StripTextures(true)
+		AltoholicAchievementsMenuScrollFrame:StripTextures(true)
 		U.SkinScrollBar(AltoholicFrameAchievementsScrollFrameScrollBar)
 		U.SkinScrollBar(AltoholicAchievementsMenuScrollFrameScrollBar)
 		U.SkinDropDownBox(AltoholicTabAchievements_SelectRealm)
@@ -131,7 +130,7 @@ local function SkinAltoholic(self, event, addon)
 	end
 
 	local function LoadSkinGrids()
-		AltoholicFrameGridsScrollFrame:StripTextures(True)
+		AltoholicFrameGridsScrollFrame:StripTextures(true)
 		U.SkinBackdropFrame(AltoholicFrameGrids)
 		U.SkinScrollBar(AltoholicFrameGridsScrollFrameScrollBar)
 		U.SkinDropDownBox(AltoholicTabGrids_SelectRealm)
@@ -153,7 +152,7 @@ local function SkinAltoholic(self, event, addon)
 		U.SkinFrame(AltoholicFrameGuildMembers)
 		U.SkinFrame(AltoholicFrameGuildBank)
 		U.SkinScrollBar(AltoholicFrameGuildMembersScrollFrameScrollBar)
-		AltoholicFrameGuildMembersScrollFrame:StripTextures(True)
+		AltoholicFrameGuildMembersScrollFrame:StripTextures(true)
 
 		for i = 1, 2 do
 			U.SkinButton(_G["AltoholicTabGuildMenuItem"..i])
@@ -180,8 +179,8 @@ local function SkinAltoholic(self, event, addon)
 
 	local function LoadSkinSearch()
 		U.SkinBackdropFrame(AltoholicFrameSearch, true)
-		AltoholicFrameSearchScrollFrame:StripTextures(True)
-		AltoholicSearchMenuScrollFrame:StripTextures(True)
+		AltoholicFrameSearchScrollFrame:StripTextures(true)
+		AltoholicSearchMenuScrollFrame:StripTextures(true)
 		U.SkinScrollBar(AltoholicFrameSearchScrollFrameScrollBar)
 		U.SkinScrollBar(AltoholicSearchMenuScrollFrameScrollBar)
 		U.SkinDropDownBox(AltoholicTabSearch_SelectRarity)
@@ -209,4 +208,4 @@ local function SkinAltoholic(self, event, addon)
 	s.SkinFuncs["Altoholic_Search"] = LoadSkinSearch
 end
 
-U.RegisterSkin(name,SkinAltoholic)
+U.RegisterSkin(name, SkinAltoholic)

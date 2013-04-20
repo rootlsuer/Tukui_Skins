@@ -5,4 +5,5 @@ local name = "VengeanceStatusSkin"
 local function SkinVengeanceStatus()
 	U.SkinStatusBar(VengeanceStatus_StatusBar)
 end
+
 U.RegisterSkin(name, SkinVengeanceStatus)

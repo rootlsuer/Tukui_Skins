@@ -3,6 +3,7 @@ local U = unpack(select(2,...))
 
 local name = "TomTomSkin"
 local function SkinTomTom()
-	if TomTomBlock then U.SkinFrame(TomTomBlock) end
+	U.SkinFrame(TomTomBlock)
 end
+
 U.RegisterSkin(name, SkinTomTom)

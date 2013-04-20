@@ -1,7 +1,8 @@
 ﻿if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
+
 local name = "EasyMailSkin"
-local function SkinEasyMail(self,event)
+local function SkinEasyMail(self, event)
 	if event == "PLAYER_ENTERING_WORLD" then return end
 	MailFrame:Size(360,440)
 	U.SkinButton(EasyMail_CheckAllButton)
@@ -32,11 +33,11 @@ local function SkinEasyMail(self,event)
 	end)
 	for i = 1, 7 do	
 		local t = _G["MailItem"..i.."ExpireTime"]
-			if t then
-				t:ClearAllPoints()
-				t:Point("TOPRIGHT", -10, -4)
-			end				
+		if t then
+			t:ClearAllPoints()
+			t:Point("TOPRIGHT", -10, -4)
+		end				
 	end
 end
 
-U.RegisterSkin(name,SkinEasyMail,"MAIL_SHOW")
+U.RegisterSkin(name, SkinEasyMail, "MAIL_SHOW")

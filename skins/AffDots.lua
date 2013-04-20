@@ -5,4 +5,5 @@ local name = "AffDotsSkin"
 local function SkinAffDots()
 	U.SkinBackdropFrame(AffDotsTarget)
 end
+
 U.RegisterSkin(name, SkinAffDots)

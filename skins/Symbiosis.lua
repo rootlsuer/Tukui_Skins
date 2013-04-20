@@ -5,4 +5,5 @@ local name = "SymbiosisTipSkin"
 local function SkinSymbiosisTip()
 	U.SkinTooltip(SymbiosisTip)
 end
+
 U.RegisterSkin(name, SkinSymbiosisTip)

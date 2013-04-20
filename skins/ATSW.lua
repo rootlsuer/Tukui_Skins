@@ -1,16 +1,15 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
+
 local name = 'ATSWSkin'
 local function SkinATSW(self)
-	local s = U.s
-	local c = U.c
 	U.SkinFrame(ATSWFrame)
-	ATSWSkillIcon:StripTextures(True)
-	ATSWListScrollFrame:StripTextures(True)
-	ATSWExpandButtonFrame:StripTextures(True)
-	ATSWRankFrameBorder:StripTextures(True)
+	ATSWSkillIcon:StripTextures(true)
+	ATSWListScrollFrame:StripTextures(true)
+	ATSWExpandButtonFrame:StripTextures(true)
+	ATSWRankFrameBorder:StripTextures(true)
 	U.SkinStatusBar(ATSWRankFrame)
-	ATSWRankFrame:Size(398,20)
+	ATSWRankFrame:Size(398, 20)
 	ATSWRankFrame:ClearAllPoints()
 	ATSWRankFrame:Point("CENTER", ATSWFrame, "CENTER", 165, 200)
 	ATSWListScrollFrame:Width(280)
@@ -107,31 +106,30 @@ local function SkinATSW(self)
 	ATSWOptionsFrame:SetScale(c.general.uiscale)
 
 	U.SkinFrame(ATSWCSFrame)
-	ATSWCSUListScrollFrame:StripTextures(True)
-	ATSWCSSListScrollFrame:StripTextures(True)
+	ATSWCSUListScrollFrame:StripTextures(true)
+	ATSWCSSListScrollFrame:StripTextures(true)
 
-		local once = false
-			for i=1, ATSW_MAX_TRADE_SKILL_REAGENTS do
-				local button = _G["ATSWReagent"..i]
-				local icon = _G["ATSWReagent"..i.."IconTexture"]
-				local count = _G["ATSWReagent"..i.."Count"]
+	local once = false
+	for i = 1, ATSW_MAX_TRADE_SKILL_REAGENTS do
+		local button = _G["ATSWReagent"..i]
+		local icon = _G["ATSWReagent"..i.."IconTexture"]
+		local count = _G["ATSWReagent"..i.."Count"]
+		icon:SetTexCoord(.08, .92, .08, .92)
+		icon:SetDrawLayer("OVERLAY")
 
-			icon:SetTexCoord(.08, .92, .08, .92)
-			icon:SetDrawLayer("OVERLAY")
+		if not icon.backdrop then
+			icon.backdrop = CreateFrame("Frame", nil, button)
+			icon.backdrop:SetFrameLevel(button:GetFrameLevel() - 1)
+			icon.backdrop:SetTemplate("Default")
+			icon.backdrop:Point("TOPLEFT", icon, "TOPLEFT", -2, 2)
+			icon.backdrop:Point("BOTTOMRIGHT", icon, "BOTTOMRIGHT", 2, -2)
+		end
 
-			if not icon.backdrop then
-				icon.backdrop = CreateFrame("Frame", nil, button)
-				icon.backdrop:SetFrameLevel(button:GetFrameLevel() - 1)
-				icon.backdrop:SetTemplate("Default")
-				icon.backdrop:Point("TOPLEFT", icon, "TOPLEFT", -2, 2)
-				icon.backdrop:Point("BOTTOMRIGHT", icon, "BOTTOMRIGHT", 2, -2)
-			end
+		icon:SetParent(icon.backdrop)
+		count:SetParent(icon.backdrop)
+		count:SetDrawLayer("OVERLAY")
 
-			icon:SetParent(icon.backdrop)
-			count:SetParent(icon.backdrop)
-			count:SetDrawLayer("OVERLAY")
-
-			if i > 2 and once == false then
+		if i > 2 and once == false then
 			local point, anchoredto, point2, x, y = button:GetPoint()
 			button:ClearAllPoints()
 			button:Point(point, anchoredto, point2, x, y - .8)
@@ -152,7 +150,7 @@ local function SkinATSW(self)
 	ATSWAddCategoryButton:Point("LEFT", ATSWCSNewCategoryBox, "RIGHT", 5, 0)
 	ATSWFrameCloseButton:Point("TOPRIGHT", ATSWFrame, "TOPRIGHT", -5, -5)
 	ATSWBuyReagentsButton:Point("CENTER", ATSWReagentFrame, "BOTTOMLEFT", 246, 50)
-	ATSWQueueScrollFrame:StripTextures(True)
+	ATSWQueueScrollFrame:StripTextures(true)
 	ATSWQueueScrollFrame:Width(52)
 	U.SkinScrollBar(ATSWQueueScrollFrameScrollBar)
 	U.SkinNextPrevButton(ATSWIncrementButton)
@@ -168,7 +166,7 @@ local function SkinATSW(self)
 	U.SkinButton(ATSWSLCloseButton, true)
 	ATSWSLCloseButton:ClearAllPoints()
 	ATSWSLCloseButton:Point("TOPRIGHT", ATSWShoppingListFrame, "TOPRIGHT", -5, -5)
-	ATSWSLScrollFrame:StripTextures(True)
+	ATSWSLScrollFrame:StripTextures(true)
 	U.SkinScrollBar(ATSWSLScrollFrameScrollBar)
 
 	U.SkinButton(ATSWScanDelayFrameSkipButton)
@@ -178,4 +176,4 @@ local function SkinATSW(self)
 	ATSWInputBox:SetJustifyH("CENTER")
 end
 
-U.RegisterSkin(name,SkinATSW)
+U.RegisterSkin(name, SkinATSW)

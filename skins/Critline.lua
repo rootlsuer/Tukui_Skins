@@ -6,4 +6,5 @@ local function SkinCritline()
 	U.SkinBackdropFrame(Critline.display, true)
 	Critline.display.backdrop:SetFrameStrata("BACKGROUND")
 end
+
 U.RegisterSkin(name, SkinCritline)

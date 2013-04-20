@@ -13,7 +13,6 @@ local function SkinZygor(self)
 	if ZygorGuidesViewerFrame:IsShown() then U.SkinFrame(ZygorGuidesViewerFrame_Border) end
 	ZygorGuidesViewerFrame_Border:HookScript("OnHide", function(self) self:StripTextures(True) end)
 	ZygorGuidesViewerFrame_Border:HookScript("OnShow", function(self) U.SkinFrame(self) end)
-
 end
 
-U.RegisterSkin(name,SkinZygor)
+U.RegisterSkin(name, SkinZygor)

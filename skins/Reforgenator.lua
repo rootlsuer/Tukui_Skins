@@ -1,5 +1,6 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
+
 local name = "ReforgenatorSkin"
 local function SkinReforgenator(self)
 	U.SkinFrame(ReforgenatorPanel)
@@ -9,7 +10,7 @@ local function SkinReforgenator(self)
 	U.SkinDropDownBox(ReforgenatorPanel_SandboxSelection)
 	U.SkinDropDownBox(ReforgenatorPanel_TargetLevelSelection)
 	U.SkinCloseButton(ReforgenatorPanel_CloseButton)
-	hooksecurefunc(Reforgenator,"UpdateWindowItem",function(self, index, itemDescriptor)
+	hooksecurefunc(Reforgenator,"UpdateWindowItem", function(self, index, itemDescriptor)
 		if not itemDescriptor then return end
 		local item = _G["ReforgenatorPanel_Item"..index]
 		local iconTexture = _G["ReforgenatorPanel_Item" .. index .. "IconTexture"]
@@ -21,4 +22,4 @@ local function SkinReforgenator(self)
 	end)
 end
 
-U.RegisterSkin(name,SkinReforgenator)
+U.RegisterSkin(name, SkinReforgenator)

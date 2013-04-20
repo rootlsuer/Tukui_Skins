@@ -1,5 +1,6 @@
 ﻿if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
+
 local function AL_OnShow(self, event, ...)
 	AtlasLootPanel:Point("TOP", AtlasLootDefaultFrame, "BOTTOM", 0, -1)
 	AtlasLootQuickLooksButton:Point("BOTTOM", AtlasLootItemsFrame, "BOTTOM", 53, 33)
@@ -11,7 +12,7 @@ local function AL_OnShow(self, event, ...)
 	AtlasLootPanelSearch_LastResultButton:Point("LEFT", AtlasLootPanelSearch_ClearButton, "RIGHT", 5, 0)
 	AtlasLoot10Man25ManSwitch:Point("BOTTOM", AtlasLootItemsFrame, "BOTTOM", -130, 4)
 	AtlasLootServerQueryButton:Point("BOTTOM", AtlasLootItemsFrame, "BOTTOM", 130, 4)
-	
+
 	if AtlasLoot_PanelButton_2 then AtlasLoot_PanelButton_2:Point("LEFT", AtlasLoot_PanelButton_1, "RIGHT", 1, 0) end
 	if AtlasLoot_PanelButton_3 then AtlasLoot_PanelButton_3:Point("LEFT", AtlasLoot_PanelButton_2, "RIGHT", 1, 0) end
 	if AtlasLoot_PanelButton_4 then AtlasLoot_PanelButton_4:Point("LEFT", AtlasLoot_PanelButton_3, "RIGHT", 1, 0) end
@@ -50,14 +51,9 @@ local function AL_OnShow(self, event, ...)
 	AtlasLoot_AtlasInfoFrame_ToggleALButton:SetFrameLevel(AtlasLootDefaultFrame:GetFrameLevel()+1)
 	AtlasLootDefaultFrame_CompareFrame:SetFrameLevel(AtlasLootDefaultFrame:GetFrameLevel()+1)
 
-	local AL = ""
-		if AL == "" then
-			AtlasLootPanelSearch_Box:SetHeight(16)
-			AtlasLootPanel:SetWidth(921)
-		end
-		
+	AtlasLootPanelSearch_Box:SetHeight(16)
+	AtlasLootPanel:SetWidth(921)
 	U.Desaturate(AtlasLootDefaultFrame_LockButton)
-				
 end
 
 local function Nine_IsThere(Self, event, ...)
@@ -65,12 +61,12 @@ local function Nine_IsThere(Self, event, ...)
 		local f = _G["AtlasLootCompareFrameSortButton_"..i]
 		f:SetWidth(44.44)
 	end
-				
+
 	local nineisthere = {
 		"AtlasLootCompareFrameSortButton_7",
 		"AtlasLootCompareFrameSortButton_8",
 		"AtlasLootCompareFrameSortButton_9",
-		}
+	}
 
 	for _, object in pairs(nineisthere) do
 		U.SkinFrame(_G[object])
@@ -79,19 +75,17 @@ local function Nine_IsThere(Self, event, ...)
 	AtlasLootCompareFrameSortButton_7:Point("LEFT", AtlasLootCompareFrameSortButton_6, "RIGHT", 1, 0)
 	AtlasLootCompareFrameSortButton_8:Point("LEFT", AtlasLootCompareFrameSortButton_7, "RIGHT", 1, 0)
 	AtlasLootCompareFrameSortButton_9:Point("LEFT", AtlasLootCompareFrameSortButton_8, "RIGHT", 1, 0)
-				
 end
 
 local function Compare_OnShow(self, event, ...)
 	for i = 1, 6 do 
 		_G["AtlasLootCompareFrameSortButton_"..i]:SetWidth(40)
 	end
-	
+
 	local Nine = AtlasLootCompareFrameSortButton_9
-		if Nine ~= nil then
-			Nine:SetScript("OnUpdate", Nine_IsThere)
-		else
-		end	
+	if Nine ~= nil then
+		Nine:SetScript("OnUpdate", Nine_IsThere)
+	end	
 end
 
 local name = 'AtlasLootSkin'
@@ -99,8 +93,8 @@ local function SkinAL(self)
 	LoadAddOn("AtlasLoot")
 
 	local StripAllTextures = {
-                "AtlasLootDefaultFrame",
-                "AtlasLootItemsFrame",
+		"AtlasLootDefaultFrame",
+		"AtlasLootItemsFrame",
 		"AtlasLootPanel",
 		"AtlasLootCompareFrame",
 		"AtlasLootCompareFrame_ScrollFrameMainFilterScrollChildFrame",
@@ -114,10 +108,10 @@ local function SkinAL(self)
 		"AtlasLootCompareFrameSortButton_4",
 		"AtlasLootCompareFrameSortButton_5",
 		"AtlasLootCompareFrameSortButton_6",
-		}
+	}
 
 	local SetTemplateD = {
-                "AtlasLootItemsFrame",
+		"AtlasLootItemsFrame",
 		"AtlasLootCompareFrameSortButton_Name",
 		"AtlasLootCompareFrameSortButton_Rarity",
 		"AtlasLootCompareFrameSortButton_1",
@@ -126,19 +120,19 @@ local function SkinAL(self)
 		"AtlasLootCompareFrameSortButton_4",
 		"AtlasLootCompareFrameSortButton_5",
 		"AtlasLootCompareFrameSortButton_6",
-		}
+	}
 
 	local SetTemplateT = {
-                "AtlasLootDefaultFrame",
-                "AtlasLootPanel",
+		"AtlasLootDefaultFrame",
+		"AtlasLootPanel",
 		"AtlasLootCompareFrame",
-		}	
+	}	
 	
 	local buttons = {
-                "AtlasLoot_AtlasInfoFrame_ToggleALButton",
-                "AtlasLootServerQueryButton",
-                "AtlasLootPanelSearch_SearchButton",
-                "AtlasLootDefaultFrame_CompareFrame",
+		"AtlasLoot_AtlasInfoFrame_ToggleALButton",
+		"AtlasLootServerQueryButton",
+		"AtlasLootPanelSearch_SearchButton",
+		"AtlasLootDefaultFrame_CompareFrame",
 		"AtlasLootPanelSearch_ClearButton",
 		"AtlasLootPanelSearch_LastResultButton",
 		"AtlasLoot10Man25ManSwitch",
@@ -147,23 +141,23 @@ local function SkinAL(self)
 		"AtlasLootCompareFrameSearch_SearchButton",
 		"AtlasLootCompareFrame_WishlistButton",
 		"AtlasLootCompareFrame_CloseButton2",
-		}
-							
+	}
+
 	for _, object in pairs(StripAllTextures) do
 		_G[object]:StripTextures()
-	end	
+	end
 
 	for _, object in pairs(SetTemplateD) do
 		U.SkinFrame(_G[object],"Default")
-	end	
+	end
 
 	for _, object in pairs(SetTemplateT) do
 		U.SkinFrame(_G[object])
-	end			
+	end
 
 	for _, button in pairs(buttons) do
 		U.SkinButton(_G[button])
-	end	
+	end
 
 	if AtlasLoot_PanelButton_1 then U.SkinButton(AtlasLoot_PanelButton_1) end
 	if AtlasLoot_PanelButton_2 then U.SkinButton(AtlasLoot_PanelButton_2) end
@@ -177,7 +171,7 @@ local function SkinAL(self)
 	if AtlasLoot_PanelButton_10 then U.SkinButton(AtlasLoot_PanelButton_10) end
 	if AtlasLoot_PanelButton_11 then U.SkinButton(AtlasLoot_PanelButton_11) end
 	if AtlasLoot_PanelButton_12 then U.SkinButton(AtlasLoot_PanelButton_12) end
-					
+
 	for i = 1, 15 do
 		local f = _G["AtlasLootCompareFrameMainFilterButton"..i]
 		f:StripTextures()
@@ -186,9 +180,7 @@ local function SkinAL(self)
 	U.SkinCloseButton(AtlasLootDefaultFrame_CloseButton)
 	U.SkinCloseButton(AtlasLootCompareFrame_CloseButton)
 	U.SkinCloseButton( AtlasLootCompareFrame_CloseButton_Wishlist)
-
 	U.Desaturate(AtlasLootDefaultFrame_LockButton)
-
 	U.SkinNextPrevButton(AtlasLootQuickLooksButton)
 	U.SkinNextPrevButton(AtlasLootItemsFrame_NEXT)
 	AtlasLootItemsFrame_NEXT:SetWidth(25)
@@ -198,7 +190,6 @@ local function SkinAL(self)
 	AtlasLootItemsFrame_PREV:SetHeight(25)
 	U.SkinNextPrevButton(AtlasLootPanelSearch_SelectModuel)	
 	U.SkinNextPrevButton(AtlasLootCompareFrameSearch_SelectModuel)		
-
 	U.SkinDropDownBox(AtlasLootDefaultFrame_ModuleSelect)
 	AtlasLootDefaultFrame_ModuleSelect:SetWidth(240)
 	AtlasLootDefaultFrame_ModuleSelect:SetPoint("TOPLEFT", AtlasLootDefaultFrame, "TOPLEFT", 50, -50)
@@ -208,7 +199,6 @@ local function SkinAL(self)
 	AtlasLootCompareFrameSearch_StatsListDropDown:SetWidth(240)
 	U.SkinDropDownBox(AtlasLootCompareFrame_WishlistDropDown)
 	AtlasLootCompareFrame_WishlistDropDown:SetWidth(240)
-
 	U.SkinEditBox(AtlasLootPanelSearch_Box)
 	U.SkinEditBox(AtlasLootCompareFrameSearch_Box)
 
@@ -229,4 +219,4 @@ local function SkinAL(self)
 	if AtlasLootTooltip:GetName() ~= "GameTooltip" then U.SkinTooltip(AtlasLootTooltip) end
 end
 
-U.RegisterSkin(name,SkinAL)
+U.RegisterSkin(name, SkinAL)

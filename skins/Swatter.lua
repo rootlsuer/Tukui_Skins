@@ -2,6 +2,7 @@ if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("
 if IsAddOnLoaded("!BugGrabber") then return end
 if IsAddOnLoaded("!ImprovedErrorFrame") then return end
 local U = unpack(select(2,...))
+
 local name = "SwatterSkin"
 local function SkinSwatter(self)
 	if SwatterErrorFrame then
@@ -14,4 +15,4 @@ local function SkinSwatter(self)
 	end
 end
 
-U.RegisterSkin(name,SkinSwatter)
+U.RegisterSkin(name, SkinSwatter)

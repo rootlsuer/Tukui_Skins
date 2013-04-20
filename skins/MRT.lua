@@ -1,10 +1,8 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
+
 local name = "MRTSkin"
 local function SkinMRT(self)
-	local s = U.s
-	local c = U.c
-
 	U.SkinFrame(MRT_GUIFrame)
 	U.SkinFrame(MRT_GUI_FourRowDialog)
 	U.SkinCloseButton(MRT_GUIFrame_CloseButton)
@@ -29,15 +27,13 @@ local function SkinMRT(self)
 	U.SkinButton(MRT_GUIFrame_BossAttendees_Delete_Button)
 	U.SkinButton(MRT_GUI_FourRowDialog_OKButton)
 	U.SkinButton(MRT_GUI_FourRowDialog_CancelButton)
-
 	for i = 1, 6 do
 		U.SkinFrame(_G["ScrollTable"..i])
 		_G["ScrollTable"..i.."ScrollFrameScrollBar"]:StripTextures(true)
 		U.SkinScrollBar(_G["ScrollTable"..i.."ScrollFrameScrollBar"])
 	end
-
 	U.SkinTooltip(MRT_GUI_ItemTT)
 	U.SkinTooltip(MRT_GUI_TT)
 end
 
-U.RegisterSkin(name,SkinMRT)
+U.RegisterSkin(name, SkinMRT)

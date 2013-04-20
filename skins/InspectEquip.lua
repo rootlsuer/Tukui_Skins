@@ -6,4 +6,5 @@ local function SkinInspectEquip()
 	U.SkinFrame(InspectEquip_InfoWindow)
 	U.SkinCloseButton(InspectEquip_InfoWindow_CloseButton)
 end
+
 U.RegisterSkin(name, SkinInspectEquip)

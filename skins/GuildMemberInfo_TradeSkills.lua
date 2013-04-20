@@ -9,4 +9,5 @@ local function SkinGuildMemberInfo_TradeSkills()
 	GMItsIcon1:SetTexCoord(0.12, 0.88, 0.12, 0.88)
 	GMItsIcon2:SetTexCoord(0.12, 0.88, 0.12, 0.88)
 end
+
 U.RegisterSkin(name, SkinGuildMemberInfo_TradeSkills)

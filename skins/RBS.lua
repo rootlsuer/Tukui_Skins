@@ -1,8 +1,8 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
+
 local name = "RaidBuffStatusSkin"
 local function SkinRBS(self)
-
 	U.SkinFrame(RBSFrame)
 	U.SkinButton(RBSFrameScanButton)
 	U.SkinButton(RBSFrameReadyCheckButton)
@@ -14,4 +14,4 @@ local function SkinRBS(self)
 	RBSFrameTalentsButton:Size(20)
 end
 
-U.RegisterSkin(name,SkinRBS)
+U.RegisterSkin(name, SkinRBS)

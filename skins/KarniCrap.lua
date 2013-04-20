@@ -1,10 +1,8 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
+
 local name = "KarniCrapSkin"
 local function SkinKarniCrap(self)
-	local s = U.s
-	local c = U.c
-
 	U.SkinFrame(KarniCrap)
 	U.SkinFrame(KarniCrap_CategoryFrame)
 	U.SkinFrame(KarniCrap_OptionsFrame)
@@ -27,8 +25,6 @@ local function SkinKarniCrap(self)
 	U.SkinButton(KarniCrap_BtnDestroyItem)
 	U.SkinButton(KarniCrap_BtnDestroyAllCrap)
 	KarniCrapPortrait:Kill()
-
-	--Checkboxes
 	U.SkinCheckBox(KarniCrap_CBEnabled)
 	U.SkinCheckBox(KarniCrap_CBPoor)
 	U.SkinCheckBox(KarniCrap_Tab1_CBCommon)
@@ -110,4 +106,4 @@ local function SkinKarniCrap(self)
 --	U.SkinEditBox(KarniCrap_EBDestroySlotsNum)
 end
 
-U.RegisterSkin(name,SkinKarniCrap)
+U.RegisterSkin(name, SkinKarniCrap)

@@ -3,12 +3,9 @@ local U = unpack(select(2,...))
 
 local name = "SkadaSkin"
 local function SkinSkada(self)
-	local s = U.s
-	local c = U.c
-	local Skada = Skada
 	local barSpacing = 1
 	local borderWidth = 1
-	local barmod = Skada.displays["bar"]
+	
 	local function StripOptions(options)
 		options.baroptions.args.barspacing = nil
 		options.titleoptions.args.texture = nil
@@ -25,28 +22,27 @@ local function SkinSkada(self)
 	ResetFrame:SetPoint("CENTER", UIParent, "CENTER")
 	ResetFrame:SetFrameStrata("DIALOG")
 	ResetFrame:Hide()
-	local ResetText = ResetFrame:CreateFontString(nil, "Overlay")
-	ResetText:SetFontObject(ChatFontNormal)
-	ResetText:SetPoint("TOP", ResetFrame, "TOP", 0, -10)
-	ResetText:SetText("Do you want to reset Skada?")
+	ResetFrame:FontString("text", U.PixelFont, 14, "MONOCHROMEOUTLINE")
+	ResetFrame.text:SetPoint("TOP", ResetFrame, "TOP", 0, -10)
+	ResetFrame.text:SetText("Do you want to reset Skada?")
+
 	local ResetAccept = CreateFrame("Button", nil, ResetFrame)
 	U.SkinButton(ResetAccept)
 	ResetAccept:SetSize(70, 25)
 	ResetAccept:SetPoint("RIGHT", ResetFrame, "BOTTOM", -1, 20)
 	ResetAccept:SetScript("OnClick", function(self) Skada:Reset() self:GetParent():Hide() end)
-	local ResetAcceptText = ResetAccept:CreateFontString(nil, "Overlay")
-	ResetAcceptText:SetFontObject(ChatFontNormal)
-	ResetAcceptText:SetPoint("CENTER")
-	ResetAcceptText:SetText("Yes")
+	ResetAccept:FontString("text", U.PixelFont, 14, "MONOCHROMEOUTLINE")
+	ResetAccept.text:SetPoint("CENTER")
+	ResetAccept.text:SetText("Yes")
+
 	local ResetClose = CreateFrame("Button", nil, ResetFrame)
 	U.SkinButton(ResetClose)
 	ResetClose:SetSize(70, 25)
 	ResetClose:SetPoint("LEFT", ResetFrame, "BOTTOM", 1, 20)
 	ResetClose:SetScript("OnClick", function(self) self:GetParent():Hide() end)
-	local ResetCloseText = ResetClose:CreateFontString(nil, "Overlay")
-	ResetCloseText:SetFontObject(ChatFontNormal)
-	ResetCloseText:SetPoint("CENTER")
-	ResetCloseText:SetText("No")
+	ResetClose:FontString("text", U.PixelFont, 14, "MONOCHROMEOUTLINE")
+	ResetClose.text:SetPoint("CENTER")
+	ResetClose.text:SetText("Yes")
 	
 	function Skada:ShowPopup()
 		ResetFrame:Show()
@@ -66,7 +62,7 @@ local function SkinSkada(self)
 	end
 
 	local titleBG = {
-		bgFile = c["media"].normTex,
+		bgFile = U.NormTex,
 		tile = false,
 		tileSize = 0
 	}
@@ -74,17 +70,13 @@ local function SkinSkada(self)
 	barmod.ApplySettings_ = barmod.ApplySettings
 	barmod.ApplySettings = function(self, win)
 		barmod.ApplySettings_(self, win)
-
 		local skada = win.bargroup
-
 		if(win.db.enabletitle) then
 			skada.button:SetBackdrop(titleBG)
 		end
-
-		skada:SetTexture(c["media"].normTex)
+		skada:SetTexture(U.NormTex)
 		skada:SetSpacing(barSpacing)
 		skada:SetFrameLevel(5)
-		
 		if not skada.TitleBackGround then
 			skada.TitleBackGround = CreateFrame("Frame", nil, skada.button)
 			skada.TitleBackGround:SetPoint("TOP")
@@ -94,34 +86,22 @@ local function SkinSkada(self)
 			U.SkinFrame(skada.TitleBackGround,"Default")
 			skada.TitleBackGround:SetFrameLevel(skada.button:GetFrameLevel() -1)
 		end
-		
+
 		local titlefont = CreateFont("TitleFont" .. win.db.name)
 		skada.button:SetNormalFontObject(titlefont)
+
 		local color = win.db.title.color
 		skada.button:SetBackdropColor(0, 0, 0, 0)
-
 		skada:SetBackdrop(nil)
-
-		if not skada.backdrop then
-			U.SkinBackdropFrame(skada)
-		end
-
+		U.SkinBackdropFrame(skada)
 		skada.backdrop:ClearAllPoints()
-		if(win.db.enabletitle) then
+		if win.db.enabletitle then
 			skada.backdrop:Point("TOPLEFT", skada.button, "TOPLEFT", -2, 2)
 		else
 			skada.backdrop:Point("TOPLEFT", skada, "TOPLEFT", -2, 2)
 		end
 		skada.backdrop:Point("BOTTOMRIGHT", skada, "BOTTOMRIGHT", 2, -2)
 		if (not U.CheckOption("SkadaBackdrop")) then skada.backdrop:Hide() end
-		if (U.CheckOption("EmbedSkada")) then
-			if UISkinOptions.EmbedLeft == "Skada" then
-				win.bargroup:SetParent(EmbeddingWindowLeft)
-			else
-				win.bargroup:SetParent(EmbeddingWindow)
-			end
-			win.bargroup:SetFrameLevel(10)
-		end
 	end
 end
 

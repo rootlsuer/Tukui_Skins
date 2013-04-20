@@ -1,8 +1,5 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local addon = select(1,...)
 local U = unpack(select(2,...))
-
-U.Version = GetAddOnMetadata(addon,"Version")
 
 U.Skins = {
 	["ACPSkin"] = {

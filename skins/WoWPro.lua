@@ -8,4 +8,4 @@ local function SkinWoWPro(self)
 	U.SkinTooltip(_G["Mouseover Note Tooltip"])
 end
 
-U.RegisterSkin(name,SkinWoWPro)
+U.RegisterSkin(name, SkinWoWPro)

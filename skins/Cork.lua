@@ -6,4 +6,5 @@ local function SkinCork()
 	U.SkinBackdropFrame(Corkboard, true)
 	Corkboard:HookScript("OnUpdate", function(self) self:StripTextures() end)
 end
+
 U.RegisterSkin(name, SkinCork)

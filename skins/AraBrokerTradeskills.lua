@@ -6,4 +6,4 @@ local function SkinAraTradeskills(self)
 	AraSkills:HookScript("OnUpdate", function(self) U.SkinFrame(self) end)
 end
 
-U.RegisterSkin(name,SkinAraTradeskills)
+U.RegisterSkin(name, SkinAraTradeskills)

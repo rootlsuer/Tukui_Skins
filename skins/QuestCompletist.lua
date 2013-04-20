@@ -1,5 +1,6 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
+
 local name = "QuestCompletistSkin"
 local function SkinQuestCompletist(self)
 	local tooltips = {
@@ -29,4 +30,4 @@ local function SkinQuestCompletist(self)
 	qcMenuSlider:Height(256)
 end
 
-U.RegisterSkin(name,SkinQuestCompletist)
+U.RegisterSkin(name, SkinQuestCompletist)

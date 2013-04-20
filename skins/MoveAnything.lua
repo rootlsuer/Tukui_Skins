@@ -1,13 +1,10 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
+
 local name = "MoveAnythingSkin"
 local function SkinMoveAnything(self)
-	local s = U.s
-	local c = U.c
-
 	U.SkinFrame(MAOptions)
-	MAScrollBorder:StripTextures(True)
-
+	MAScrollBorder:StripTextures(true)
 	U.SkinScrollBar(MAScrollFrameScrollBar)
 	U.SkinButton(MAOptionsSync)
 	U.SkinButton(MAOptionsOpenBlizzardOptions)
@@ -16,14 +13,12 @@ local function SkinMoveAnything(self)
 	U.SkinBackdropFrame(GameMenuButtonMoveAnything)
 	GameMenuButtonMoveAnything:ClearAllPoints()
 	GameMenuButtonMoveAnything:Point("TOP", GameMenuFrame, "BOTTOM", 0, -3)
-
 	U.SkinEditBox(MA_Search)
 	U.SkinCheckBox(MAOptionsToggleModifiedFramesOnly)
 	U.SkinCheckBox(MAOptionsToggleCategories)
 	U.SkinCheckBox(MAOptionsToggleFrameStack)
 	U.SkinCheckBox(MAOptionsToggleMovers)
 	U.SkinCheckBox(MAOptionsToggleFrameEditors)
-
 	for i = 1, 100 do
 		if _G["MAMove"..i.."Reset"] then U.SkinButton(_G["MAMove"..i.."Reset"]) end
 		if _G["MAMove"..i.."Reset"] then U.SkinButton(_G["MAMove"..i.."Reset"]) end
@@ -31,7 +26,6 @@ local function SkinMoveAnything(self)
 		if _G["MAMove"..i.."Move"] then U.SkinCheckBox(_G["MAMove"..i.."Move"]) end
 		if _G["MAMove"..i.."Hide"] then U.SkinCheckBox(_G["MAMove"..i.."Hide"]) end
 	end
-
 	U.SkinFrame(MANudger)
 	U.SkinButton(MANudger_CenterMe)
 	U.SkinButton(MANudger_CenterH)
@@ -44,4 +38,4 @@ local function SkinMoveAnything(self)
 	U.SkinButton(MANudger_Hide)
 end
 
-U.RegisterSkin(name,SkinMoveAnything)
+U.RegisterSkin(name, SkinMoveAnything)

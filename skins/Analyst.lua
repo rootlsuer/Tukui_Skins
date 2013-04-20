@@ -17,4 +17,5 @@ local function SkinAnalyst()
 	U.SkinDropDownBox(EconomyFrameRightStatsReportDropDown)
 	U.SkinCheckBox(EconomyFrameAllCharacters)
 end
+
 U.RegisterSkin(name, SkinAnalyst)

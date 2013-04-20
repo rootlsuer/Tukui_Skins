@@ -1,5 +1,6 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
+
 local name = "PetBattleTeamsSkin"
 local function SkinPetBattleTeams(self)
 	U.Delay(6, function()
@@ -23,4 +24,4 @@ local function SkinPetBattleTeams(self)
 	end)
 end
 
-U.RegisterSkin(name,SkinPetBattleTeams,"ADDON_LOADED")
+U.RegisterSkin(name,SkinPetBattleTeams, "ADDON_LOADED")

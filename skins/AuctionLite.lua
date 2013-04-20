@@ -1,9 +1,8 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
+
 local name = "AuctionLiteSkin"
-local s = U.s
-local c = U.c
-local function SkinAuctionLite(self,event)
+local function SkinAuctionLite(self, event)
 	if event == "PLAYER_ENTERING_WORLD" then return end
 	U.SkinTab(AuctionFrameTab4)
 	U.SkinTab(AuctionFrameTab5)
@@ -27,4 +26,5 @@ local function SkinAuctionLite(self,event)
 	U.SkinEditBox(SellBuyoutPriceCopper)
 	U.SkinButton(SellCreateAuctionButton)
 end
-U.RegisterSkin(name,SkinAuctionLite,"AUCTION_HOUSE_SHOW")
+
+U.RegisterSkin(name, SkinAuctionLite, "AUCTION_HOUSE_SHOW")

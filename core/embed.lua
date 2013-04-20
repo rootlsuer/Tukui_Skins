@@ -1,7 +1,5 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
-local s = U.s
-local c = U.c
 local windows = {}
 
 local function EmbedTooltip(self)
@@ -179,11 +177,17 @@ function EmbedSkada()
 		EmbedParent = EmbeddingWindow
 	end
 	if(#windows == 1) then
+		window[1].bargroup:SetParent(EmbedParent)
 		EmbedWindow(windows[1], EmbedParent:GetWidth() - 4, (EmbedParent:GetHeight() - 19), "TOPRIGHT", EmbedParent, "TOPRIGHT", -2, -17)
 	elseif(#windows == 2) then
+		window[1].bargroup:SetParent(EmbedParent)
+		window[2].bargroup:SetParent(EmbedParent)
 		EmbedWindow(windows[1], ((EmbedParent:GetWidth() - 4) / 2) - (1 + s.mult), EmbedParent:GetHeight() - 19, "TOPRIGHT", EmbedParent, "TOPRIGHT", -2, -17)
 		EmbedWindow(windows[2], ((EmbedParent:GetWidth() - 4) / 2) - (1 + s.mult), EmbedParent:GetHeight() - 19, "TOPLEFT", EmbedParent, "TOPLEFT", 2, -17)
 	elseif(#windows > 2) then
+		window[1].bargroup:SetParent(EmbedParent)
+		window[2].bargroup:SetParent(EmbedParent)
+		window[3].bargroup:SetParent(EmbedParent)
 		EmbedWindow(windows[1], ((EmbedParent:GetWidth() - 4) / 2) - (1 + s.mult), EmbedParent:GetHeight() - 19, "TOPRIGHT", EmbedParent, "TOPRIGHT", -2, -17)
 		EmbedWindow(windows[2], ((EmbedParent:GetWidth() - 4) / 2) - (1 + s.mult), (EmbedParent:GetHeight()/2) - 19, "TOPLEFT", EmbedParent, "TOPLEFT", 2, -17)
 		EmbedWindow(windows[3], ((EmbedParent:GetWidth() - 4) / 2) - (1 + s.mult), (EmbedParent:GetHeight()/2) - 19, "TOPLEFT", windows[2], "BOTTOMLEFT", 0, -2)
@@ -245,7 +249,7 @@ local function CreateToggleButton(name, buttontext, panel1, panel2, tooltiptext1
 	local frame = CreateFrame("Button", name, UIParent)
 	frame:SetTemplate("Transparent")
 	frame:Size(panel1:GetHeight()-4)
-	frame:FontString("text", c["media"].pixelfont, 14, "MONOCHROMEOUTLINE")
+	frame:FontString("text", U.PixelFont, 14, "MONOCHROMEOUTLINE")
 	frame.text:SetText(buttontext)
 	frame.text:SetPoint("CENTER", 2, 2)
 	frame:RegisterForClicks("LeftButtonDown", "RightButtonDown");

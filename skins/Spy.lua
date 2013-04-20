@@ -1,5 +1,6 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
+
 local name = "SpySkin"
 local function SkinSpy(self)
 	U.SkinFrame(Spy_MainWindow)
@@ -11,4 +12,4 @@ local function SkinSpy(self)
 	Spy_AlertWindow:Point("TOP", UIParent, "TOP", 0, -130)
 end
 
-U.RegisterSkin(name,SkinSpy)
+U.RegisterSkin(name, SkinSpy)

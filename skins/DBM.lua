@@ -1,20 +1,13 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
---[[
-	Author: Affli@RU-Howling Fjord, 
-	Modified: Elv, Azilroka
-	All rights reserved.
-]]--
 local U = unpack(select(2,...))
 
 local function LoadSkin()
 	local croprwicons = false
 	local buttonsize = 22
-	local s = U.s
-	local c = U.c
 	local function SkinBars(self)
 		for bar in self:GetBarIterator() do
 			if not bar.injected then
-					bar.ApplyStyle=function()
+				bar.ApplyStyle=function()
 					local frame = bar.frame
 					local tbar = _G[frame:GetName().."Bar"]
 					local spark = _G[frame:GetName().."BarSpark"]
@@ -23,7 +16,7 @@ local function LoadSkin()
 					local icon2 = _G[frame:GetName().."BarIcon2"]
 					local name = _G[frame:GetName().."BarName"]
 					local timer = _G[frame:GetName().."BarTimer"]
-					
+
 					if not (icon1.overlay) then
 						icon1.overlay = CreateFrame("Frame", "$parentIcon1Overlay", tbar)
 						U.SkinBackdropFrame(icon1.overlay)
@@ -42,7 +35,7 @@ local function LoadSkin()
 					else
 						tbar:SetStatusBarColor(bar.owner.options.StartColorR, bar.owner.options.StartColorG, bar.owner.options.StartColorB)
 					end
-					
+
 					if bar.enlarged then frame:Width(bar.owner.options.HugeWidth) else frame:SetWidth(bar.owner.options.Width) end
 					if bar.enlarged then tbar:Width(bar.owner.options.HugeWidth) else tbar:SetWidth(bar.owner.options.Width) end
 
@@ -50,40 +43,40 @@ local function LoadSkin()
 						frame:SetHeight(buttonsize)
 						if (U.CheckOption("DBMSkinHalf")) then frame:SetHeight(buttonsize/3) end
 						U.SkinFrame(frame)
-						frame.styled=true
+						frame.styled = true
 					end
 
 					if not spark.killed then
 						spark:SetAlpha(0)
 						spark:SetTexture(nil)
-						spark.killed=true
+						spark.killed = true
 					end
-		
+
 					if not icon1.styled then
 						icon1:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 						icon1:ClearAllPoints()
-						icon1:Point("TOPLEFT", icon1.overlay, 0, 0)
-						icon1:Point("BOTTOMRIGHT", icon1.overlay, 0, 0)
-						icon1.styled=true
+						icon1:SetInside(icon1.overlay)
+						icon1:SetDrawLayer("OVERLAY")
+						icon1.styled = true
 					end
-					
+
 					if not icon2.styled then
 						icon2:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 						icon2:ClearAllPoints()
-						icon2:Point("TOPLEFT", icon2.overlay, 0, 0)
-						icon2:Point("BOTTOMRIGHT", icon2.overlay, 0, 0)
-						icon2.styled=true
+						icon2:SetInside(icon2.overlay)
+						icon2:SetDrawLayer("OVERLAY")
+						icon2.styled = true
 					end
 
 					if not texture.styled then
-						texture:SetTexture(c["media"].normTex)
-						texture.styled=true
+						texture:SetTexture(U.NormTex)
+						texture.styled = true
 					end
-					
+
 					if not tbar.styled then
-						tbar:SetStatusBarTexture(c["media"].normTex)
+						tbar:SetStatusBarTexture(U.NormTex)
 						tbar:SetInside(frame)
-						tbar.styled=true
+						tbar.styled = true
 					end
 
 					if not name.styled then
@@ -95,10 +88,10 @@ local function LoadSkin()
 						name:SetFont(DBT_SavedOptions["DBM"].Font, 12, "OUTLINE")
 						name:SetJustifyH("LEFT")
 						name:SetShadowColor(0, 0, 0, 0)
-						name.SetFont = s.dummy
-						name.styled=true
+						name.SetFont = U.Noop
+						name.styled = true
 					end
-					
+
 					if not timer.styled then	
 						timer:ClearAllPoints()
 						timer:Point("RIGHT", frame, "RIGHT", -4, 0)
@@ -106,8 +99,8 @@ local function LoadSkin()
 						timer:SetFont(DBT_SavedOptions["DBM"].Font, 12, "OUTLINE")
 						timer:SetJustifyH("RIGHT")
 						timer:SetShadowColor(0, 0, 0, 0)
-						timer.SetFont = s.dummy
-						timer.styled=true
+						timer.SetFont = U.Noop
+						timer.styled = true
 					end
 
 					if bar.owner.options.IconLeft then icon1:Show() icon1.overlay:Show() else icon1:Hide() icon1.overlay:Hide() end
@@ -117,30 +110,29 @@ local function LoadSkin()
 					texture:SetAlpha(1)
 					frame:Show()
 					bar:Update(0)
-					bar.injected=true
+					bar.injected = true
 				end
 				bar:ApplyStyle()
 			end
-
 		end
 	end
-	 
-	local SkinBossTitle=function()
-		local anchor=DBMBossHealthDropdown:GetParent()
+
+	local SkinBossTitle = function()
+		local anchor = DBMBossHealthDropdown:GetParent()
 		if not anchor.styled then
 			local header={anchor:GetRegions()}
 				if header[1]:IsObjectType("FontString") then
 					header[1]:SetFont(DBT_SavedOptions["DBM"].Font, 12, "OUTLINE")
 					header[1]:SetTextColor(1,1,1,1)
 					header[1]:SetShadowColor(0, 0, 0, 0)
-					anchor.styled=true	
+					anchor.styled = true	
 				end
-			header=nil
+			header = nil
 		end
-		anchor=nil
+		anchor = nil
 	end
 
-	local SkinBoss=function()
+	local SkinBoss = function()
 		local count = 1
 		while (_G[format("DBM_BossHealth_Bar_%d", count)]) do
 			local bar = _G[format("DBM_BossHealth_Bar_%d", count)]
@@ -172,12 +164,12 @@ local function LoadSkin()
 				if (U.CheckOption("DBMSkinHalf")) then bar:SetHeight(buttonsize/3) end
 				U.SkinFrame(bar)
 				background:SetNormalTexture(nil)
-				bar.styled=true
+				bar.styled = true
 			end	
-			
+
 			if not progress.styled then
-				progress:SetStatusBarTexture(c["media"].normTex)
-				progress.styled=true
+				progress:SetStatusBarTexture(U.NormTex)
+				progress.styled = true
 			end				
 			progress:ClearAllPoints()
 			progress:Point("TOPLEFT", bar, "TOPLEFT", 2, -2)
@@ -192,9 +184,9 @@ local function LoadSkin()
 				name:SetFont(DBT_SavedOptions["DBM"].Font, 12, "OUTLINE")
 				name:SetJustifyH("LEFT")
 				name:SetShadowColor(0, 0, 0, 0)
-				name.styled=true
+				name.styled = true
 			end
-			
+
 			if not timer.styled then
 				timer:ClearAllPoints()
 				timer:Point("RIGHT", bar, "RIGHT", -4, 0)
@@ -202,28 +194,31 @@ local function LoadSkin()
 				timer:SetFont(DBT_SavedOptions["DBM"].Font, 12, "OUTLINE")
 				timer:SetJustifyH("RIGHT")
 				timer:SetShadowColor(0, 0, 0, 0)
-				timer.styled=true
+				timer.styled = true
 			end
 			count = count + 1
 		end
 	end
 
-	-- mwahahahah, eat this ugly DBM.
-	hooksecurefunc(DBT,"CreateBar",SkinBars)
-	hooksecurefunc(DBM.BossHealth,"Show",SkinBossTitle)
-	hooksecurefunc(DBM.BossHealth,"AddBoss",SkinBoss)
-	hooksecurefunc(DBM.BossHealth,"UpdateSettings",SkinBoss)
-	DBM.RangeCheck:Show()
-	DBM.RangeCheck:Hide()
-	DBMRangeCheck:HookScript("OnShow",function(self)
-		U.SkinFrame(self)
-	end)
-	U.SkinFrame(DBMRangeCheckRadar, false, true)
-	DBM.InfoFrame:Show(5, "test")
-	DBM.InfoFrame:Hide()
-	DBMInfoFrame:HookScript("OnShow",function(self)
-		U.SkinFrame(self)
-	end)
+	hooksecurefunc(DBT, "CreateBar", SkinBars)
+	hooksecurefunc(DBM.BossHealth, "Show", SkinBossTitle)
+	hooksecurefunc(DBM.BossHealth, "AddBoss", SkinBoss)
+	hooksecurefunc(DBM.BossHealth, "UpdateSettings", SkinBoss)
+	if DBM.RangeCheck then
+		DBM.RangeCheck:Show()
+		DBM.RangeCheck:Hide()
+		DBMRangeCheck:HookScript("OnShow",function(self)
+			U.SkinFrame(self)
+		end)
+		U.SkinFrame(DBMRangeCheckRadar, false, true)
+	end
+	if DBM.InfoFrame then
+		DBM.InfoFrame:Show(5, "test")
+		DBM.InfoFrame:Hide()
+		DBMInfoFrame:HookScript("OnShow",function(self)
+			U.SkinFrame(self)
+		end)
+	end
 	if croprwicons then
 		local RaidNotice_AddMessage_ = RaidNotice_AddMessage
 		RaidNotice_AddMessage = function(noticeFrame, textString, colorInfo)
@@ -237,10 +232,10 @@ end
 
 local function LoadSkinOptions()
 	DBM_GUI_OptionsFrame:HookScript("OnShow", function()
-	U.SkinFrame(DBM_GUI_OptionsFrame)
-	U.SkinFrame(DBM_GUI_OptionsFrameBossMods)
-	U.SkinFrame(DBM_GUI_OptionsFrameDBMOptions)
-	U.SkinFrame(DBM_GUI_OptionsFramePanelContainer)
+		U.SkinFrame(DBM_GUI_OptionsFrame)
+		U.SkinFrame(DBM_GUI_OptionsFrameBossMods)
+		U.SkinFrame(DBM_GUI_OptionsFrameDBMOptions)
+		U.SkinFrame(DBM_GUI_OptionsFramePanelContainer)
 	end)
 	U.SkinTab(DBM_GUI_OptionsFrameTab1)
 	U.SkinTab(DBM_GUI_OptionsFrameTab2)
@@ -249,17 +244,14 @@ local function LoadSkinOptions()
 	U.SkinScrollBar(DBM_GUI_OptionsFramePanelContainerFOVScrollBar)
 end
 
-local s = U.s
-local c = U.c
-
-s.SkinFuncs["DBM-GUI"] = LoadSkinOptions
-
 local name = "DBMSkin"
-local function SkinDBM(self)
+local function SkinDBM(self, event, addon)
+	if addon == "DBM-GUI" then LoadSkinOptions() end
+	if event == "ADDON_LOADED" then return end
 	LoadSkin()
-	DBM_SavedOptions.Enabled=true
-	DBT_SavedOptions["DBM"].Texture = c.media.normTex
-	DBT_SavedOptions["DBM"].Font = c.media.font
+	DBM_SavedOptions.Enabled = true
+	DBT_SavedOptions["DBM"].Texture = U.NormTex
+	DBT_SavedOptions["DBM"].Font = U.Font
 end
 
-U.RegisterSkin(name,SkinDBM)
+U.RegisterSkin(name, SkinDBM, "ADDON_LOADED")

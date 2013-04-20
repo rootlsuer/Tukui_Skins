@@ -1,11 +1,8 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
-local name = "SexyCooldownSkin"
-local c = U.c
-local s = U.s
 
+local name = "SexyCooldownSkin"
 local function SCDStripSkinSettings(bar)
-	-- Remove conflicting options
 	bar.optionsTable.args.icon.args.borderheader = nil
 	bar.optionsTable.args.icon.args.border = nil
 	bar.optionsTable.args.icon.args.borderColor = nil
@@ -21,49 +18,26 @@ local function SCDStripSkinSettings(bar)
 	bar.optionsTable.args.bar.args.borderInset = nil
 end
 
--- Skin Bars
 local function SkinSexyCooldownBar(bar)
 	SCDStripSkinSettings(bar)
 	U.SkinFrame(bar)
-	cRegisterForPetBattleHide(bar)
+	U.RegisterForPetBattleHide(bar)
 	if(U.CheckOption("EmbedSexyCooldown")) then
 		bar:ClearAllPoints()
-		if DuffedUI then
-			if C["actionbar"]["layout"] == 1 then
-				DuffedUIBar2:HookScript("OnShow", function() 
-					bar:Point('BOTTOM', DuffedUIBar2, 'TOP', 0, 1)
-					bar:SetHeight(ActionButton1:GetHeight())
-					bar:SetWidth(DuffedUIBar2:GetWidth())
-				end)
-				DuffedUIBar2:HookScript("OnHide", function() 
-					bar:Point('BOTTOM', DuffedUIBar1, 'TOP', 0, 1)
-					bar:SetHeight(ActionButton1:GetHeight())
-					bar:SetWidth(DuffedUIBar1:GetWidth())
-				end)
-			elseif C["actionbar"]["layout"] == 2 then
-				bar:Point('BOTTOM', DuffedUIBar1, 'TOP', 0, 1)
-			end
-		end
-		if Tukui then
-			bar:Point('BOTTOM', InvTukuiActionBarBackground, 'TOP', 0, 1)
+		U.ActionBar2:HookScript("OnShow", function() 
+			bar:Point('BOTTOM', U.ActionBar2, 'TOP', 0, 1)
 			bar:SetHeight(ActionButton1:GetHeight())
-			bar:SetWidth(TukuiBar1:GetWidth())
-		end
-		if AsphyxiaUI then
-			if IsAddOnLoaded("AzilSettings") then
-				bar:Point('BOTTOM', AsphyxiaUIActionBar1, 'TOP', 0, 16)
-			end
-			bar:Point('BOTTOM', AsphyxiaUIActionBar1, 'TOP', 0, 1)
+			bar:SetWidth(U.ActionBar2:GetWidth())
+		end)
+		U.ActionBar2:HookScript("OnHide", function() 
+			bar:Point('BOTTOM', U.ActionBar1, 'TOP', 0, 1)
 			bar:SetHeight(ActionButton1:GetHeight())
-			bar:SetWidth(AsphyxiaUIActionBar1:GetWidth())
-		end
-		bar:CreateShadow()
+			bar:SetWidth(U.ActionBar1:GetWidth())
+		end)
 		bar:EnableMouse(false)
 	end
 end
 
-
--- Skin Icons
 local function SkinSexyCooldownIcon(bar, icon)
 	if not icon.skinned then
 		U.SkinFrame(icon)
@@ -76,7 +50,8 @@ end
 
 local function SkinSexyCooldownLabel(bar,label,store)
 	if not label.skinned then
-		label:SetFont(c["media"].pixelfont, store.fontsize, "OUTLINE")
+		label:SetFont(U.PixelFont, store.fontsize, "OUTLINE")
+		label.skinned = true
 	end
 end
 local function SkinSexyCooldownBackdrop(bar)
@@ -84,10 +59,10 @@ local function SkinSexyCooldownBackdrop(bar)
 end
 
 local function HookSCDBar(bar)
-	hooksecurefunc(bar,"UpdateBarLook",SkinSexyCooldownBar)
-	hooksecurefunc(bar,"UpdateSingleIconLook", SkinSexyCooldownIcon)
-	hooksecurefunc(bar,"UpdateLabel",SkinSexyCooldownLabel)
-	hooksecurefunc(bar,"UpdateBarBackdrop", SkinSexyCooldownBackdrop)
+	hooksecurefunc(bar, "UpdateBarLook", SkinSexyCooldownBar)
+	hooksecurefunc(bar, "UpdateSingleIconLook", SkinSexyCooldownIcon)
+	hooksecurefunc(bar, "UpdateLabel", SkinSexyCooldownLabel)
+	hooksecurefunc(bar, "UpdateBarBackdrop", SkinSexyCooldownBackdrop)
 	bar.settings.icon.borderInset = 0
 end
 
@@ -106,4 +81,4 @@ local function SkinSexyCooldown(self)
 	end
 end
 
-U.RegisterSkin(name,SkinSexyCooldown)
+U.RegisterSkin(name, SkinSexyCooldown)

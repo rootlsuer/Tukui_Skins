@@ -29,4 +29,4 @@ local function SkinWowLua(self)
 	WowLuaFrameCommand.bg1:Point("BOTTOMRIGHT", -12, 2)
 end
 
-U.RegisterSkin(name,SkinWowLua)
+U.RegisterSkin(name, SkinWowLua)

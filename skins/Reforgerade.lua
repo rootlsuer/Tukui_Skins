@@ -1,7 +1,7 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
-local name = "ReforgeradeSkin"
 
+local name = "ReforgeradeSkin"
 local function SkinReforgerade(self)
 	U.SkinFrame(ReforgeradeInputFrame.frame)
 	U.SkinButton(ReforgeCompareButton)
@@ -13,4 +13,4 @@ local function SkinReforgerade(self)
 	U.SkinTooltip(ReforgeradeTooltip)
 end
 
-U.RegisterSkin(name,SkinReforgerade)
+U.RegisterSkin(name, SkinReforgerade)

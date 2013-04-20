@@ -1,9 +1,8 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
+
 local name = "ExtVendorSkin"
 local function SkinExtVendor(self)
-	local s = U.s
-	local c = U.c
 	U.SkinFrame(MerchantFrame)
 	U.SkinButton(MerchantFrameFilterButton)
 	U.SkinBackdropFrame(MerchantFrameSellJunkButton)
@@ -36,5 +35,4 @@ local function SkinExtVendor(self)
 	U.SkinButton(ExtVendor_SellJunkPopupNoButton)
 end
 
-U.RegisterSkin(name,SkinExtVendor)
-
+U.RegisterSkin(name, SkinExtVendor)

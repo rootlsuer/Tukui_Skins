@@ -3,6 +3,7 @@ local U = unpack(select(2,...))
 
 local name = "ShieldBarsSkin"
 local function SkinShieldBars()
-	hooksecurefunc(ShieldBars, "DisplayShields", function() for i = 1, 20 do if _G["ShieldBarsStatusBar"..i.."Frame"] then U.SkinFrame(_G["ShieldBarsStatusBar"..i.."Frame"], false, true) end end end)
+	hooksecurefunc(ShieldBars, "DisplayShields", function() for i = 1, 20 do U.SkinFrame(_G["ShieldBarsStatusBar"..i.."Frame"], false, true) end end)
 end
+
 U.RegisterSkin(name, SkinShieldBars)	

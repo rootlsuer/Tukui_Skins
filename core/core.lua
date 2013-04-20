@@ -1,8 +1,5 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-
 local U = unpack(select(2,...))
-local s = U.s
-local c = U.c
 
 function U.Round(num, idp)
 	local mult = 10^(idp or 0)
@@ -88,11 +85,10 @@ end
 
 function U.SkinStatusBar(self, ClassColor)
 	if self == nil then return end
-	local c = U.c
 	U.SkinBackdropFrame(self, true)
-	self:SetStatusBarTexture(c["media"].normTex)
+	self:SetStatusBarTexture(U.NormTex)
 	if ClassColor then
-		local color = RAID_CLASS_COLORS[U.ccolor]
+		local color = RAID_CLASS_COLORS[U.MyClass]
 		self:SetStatusBarColor(color.r, color.g, color.b)
 	end
 end
@@ -101,7 +97,7 @@ function U.SkinTooltip(tooltip, scale)
 	if tooltip == nil then return end
 	tooltip:HookScript("OnShow", function(self)
 		self:SetTemplate("Transparent")
-		if scale then self:SetScale(c["general"].uiscale) end
+		if scale then self:SetScale(U.UIScale) end
 	end)
 end
 
@@ -242,12 +238,3 @@ function U.Delay(delay, func, ...)
 	tinsert(waitTable,{delay,func,{...}})
 	return true
 end
-local G = U.G
-U.ChatBackgroundRight = AsphyxiaUI and AsphyxiaUIChatBackgroundRight or G.Panels.RightChatBackground
-U.ChatBackgroundLeft = AsphyxiaUI and AsphyxiaUIChatBackgroundLeft or G.Panels.LeftChatBackground
-U.InfoLeft = AsphyxiaUI and AsphyxiaUIDataPanelLeft or G.Panels.DataTextLeft
-U.InfoRight = AsphyxiaUI and AsphyxiaUIDataPanelRight or G.Panels.DataTextRight
-U.TabsRightBackground = AsphyxiaUI and AsphyxiaUIChatTabBackgroundRight or G.Panels.RightChatTabsBackground
-U.TabsLeftBackground = AsphyxiaUI and AsphyxiaUIChatTabBackgroundLeft or G.Panels.LeftChatTabsBackground
-U.Minimap = AsphyxiaUI and AsphyxiaUIMinimap or G.Maps.Minimap
-U.Tooltip = AsphyxiaUI and AsphyxiaUITooltipAnchor or G.Tooltips.GameTooltip.Anchor

@@ -2,10 +2,10 @@ if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("
 local U = unpack(select(2,...))
 
 local name = "MiscFixes"
-local function MiscFixes(self, event)
+local function MiscFixes(self, event, addon)
 
 	if IsAddOnLoaded("PetJournalEnhanced") and IsAddOnLoaded("Blizzard_PetJournal") then PetJournal:HookScript("OnShow", function() PJEUniquePetCount:StripTextures() end) end
-	
+
 	if IsAddOnLoaded("acb_CastBar") then
 		U.SkinBackdropFrame(AzCastBarPluginPlayer)
 		U.SkinBackdropFrame(AzCastBarPluginTarget)
@@ -19,8 +19,11 @@ local function MiscFixes(self, event)
 		U.SkinFrame(TradeSkillFrame)
 		U.SkinStatusBar(TradeSkillRankFrame)
 	end
-	
-	--TrainAll
+
+	if IsAddOnLoaded("Blizzard_TradeSkillUI") then 
+		TradeSkillFrame:HookScript("OnShow", function() U.SkinButton(Auctionator_Search, true) end)
+	end
+
 	if IsAddOnLoaded("Blizzard_TrainerUI") then
 		ClassTrainerFrame:HookScript("OnShow", function()
 			if ClassTrainerTrainAllButton then

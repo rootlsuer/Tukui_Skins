@@ -6,4 +6,4 @@ local function SkinAraBrokerGuildFriends(self)
 	AraBrokerGuildFriends:SetScript("OnUpdate", function(self) U.SkinFrame(self) end)
 end
 
-U.RegisterSkin(name,SkinAraBrokerGuildFriends)
+U.RegisterSkin(name, SkinAraBrokerGuildFriends)

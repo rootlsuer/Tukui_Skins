@@ -1,29 +1,26 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
+
 local name = "OutfitterSkin"
 local function SkinOutfitter(self)
-	local s = U.s
-	local c = U.c
-
-CharacterFrame:HookScript("OnShow", function(self) PaperDollSidebarTabs:SetPoint("BOTTOMRIGHT", CharacterFrameInsetRight, "TOPRIGHT", -14, 0) end)
-OutfitterFrame:HookScript("OnShow", function(self) 
-	U.SkinFrame(OutfitterFrame)
-	OutfitterFrameTab1:Size(60,25)
-	OutfitterFrameTab2:Size(60,25)
-	OutfitterFrameTab3:Size(60,25)
-	OutfitterMainFrame:StripTextures(True)
-	for i = 0,13 do
-		if _G["OutfitterItem"..i.."OutfitSelected"] then 
-			U.SkinButton(_G["OutfitterItem"..i.."OutfitSelected"])
-			_G["OutfitterItem"..i.."OutfitSelected"]:ClearAllPoints()
-			_G["OutfitterItem"..i.."OutfitSelected"]:Size(16)
-			_G["OutfitterItem"..i.."OutfitSelected"]:Point("LEFT", _G["OutfitterItem"..i.."Outfit"], "LEFT", 8, 0)
+	CharacterFrame:HookScript("OnShow", function(self) PaperDollSidebarTabs:SetPoint("BOTTOMRIGHT", CharacterFrameInsetRight, "TOPRIGHT", -14, 0) end)
+	OutfitterFrame:HookScript("OnShow", function(self) 
+		U.SkinFrame(OutfitterFrame)
+		OutfitterFrameTab1:Size(60, 25)
+		OutfitterFrameTab2:Size(60, 25)
+		OutfitterFrameTab3:Size(60, 25)
+		OutfitterMainFrame:StripTextures(true)
+		for i = 0, 13 do
+			if _G["OutfitterItem"..i.."OutfitSelected"] then 
+				U.SkinButton(_G["OutfitterItem"..i.."OutfitSelected"])
+				_G["OutfitterItem"..i.."OutfitSelected"]:ClearAllPoints()
+				_G["OutfitterItem"..i.."OutfitSelected"]:Size(16)
+				_G["OutfitterItem"..i.."OutfitSelected"]:Point("LEFT", _G["OutfitterItem"..i.."Outfit"], "LEFT", 8, 0)
+			end
 		end
-	end
-end)
+	end)
 
-
-	OutfitterMainFrameScrollbarTrench:StripTextures(True)
+	OutfitterMainFrameScrollbarTrench:StripTextures(true)
 	OutfitterFrameTab1:ClearAllPoints()
 	OutfitterFrameTab2:ClearAllPoints()
 	OutfitterFrameTab3:ClearAllPoints()
@@ -33,18 +30,15 @@ end)
 	U.SkinButton(OutfitterFrameTab1, true)
 	U.SkinButton(OutfitterFrameTab2, true)
 	U.SkinButton(OutfitterFrameTab3, true)
-
 	U.SkinScrollBar(OutfitterMainFrameScrollFrameScrollBar)
 	U.SkinCloseButton(OutfitterCloseButton)
 	U.SkinButton(OutfitterNewButton)
 	U.SkinButton(OutfitterEnableNone)
 	U.SkinButton(OutfitterEnableAll)
-
 	U.Desaturate(OutfitterButton)
 	OutfitterButton:ClearAllPoints()
 	OutfitterButton:SetPoint("RIGHT", PaperDollSidebarTabs, "RIGHT", 26, -2)
 	OutfitterButton:SetHighlightTexture(nil)
-
 	OutfitterSlotEnables:SetFrameStrata("HIGH")
 	U.SkinCheckBox(OutfitterEnableHeadSlot)
 	U.SkinCheckBox(OutfitterEnableNeckSlot)
@@ -64,7 +58,6 @@ end)
 	U.SkinCheckBox(OutfitterEnableFinger1Slot)
 	U.SkinCheckBox(OutfitterEnableTrinket0Slot)
 	U.SkinCheckBox(OutfitterEnableTrinket1Slot)
-
 	U.SkinButton(OutfitterItemComparisons)
 	U.SkinButton(OutfitterTooltipInfo)
 	U.SkinButton(OutfitterShowHotkeyMessages)
@@ -77,9 +70,7 @@ end)
 	OutfitterShowMinimapButton:Size(20)
 	OutfitterShowOutfitBar:Size(20)
 	OutfitterAutoSwitch:Size(20)
-
 	OutfitterShowOutfitBar:Point("TOPLEFT", OutfitterAutoSwitch, "BOTTOMLEFT", 0, -5)
-
 	U.SkinButton(OutfitterEditScriptDialogDoneButton)
 	U.SkinButton(OutfitterEditScriptDialogCancelButton)
 	U.SkinScrollBar(OutfitterEditScriptDialogSourceScriptScrollBar)
@@ -88,7 +79,6 @@ end)
 	U.SkinCloseButton(OutfitterEditScriptDialog.CloseButton)
 	U.SkinTab(OutfitterEditScriptDialogTab1)
 	U.SkinTab(OutfitterEditScriptDialogTab2)
-
 end
 
-U.RegisterSkin(name,SkinOutfitter)
+U.RegisterSkin(name, SkinOutfitter)

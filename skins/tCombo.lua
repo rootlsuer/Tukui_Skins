@@ -3,12 +3,8 @@ local U = unpack(select(2,...))
 
 local name = 'tComboSkin'
 local function SkintCombo(self, event)
-		if tComboPoints then
-			U.SkinFrame(tComboPoints)
-		end
-		if tComboEnergyBar then
-			U.SkinFrame(tComboEnergyBar)
-		end
+	U.SkinFrame(tComboPoints)
+	U.SkinFrame(tComboEnergyBar)
 end
 
-U.RegisterSkin(name,SkintCombo,"ADDON_LOADED","PLAYER_REGEN_ENABLED","PLAYER_REGEN_DISABLED")
+U.RegisterSkin(name, SkintCombo,"ADDON_LOADED","PLAYER_REGEN_ENABLED","PLAYER_REGEN_DISABLED")

@@ -1,13 +1,9 @@
 ﻿if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
+
 local name = "QuartzSkin"
 local function SkinQuartz(self)
 	local Q3 = LibStub("AceAddon-3.0"):GetAddon("Quartz3")
-	local s = U.s
-	local c = U.c
-	UIFont = c["media"].font
-	UIFontSize = 12
-
 	SkinQuartzBar = function(self, bar)
 		if not self.IconBorder then
 			self.IconBorder = CreateFrame("Frame", nil, self)
@@ -24,7 +20,7 @@ local function SkinQuartz(self)
 	end
 
 	local template = Q3.CastBarTemplate.template
-	
+
 	template.ApplySettings_ = template.ApplySettings
 	template.ApplySettings = function (self)
 		self:ApplySettings_()
@@ -34,16 +30,19 @@ local function SkinQuartz(self)
 		self.Bar:SetFrameStrata("HIGH")
 		self:SetFrameStrata("HIGH")
 	end
+
 	template.UNIT_SPELLCAST_NOT_INTERRUPTIBLE_ = template.UNIT_SPELLCAST_NOT_INTERRUPTIBLE
 	template.UNIT_SPELLCAST_NOT_INTERRUPTIBLE = function(self, event, unit)
 		self:UNIT_SPELLCAST_NOT_INTERRUPTIBLE_(event, unit)
 		SkinQuartzBar(self)
 	end
+
 	template.UNIT_SPELLCAST_START_ = template.UNIT_SPELLCAST_START
 	template.UNIT_SPELLCAST_START = function(self, event, unit)
 		self:UNIT_SPELLCAST_START_(event, unit)
 		SkinQuartzBar(self)
 	end
+
 	template.UNIT_SPELLCAST_CHANNEL_START_ = template.UNIT_SPELLCAST_CHANNEL_START
 	template.UNIT_SPELLCAST_CHANNEL_START = function(self, event, unit)
 		self:UNIT_SPELLCAST_CHANNEL_START_(event, unit)
@@ -51,8 +50,6 @@ local function SkinQuartz(self)
 	end
 
 	Q3:ApplySettings()
-
-	print("If you are experiencing performance issue's (eg. locking spellcasts, extereme lag spikes) while using the Quartz Skin. Please disable the Quartz skin.")
 end
 
-U.RegisterSkin(name,SkinQuartz)
+U.RegisterSkin(name, SkinQuartz)

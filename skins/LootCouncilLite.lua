@@ -1,5 +1,6 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
+
 local name = "LootCouncilLiteSkin"
 local function SkinLootCouncilLite(self)
 	U.SkinFrame(RankFrame)
@@ -13,7 +14,6 @@ local function SkinLootCouncilLite(self)
 	U.SkinButton(RunTestButton)
 	U.SkinButton(TestCancelButton)
 	U.SkinButton(AbortButton)
-
 	for i = 1,40 do
 		if _G["EntryFrameEntry"..i.."AgainstButton"] then U.SkinCloseButton(_G["EntryFrameEntry"..i.."AgainstButton"]) end
 		if _G["EntryFrameEntry"..i.."ForButton"] then U.Desaturate(_G["EntryFrameEntry"..i.."ForButton"]) end
@@ -21,4 +21,4 @@ local function SkinLootCouncilLite(self)
 	end
 end
 
-U.RegisterSkin(name,SkinLootCouncilLite)
+U.RegisterSkin(name, SkinLootCouncilLite)

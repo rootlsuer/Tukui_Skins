@@ -5,4 +5,5 @@ local name = "NumerationSkin"
 local function SkinNumeration()
 	U.SkinFrame(NumerationFrame)
 end
+
 U.RegisterSkin(name, SkinNumeration)
