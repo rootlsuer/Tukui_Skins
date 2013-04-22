@@ -1,5 +1,6 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
+local debug = false
 
 function U.Round(num, idp)
 	local mult = 10^(idp or 0)
@@ -7,55 +8,75 @@ function U.Round(num, idp)
 end
 
 function U.SkinButton(self, strip)
-	if self == nil then return end
+	if not debug then
+		if self == nil then return end
+	end
 	self:SkinButton(strip)
 end
 
 function U.SkinScrollBar(self)
-	if self == nil then return end
+	if not debug then
+		if self == nil then return end
+	end
 	self:SkinScrollBar()
 end
 
 function U.SkinTab(self, strip)
-	if self == nil then return end
+	if not debug then
+		if self == nil then return end
+	end
 	if strip then self:StripTextures(True) end
 	self:SkinTab()
 end
 
 function U.SkinNextPrevButton(self, horizonal)
-	if self == nil then return end
+	if not debug then
+		if self == nil then return end
+	end
 	self:SkinNextPrevButton(horizonal)
 end
 
 function U.SkinRotateButton(self)
-	if self == nil then return end
+	if not debug then
+		if self == nil then return end
+	end
 	self:SkinRotateButton()
 end
 
 function U.SkinEditBox(self, width, height)
-	if self == nil then return end
+	if not debug then
+		if self == nil then return end
+	end
 	self:SkinEditBox()
 	if width then self:SetWidth(width) end
 	if height then self:SetHeight(height) end
 end
 
 function U.SkinDropDownBox(self, width)
-	if self == nil then return end
+	if not debug then
+		if self == nil then return end
+	end
 	self:SkinDropDownBox(width)
 end
 
 function U.SkinCheckBox(self)
-	if self == nil then return end
+	if not debug then
+		if self == nil then return end
+	end
 	self:SkinCheckBox()
 end
 
 function U.SkinCloseButton(self)
-	if self == nil then return end
+	if not debug then
+		if self == nil then return end
+	end
 	self:SkinCloseButton()
 end
 
 function U.SkinSlideBar(self, height, movetext)
-	if self == nil then return end
+	if not debug then
+		if self == nil then return end
+	end
 	self:SkinSlideBar(height, movetext)
 end
 
@@ -66,14 +87,18 @@ function U.RegisterForPetBattleHide(frame)
 end
 
 function U.SkinFrame(self, template, overridestrip)
-	if self == nil then return end
+	if not debug then
+		if self == nil then return end
+	end
 	if not template then template = "Transparent" end
 	if not overridestrip then self:StripTextures(True) end
 	self:SetTemplate(template)
 end
 
 function U.SkinBackdropFrame(self, strip, icon)
-	if self == nil then return end
+	if not debug then
+		if self == nil then return end
+	end
 	if strip then self:StripTextures(True) end
 	if not icon then
 		self:CreateBackdrop()
@@ -84,7 +109,9 @@ function U.SkinBackdropFrame(self, strip, icon)
 end
 
 function U.SkinStatusBar(self, ClassColor)
-	if self == nil then return end
+	if not debug then
+		if self == nil then return end
+	end
 	U.SkinBackdropFrame(self, true)
 	self:SetStatusBarTexture(U.NormTex)
 	if ClassColor then
@@ -94,7 +121,9 @@ function U.SkinStatusBar(self, ClassColor)
 end
 
 function U.SkinTooltip(tooltip, scale)
-	if tooltip == nil then return end
+	if not debug then
+		if tooltip == nil then return end
+	end
 	tooltip:HookScript("OnShow", function(self)
 		self:SetTemplate("Transparent")
 		if scale then self:SetScale(U.UIScale) end
@@ -102,7 +131,9 @@ function U.SkinTooltip(tooltip, scale)
 end
 
 function U.SkinIconButton(self, strip, style, shrinkIcon)
-	if self == nil then return end
+	if not debug then
+		if self == nil then return end
+	end
 	if self.isSkinned then return end
 
 	if strip then self:StripTextures() end
@@ -131,7 +162,9 @@ function U.SkinIconButton(self, strip, style, shrinkIcon)
 end
 
 function U.Desaturate(self, point)
-	if self == nil then return end
+	if not debug then
+		if self == nil then return end
+	end
 	for i = 1, self:GetNumRegions() do
 		local region = select(i, self:GetRegions())
 		if region:GetObjectType() == "Texture" then

@@ -3,6 +3,7 @@ local U = unpack(select(2,...))
 
 local name = "AuctionatorSkin"
 local function AtrSkin(self, event)
+	if event == "PLAYER_ENTERING_WORLD" then return end
 	AuctionsCancelAuctionButton:Point("RIGHT", AuctionFrameMoneyFrame, "RIGHT", 554, 0)
 	AuctionsCloseButton:ClearAllPoints()
 	AuctionsCloseButton:Point("RIGHT", AuctionsCancelAuctionButton, "RIGHT", 86, 0)
