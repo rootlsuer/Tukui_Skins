@@ -1,6 +1,6 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local U = unpack(select(2,...))
-local debug = false
+local debug = true
 
 function U.Round(num, idp)
 	local mult = 10^(idp or 0)
@@ -25,7 +25,7 @@ function U.SkinTab(self, strip)
 	if not debug then
 		if self == nil then return end
 	end
-	if strip then self:StripTextures(True) end
+	if strip then self:StripTextures(true) end
 	self:SkinTab()
 end
 
@@ -91,7 +91,7 @@ function U.SkinFrame(self, template, overridestrip)
 		if self == nil then return end
 	end
 	if not template then template = "Transparent" end
-	if not overridestrip then self:StripTextures(True) end
+	if not overridestrip then self:StripTextures(true) end
 	self:SetTemplate(template)
 end
 
@@ -99,7 +99,7 @@ function U.SkinBackdropFrame(self, strip, icon)
 	if not debug then
 		if self == nil then return end
 	end
-	if strip then self:StripTextures(True) end
+	if strip then self:StripTextures(true) end
 	if not icon then
 		self:CreateBackdrop()
 	else
@@ -128,6 +128,13 @@ function U.SkinTooltip(tooltip, scale)
 		self:SetTemplate("Transparent")
 		if scale then self:SetScale(U.UIScale) end
 	end)
+end
+
+function U.SkinTexture(self)
+	if not debug then
+		if self == nil then return end
+	end
+	self:SetTexCoord(0.12, 0.88, 0.12, 0.88)
 end
 
 function U.SkinIconButton(self, strip, style, shrinkIcon)

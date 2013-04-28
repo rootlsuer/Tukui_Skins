@@ -225,17 +225,21 @@ EmbeddingWindow:SetScript("OnEvent", function(self, event)
 	elseif event == "PLAYER_REGEN_DISABLED" or InCombatLockdown() then
 		if (U.CheckOption("EmbedOoC")) then
 			if ChatFrame4Hide then ChatFrame4Tab:Hide() end
-			EmbeddingWindow:Show()
-			EmbeddingWindowLeft:Show()
+			UIFrameFadeIn(EmbeddingWindow, 0.4, EmbeddingWindow:GetAlpha(), 1)
+			UIFrameFadeIn(EmbeddingWindowLeft, 0.4, EmbeddingWindowLeft:GetAlpha(), 1)
 		end
 	else
 		if (U.CheckOption("EmbedOoC")) then
 			if ChatFrame4Hide then ChatFrame4Tab:Show() end
-			EmbeddingWindow:Hide()
-			EmbeddingWindowLeft:Hide()
+			UIFrameFadeOut(EmbeddingWindow, 4, EmbeddingWindow:GetAlpha(), 0)
+			UIFrameFadeOut(EmbeddingWindowLeft, 4, EmbeddingWindowLeft:GetAlpha(), 0)
 		end
 	end
 end)
+EmbeddingWindow:SetTemplate()
+EmbeddingWindowLeft:SetTemplate()
+U.SnapHolder(EmbeddingWindow)
+U.SnapHolder(EmbeddingWindowLeft)
 
 if U.ChatBackgroundRight then
 	U.ChatBackgroundRight:SetFrameStrata("Background")
@@ -247,7 +251,7 @@ end
 local function CreateToggleButton(name, buttontext, panel1, panel2, tooltiptext1, tooltiptext2)
 	local frame = CreateFrame("Button", name, UIParent)
 	frame:SetTemplate("Transparent")
-	frame:Size(panel1:GetHeight()-4)
+	frame:Size(panel1:GetHeight())
 	frame:FontString("text", U.PixelFont, 14, "MONOCHROMEOUTLINE")
 	frame.text:SetText(buttontext)
 	frame.text:SetPoint("CENTER", 2, 2)
@@ -299,16 +303,16 @@ local function CreateToggleButton(name, buttontext, panel1, panel2, tooltiptext1
 end
 
 CreateToggleButton("RightToggleButton", ">", U.InfoRight, U.ChatBackgroundRight, "Toggle Right Chat Panel", "Toggle Embedded AddOn")
-RightToggleButton:Point("RIGHT", U.InfoRight, "RIGHT", -2, 0)
+RightToggleButton:Point("LEFT", U.InfoRight, "RIGHT", 2, 0)
 RightToggleButton:HookScript("OnClick", function(self, btn)
 	if btn == "RightButton" then
 		if EmbeddingWindow:IsShown() then
-			EmbeddingWindow:Hide()
-			EmbeddingWindowLeft:Hide()
+			UIFrameFadeOut(EmbeddingWindow, 4, EmbeddingWindow:GetAlpha(), 0)
+			UIFrameFadeOut(EmbeddingWindowLeft, 4, EmbeddingWindowLeft:GetAlpha(), 0)
 			if ChatFrame4Hide then ChatFrame4Tab:Show() end
 		else
-			EmbeddingWindow:Show()
-			EmbeddingWindowLeft:Show()
+			UIFrameFadeIn(EmbeddingWindow, .4, EmbeddingWindow:GetAlpha(), 1)
+			UIFrameFadeIn(EmbeddingWindowLeft, .4, EmbeddingWindowLeft:GetAlpha(), 1)
 			if ChatFrame4Hide then ChatFrame4Tab:Hide() end
 		end
 	end
