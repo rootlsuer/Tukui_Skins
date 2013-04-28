@@ -10,7 +10,7 @@ local function SkinCoolLine(self)
 	CoolLine.backdrop:SetAllPoints(CoolLine)
 	CoolLine.backdrop:CreateShadow()
 	U.RegisterForPetBattleHide(CoolLine)
-	if U.CheckOption("CoolLineEmbed") then
+	if U.CheckOption("EmbedCoolLine") then
 		if not CoolLineDB.vertical then
 			U.ActionBar2:HookScript("OnShow", function() 
 				CoolLine:Point('BOTTOM', U.ActionBar2, 'TOP', 0, 1)

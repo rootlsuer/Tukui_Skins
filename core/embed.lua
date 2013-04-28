@@ -154,6 +154,11 @@ function EmbedALDamageMeter()
 end
 
 local function EmbedWindow(window, width, height, point, relativeFrame, relativePoint, ofsx, ofsy)
+	if UISkinOptions["EmbedLeft"] == "Skada" then
+		EmbedParent = EmbeddingWindowLeft
+	else
+		EmbedParent = EmbeddingWindow
+	end
 	local barmod = Skada.displays["bar"]
 	window.db.barwidth = width
 	window.db.background.height = height
@@ -161,7 +166,7 @@ local function EmbedWindow(window, width, height, point, relativeFrame, relative
 	window.db.barslocked = true
 	window.bargroup:ClearAllPoints()
 	window.bargroup:SetPoint(point, relativeFrame, relativePoint, ofsx, ofsy)
-
+	window.bargroup:SetParent(EmbedParent)
 	barmod.ApplySettings(barmod, window)
 end
 
@@ -177,17 +182,11 @@ function EmbedSkada()
 		EmbedParent = EmbeddingWindow
 	end
 	if(#windows == 1) then
-		window[1].bargroup:SetParent(EmbedParent)
 		EmbedWindow(windows[1], EmbedParent:GetWidth() - 4, (EmbedParent:GetHeight() - 19), "TOPRIGHT", EmbedParent, "TOPRIGHT", -2, -17)
 	elseif(#windows == 2) then
-		window[1].bargroup:SetParent(EmbedParent)
-		window[2].bargroup:SetParent(EmbedParent)
 		EmbedWindow(windows[1], ((EmbedParent:GetWidth() - 4) / 2) - (1 + s.mult), EmbedParent:GetHeight() - 19, "TOPRIGHT", EmbedParent, "TOPRIGHT", -2, -17)
 		EmbedWindow(windows[2], ((EmbedParent:GetWidth() - 4) / 2) - (1 + s.mult), EmbedParent:GetHeight() - 19, "TOPLEFT", EmbedParent, "TOPLEFT", 2, -17)
 	elseif(#windows > 2) then
-		window[1].bargroup:SetParent(EmbedParent)
-		window[2].bargroup:SetParent(EmbedParent)
-		window[3].bargroup:SetParent(EmbedParent)
 		EmbedWindow(windows[1], ((EmbedParent:GetWidth() - 4) / 2) - (1 + s.mult), EmbedParent:GetHeight() - 19, "TOPRIGHT", EmbedParent, "TOPRIGHT", -2, -17)
 		EmbedWindow(windows[2], ((EmbedParent:GetWidth() - 4) / 2) - (1 + s.mult), (EmbedParent:GetHeight()/2) - 19, "TOPLEFT", EmbedParent, "TOPLEFT", 2, -17)
 		EmbedWindow(windows[3], ((EmbedParent:GetWidth() - 4) / 2) - (1 + s.mult), (EmbedParent:GetHeight()/2) - 19, "TOPLEFT", windows[2], "BOTTOMLEFT", 0, -2)

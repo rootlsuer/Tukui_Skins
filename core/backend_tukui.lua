@@ -83,22 +83,188 @@ end)
 local SkinOptionsLoader = CreateFrame("Frame")
 SkinOptionsLoader:RegisterEvent("PLAYER_ENTERING_WORLD")
 SkinOptionsLoader:SetScript("OnEvent", function(self, event)
-	if(UISkinOptions.RecountBackdrop == nil) then UISkinOptions.RecountBackdrop = "Enabled" end
-	if(UISkinOptions.SkadaBackdrop == nil) then UISkinOptions.SkadaBackdrop = "Enabled" end
-	if(UISkinOptions.EmbedOoC == nil) then UISkinOptions.EmbedOoC = "Disabled" end
-	if(UISkinOptions.EmbedOmen == nil) then UISkinOptions.EmbedOmen = "Disabled" end
-	if(UISkinOptions.EmbedTinyDPS == nil) then UISkinOptions.EmbedTinyDPS = "Disabled" end
-	if(UISkinOptions.EmbedSkada == nil) then UISkinOptions.EmbedSkada = "Disabled" end
-	if(UISkinOptions.EmbedRecount == nil) then UISkinOptions.EmbedRecount = "Disabled" end
-	if(UISkinOptions.CLCProtSkin == nil) then UISkinOptions.CLCProtSkin = "Enabled" end
-	if(UISkinOptions.CLCRetSkin == nil) then UISkinOptions.CLCRetSkin = "Enabled" end
-	if(UISkinOptions.DBMSkinHalf == nil) then UISkinOptions.DBMSkinHalf = "Disabled" end
-	if(UISkinOptions.WeakAurasSkin == nil) then UISkinOptions.WeakAurasSkin = "Enabled" end
-	if(UISkinOptions.EmbedLeft == nil) then UISkinOptions.EmbedLeft =  "Omen" end
-	if(UISkinOptions.EmbedRight == nil) then UISkinOptions.EmbedRight = "Skada" end
-	UISkinOptions.MiscFixes = "Enabled"
+	self:UnregisterEvent(event)
+	if UISkinOptions["RecountBackdrop"] == nil then UISkinOptions["RecountBackdrop"] = "Enabled" end
+	if UISkinOptions["SkadaBackdrop"] == nil then UISkinOptions["SkadaBackdrop"] = "Enabled" end
+	if UISkinOptions["CLCProtSkin"] == nil then UISkinOptions["CLCProtSkin"] = "Enabled" end
+	if UISkinOptions["CLCRetSkin"] == nil then UISkinOptions["CLCRetSkin"] = "Enabled" end
+	if UISkinOptions["DBMSkinHalf"] == nil then UISkinOptions["DBMSkinHalf"] = "Disabled" end
+	if UISkinOptions["WeakAurasSkin"] == nil then UISkinOptions["WeakAurasSkin"] = "Enabled" end
+	if UISkinOptions["EmbedOoC"] == nil then UISkinOptions["EmbedOoC"] = "Disabled" end
+	if UISkinOptions["EmbedOmen"] == nil then UISkinOptions["EmbedOmen"] = "Disabled" end
+	if UISkinOptions["EmbedTinyDPS"] == nil then UISkinOptions["EmbedTinyDPS"] = "Disabled" end
+	if UISkinOptions["EmbedSkada"] == nil then UISkinOptions["EmbedSkada"] = "Disabled" end
+	if UISkinOptions["EmbedRecount"] == nil then UISkinOptions["EmbedRecount"] = "Disabled" end
+	if UISkinOptions["EmbedCoolLine"] == nil then UISkinOptions["EmbedCoolLine"] = "Disabled" end
+	if UISkinOptions["EmbedLeft"] == nil then UISkinOptions["EmbedLeft"] = "Omen" end
+	if UISkinOptions["EmbedRight"] == nil then UISkinOptions["EmbedRight"] = "Skada" end
+	UISkinOptions["MiscFixes"] = "Enabled"
 	print(U.Title.." by |cFFFF7D0AAzilroka|r - Version: |cff1784d1"..U.Version.."|r Loaded!")
+	if IsAddOnLoaded("Enhanced_Config") then Ace3Options() else LegacyOptions() end
+end)
 
+local function Ace3Options()
+	local function GenerateOptionTable(skinName,order)
+		local data = Skins[skinName]
+		local addon = data.addon
+		local text = data.buttonText or addon
+		local options = {
+			type = 'toggle',
+			name = text,
+			desc = "Enable/Disable this skin.",
+			order = order,
+			disabled = function() if addon then return not IsAddOnLoaded(addon) else return false end end,
+		}
+		return options
+	end
+
+	local function pairsByKeys (t, f)
+		local a = {}
+		for n in pairs(t) do table.insert(a, n) end
+		table.sort(a, f)
+		local i = 0
+		local iter = function()
+			i = i + 1
+			if a[i] == nil then return nil
+				else return a[i], t[a[i]]
+			end
+		end
+		return iter
+	end
+	Enhanced_Config.Options.args.skins = {
+		order = 1000,
+		type = 'group',
+		name = 'Skins',
+		get = function(info) return UISkinsOptions[ info[#info] ] end,
+		set = function(info, value) UISkinsOptions[ info[#info] ] = value == true and "Enabled" or "Disabled" end,
+		guiInline = true,
+		args = {
+			desc = {
+				type = 'description',
+				name = U.Title..' by Azilroka - Version '..U.Version,
+				order = 1
+			},
+			misc = {
+				type = 'group',
+				name = 'Misc Options',
+				order = 500,
+				args = {
+					DBMSkinHalf = {
+						type = 'toggle',
+						name = 'DBM Half-bar Skin',
+						desc = "Enable/Disable this skin.",
+						order = 1,
+						disabled = function() return not IsAddOnLoaded("DBM-Core") or UISkinOptions['DBMSkin'] == "Disabled" end
+					},
+					RecountBackdrop = {
+						type = 'toggle',
+						name = 'Recount Backdrop',
+						desc = "Enable/Disable this skin.",
+						order = 2,
+						disabled = function() return not IsAddOnLoaded("Recount") or UISkinOptions["RecountSkin"] == "Disabled" end,
+					},
+					SkadaBackdrop = {
+						type = 'toggle',
+						name = 'Skada Backdrop',
+						desc = "Enable/Disable this skin.",
+						order = 3,
+						disabled = function() return not IsAddOnLoaded("Skada") or UISkinOptions["SkadaSkin"] == "Disabled" end,
+					},
+				}
+			},
+			embed = {
+				order = 1000,
+				type = 'group',
+				name = 'Embed Settings',
+				get = function(info) return UISkinOptions[ info[#info] ] end,
+				set = function(info,value) UISkinsOptions[ info[#info] ] = value == true and "Enabled" or "Disabled" end,
+				args = {
+					desc = {
+						type = 'description',
+						name = 'Settings to control addons embedded in right chat panel',
+						order = 1
+					},
+					EmbedRight = {
+						type = 'toggle',
+						name = 'Embed to Right Chat Panel',
+						desc = 'Embed to right chat panel, otherwise left chat panel',
+						order = 2
+					},
+					EmbedRecount = {
+						type = 'toggle',
+						name = 'Recount',
+						desc = "Enable/Disable this skin.",
+						order = 3,
+						disabled = function() return not IsAddOnLoaded("Recount") end,
+					},
+					EmbedSkada = {
+						type = 'toggle',
+						name = 'Skada',
+						desc = "Enable/Disable this skin.",
+						order = 4,
+						disabled = function() return not IsAddOnLoaded("Skada") end,
+					},
+					EmbedOmen = {
+						type = 'toggle',
+						name = 'Omen',
+						desc = "Enable/Disable this skin.",
+						order = 6,
+						disabled = function() return not IsAddOnLoaded("Omen") end,
+					},
+					EmbedRO = {
+						type = 'toggle',
+						name = 'Recount & Omen',
+						desc = "Enable/Disable this skin.",
+						order = 8,
+						disabled = function() return not IsAddOnLoaded("Omen") or not IsAddOnLoaded("Recount") end,
+					},
+					EmbedTDPS = {
+						type = 'toggle',
+						name = 'TinyDPS',
+						desc = "Enable/Disable this skin.",
+						order = 9,
+						disabled = function() return not IsAddOnLoaded("TinyDPS") end,
+					},
+					EmbedOoC = {
+						type = 'toggle',
+						name = 'Hide while out of combat',
+						desc = "Enable/Disable this skin.",
+						order = 10,
+					},
+					EmbedSexyCooldown = {
+						type = 'toggle',
+						name = 'Attach SexyCD to action bar',
+						desc = "Enable/Disable this skin.",
+						order = 11,
+						disabled = function() return not IsAddOnLoaded("SexyCooldown2") end,
+					},
+					EmbedCoolLine = {
+						type = 'toggle',
+						name = 'Attach CoolLine to action bar',
+						desc = "Enable/Disable this skin.",
+						order = 12,
+						disabled = function() return not IsAddOnLoaded("CoolLine") end,
+					},
+					EmbedRight = {
+						type = 'toggle',
+						name = 'Embed Right',
+						desc = "Enable/Disable this skin.",
+						order = 13,
+					},
+				}
+			}
+		}
+	}
+
+	local order = 2
+	for skinName,_ in pairsByKeys(Skins) do
+		if UISkinOptions[skinName] == nil then UISkinOptions[skinName] = "Enabled" end
+		Enhanced_Config.Options.args.skins.args[skinName] = GenerateOptionTable(skinName,order)
+		order = order + 1
+	end
+end
+
+local function LegacyOptions()
 	local function CreateOptionsFrame(name, frametext, parent)
 		local frame = CreateFrame("Frame", name, UIParent)
 		frame:Hide()
@@ -352,16 +518,14 @@ SkinOptionsLoader:SetScript("OnEvent", function(self, event)
 		curY = curY + 1
 	end
 
-	self:UnregisterEvent(event)
-end)
-
-SLASH_SKINOPTIONSWINDOW1 = '/skinoptions';
-function SlashCmdList.SKINOPTIONSWINDOW(msg, editbox)
-	if SkinOptions:IsVisible() then
-		SkinOptions:Hide()
-		print("Skin Control Panel is now |cffff2020Hidden|r.");
-	else
-		SkinOptions:Show()
-		print("Skin Control Panel is now |cff00ff00Shown|r.");
+	SLASH_SKINOPTIONSWINDOW1 = '/skinoptions';
+	function SlashCmdList.SKINOPTIONSWINDOW(msg, editbox)
+		if SkinOptions:IsVisible() then
+			SkinOptions:Hide()
+			print("Skin Control Panel is now |cffff2020Hidden|r.");
+		else
+			SkinOptions:Show()
+			print("Skin Control Panel is now |cff00ff00Shown|r.");
+		end
 	end
 end
