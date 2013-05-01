@@ -80,29 +80,6 @@ XSFrame:SetScript("OnEvent", function(self)
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 end)
 
-local SkinOptionsLoader = CreateFrame("Frame")
-SkinOptionsLoader:RegisterEvent("PLAYER_ENTERING_WORLD")
-SkinOptionsLoader:SetScript("OnEvent", function(self, event)
-	self:UnregisterEvent(event)
-	if UISkinOptions["RecountBackdrop"] == nil then UISkinOptions["RecountBackdrop"] = "Enabled" end
-	if UISkinOptions["SkadaBackdrop"] == nil then UISkinOptions["SkadaBackdrop"] = "Enabled" end
-	if UISkinOptions["CLCProtSkin"] == nil then UISkinOptions["CLCProtSkin"] = "Enabled" end
-	if UISkinOptions["CLCRetSkin"] == nil then UISkinOptions["CLCRetSkin"] = "Enabled" end
-	if UISkinOptions["DBMSkinHalf"] == nil then UISkinOptions["DBMSkinHalf"] = "Disabled" end
-	if UISkinOptions["WeakAurasSkin"] == nil then UISkinOptions["WeakAurasSkin"] = "Enabled" end
-	if UISkinOptions["EmbedOoC"] == nil then UISkinOptions["EmbedOoC"] = "Disabled" end
-	if UISkinOptions["EmbedOmen"] == nil then UISkinOptions["EmbedOmen"] = "Disabled" end
-	if UISkinOptions["EmbedTinyDPS"] == nil then UISkinOptions["EmbedTinyDPS"] = "Disabled" end
-	if UISkinOptions["EmbedSkada"] == nil then UISkinOptions["EmbedSkada"] = "Disabled" end
-	if UISkinOptions["EmbedRecount"] == nil then UISkinOptions["EmbedRecount"] = "Disabled" end
-	if UISkinOptions["EmbedCoolLine"] == nil then UISkinOptions["EmbedCoolLine"] = "Disabled" end
-	if UISkinOptions["EmbedLeft"] == nil then UISkinOptions["EmbedLeft"] = "Omen" end
-	if UISkinOptions["EmbedRight"] == nil then UISkinOptions["EmbedRight"] = "Skada" end
-	UISkinOptions["MiscFixes"] = "Enabled"
-	print(U.Title.." by |cFFFF7D0AAzilroka|r - Version: |cff1784d1"..U.Version.."|r Loaded!")
-	if IsAddOnLoaded("Enhanced_Config") then Ace3Options() else LegacyOptions() end
-end)
-
 local function Ace3Options()
 	local function GenerateOptionTable(skinName,order)
 		local data = Skins[skinName]
@@ -529,3 +506,26 @@ local function LegacyOptions()
 		end
 	end
 end
+
+local SkinOptionsLoader = CreateFrame("Frame")
+SkinOptionsLoader:RegisterEvent("PLAYER_ENTERING_WORLD")
+SkinOptionsLoader:SetScript("OnEvent", function(self, event)
+	self:UnregisterEvent(event)
+	if UISkinOptions["RecountBackdrop"] == nil then UISkinOptions["RecountBackdrop"] = "Enabled" end
+	if UISkinOptions["SkadaBackdrop"] == nil then UISkinOptions["SkadaBackdrop"] = "Enabled" end
+	if UISkinOptions["CLCProtSkin"] == nil then UISkinOptions["CLCProtSkin"] = "Enabled" end
+	if UISkinOptions["CLCRetSkin"] == nil then UISkinOptions["CLCRetSkin"] = "Enabled" end
+	if UISkinOptions["DBMSkinHalf"] == nil then UISkinOptions["DBMSkinHalf"] = "Disabled" end
+	if UISkinOptions["WeakAurasSkin"] == nil then UISkinOptions["WeakAurasSkin"] = "Enabled" end
+	if UISkinOptions["EmbedOoC"] == nil then UISkinOptions["EmbedOoC"] = "Disabled" end
+	if UISkinOptions["EmbedOmen"] == nil then UISkinOptions["EmbedOmen"] = "Disabled" end
+	if UISkinOptions["EmbedTinyDPS"] == nil then UISkinOptions["EmbedTinyDPS"] = "Disabled" end
+	if UISkinOptions["EmbedSkada"] == nil then UISkinOptions["EmbedSkada"] = "Disabled" end
+	if UISkinOptions["EmbedRecount"] == nil then UISkinOptions["EmbedRecount"] = "Disabled" end
+	if UISkinOptions["EmbedCoolLine"] == nil then UISkinOptions["EmbedCoolLine"] = "Disabled" end
+	if UISkinOptions["EmbedLeft"] == nil then UISkinOptions["EmbedLeft"] = "Omen" end
+	if UISkinOptions["EmbedRight"] == nil then UISkinOptions["EmbedRight"] = "Skada" end
+	UISkinOptions["MiscFixes"] = "Enabled"
+	print(U.Title.." by |cFFFF7D0AAzilroka|r - Version: |cff1784d1"..U.Version.."|r Loaded!")
+	if IsAddOnLoaded("Enhanced_Config") then Ace3Options() else LegacyOptions() end
+end)
