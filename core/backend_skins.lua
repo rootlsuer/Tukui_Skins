@@ -103,6 +103,9 @@ U.Skins = {
 	["DresserSkin"] = {
 		["addon"] = "Dresser",
 	},
+	["DKDotsSkin"] = {
+		["addon"] = "DKDots",
+	},
 	["DXESkin"] = {
 		["addon"] = "DXE",
 	},
@@ -145,6 +148,9 @@ U.Skins = {
 	},
 	["IgnitionSkin"] = {
 		["addon"] = "Ignition",
+	},
+	["InboxMailBagSkin"] = {
+		["addon"] = "InboxMailBag",
 	},
 	["IncomingSkin"] = {
 		["addon"] = "Incoming",
