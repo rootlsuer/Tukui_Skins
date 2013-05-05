@@ -193,15 +193,15 @@ function U.CheckOption(optionName,...)
 		if not addon then break end
 		if not IsAddOnLoaded(addon) then return false end
 	end
-	return UISkinOptions[optionName] == "Enabled"
+	return UISkinOptions[optionName]
 end
 
 function U.DisableOption(optionName)
-	UISkinOptions[optionName] = "Disabled"
+	UISkinOptions[optionName] = false
 end
 
 function U.EnableOption(optionName)
-	UISkinOptions[optionName] = "Enabled"
+	UISkinOptions[optionName] = true
 end
 
 function U.ToggleOption(optionName)

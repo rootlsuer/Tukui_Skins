@@ -8,6 +8,7 @@ Engine[1] = AddOn
 UISkins = Engine
 
 AddOn.A = A
+AddOn.C = C
 AddOn.Version = GetAddOnMetadata(AddOnName, "Version")
 AddOn.Title = select(2, GetAddOnInfo(AddOnName))
 AddOn.Blank = C["Media"].Blank
@@ -16,9 +17,12 @@ AddOn.Font = C["Media"].Font
 AddOn.UFFont = C["Media"].AltFont
 AddOn.PixelFont = C["Media"].PixelFont
 AddOn.UIScale = C["General"].UIScale
-AddOn.MyClass = A.MyClass
+AddOn.MyClass = select(2, UnitClass("player"))
+AddOn.MyName = UnitName("player")
+AddOn.MyRealm = GetCVar("realmName")
 AddOn.Noop = function() return end
 AddOn.DataTextFontSize = C["DataText"] and C["DataText"].FontSize or 12
+AddOn.BorderColor = C["Media"].BorderColor
 
 AddOn.InfoLeft = A.Panels.DataTextLeft
 AddOn.InfoRight = A.Panels.DataTextRight

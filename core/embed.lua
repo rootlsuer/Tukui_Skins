@@ -222,24 +222,21 @@ EmbeddingWindow:SetScript("OnEvent", function(self, event)
 	if event == "PLAYER_ENTERING_WORLD" then
 		EmbedWindowResize()
 		EmbedCheck(true)
-	elseif event == "PLAYER_REGEN_DISABLED" or InCombatLockdown() then
-		if (U.CheckOption("EmbedOoC")) then
+	end
+	if event == "PLAYER_REGEN_DISABLED" or InCombatLockdown() then
+		if U.CheckOption("EmbedOoC") then
 			if ChatFrame4Hide then ChatFrame4Tab:Hide() end
-			UIFrameFadeIn(EmbeddingWindow, 0.4, EmbeddingWindow:GetAlpha(), 1)
-			UIFrameFadeIn(EmbeddingWindowLeft, 0.4, EmbeddingWindowLeft:GetAlpha(), 1)
+			EmbeddingWindow:Show()
+			EmbeddingWindowLeft:Show()
 		end
 	else
-		if (U.CheckOption("EmbedOoC")) then
+		if U.CheckOption("EmbedOoC") then
 			if ChatFrame4Hide then ChatFrame4Tab:Show() end
-			UIFrameFadeOut(EmbeddingWindow, 4, EmbeddingWindow:GetAlpha(), 0)
-			UIFrameFadeOut(EmbeddingWindowLeft, 4, EmbeddingWindowLeft:GetAlpha(), 0)
+			EmbeddingWindow:Hide()
+			EmbeddingWindowLeft:Hide()
 		end
 	end
 end)
-EmbeddingWindow:SetTemplate()
-EmbeddingWindowLeft:SetTemplate()
-U.SnapHolder(EmbeddingWindow)
-U.SnapHolder(EmbeddingWindowLeft)
 
 if U.ChatBackgroundRight then
 	U.ChatBackgroundRight:SetFrameStrata("Background")
@@ -278,6 +275,11 @@ local function CreateToggleButton(name, buttontext, panel1, panel2, tooltiptext1
 	end)
 	frame:SetScript("OnEnter", function(self, ...)
 		UIFrameFadeIn(self, 0.2, self:GetAlpha(), 1)
+		if U.CheckOption("EmbedOoC") then
+			if ChatFrame4Hide then ChatFrame4Tab:Hide() end
+			EmbeddingWindow:Show()
+			EmbeddingWindowLeft:Show()
+		end
 		if self.Faded then
 			if not DuffedUI then UIFrameFadeIn(panel1, 0.2, panel1:GetAlpha(), 1) end
 			UIFrameFadeIn(panel2, 0.2, panel2:GetAlpha(), 1)
@@ -294,6 +296,11 @@ local function CreateToggleButton(name, buttontext, panel1, panel2, tooltiptext1
 	end)
 	frame:SetScript("OnLeave", function(self, ...)
 		UIFrameFadeOut(self, 0.2, self:GetAlpha(), 0)
+		if U.CheckOption("EmbedOoC") then
+			if ChatFrame4Hide then ChatFrame4Tab:Show() end
+			EmbeddingWindow:Hide()
+			EmbeddingWindowLeft:Hide()
+		end
 		if self.Faded then
 			if not DuffedUI then UIFrameFadeOut(panel1, 0.2, panel1:GetAlpha(), 0) end
 			UIFrameFadeOut(panel2, 0.2, panel2:GetAlpha(), 0)
@@ -307,12 +314,12 @@ RightToggleButton:Point("LEFT", U.InfoRight, "RIGHT", 2, 0)
 RightToggleButton:HookScript("OnClick", function(self, btn)
 	if btn == "RightButton" then
 		if EmbeddingWindow:IsShown() then
-			UIFrameFadeOut(EmbeddingWindow, 4, EmbeddingWindow:GetAlpha(), 0)
-			UIFrameFadeOut(EmbeddingWindowLeft, 4, EmbeddingWindowLeft:GetAlpha(), 0)
+			EmbeddingWindow:Hide()
+			EmbeddingWindowLeft:Hide()
 			if ChatFrame4Hide then ChatFrame4Tab:Show() end
 		else
-			UIFrameFadeIn(EmbeddingWindow, .4, EmbeddingWindow:GetAlpha(), 1)
-			UIFrameFadeIn(EmbeddingWindowLeft, .4, EmbeddingWindowLeft:GetAlpha(), 1)
+			EmbeddingWindow:Show()
+			EmbeddingWindowLeft:Show()
 			if ChatFrame4Hide then ChatFrame4Tab:Hide() end
 		end
 	end
