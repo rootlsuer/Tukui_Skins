@@ -26,7 +26,7 @@ local function CreateButton(self, name, size, point, parent, pointParent, offset
 		button:CreateBackdrop("Default")
 	end
 
-	button.backdrop:SetAllPoints()
+	button.Backdrop:SetAllPoints()
 	button:EnableMouse(false)
 	button:Size(size)
 	button.texture = button:CreateTexture("$parentIcon", "OVERLAY")
@@ -39,9 +39,9 @@ local function CreateButton(self, name, size, point, parent, pointParent, offset
 	button.texture.SetTexture = function(self, tex, ...)
 		button.texture.OldSetTexture(self, tex, ...)
 		if tex ~= nil then
-			button.backdrop:Show();
+			button.Backdrop:Show();
 		else
-			button.backdrop:Hide()
+			button.Backdrop:Hide()
 		end
 	end	
 

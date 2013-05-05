@@ -14,15 +14,15 @@ local function SkinClique(self)
 	for _, object in pairs(Frames) do
 		U.SkinBackdropFrame(_G[object], true)
 		if _G[object] == CliqueConfig then
-			_G[object].backdrop:SetPoint("TOPLEFT",0,0)
-			_G[object].backdrop:SetPoint("BOTTOMRIGHT",0,-5)
+			_G[object].Backdrop:SetPoint("TOPLEFT",0,0)
+			_G[object].Backdrop:SetPoint("BOTTOMRIGHT",0,-5)
 		elseif _G[object] == CliqueClickGrabber or _G[object] == CliqueScrollFrame then
-			_G[object].backdrop:SetPoint("TOPLEFT",4,0)
-			_G[object].backdrop:SetPoint("BOTTOMRIGHT",-2,4)
+			_G[object].Backdrop:SetPoint("TOPLEFT",4,0)
+			_G[object].Backdrop:SetPoint("BOTTOMRIGHT",-2,4)
 		else
 			_G[object]:SetFrameLevel(_G[object]:GetFrameLevel()+1)
-			_G[object].backdrop:SetPoint("TOPLEFT",0,0)
-			_G[object].backdrop:SetPoint("BOTTOMRIGHT",2,0)
+			_G[object].Backdrop:SetPoint("TOPLEFT",0,0)
+			_G[object].Backdrop:SetPoint("BOTTOMRIGHT",2,0)
 		end
 	end
 	
@@ -84,7 +84,7 @@ local function SkinClique(self)
 	CliqueSpellTab:GetNormalTexture():ClearAllPoints()
 	CliqueSpellTab:GetNormalTexture():SetInside()
 	U.SkinBackdropFrame(CliqueSpellTab)
-	CliqueSpellTab.backdrop:SetAllPoints()
+	CliqueSpellTab.Backdrop:SetAllPoints()
 	CliqueSpellTab:StyleButton(True)
 end
 

@@ -158,12 +158,12 @@ function U.SkinIconButton(self, strip, style, shrinkIcon)
 		icon:SetTexCoord(.08,.88,.08,.88)
 
 		if shrinkIcon then
-			self.backdrop:SetAllPoints()
+			self.Backdrop:SetAllPoints()
 			icon:SetInside(self)
 		else
-			self.backdrop:SetOutside(icon)
+			self.Backdrop:SetOutside(icon)
 		end
-		icon:SetParent(self.backdrop)
+		icon:SetParent(self.Backdrop)
 	end
 	self.isSkinned = true
 end

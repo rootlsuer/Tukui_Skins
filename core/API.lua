@@ -22,6 +22,14 @@ local function SetOriginalBackdrop(self)
 	end
 end
 
+local function Kill(object)
+	if object.UnregisterAllEvents then
+		object:UnregisterAllEvents()
+	end
+	object.Show = U.Noop
+	object:Hide()
+end
+
 local function SkinButton(f, strip)
 	if f:GetName() then
 		local l = _G[f:GetName().."Left"]
@@ -244,10 +252,9 @@ local function SkinDropDownBox(frame, width)
 end
 
 local function SkinCheckBox(frame)
-	StripTextures(frame)
-	CreateBackdrop(frame, "Default")
-	Point(frame.backdrop, "TOPLEFT", 4, -4)
-	Point(frame.backdrop, "BOTTOMRIGHT", -4, 4)
+	frame:StripTextures()
+	frame:CreateBackdrop("Default")
+	frame.Backdrop:SetOutside(4, 4)
 	
 	if frame.SetCheckedTexture then
 		frame:SetCheckedTexture("Interface\\Buttons\\UI-CheckBox-Check")
@@ -325,6 +332,7 @@ local function addapi(object)
 	if not object.SkinCheckBox then mt.SkinCheckBox = SkinCheckBox end
 	if not object.SkinCloseButton then mt.SkinCloseButton = SkinCloseButton end
 	if not object.SkinSlideBar then mt.SkinSlideBar = SkinSlideBar end
+	if not object.Kill then mt.Kill = Kill end
 end
 
 local handled = {["Frame"] = true}

@@ -2,12 +2,12 @@ if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("
 local U = unpack(select(2,...))
 
 local function Skin_WeakAuras(frame)
-	if not frame.backdrop then
+	if not frame.Backdrop then
 		frame:CreateBackdrop('Default')
 		frame.icon.OldAlpha = frame.icon.SetAlpha
 		frame.icon.SetAlpha = function(self, ...)
 			frame.icon.OldAlpha(self, ...)
-			frame.backdrop:SetAlpha(...)
+			frame.Backdrop:SetAlpha(...)
 		end
 	end
 

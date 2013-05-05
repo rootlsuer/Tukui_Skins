@@ -7,8 +7,8 @@ local function SkinCoolLine(self)
 	CoolLineDB.border  = "None"
 	CoolLine.updatelook()
 	U.SkinBackdropFrame(CoolLine)
-	CoolLine.backdrop:SetAllPoints(CoolLine)
-	CoolLine.backdrop:CreateShadow()
+	CoolLine.Backdrop:SetAllPoints(CoolLine)
+	CoolLine.Backdrop:CreateShadow()
 	U.RegisterForPetBattleHide(CoolLine)
 	if U.CheckOption("EmbedCoolLine") then
 		if not CoolLineDB.vertical then
