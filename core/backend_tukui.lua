@@ -168,14 +168,14 @@ local function Ace3Options()
 					},
 					EmbedLeft = {
 						type = 'input',
-						width = full,
+						width = 'full',
 						name = 'Embed for Left Chat Panel',
 						desc = 'Available Embeds: alDamageMeter | Omen | Skada | Recount | TinyDPS',
 						order = 2
 					},
 					EmbedRight = {
 						type = 'input',
-						width = full,
+						width = 'full',
 						name = 'Embed to Right Chat Panel',
 						desc = 'Available Embeds: alDamageMeter | Omen | Skada | Recount | TinyDPS',
 						order = 3

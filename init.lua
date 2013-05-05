@@ -16,6 +16,7 @@ AddOn.NormTex = C["Media"].Normal
 AddOn.Font = C["Media"].Font
 AddOn.UFFont = C["Media"].AltFont
 AddOn.PixelFont = C["Media"].PixelFont
+AddOn.ActionBarFont = C["Media"].ActionBarFont
 AddOn.UIScale = C["General"].UIScale
 AddOn.MyClass = select(2, UnitClass("player"))
 AddOn.MyName = UnitName("player")

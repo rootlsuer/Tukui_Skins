@@ -249,7 +249,7 @@ local function CreateToggleButton(name, buttontext, panel1, panel2, tooltiptext1
 	local frame = CreateFrame("Button", name, UIParent)
 	frame:SetTemplate("Transparent")
 	frame:Size(panel1:GetHeight())
-	frame:FontString("text", U.PixelFont, 14, "MONOCHROMEOUTLINE")
+	frame:FontString("text", U.ActionBarFont, 12)
 	frame.text:SetText(buttontext)
 	frame.text:SetPoint("CENTER", 2, 2)
 	frame:RegisterForClicks("LeftButtonDown", "RightButtonDown");
@@ -309,7 +309,7 @@ local function CreateToggleButton(name, buttontext, panel1, panel2, tooltiptext1
 	end)
 end
 
-CreateToggleButton("RightToggleButton", ">", U.InfoRight, U.ChatBackgroundRight, "Toggle Right Chat Panel", "Toggle Embedded AddOn")
+CreateToggleButton("RightToggleButton", "►", U.InfoRight, U.ChatBackgroundRight, "Toggle Right Chat Panel", "Toggle Embedded AddOn")
 RightToggleButton:Point("LEFT", U.InfoRight, "RIGHT", 2, 0)
 RightToggleButton:HookScript("OnClick", function(self, btn)
 	if btn == "RightButton" then
@@ -326,7 +326,7 @@ RightToggleButton:HookScript("OnClick", function(self, btn)
 end)
 RightToggleButton:SetScript("PreClick", function(self) if ChatFrame4Tab:IsShown() then ChatFrame4Hide = true end end)
 
-CreateToggleButton("LeftToggleButton", "<", U.InfoLeft, U.ChatBackgroundLeft, "Toggle Left Chat Panel", "Toggle Extra Skins/Options")
+CreateToggleButton("LeftToggleButton", "◄", U.InfoLeft, U.ChatBackgroundLeft, "Toggle Left Chat Panel", "Toggle Extra Skins/Options")
 LeftToggleButton:Point("LEFT", U.InfoLeft, "LEFT", 2, 0)
 LeftToggleButton:HookScript("OnClick", function(self, btn)
 	if btn == "RightButton" then
