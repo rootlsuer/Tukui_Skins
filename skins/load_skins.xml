@@ -32,6 +32,7 @@
 	<Script file="Critline.lua"/>
 	<Script file="DBM.lua"/>
 	<Script file="Dresser.lua"/>
+	<Script file="DXE.lua"/>
 	<Script file="EasyMail.lua"/>
 	<Script file="EavesDrop.lua"/>
 	<Script file="EnergyWatch.lua"/>

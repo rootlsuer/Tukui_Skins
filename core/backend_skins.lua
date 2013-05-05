@@ -103,6 +103,9 @@ U.Skins = {
 	["DresserSkin"] = {
 		["addon"] = "Dresser",
 	},
+	["DXESkin"] = {
+		["addon"] = "DXE",
+	},
 	["EasyMailSkin"] = {
 		["addon"] = "EasyMail",
 	},
