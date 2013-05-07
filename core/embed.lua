@@ -5,7 +5,7 @@ function US:EmbedTooltip(frame)
 	local r, l, b, t = frame:GetRight(), EmbeddingWindow:GetLeft(), frame:GetBottom(), EmbeddingWindow:GetTop()
 	if not r or not l or not b or not t or r < l or b > t then return end
 	local point, relativeTo, relativePoint, xOffset, yOffset = frame:GetPoint(1)
-	if relativeTo == U.Tooltip and point == "BOTTOMRIGHT" and relativePoint == "TOPRIGHT" then
+	if relativeTo == US.Tooltip and point == "BOTTOMRIGHT" and relativePoint == "TOPRIGHT" then
 		local found = false
 		if US:CheckOption("EmbedSkada","Skada") and Skada and Skada.GetWindows then
 			for _, window in pairs(Skada:GetWindows()) do if window:IsShown() then found = true end end
@@ -45,7 +45,7 @@ end
 function US:EmbedRecount()
 	Recount:LockWindows(true)
 	Recount_MainWindow:ClearAllPoints()
-	EmbedRecountResize()
+	US:EmbedRecountResize()
 	if UISkinOptions["EmbedLeft"] == "Recount" then
 		Recount_MainWindow:SetParent(EmbeddingWindowLeft)
 	else
@@ -152,7 +152,7 @@ function US:EmbedALDamageMeter()
 	alDamageMeterFrame:SetFrameLevel(10)
 end
 
-function AS:EmbedSkada()
+function US:EmbedSkada()
 	local windows = {}
 	for _, window in pairs(Skada:GetWindows()) do
 		tinsert(windows, window)
@@ -217,6 +217,8 @@ function US:EmbedWindowResize()
 	US:EmbedCheck()
 end
 
+local EmbedOoCCombatStart, EmbedOoCCombatEnd -- Delay System Vars
+
 local EmbeddingWindowLeft = CreateFrame("Frame", "EmbeddingWindowLeft", UIParent)
 local EmbeddingWindow = CreateFrame("Frame", "EmbeddingWindow", UIParent)
 EmbeddingWindow:RegisterEvent("PLAYER_ENTERING_WORLD")
@@ -228,16 +230,25 @@ EmbeddingWindow:SetScript("OnEvent", function(self, event)
 		US:EmbedCheck(true)
 	end
 	if event == "PLAYER_REGEN_DISABLED" or InCombatLockdown() then
+		EmbedOoCCombatStart = true
 		if US:CheckOption("EmbedOoC") then
 			if ChatFrame4Hide then ChatFrame4Tab:Hide() end
 			EmbeddingWindow:Show()
 			EmbeddingWindowLeft:Show()
 		end
 	else
+		EmbedOoCCombatStart = false
 		if US:CheckOption("EmbedOoC") then
 			if ChatFrame4Hide then ChatFrame4Tab:Show() end
-			EmbeddingWindow:Hide()
-			EmbeddingWindowLeft:Hide()
+			if EmbedOoCCombatEnd then return end
+			EmbedOoCCombatEnd = true
+			US:Delay(8, function()
+				if not EmbedOoCCombatStart then
+					EmbeddingWindow:Hide()
+					EmbeddingWindowLeft:Hide()
+				end
+				CombatEnd = false
+			end)
 		end
 	end
 end)
@@ -280,19 +291,14 @@ local function CreateToggleButton(name, buttontext, panel1, panel2, tooltiptext1
 	frame:SetScript("OnEnter", function(self, ...)
 		UIFrameFadeIn(self, 0.2, self:GetAlpha(), 1)
 		if self.Faded then
-			if US:CheckOption("EmbedOoC") then
-				if ChatFrame4Hide then ChatFrame4Tab:Hide() end
-				EmbeddingWindow:Show()
-				EmbeddingWindowLeft:Show()
-			end
 			if not DuffedUI then UIFrameFadeIn(panel1, 0.2, panel1:GetAlpha(), 1) end
 			UIFrameFadeIn(panel2, 0.2, panel2:GetAlpha(), 1)
 			if name == "LeftToggleButton" then UIFrameFadeIn(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 1) end
 		end
 		GameTooltip:SetOwner(self, 'ANCHOR_TOPLEFT', 0, 4)
 		GameTooltip:ClearLines()
-		if IsAddOnLoaded("Tukui_ChatTweaks") and (ChatTweaksOptions["ChatHider"] == "Enabled") then
-			if US:ChatBackgroundRight then
+		if IsAddOnLoaded("Tukui_ChatTweaks") and ChatTweaksOptions["ChatHider"] == "Enabled" then
+			if US.ChatBackgroundRight then
 				GameTooltip:AddDoubleLine("Left Click:", tooltiptext1, 1, 1, 1)
 			end
 		end
@@ -301,11 +307,6 @@ local function CreateToggleButton(name, buttontext, panel1, panel2, tooltiptext1
 	frame:SetScript("OnLeave", function(self, ...)
 		UIFrameFadeOut(self, 0.2, self:GetAlpha(), 0)
 		if self.Faded then
-			if US:CheckOption("EmbedOoC") then
-				if ChatFrame4Hide then ChatFrame4Tab:Show() end
-				EmbeddingWindow:Hide()
-				EmbeddingWindowLeft:Hide()
-			end
 			if not DuffedUI then UIFrameFadeOut(panel1, 0.2, panel1:GetAlpha(), 0) end
 			UIFrameFadeOut(panel2, 0.2, panel2:GetAlpha(), 0)
 			if name == "LeftToggleButton" then UIFrameFadeOut(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 0) end
