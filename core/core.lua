@@ -1,27 +1,27 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local U = unpack(select(2,...))
+local US = unpack(select(2,...))
 local debug = true
 
-function U.Round(num, idp)
+function US:Round(num, idp)
 	local mult = 10^(idp or 0)
 	return math.floor(num * mult + 0.5) / mult
 end
 
-function U.SkinButton(self, strip)
+function US:SkinButton(self, strip)
 	if not debug then
 		if self == nil then return end
 	end
 	self:SkinButton(strip)
 end
 
-function U.SkinScrollBar(self)
+function US:SkinScrollBar(self)
 	if not debug then
 		if self == nil then return end
 	end
 	self:SkinScrollBar()
 end
 
-function U.SkinTab(self, strip)
+function US:SkinTab(self, strip)
 	if not debug then
 		if self == nil then return end
 	end
@@ -29,21 +29,21 @@ function U.SkinTab(self, strip)
 	self:SkinTab()
 end
 
-function U.SkinNextPrevButton(self, horizonal)
+function US:SkinNextPrevButton(self, horizonal)
 	if not debug then
 		if self == nil then return end
 	end
 	self:SkinNextPrevButton(horizonal)
 end
 
-function U.SkinRotateButton(self)
+function US:SkinRotateButton(self)
 	if not debug then
 		if self == nil then return end
 	end
 	self:SkinRotateButton()
 end
 
-function U.SkinEditBox(self, width, height)
+function US:SkinEditBox(self, width, height)
 	if not debug then
 		if self == nil then return end
 	end
@@ -52,41 +52,41 @@ function U.SkinEditBox(self, width, height)
 	if height then self:SetHeight(height) end
 end
 
-function U.SkinDropDownBox(self, width)
+function US:SkinDropDownBox(self, width)
 	if not debug then
 		if self == nil then return end
 	end
 	self:SkinDropDownBox(width)
 end
 
-function U.SkinCheckBox(self)
+function US:SkinCheckBox(self)
 	if not debug then
 		if self == nil then return end
 	end
 	self:SkinCheckBox()
 end
 
-function U.SkinCloseButton(self)
+function US:SkinCloseButton(self)
 	if not debug then
 		if self == nil then return end
 	end
 	self:SkinCloseButton()
 end
 
-function U.SkinSlideBar(self, height, movetext)
+function US:SkinSlideBar(self, height, movetext)
 	if not debug then
 		if self == nil then return end
 	end
 	self:SkinSlideBar(height, movetext)
 end
 
-function U.RegisterForPetBattleHide(frame)
+function US:RegisterForPetBattleHide(frame)
 	if frame.IsVisible and frame:GetName() then
-		U.FrameLocks[frame:GetName()] = { shown = false }
+		US.FrameLocks[frame:GetName()] = { shown = false }
 	end
 end
 
-function U.SkinFrame(self, template, overridestrip)
+function US:SkinFrame(self, template, overridestrip)
 	if not debug then
 		if self == nil then return end
 	end
@@ -95,7 +95,7 @@ function U.SkinFrame(self, template, overridestrip)
 	self:SetTemplate(template)
 end
 
-function U.SkinBackdropFrame(self, strip, icon)
+function US:SkinBackdropFrame(self, strip, icon)
 	if not debug then
 		if self == nil then return end
 	end
@@ -108,36 +108,36 @@ function U.SkinBackdropFrame(self, strip, icon)
 	end
 end
 
-function U.SkinStatusBar(self, ClassColor)
+function US:SkinStatusBar(self, ClassColor)
 	if not debug then
 		if self == nil then return end
 	end
-	U.SkinBackdropFrame(self, true)
-	self:SetStatusBarTexture(U.NormTex)
+	US:SkinBackdropFrame(self, true)
+	self:SetStatusBarTexture(US.NormTex)
 	if ClassColor then
-		local color = RAID_CLASS_COLORS[U.MyClass]
+		local color = RAID_CLASS_COLORS[US.MyClass]
 		self:SetStatusBarColor(color.r, color.g, color.b)
 	end
 end
 
-function U.SkinTooltip(tooltip, scale)
+function US:SkinTooltip(tooltip, scale)
 	if not debug then
 		if tooltip == nil then return end
 	end
 	tooltip:HookScript("OnShow", function(self)
 		self:SetTemplate("Transparent")
-		if scale then self:SetScale(U.UIScale) end
+		if scale then self:SetScale(US.UIScale) end
 	end)
 end
 
-function U.SkinTexture(self)
+function US:SkinTexture(self)
 	if not debug then
 		if self == nil then return end
 	end
 	self:SetTexCoord(0.12, 0.88, 0.12, 0.88)
 end
 
-function U.SkinIconButton(self, strip, style, shrinkIcon)
+function US:SkinIconButton(self, strip, style, shrinkIcon)
 	if not debug then
 		if self == nil then return end
 	end
@@ -168,7 +168,7 @@ function U.SkinIconButton(self, strip, style, shrinkIcon)
 	self.isSkinned = true
 end
 
-function U.Desaturate(self, point)
+function US:Desaturate(self, point)
 	if not debug then
 		if self == nil then return end
 	end
@@ -187,7 +187,7 @@ function U.Desaturate(self, point)
 	end
 end
 
-function U.CheckOption(optionName,...)
+function US:CheckOption(optionName,...)
 	for i = 1,select('#',...) do
 		local addon = select(i,...)
 		if not addon then break end
@@ -196,24 +196,24 @@ function U.CheckOption(optionName,...)
 	return UISkinOptions[optionName]
 end
 
-function U.DisableOption(optionName)
+function US:DisableOption(optionName)
 	UISkinOptions[optionName] = false
 end
 
-function U.EnableOption(optionName)
+function US:EnableOption(optionName)
 	UISkinOptions[optionName] = true
 end
 
-function U.ToggleOption(optionName)
-	if U.CheckOption(optionName) then
-		U.DisableOption(optionName)
+function US:ToggleOption(optionName)
+	if US:CheckOption(optionName) then
+		US:DisableOption(optionName)
 	else
-		U.EnableOption(optionName)
+		US:EnableOption(optionName)
 	end
 end
 
-function U.RegisterSkin(skinName,skinFunc,...)
-	local XS = U.x
+function US:RegisterSkin(skinName,skinFunc,...)
+	local XS = US.x
 	local events = {}
 	for i = 1,select('#',...) do
 		local event = select(i,...)
@@ -225,22 +225,22 @@ function U.RegisterSkin(skinName,skinFunc,...)
 	XS.register[skinName][skinFunc] = registerMe
 end
 
-function U.UnregisterEvent(skinName,frame,event)
-	local XS = U.x
+function US:UnregisterEvent(skinName,frame,event)
+	local XS = US.x
 	XS:UnregisterEvent(skinName,event)
 end
 
-function U.AddNonPetBattleFrames()
-	for frame,data in pairs(U.FrameLocks) do
+function US:AddNonPetBattleFrames()
+	for frame,data in pairs(US.FrameLocks) do
 		if data.shown then
 			_G[frame]:Show()
 		end
 	end
 end
 
-function U.RemoveNonPetBattleFrames()
-	for frame,data in pairs(U.FrameLocks) do
-		if(_G[frame]:IsVisible()) then
+function US:RemoveNonPetBattleFrames()
+	for frame,data in pairs(US.FrameLocks) do
+		if _G[frame]:IsVisible() then
 			data.shown = true
 			_G[frame]:Hide()
 		else
@@ -251,7 +251,7 @@ end
 
 local waitTable = {}
 local waitFrame
-function U.Delay(delay, func, ...)
+function US:Delay(delay, func, ...)
 	if(type(delay)~="number" or type(func)~="function") then
 		return false
 	end

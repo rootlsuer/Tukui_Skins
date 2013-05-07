@@ -1,10 +1,13 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local U = unpack(select(2,...))
+local US = unpack(select(2,...))
 
-U.Skins = {
+US.Skins = {
 	["ACPSkin"] = {
 		["buttonText"] = "Addon Control Panel",
 		["addon"] = "ACP",
+	},
+	["AchieveItSkin"] = {
+		["addon"] = "AchieveIt",
 	},
 	["AdiBagsSkin"] = {
 		["addon"] = "AdiBags",
@@ -95,6 +98,9 @@ U.Skins = {
 	},
 	["CritlineSkin"] = {
 		["addon"] = "Critline",
+	},
+	["DailyTamerCheckSkin"] = {
+		["addon"] = "DailyTamerCheck",
 	},
 	["DBMSkin"] = {
 		["buttonText"] = "DBM",

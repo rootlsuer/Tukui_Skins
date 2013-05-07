@@ -1,7 +1,8 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local U = unpack(select(2,...))
+local US = unpack(select(2,...))
+
 local name = "MasterLootManagerRemixSkin"
-local function SkinMLM(self)
+function US:SkinMasterLootManagerRemix()
 	local StripAllTextures = {
 		"MasterLootManagerMain",
 		"MasterLootLoggerFrame",
@@ -61,19 +62,19 @@ local function SkinMLM(self)
 	end	
 
 	for _, object in pairs(SetTemplateD) do
-		U.SkinFrame(_G[object],"Default",true)
+		US:SkinFrame(_G[object],"Default",true)
 	end	
 
 	for _, object in pairs(SetTemplateT) do
-		U.SkinFrame(_G[object], false, true)
+		US:SkinFrame(_G[object], false, true)
 	end	
 
 	for _, button in pairs(buttons) do
-		U.SkinButton(_G[button])
+		US:SkinButton(_G[button])
 	end	
 
 	for _, button in pairs(checkboxes) do
-		U.SkinCheckBox(_G[button])
+		US:SkinCheckBox(_G[button])
 	end	
 
 	MasterLootManagerMain_AssignDE:Point("TOPLEFT",  MasterLootManagerMain_SelectDE, "TOPRIGHT", 10, -2)
@@ -105,13 +106,13 @@ local function SkinMLM(self)
 	MasterLootLoggerAddEditFrameHour:SetWidth(25)
 	MasterLootLoggerAddEditFrameMinute:SetJustifyH("CENTER")
 	MasterLootLoggerAddEditFrameMinute:SetWidth(25)
-	U.SkinDropDownBox(MasterLootManagerMain_SelectDE, 150)
-	U.SkinDropDownBox(MasterLootManagerMain_SelectBank, 150)
-	U.SkinDropDownBox(MasterLootLoggerAddEditFrameType, 150)
-	U.SkinScrollBar(MasterLootManagerMain_ScrollFrame_Slider, 5)
-	U.SkinScrollBar(MasterLootLoggerFrameContentScrollFrameScrollBar)
-	U.SkinCloseButton(MasterLootLoggerFrameCloseButton)
-	U.SkinCloseButton(MasterLootLoggerAddEditFrameCloseButton)
+	US:SkinDropDownBox(MasterLootManagerMain_SelectDE, 150)
+	US:SkinDropDownBox(MasterLootManagerMain_SelectBank, 150)
+	US:SkinDropDownBox(MasterLootLoggerAddEditFrameType, 150)
+	US:SkinScrollBar(MasterLootManagerMain_ScrollFrame_Slider, 5)
+	US:SkinScrollBar(MasterLootLoggerFrameContentScrollFrameScrollBar)
+	US:SkinCloseButton(MasterLootLoggerFrameCloseButton)
+	US:SkinCloseButton(MasterLootLoggerAddEditFrameCloseButton)
 end
 
-U.RegisterSkin(name,SkinMLM)
+US:RegisterSkin(name, US.SkinMasterLootManagerRemix)

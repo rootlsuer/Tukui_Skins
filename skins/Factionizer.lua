@@ -1,18 +1,18 @@
 ﻿if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local U = unpack(select(2,...))
-
-local function desat(self, event, ...)
-	for i = 1, 15 do
-		U.Desaturate(_G["ReputationBar"..i.."ExpandOrCollapseButton"])
-	end
-
-	for i = 1, 13 do
-		U.Desaturate(_G["FIZ_UpdateEntry"..i])
-	end
-end
+local US = unpack(select(2,...))
 
 local name = "FactionizerSkin"
-local function SkinFactionizer(self)
+function US:SkinFactionizer()
+	local function desat()
+		for i = 1, 15 do
+			US:Desaturate(_G["ReputationBar"..i.."ExpandOrCollapseButton"])
+		end
+
+		for i = 1, 13 do
+			US:Desaturate(_G["FIZ_UpdateEntry"..i])
+		end
+	end
+
 	local StripAllTextures = {
 		"FIZ_ReputationDetailFrame",
 		"FIZ_OptionsFrame",
@@ -60,15 +60,15 @@ local function SkinFactionizer(self)
 	end	
 
 	for _, object in pairs(SetTemplateT) do
-		U.SkinFrame(_G[object])
+		US:SkinFrame(_G[object])
 	end			
 
 	for _, button in pairs(buttons) do
-		U.SkinButton(_G[button])
+		US:SkinButton(_G[button])
 	end		
 
 	for _, checkbox in pairs(checkboxes) do
-		U.SkinCheckBox(_G[checkbox])
+		US:SkinCheckBox(_G[checkbox])
 	end	
 
 	FIZ_ReputationDetailAtWarCheckBox:SetScript("OnUpdate", function(frame)
@@ -85,9 +85,9 @@ local function SkinFactionizer(self)
 	end)
 
 	FIZ_OptionsFrame:CreateShadow("Default")
-	U.SkinCloseButton(FIZ_OptionsFrameClose)
-	U.SkinCloseButton(FIZ_ReputationDetailCloseButton)
-	U.SkinScrollBar(FIZ_UpdateListScrollFrameScrollBar, 5)
+	US:SkinCloseButton(FIZ_OptionsFrameClose)
+	US:SkinCloseButton(FIZ_ReputationDetailCloseButton)
+	US:SkinScrollBar(FIZ_UpdateListScrollFrameScrollBar, 5)
 	local repFrame = _G["ReputationFrame"]
 	repFrame:SetScript("OnUpdate", desat)
 	FIZ_OptionsFrameClose:Point("TOPRIGHT", FIZ_OptionsFrame, "TOPRIGHT", 4, 5)
@@ -99,4 +99,4 @@ local function SkinFactionizer(self)
 	FIZ_OptionsFrame:Point("TOPLEFT",   ReputationFrame, "TOPRIGHT", 5, 0)
 end
 
-U.RegisterSkin(name, SkinFactionizer)
+US:RegisterSkin(name, US.SkinFactionizer)

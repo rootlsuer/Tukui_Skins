@@ -1,36 +1,36 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local U = unpack(select(2,...))
+local US = unpack(select(2,...))
 
 local name = "ACPSkin"
-local function cbResize(self, event, ...)
-	for i = 1, 20, 1 do
-		local checkbox = _G["ACP_AddonListEntry" .. i .. "Enabled"]
-		local collapse = _G["ACP_AddonListEntry" .. i .. "Collapse"]
-		local security = _G["ACP_AddonListEntry" .. i .. "Security"]
-		local curr_category = ""
+function US:SkinACP()
+	local function cbResize(self, event, ...)
+		for i = 1, 20, 1 do
+			local checkbox = _G["ACP_AddonListEntry" .. i .. "Enabled"]
+			local collapse = _G["ACP_AddonListEntry" .. i .. "Collapse"]
+			local security = _G["ACP_AddonListEntry" .. i .. "Security"]
+			local curr_category = ""
 
-		if curr_category == "" then
-			checkbox:SetPoint("LEFT", 5, 0)
-			if collapse:IsShown() then
+			if curr_category == "" then
+				checkbox:SetPoint("LEFT", 5, 0)
+				if collapse:IsShown() then
+					checkbox:SetWidth(26)
+					checkbox:SetHeight(26)
+				else
+					checkbox:SetPoint("LEFT", 15, 0)
+					checkbox:SetWidth(20)
+					checkbox:SetHeight(20)
+				end
+			end
+			if security:IsShown() then
+				checkbox:SetPoint("LEFT", 5, 0)
 				checkbox:SetWidth(26)
 				checkbox:SetHeight(26)
-			else
-				checkbox:SetPoint("LEFT", 15, 0)
-				checkbox:SetWidth(20)
-				checkbox:SetHeight(20)
 			end
 		end
-		if security:IsShown() then
-			checkbox:SetPoint("LEFT", 5, 0)
-			checkbox:SetWidth(26)
-			checkbox:SetHeight(26)
-		end
 	end
-end
 
-local function SkinACP(self)
-	U.SkinFrame(ACP_AddonList)
-	U.SkinFrame(ACP_AddonList_ScrollFrame)
+	US:SkinFrame(ACP_AddonList)
+	US:SkinFrame(ACP_AddonList_ScrollFrame)
 
 	local buttons = {
 		"ACP_AddonListSetButton",
@@ -41,14 +41,14 @@ local function SkinACP(self)
 	}
 
 	for _, button in pairs(buttons) do
-		U.SkinButton(_G[button])
+		US:SkinButton(_G[button])
 	end	
 
 	for i = 1, 20 do
-		U.SkinButton(_G["ACP_AddonListEntry"..i.."LoadNow"])
+		US:SkinButton(_G["ACP_AddonListEntry"..i.."LoadNow"])
 	end	
 
-	U.SkinCloseButton(ACP_AddonListCloseButton)
+	US:SkinCloseButton(ACP_AddonListCloseButton)
 
 	for i = 1, 20, 1 do
 		local ACP_OnLoad = _G["ACP_AddonList"]
@@ -56,12 +56,12 @@ local function SkinACP(self)
 	end
 
 	for i = 1, 20 do
-		U.SkinCheckBox(_G["ACP_AddonListEntry"..i.."Enabled"])
+		US:SkinCheckBox(_G["ACP_AddonListEntry"..i.."Enabled"])
 	end
-	U.SkinCheckBox(ACP_AddonList_NoRecurse)
+	US:SkinCheckBox(ACP_AddonList_NoRecurse)
 
-	U.SkinScrollBar(ACP_AddonList_ScrollFrameScrollBar)
-	U.SkinDropDownBox(ACP_AddonListSortDropDown)
+	US:SkinScrollBar(ACP_AddonList_ScrollFrameScrollBar)
+	US:SkinDropDownBox(ACP_AddonListSortDropDown)
 	ACP_AddonListSortDropDown:Width(130)
 	ACP_AddonList_ScrollFrame:SetWidth(590)
 	ACP_AddonList_ScrollFrame:SetHeight(412)
@@ -81,4 +81,4 @@ local function SkinACP(self)
 	ACP_AddonList:SetParent(UIParent)
  end
 
- U.RegisterSkin(name, SkinACP)
+ US:RegisterSkin(name, US.SkinACP)

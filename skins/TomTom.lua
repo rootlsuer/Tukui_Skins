@@ -1,9 +1,9 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local U = unpack(select(2,...))
+local US = unpack(select(2,...))
 
 local name = "TomTomSkin"
-local function SkinTomTom()
-	U.SkinFrame(TomTomBlock)
+function US:SkinTomTom()
+	US:SkinFrame(TomTomBlock)
 end
 
-U.RegisterSkin(name, SkinTomTom)
+US:RegisterSkin(name, US.SkinTomTom)

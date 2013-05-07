@@ -1,11 +1,11 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local U = unpack(select(2,...))
-local name = "WoWProSkin"
+local US = unpack(select(2,...))
 
-local function SkinWoWPro(self)
-	U.SkinFrame(Titlebar)
-	U.SkinBackdropFrame(WoWPro.MainFrame)
-	U.SkinTooltip(_G["Mouseover Note Tooltip"])
+local name = "WoWProSkin"
+function US:SkinWoWPro()
+	US:SkinFrame(Titlebar)
+	US:SkinBackdropFrame(WoWPro.MainFrame)
+	US:SkinTooltip(_G["Mouseover Note Tooltip"])
 end
 
-U.RegisterSkin(name, SkinWoWPro)
+US:RegisterSkin(name, US.SkinWoWPro)

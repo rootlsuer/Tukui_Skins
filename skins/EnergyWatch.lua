@@ -1,10 +1,10 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local U = unpack(select(2,...))
+local US = unpack(select(2,...))
 
 local name = "EnergyWatchSkin"
-local function SkinEnergyWatch(self)
+function US:SkinEnergyWatch()
 	EnergyWatchBar:StripTextures(true)
-	U.SkinStatusBar(EnergyWatchStatusBar)
+	US:SkinStatusBar(EnergyWatchStatusBar)
 end
 
-U.RegisterSkin(name, SkinEnergyWatch)
+US:RegisterSkin(name, US.SkinEnergyWatch)

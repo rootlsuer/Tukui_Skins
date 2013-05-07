@@ -1,11 +1,11 @@
 ﻿if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local U = unpack(select(2,...))
+local US = unpack(select(2,...))
 
 local name = 'xMerchantSkin'
-local function SkinxMerchant(self)
-	U.SkinCheckBox(NuuhMerchantFrameTooltipSearching)
-	U.SkinFrameD(NuuhMerchantFrameSearch)
-	U.SkinScrollBar(NuuhMerchantScrollFrameScrollBar)
+function US:SkinxMerchant()
+	US:SkinCheckBox(NuuhMerchantFrameTooltipSearching)
+	US:SkinFrameD(NuuhMerchantFrameSearch)
+	US:SkinScrollBar(NuuhMerchantScrollFrameScrollBar)
 end
 
-U.RegisterSkin(name, SkinxMerchant)
+US:RegisterSkin(name, US.SkinxMerchant)

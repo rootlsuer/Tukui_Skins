@@ -1,17 +1,17 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local U = unpack(select(2,...))
+local US = unpack(select(2,...))
 
 local name = "RaidBuffStatusSkin"
-local function SkinRBS(self)
-	U.SkinFrame(RBSFrame)
-	U.SkinButton(RBSFrameScanButton)
-	U.SkinButton(RBSFrameReadyCheckButton)
-	U.SkinButton(RBSFrameBossButton)
-	U.SkinButton(RBSFrameTrashButton)
-	U.SkinNextPrevButton(RBSFrameOptionsButton)
-	U.SkinNextPrevButton(RBSFrameTalentsButton)
+function US:SkinRaidBuffStatus()
+	US:SkinFrame(RBSFrame)
+	US:SkinButton(RBSFrameScanButton)
+	US:SkinButton(RBSFrameReadyCheckButton)
+	US:SkinButton(RBSFrameBossButton)
+	US:SkinButton(RBSFrameTrashButton)
+	US:SkinNextPrevButton(RBSFrameOptionsButton)
+	US:SkinNextPrevButton(RBSFrameTalentsButton)
 	RBSFrameOptionsButton:Size(20)
 	RBSFrameTalentsButton:Size(20)
 end
 
-U.RegisterSkin(name, SkinRBS)
+US:RegisterSkin(name, US.SkinRaidBuffStatus)

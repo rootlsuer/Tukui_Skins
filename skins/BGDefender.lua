@@ -1,27 +1,27 @@
 ﻿if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local U = unpack(select(2,...))
-
-local function OnEnter(self)
-	local text
-	if self:GetName() == "Button9" then
-		text = "Close"
-	elseif self:GetName() == "Button10" then
-		text = "Options"
-	elseif self:GetName() == "Button11" then
-		text = "Lock or Make Moveable"
-	end
-	GameTooltip:SetOwner(self, "ANCHOR_CURSOR")
-	GameTooltip:AddLine(text, 1, 1, 1)
-	GameTooltip:Show()
-end
-
-local function OnLeave(self)
-  GameTooltip:Hide()
-end
+local US = unpack(select(2,...))
 
 local name = 'BGDefenderSkin'
-local function SkinBGDefender(self)
-	U.SkinFrame(BGDefenderFrame)
+function US:SkinBGDefender()
+	local function OnEnter(f)
+		local text
+		if f:GetName() == "Button9" then
+			text = "Close"
+		elseif f:GetName() == "Button10" then
+			text = "Options"
+		elseif f:GetName() == "Button11" then
+			text = "Lock or Make Moveable"
+		end
+		GameTooltip:SetOwner(f, "ANCHOR_CURSOR")
+		GameTooltip:AddLine(text, 1, 1, 1)
+		GameTooltip:Show()
+	end
+
+	local function OnLeave()
+	  GameTooltip:Hide()
+	end
+
+	US:SkinFrame(BGDefenderFrame)
 
 	local StripAllTextures = {
 		"Button9",
@@ -48,7 +48,7 @@ local function SkinBGDefender(self)
 	end	
 
 	for _, button in pairs(buttons) do
-		U.SkinButton(_G[button])
+		US:SkinButton(_G[button])
 	end	
 
 	BGDefenderFrame:SetWidth(160)
@@ -70,10 +70,10 @@ local function SkinBGDefender(self)
 	Button7:Point("TOPLEFT", BGDefenderFrame, "TOPLEFT", 5, -48)
 	Button8:Point("TOPLEFT", BGDefenderFrame, "TOPLEFT", 97, -48)
 
-	U.SkinDropDownBox(DropDown1, 200)
-	U.SkinDropDownBox(DropDown2, 200)
-	U.SkinDropDownBox(DropDown3, 200)
-	U.SkinCheckBox(BGDefenderPrefaceButton)
+	US:SkinDropDownBox(DropDown1, 200)
+	US:SkinDropDownBox(DropDown2, 200)
+	US:SkinDropDownBox(DropDown3, 200)
+	US:SkinCheckBox(BGDefenderPrefaceButton)
 	Text1:SetTextColor(23/255, 132/255, 209/255)
 	Button1:SetNormalFontObject("GameFontHighlight")
 	local font = Button1:GetNormalFontObject()
@@ -87,4 +87,4 @@ local function SkinBGDefender(self)
 	Button11:SetScript("OnLeave", OnLeave)
 end
 
-U.RegisterSkin(name, SkinBGDefender)
+US:RegisterSkin(name, US.SkinBGDefender)

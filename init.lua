@@ -35,3 +35,5 @@ AddOn.Minimap = A.Minimap
 --AddOn.Tooltip = A.Tooltips.GameTooltip.Anchor
 AddOn.ActionBar1 = A.Panels.ActionBar1
 AddOn.ActionBar2 = A.Panels.ActionBar2
+AddOn.ActionBar3 = A.Panels.ActionBar3
+AddOn.ActionBar4 = A.Panels.ActionBar4

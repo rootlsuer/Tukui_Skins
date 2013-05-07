@@ -1,10 +1,10 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local U = unpack(select(2,...))
+local US = unpack(select(2,...))
 
 local name = "OgriLazySkin"
-local function SkinOgriLazy()
-	U.SkinFrame(Relic_View)
-	U.SkinCloseButton(Relic_ViewCloseButton)
+function US:SkinOgriLazy()
+	US:SkinFrame(Relic_View)
+	US:SkinCloseButton(Relic_ViewCloseButton)
 end
 
-U.RegisterSkin(name, SkinOgriLazy)
+US:RegisterSkin(name, US.SkinOgriLazy)

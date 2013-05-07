@@ -1,20 +1,20 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local U = unpack(select(2,...))
+local US = unpack(select(2,...))
 
 local name = "BloodShieldTrackerSkin"
-local function SkinBloodShieldTracker()
+function US:SkinBloodShieldTracker()
 	if not IsAddOnLoaded("Tukui") then
-		U.SkinStatusBar(BloodShieldTracker_EstimateBar)
-		U.SkinStatusBar(BloodShieldTracker_HealthBar)
-		U.SkinStatusBar(BloodShieldTracker_ShieldBar)
-		U.SkinStatusBar(BloodShieldTracker_EstimateBar)
-		U.SkinStatusBar(BloodShieldTracker_BloodChargeBar)
-		U.SkinStatusBar(BloodShieldTracker_TotalAbsorbsBar)
-		U.SkinStatusBar(BloodShieldTracker_PWSBar)
-		U.SkinStatusBar(BloodShieldTracker_IllumBar)
-		U.SkinStatusBar(BloodShieldTracker_AMSBar)
-		U.SkinStatusBar(BloodShieldTracker_PurgatoryBar)
+		US:SkinStatusBar(BloodShieldTracker_EstimateBar)
+		US:SkinStatusBar(BloodShieldTracker_HealthBar)
+		US:SkinStatusBar(BloodShieldTracker_ShieldBar)
+		US:SkinStatusBar(BloodShieldTracker_EstimateBar)
+		US:SkinStatusBar(BloodShieldTracker_BloodChargeBar)
+		US:SkinStatusBar(BloodShieldTracker_TotalAbsorbsBar)
+		US:SkinStatusBar(BloodShieldTracker_PWSBar)
+		US:SkinStatusBar(BloodShieldTracker_IllumBar)
+		US:SkinStatusBar(BloodShieldTracker_AMSBar)
+		US:SkinStatusBar(BloodShieldTracker_PurgatoryBar)
 	end
 end
-U.RegisterSkin(name, SkinBloodShieldTracker)
-	
+
+US:RegisterSkin(name, US.SkinBloodShieldTracker)

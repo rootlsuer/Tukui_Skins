@@ -1,9 +1,9 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local U = unpack(select(2,...))
+local US = unpack(select(2,...))
 
 local name = "SearingPlasmaTrackerSkin"
-local function SkinSearingPlasmaTracker(self)
-	U.SkinFrame(SearingPlasmaTrackerFrame)
+function US:SkinSearingPlasmaTracker()
+	US:SkinFrame(SearingPlasmaTrackerFrame)
 end
 
-U.RegisterSkin(name, SkinSearingPlasmaTracker)
+US:RegisterSkin(name, US.SkinSearingPlasmaTracker)

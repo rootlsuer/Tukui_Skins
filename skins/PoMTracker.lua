@@ -1,28 +1,28 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local U = unpack(select(2,...))
+local US = unpack(select(2,...))
 
 local name = "PoMTrackerSkin"
-local function SkinPoMTracker(self)
-	U.SkinFrame(PoMOptionFrame)
-	U.SkinCloseButton(PoMOptionFrame_CloseButton)
-	U.SkinBackdropFrame(pomtracker1)
+function US:SkinPoMTracker()
+	US:SkinFrame(PoMOptionFrame)
+	US:SkinCloseButton(PoMOptionFrame_CloseButton)
+	US:SkinBackdropFrame(pomtracker1)
 	pomtracker1:Size(85,15)
 	pomtracker2:ClearAllPoints()
 	pomtracker2:Point("TOP", pomtracker1, "BOTTOM", 0, -5)
-	U.SkinBackdropFrame(pomtracker2)
-	U.SkinBackdropFrame(pomtracker3)
+	US:SkinBackdropFrame(pomtracker2)
+	US:SkinBackdropFrame(pomtracker3)
 	pomtracker3:ClearAllPoints()
 	pomtracker3:Point("TOP", pomtrackerstatusBar, "BOTTOM", 0, -5)
 	pomtracker3:Height(15)
-	U.SkinButton(pomtracker3_Button1)
+	US:SkinButton(pomtracker3_Button1)
 	pomtrackerstatusBar:ClearAllPoints()
 	pomtrackerstatusBar:Point("TOP", pomtracker2, "BOTTOM", 0, -5)
-	U.SkinStatusBar(pomtrackerstatusBar)
+	US:SkinStatusBar(pomtrackerstatusBar)
 
 	for i = 1,6 do
-		U.SkinCheckBox(_G["PoMOptionFrame_CheckButton"..i])
+		US:SkinCheckBox(_G["PoMOptionFrame_CheckButton"..i])
 	end
 	pomtracker2:HookScript("OnUpdate", function() pomtrackerstatusBar:Width(pomtracker2:GetWidth()) pomtracker3:Width(pomtracker2:GetWidth()) end)
 end
 
-U.RegisterSkin(name, SkinPoMTracker)
+US:RegisterSkin(name, US.SkinPoMTracker)

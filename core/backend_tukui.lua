@@ -1,12 +1,12 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local U = unpack(select(2,...))
+local US = unpack(select(2,...))
 UISkinOptions = {}
 local XS = {}
 XS.skins = {}
 XS.events = {}
 XS.register = {}
-U.x = XS
-local Skins = U.Skins
+US.x = XS
+local Skins = US.Skins
 
 XS.Init = function(self)
 	if self.frame then return end
@@ -15,35 +15,41 @@ XS.Init = function(self)
 	f:RegisterEvent("PET_BATTLE_CLOSE")
 	f:RegisterEvent("PET_BATTLE_OPENING_START")
 	self.frame = f
-	for skin,alldata in pairs(self.register) do
-		for _,data in pairs(alldata) do
+	for skin, alldata in pairs(self.register) do
+		for _, data in pairs(alldata) do
 			if IsAddOnLoaded(Skins[skin].addon) then
 				if UISkinOptions[skin] == nil or UISkinOptions[skin] == "Enabled" then
 					UISkinOptions[skin] = true
 				elseif UISkinOptions[skin] == "Disabled" then
 					UISkinOptions[skin] = false
 				end
-				self:RegisterSkin(skin,data.func,data.events)
+				self:RegisterSkin(skin, data.func, data.events)
 			end
 		end
 	end
-	for skin,funcs in pairs(XS.skins) do
-		if U.CheckOption(skin) then
-			for func,_ in pairs(funcs) do
-				func(f,"PLAYER_ENTERING_WORLD")
+	for skin, funcs in pairs(XS.skins) do
+		if US:CheckOption(skin) then
+			for func, _ in pairs(funcs) do
+				func(f, "PLAYER_ENTERING_WORLD")
 			end
 		end
 	end
-	f:SetScript("OnEvent", function(self,event)
+	f:SetScript("OnEvent", function(self, event, ...)
 		if event == "PET_BATTLE_CLOSE" then
-			U.AddNonPetBattleFrames()
+			US:AddNonPetBattleFrames()
 		elseif event == "PET_BATTLE_OPENING_START" then
-			U.RemoveNonPetBattleFrames()
+			US:RemoveNonPetBattleFrames()
 		end 
-		for skin,funcs in pairs(XS.skins) do
-			if U.CheckOption(skin) and XS.events[event] and XS.events[event][skin] then
-				for func,_ in pairs(funcs) do
-					func(f,event)
+		for skin, funcs in pairs(XS.skins) do
+			if US:CheckOption(skin) and XS.events[event] and XS.events[event][skin] then
+				for func, _ in pairs(funcs) do
+					local args = {}
+					for i = 1, ('#',...) do
+						local arg = select(i, ...)
+						if not arg then break end
+						tinsert(args, arg)
+					end
+					func(f, event, unpack(args))
 				end
 			end
 		end
@@ -77,14 +83,8 @@ XS.UnregisterEvent = function(self,skinName,event)
 	end
 end
 
-local XSFrame = CreateFrame("Frame")
-XSFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
-XSFrame:SetScript("OnEvent", function(self)
-	XS:Init()
-	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
-end)
-
 local function Ace3Options()
+	local Ace3OptionsPanel = IsAddOnLoaded("Enhanced_Config") and Enhanced_Config[1] or nil
 	local function GenerateOptionTable(skinName,order)
 		local data = Skins[skinName]
 		local addon = data.addon
@@ -112,16 +112,16 @@ local function Ace3Options()
 		end
 		return iter
 	end
-	Enhanced_Config[1].Options.args.skins = {
+	Ace3OptionsPanel.Options.args.skins = {
 		order = 100,
 		type = 'group',
 		name = 'Skins',
 		args = {},
 	}
-	Enhanced_Config[1].Options.args.skins.args.skins = {
+	Ace3OptionsPanel.Options.args.skins.args.skins = {
 		order = 1000,
 		type = 'group',
-		name = U.Title..' |cFFFFFFFFby|r |cFFFF7D0AAzilroka|r |cFFFFFFFF- Version:|r |cff1784d1'..U.Version,
+		name = US.Title..' |cFFFFFFFFby|r |cFFFF7D0AAzilroka|r |cFFFFFFFF- Version:|r |cff1784d1'..US.Version,
 		get = function(info) return UISkinOptions[ info[#info] ] end,
 		set = function(info, value) UISkinOptions[ info[#info] ] = value end,
 		guiInline = true,
@@ -150,6 +150,20 @@ local function Ace3Options()
 						name = 'Skada Backdrop',
 						desc = "Enable/Disable this skin.",
 						order = 3,
+						disabled = function() return not (IsAddOnLoaded("Skada") and UISkinOptions["SkadaSkin"]) end,
+					},
+					SkadaBelowTop = {
+						type = 'toggle',
+						name = 'Skada Below Chat Tabs',
+						desc = "Enable/Disable this option.",
+						order = 4,
+						disabled = function() return not (IsAddOnLoaded("Skada") and UISkinOptions["SkadaSkin"]) end,
+					},
+					SkadaTwoThirds = {
+						type = 'toggle',
+						name = 'Skada 1/3 | 2/3 Option',
+						desc = "Enable/Disable this option.",
+						order = 5,
 						disabled = function() return not (IsAddOnLoaded("Skada") and UISkinOptions["SkadaSkin"]) end,
 					},
 				}
@@ -208,7 +222,7 @@ local function Ace3Options()
 	local order = 2
 	for skinName,_ in pairsByKeys(Skins) do
 		if skinName ~= "MiscFixes" then
-			Enhanced_Config[1].Options.args.skins.args.skins.args[skinName] = GenerateOptionTable(skinName,order)
+			Ace3OptionsPanel.Options.args.skins.args.skins.args[skinName] = GenerateOptionTable(skinName,order)
 			order = order + 1
 		end
 	end
@@ -226,9 +240,9 @@ local function LegacyOptions()
 		frame:SetFrameStrata("DIALOG")
 		frame:SetClampedToScreen(true)
 		frame:SetMovable(true)
-		frame:FontString("text", U.Font, 14, "OUTLINE")
+		frame:FontString("text", US.Font, 14, "OUTLINE")
 		frame.text:SetPoint("TOP", frame, 0, -6)
-		frame.text:SetText(frametext..U.Version)
+		frame.text:SetText(frametext..US.Version)
 		frame:EnableMouse(true)
 		frame:RegisterForDrag("LeftButton")
 	end
@@ -239,15 +253,15 @@ local function LegacyOptions()
 
 	CreateOptionsFrame("SkinOptions2", "|cffC495DDTukui|r Module Options - Version ", SkinOptions)
 	CreateOptionsFrame("SkinOptions3", "|cffC495DDTukui|r Embed Options - Version ", SkinOptions)
-	SkinOptions3:FontString("text2", U.Font, 14, "OUTLINE")
+	SkinOptions3:FontString("text2", US.Font, 14, "OUTLINE")
 	SkinOptions3.text2:SetPoint("TOPRIGHT", SkinOptions3, "TOPRIGHT", -30, -38)
 	SkinOptions3.text2:SetText("|cff00AAFFAvailable Embeds|r:\n\nalDamageMeter\nOmen\nRecount\nSkada\nTinyDPS")
 
 	local function CreateOptionsButton(name, btntext, parent)
 		local frame = CreateFrame("Button", name.."Button", SkinOptions)
 		frame:Size(100, 24)
-		U.SkinButton(frame)
-		frame:FontString("text", U.Font, 12, "OUTLINE")
+		US:SkinButton(frame)
+		frame:FontString("text", US.Font, 12, "OUTLINE")
 		frame.text:SetPoint("CENTER", frame, 0, 0)
 		frame.text:SetText(btntext)
 		frame:SetScript("OnClick", function()
@@ -278,25 +292,25 @@ local function LegacyOptions()
 	local ApplySkinSettingsButton = CreateFrame("Button", "ApplySkinSettingsButton", SkinOptions)
 	ApplySkinSettingsButton:SetPoint("RIGHT", EmbedWindowSettingsButton, "LEFT", -2, 0)
 	ApplySkinSettingsButton:Size(100, 24)
-	U.SkinButton(ApplySkinSettingsButton)
-	ApplySkinSettingsButton:FontString("text", U.Font, 12, "OUTLINE")
+	US:SkinButton(ApplySkinSettingsButton)
+	ApplySkinSettingsButton:FontString("text", US.Font, 12, "OUTLINE")
 	ApplySkinSettingsButton.text:SetPoint("CENTER", ApplySkinSettingsButton, 0, 0)
 	ApplySkinSettingsButton.text:SetText("Apply Settings")
 	ApplySkinSettingsButton:SetScript("OnClick", function() ReloadUI() end)
 
 	local function ToggleEmbed()
-		U.DisableOption("EmbedOmen")
-		U.DisableOption("EmbedRecount")
-		U.DisableOption("EmbedTinyDPS")
-		U.DisableOption("EmbedSkada")
-		U.EnableOption("Embed"..UISkinOptions["EmbedRight"])
-		U.EnableOption("Embed"..UISkinOptions["EmbedLeft"])
+		US:DisableOption("EmbedOmen")
+		US:DisableOption("EmbedRecount")
+		US:DisableOption("EmbedTinyDPS")
+		US:DisableOption("EmbedSkada")
+		US:EnableOption("Embed"..UISkinOptions["EmbedRight"])
+		US:EnableOption("Embed"..UISkinOptions["EmbedLeft"])
 		EmbedCheck()
 	end
 
 	local function CreateEmbedEditBox(name, boxtext)
 		local frame = CreateFrame("EditBox", name.."EditBox", SkinOptions3)
-		frame:FontString("text", U.Font, 12, "OUTLINE")
+		frame:FontString("text", US.Font, 12, "OUTLINE")
 		frame.text:SetPoint("BOTTOM", frame, "TOP", 0, 2)
 		frame.text:SetText(boxtext)
 		frame:SetAutoFocus(false)
@@ -325,24 +339,24 @@ local function LegacyOptions()
 	local function CreateEmbedButton(name, btntext)
 		local frame = CreateFrame("Button", name.."Button", SkinOptions3)
 		frame:Size(16)
-		U.SkinBackdropFrame(frame)
-		frame:SetBackdrop({bgFile = U.NormTex, edgeFile = nil, tile = false, tileSize = 0, edgeSize = 0})
-		frame:FontString("text", U.Font, 12, "OUTLINE")
+		US:SkinBackdropFrame(frame)
+		frame:SetBackdrop({bgFile = US.NormTex, edgeFile = nil, tile = false, tileSize = 0, edgeSize = 0})
+		frame:FontString("text", US.Font, 12, "OUTLINE")
 		frame.text:SetPoint("LEFT", frame, "RIGHT", 10, 0)
 		frame.text:SetText(btntext)
 		frame:SetScript("OnShow", function(self)
-			if (U.CheckOption(name)) then
+			if US:CheckOption(name) then
 				self:SetBackdropColor(0.11,0.66,0.11,1)
 			else
 				self:SetBackdropColor(0.68,0.14,0.14,1)
 			end
 		end)
 		frame:SetScript("OnClick", function(self)
-			if (U.CheckOption(name)) then
-				U.DisableOption(name)
+			if US:CheckOption(name) then
+				US:DisableOption(name)
 				self:SetBackdropColor(0.68,0.14,0.14,1)
 			else
-				U.EnableOption(name)
+				US:EnableOption(name)
 				self:SetBackdropColor(0.11,0.66,0.11,1)
 			end
 		end)
@@ -357,11 +371,17 @@ local function LegacyOptions()
 	CreateEmbedButton("EmbedCoolLine", "Embed CoolLine")
 	EmbedCoolLineButton:SetPoint("TOP", -68, -100)
 
+	CreateEmbedButton("SkadaTwoThirds", "Skada 1/3 | 2/3")
+	SkadaTwoThirdsButton:SetPoint("TOP", -68, -150)
+
+	CreateEmbedButton("SkadaBelowTop", "Skada Below Top Chat Tabs")
+	SkadaBelowTopButton:SetPoint("TOP", -68, -200)
+
 	local SkinsGameMenuButton = CreateFrame("Button", "SkinsGameMenuButton", GameMenuFrame, "GameMenuButtonTemplate")
 	SkinsGameMenuButton:Point("TOP", GameMenuButtonMacros, "BOTTOM", 0 , -1)
 	SkinsGameMenuButton:Size(GameMenuButtonLogout:GetWidth(),GameMenuButtonLogout:GetHeight())
-	U.SkinButton(SkinsGameMenuButton)
-	SkinsGameMenuButton:FontString("text", U.Font, 12, "NONE")
+	US:SkinButton(SkinsGameMenuButton)
+	SkinsGameMenuButton:FontString("text", US.Font, 12, "NONE")
 	SkinsGameMenuButton.text:SetPoint("CENTER", SkinsGameMenuButton, 0, 0)
 	SkinsGameMenuButton.text:SetText("Skins")
 	SkinsGameMenuButton:SetScript("OnClick", function() SkinOptions:Show() HideUIPanel(GameMenuFrame) end)
@@ -385,25 +405,25 @@ local function LegacyOptions()
 		}
 		button:SetPoint(xTable[x].point, xTable[x].offset, yOffset)
 		button:Size(16)
-		U.SkinBackdropFrame(button)
-		button:SetBackdrop({bgFile = U.NormTex, edgeFile = nil, tile = false, tileSize = 0, edgeSize = 0})
-		button:FontString("text", U.Font, 12, "OUTLINE")
+		US:SkinBackdropFrame(button)
+		button:SetBackdrop({bgFile = US.NormTex, tile = false, tileSize = 0})
+		button:FontString("text", US.Font, 12, "OUTLINE")
 		button.text:SetPoint("LEFT", button, "RIGHT", 10, 0)
 		button.text:SetText(buttonText)
 		button:SetScript("OnShow", function(self)
-			if U.CheckOption(option) then
-				self:SetBackdropColor(0.6,0,0.86,1)
+			if US:CheckOption(option) then
+				self:SetBackdropColor(.6, 0, .86)
 			else
-				self:SetBackdropColor(0.68,0.14,0.14,1)
+				self:SetBackdropColor(.68, .14, .14)
 			end
 		end)
 		button:SetScript("OnClick", function(self)
 			if UISkinOptions[option] then
-				U.DisableOption(option)
-				self:SetBackdropColor(0.68,0.14,0.14,1)
+				US:DisableOption(option)
+				self:SetBackdropColor(.68, .14, .14)
 			else
-				U.EnableOption(option)
-				self:SetBackdropColor(0.6,0,0.86,1)
+				US:EnableOption(option)
+				self:SetBackdropColor(.6, 0, .86)
 			end
 		end)
 	end
@@ -421,7 +441,7 @@ local function LegacyOptions()
 		end
 		return iter
 	end
-    local curX,curY,maxY=1,1,24
+    local curX, curY, maxY = 1, 1, 24
 	for skin,options in pairsByKeys(Skins) do
 		local addon = options.addon
 		local buttonText = options.buttonText or addon
@@ -478,9 +498,9 @@ local function LegacyOptions()
 	end
 end
 
-local SkinOptionsLoader = CreateFrame("Frame")
-SkinOptionsLoader:RegisterEvent("PLAYER_ENTERING_WORLD")
-SkinOptionsLoader:SetScript("OnEvent", function(self, event)
+local XSFrame = CreateFrame("Frame")
+XSFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+XSFrame:SetScript("OnEvent", function(self, event)
 	self:UnregisterEvent(event)
 	if UISkinOptions["RecountBackdrop"] == nil then UISkinOptions["RecountBackdrop"] = true end
 	if UISkinOptions["SkadaBackdrop"] == nil then UISkinOptions["SkadaBackdrop"] = true end
@@ -496,7 +516,10 @@ SkinOptionsLoader:SetScript("OnEvent", function(self, event)
 	if UISkinOptions["EmbedCoolLine"] == nil then UISkinOptions["EmbedCoolLine"] = false end
 	if UISkinOptions["EmbedLeft"] == nil then UISkinOptions["EmbedLeft"] = "Omen" end
 	if UISkinOptions["EmbedRight"] == nil then UISkinOptions["EmbedRight"] = "Skada" end
+	if UISkinOptions["SkadaBelowTop"] == nil then UISkinOptions["SkadaBelowTop"] = false end
+	if UISkinOptions["SkadaTwoThirds"] == nil then UISkinOptions["SkadaTwoThirds"] = false end
 	UISkinOptions["MiscFixes"] = true
-	print(U.Title.." by |cFFFF7D0AAzilroka|r - Version: |cff1784d1"..U.Version.."|r Loaded!")
+	XS:Init()
+	print(US.Title.." by |cFFFF7D0AAzilroka|r - Version: |cFF1784D1"..US.Version.."|r Loaded!")
 	if IsAddOnLoaded("Enhanced_Config") then Ace3Options() else LegacyOptions() end
 end)

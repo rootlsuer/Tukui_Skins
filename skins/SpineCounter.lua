@@ -1,9 +1,9 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local U = unpack(select(2,...))
+local US = unpack(select(2,...))
 
 local name = "SpineCounterSkin"
-local function SkinSpineCounter(self)
-	U.SkinFrame(SCOutput)
+function US:SkinSpineCounter()
+	US:SkinFrame(SCOutput)
 end
 
-U.RegisterSkin(name, SkinSpineCounter)
+US:RegisterSkin(name, US.SkinSpineCounter)

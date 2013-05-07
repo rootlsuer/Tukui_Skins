@@ -1,18 +1,19 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local U = unpack(select(2,...))
+local US = unpack(select(2,...))
+
 local name = "ZygorSkin"
-local function SkinZygor(self)
+function US:SkinZygor()
 	ZygorGuidesViewerFrame:StripTextures(True)
-	U.SkinFrame(ZygorGuidesViewerFrame_Border)
-	U.SkinFrame(ZygorGuidesViewer_CreatureViewer, true)
+	US:SkinFrame(ZygorGuidesViewerFrame_Border)
+	US:SkinFrame(ZygorGuidesViewer_CreatureViewer, true)
 
 	for i = 1, 6 do
-		U.SkinBackdropFrame(_G["ZygorGuidesViewerFrame_Step"..i])
+		US:SkinBackdropFrame(_G["ZygorGuidesViewerFrame_Step"..i])
 	end
 
-	if ZygorGuidesViewerFrame:IsShown() then U.SkinFrame(ZygorGuidesViewerFrame_Border) end
+	if ZygorGuidesViewerFrame:IsShown() then US:SkinFrame(ZygorGuidesViewerFrame_Border) end
 	ZygorGuidesViewerFrame_Border:HookScript("OnHide", function(self) self:StripTextures(True) end)
-	ZygorGuidesViewerFrame_Border:HookScript("OnShow", function(self) U.SkinFrame(self) end)
+	ZygorGuidesViewerFrame_Border:HookScript("OnShow", function(self) US:SkinFrame(self) end)
 end
 
-U.RegisterSkin(name, SkinZygor)
+US:RegisterSkin(name, US.SkinZygor)

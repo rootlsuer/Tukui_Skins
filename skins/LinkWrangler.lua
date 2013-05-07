@@ -1,8 +1,8 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local U = unpack(select(2,...))
+local US = unpack(select(2,...))
 
 local name = "LinkWranglerSkin"
-local function SkinLinkWrangler(self, event)
+function US:SkinLinkWrangler()
 	LWTukuiSkinner_Path = "Interface\\AddOns\\Tukui_Skins\\skins\\"
 	LWTukuiSkinner_Close = LWTukuiSkinner_Path.."Buttons\\close"
 	LWTukuiSkinner_Min = LWTukuiSkinner_Path.."Buttons\\min"
@@ -12,7 +12,18 @@ local function SkinLinkWrangler(self, event)
 	LWTukuiSkinner_Relink = LWTukuiSkinner_Path.."Buttons\\relink"
 	LWTukuiSkinner_Dress = LWTukuiSkinner_Path.."Buttons\\dress"
 
-	function LWTukuiSkinner(frame, link)
+	local function LWTukuiSkinner_SkinButton(button, tex, distex)
+		if (button == nil) then
+			return
+		end
+		button:SetNormalTexture(tex)
+		button:SetDisabledTexture(distex)
+		button:SetPushedTexture(tex)
+		button:SetHighlightTexture(tex)
+		return button
+	end
+
+	local function LWTukuiSkinner(frame, link)
 		local r, g, b = GetItemInfo(link) and GetItemQualityColor(select(3,GetItemInfo(link))) or 1, 1, 0
 		frame:SetTemplate("Default")
 		frame:SetBackdropBorderColor(r,g,b)
@@ -32,18 +43,7 @@ local function SkinLinkWrangler(self, event)
 		LWTukuiSkinner_SkinButton(captureButton,LWTukuiSkinner_Compare)
 	end
 
-	function LWTukuiSkinner_SkinButton(button, tex, distex)
-		if (button == nil) then
-			return
-		end
-		button:SetNormalTexture(tex)
-		button:SetDisabledTexture(distex)
-		button:SetPushedTexture(tex)
-		button:SetHighlightTexture(tex)
-		return button
-	end
-
 	LinkWrangler.RegisterCallback("Tukui_LinkWrangler_Skin", LWTukuiSkinner, "show", "showcomp")
 end
 
-U.RegisterSkin(name, SkinLinkWrangler)
+US:RegisterSkin(name, US.SkinLinkWrangler)

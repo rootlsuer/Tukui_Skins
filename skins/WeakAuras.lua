@@ -1,35 +1,34 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local U = unpack(select(2,...))
-
-local function Skin_WeakAuras(frame)
-	if not frame.Backdrop then
-		frame:CreateBackdrop('Default')
-		frame.icon.OldAlpha = frame.icon.SetAlpha
-		frame.icon.SetAlpha = function(self, ...)
-			frame.icon.OldAlpha(self, ...)
-			frame.Backdrop:SetAlpha(...)
-		end
-	end
-
-	frame.icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
-	frame.icon.SetTexCoord = function() end
-end
-
-local function Create_WeakAuras(parent, data)
-	local region = WeakAuras.regionTypes.icon.OldCreate(parent, data)
-	Skin_WeakAuras(region)
-	
-	return region
-end
-
-local function Modify_WeakAuras(parent, region, data)
-	WeakAuras.regionTypes.icon.OldModify(parent, region, data)
-
-	Skin_WeakAuras(region)
-end
+local US = unpack(select(2,...))
 
 local name = "WeakAurasSkin"
-local function SkinWeakAuras(self)
+function US:SkinWeakAuras()
+	local function Skin_WeakAuras(frame)
+		if not frame.Backdrop then
+			frame:CreateBackdrop('Default')
+			frame.icon.OldAlpha = frame.icon.SetAlpha
+			frame.icon.SetAlpha = function(self, ...)
+				frame.icon.OldAlpha(self, ...)
+				frame.Backdrop:SetAlpha(...)
+			end
+		end
+
+		frame.icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+		frame.icon.SetTexCoord = function() end
+	end
+
+	local function Create_WeakAuras(parent, data)
+		local region = WeakAuras.regionTypes.icon.OldCreate(parent, data)
+		Skin_WeakAuras(region)
+		
+		return region
+	end
+
+	local function Modify_WeakAuras(parent, region, data)
+		WeakAuras.regionTypes.icon.OldModify(parent, region, data)
+
+		Skin_WeakAuras(region)
+	end
 	WeakAuras.regionTypes.icon.OldCreate = WeakAuras.regionTypes.icon.create
 	WeakAuras.regionTypes.icon.create = Create_WeakAuras
 	
@@ -43,4 +42,4 @@ local function SkinWeakAuras(self)
 	end
 end
 
-U.RegisterSkin(name, SkinWeakAuras)
+US:RegisterSkin(name, US.SkinWeakAuras)

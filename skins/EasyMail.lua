@@ -1,19 +1,19 @@
 ﻿if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local U = unpack(select(2,...))
+local US = unpack(select(2,...))
 
 local name = "EasyMailSkin"
-local function SkinEasyMail(self, event)
+function US:SkinEasyMail(event)
 	if event == "PLAYER_ENTERING_WORLD" then return end
 	MailFrame:Size(360,440)
-	U.SkinButton(EasyMail_CheckAllButton)
-	U.SkinButton(EasyMail_CheckPageButton)
-	U.SkinButton(EasyMail_GetAllButton)
-	U.SkinButton(EasyMail_AttButton)
-	U.SkinButton(EasyMail_ForwardButton)
-	U.SkinNextPrevButton(EasyMail_MailButton)
+	US:SkinButton(EasyMail_CheckAllButton)
+	US:SkinButton(EasyMail_CheckPageButton)
+	US:SkinButton(EasyMail_GetAllButton)
+	US:SkinButton(EasyMail_AttButton)
+	US:SkinButton(EasyMail_ForwardButton)
+	US:SkinNextPrevButton(EasyMail_MailButton)
 
 	for i = 1, 7 do
-		U.SkinCheckBox(_G["EasyMail_CheckButton"..i])
+		US:SkinCheckBox(_G["EasyMail_CheckButton"..i])
 	end
 
 	EasyMail_ForwardButton:Point("RIGHT", OpenMailReplyButton, "LEFT", -2, 0)
@@ -38,6 +38,7 @@ local function SkinEasyMail(self, event)
 			t:Point("TOPRIGHT", -10, -4)
 		end				
 	end
+	US:UnregisterEvent(name, self, event)
 end
 
-U.RegisterSkin(name, SkinEasyMail, "MAIL_SHOW")
+US:RegisterSkin(name, US.SkinEasyMail, "MAIL_SHOW")

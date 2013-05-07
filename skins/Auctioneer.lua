@@ -1,8 +1,8 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local U = unpack(select(2,...))
+local US = unpack(select(2,...))
 
 local name = 'AuctioneerSkin'
-local function AuctioneerSkin(self, event)
+function US:SkinAuctioneer(event)
 	if event == "PLAYER_ENTERING_WORLD" then return end
 	AuctionsCancelAuctionButton:Point("RIGHT", AuctionFrameMoneyFrame, "RIGHT", 554, 0)
 	AuctionsCloseButton:ClearAllPoints()
@@ -47,12 +47,12 @@ local function AuctioneerSkin(self, event)
 		BrowsePrevPageButton:Point("BOTTOMRIGHT", BrowseScrollFrame, "BOTTOMRIGHT", -160, 0)
 	end
 	for i = 1, AuctionFrame.numTabs do
-		U.SkinTab(_G["AuctionFrameTab"..i])
+		US:SkinTab(_G["AuctionFrameTab"..i])
 	end
-	if AucAdvScanButton then U.SkinButton(AucAdvScanButton) end
-	if AucAdvSimpFrameCreate then U.SkinButton(AucAdvSimpFrameCreate) end
-	if AucAdvSimpFrameRemember then U.SkinButton(AucAdvSimpFrameRemember) end
-	U.UnregisterEvent(name, self, event)
+	if AucAdvScanButton then US:SkinButton(AucAdvScanButton) end
+	if AucAdvSimpFrameCreate then US:SkinButton(AucAdvSimpFrameCreate) end
+	if AucAdvSimpFrameRemember then US:SkinButton(AucAdvSimpFrameRemember) end
+	US:UnregisterEvent(name, self, event)
 end
 
-U.RegisterSkin(name, AuctioneerSkin, 'AUCTION_HOUSE_SHOW')
+US:RegisterSkin(name, US.SkinAuctioneer, 'AUCTION_HOUSE_SHOW')

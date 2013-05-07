@@ -1,16 +1,23 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local U = unpack(select(2,...))
+local US = unpack(select(2,...))
 
 LoadAddOn("DXE")
 local name = "DXESkin"
-local function SkinDXE(self)
+function US:SkinDXE()
+	DXE.NotifyBarTextureChanged = US.Noop
+	DXE.NotifyBorderChanged = US.Noop
+	DXE.NotifyBorderColorChanged = US.Noop
+	DXE.NotifyBorderEdgeSizeChanged = US.Noop
+	DXE.NotifyBackgroundTextureChanged = US.Noop
+	DXE.NotifyBackgroundInsetChanged = US.Noop
+	DXE.NotifyBackgroundColorChanged = US.Noop
 
 	local function SkinDXEBar(bar)
 		bar:SetTemplate("Transparent")
 		bar.bg:SetTexture(nil)
 		bar.border.Show = function() end
 		bar.border:Hide()
-		bar.statusbar:SetStatusBarTexture(U.NormTex)
+		bar.statusbar:SetStatusBarTexture(US.NormTex)
 		bar.statusbar:ClearAllPoints()
 		bar.statusbar:SetInside()
 		
@@ -36,84 +43,62 @@ local function SkinDXE(self)
 	end
 
 	DXE.LayoutHealthWatchers_ = DXE.LayoutHealthWatchers
-	DXE.LayoutHealthWatchers = function(self)
-		for i,hw in ipairs(self.HW) do
+	DXE.LayoutHealthWatchers = function(frame)
+		DXE:LayoutHealthWatchers_()
+		for i,hw in ipairs(frame.HW) do
 			if hw:IsShown() then
 				hw:SetTemplate("Transparent")
 				hw.border.Show = function() end
 				hw.border:Hide()
-				hw.healthbar:SetStatusBarTexture(U.NormTex)
+				hw.healthbar:SetStatusBarTexture(US.NormTex)
 			end
 		end
 	end
 
-	-- Works but wastes CPU Cycles
-	-- local frame = CreateFrame("Frame")
-	-- frame:SetScript("OnUpdate", function(self)
-		-- local i = 1
-		-- while _G["DXEAlertBar"..i] do
-			-- local bar = _G["DXEAlertBar"..i]
-			-- bar:SetScale(1)
-			-- bar.SetScale = function() return end
-			-- SkinDXEBar(bar)
-			-- i = i + 1
-		-- end
-	-- end)
-
-	DXE.Alerts.RefreshBars_ = DXE.Alerts.RefreshBars
-	DXE.Alerts.RefreshBars = function(self)
-		if self.refreshing then return end
-		self.refreshing = true
-		self:RefreshBars_()
+	local function RefreshDXEBars(frame)
+		if frame.refreshing then return end
+		frame.refreshing = true
 		local i = 1
 		while _G["DXEAlertBar"..i] do
 			local bar = _G["DXEAlertBar"..i]
-			bar:SetScale(1)
-			bar.SetScale = function() return end
-			SkinDXEBar(bar)
+			if not bar.skinned then
+				bar:SetScale(1)
+				bar.SetScale = function() return end
+				SkinDXEBar(bar)
+				bar.skinned = true
+			end
 			i = i + 1
 		end
-		self.refreshing = false
-	end
-	-- Produces Stack Overflow
-	DXE.Alerts.Simple_ = DXE.Alerts.Simple
-	DXE.Alerts.Simple = function(self,...)
-		self:Simple_(...)
-		self:RefreshBars()
+		frame.refreshing = false
 	end
 
-	-- Works but Misses Some every now and then.
+	local DXEAlerts = DXE:GetModule("Alerts")
 
-	-- local function RefreshDXEBars()
-		-- if self.refreshing then return end
-		-- self.refreshing = true
-		-- local i = 1
-		-- while _G["DXEAlertBar"..i] do
-			-- local bar = _G["DXEAlertBar"..i]
-			-- bar:SetScale(1)
-			-- bar.SetScale = function() return end
-			-- SkinDXEBar(bar)
-			-- i = i + 1
-		-- end
-		-- self.refreshing = false
-	-- end
+	local frame = CreateFrame("Frame")
+	frame.elapsed = 1
+	frame:SetScript("OnUpdate", function(frame,elapsed)
+		frame.elapsed = frame.elapsed + elapsed
+		if(frame.elapsed >= 1) then
+			RefreshDXEBars(DXEAlerts)
+			frame.elapsed = 0
+		end
+	end)
 
-	-- local DXEAlerts = DXE:GetModule("Alerts")
-	-- hooksecurefunc(DXEAlerts, "Simple", RefreshDXEBars)
-	-- hooksecurefunc(DXEAlerts, "RefreshBars", RefreshDXEBars)
+	hooksecurefunc(DXEAlerts, "Simple", RefreshDXEBars)
+	hooksecurefunc(DXEAlerts, "RefreshBars", RefreshDXEBars)
 
 	DXE:LayoutHealthWatchers()
 	DXE.Alerts:RefreshBars()
 
 	if not DXEDB then DXEDB = {} end
 	if not DXEDB["profiles"] then DXEDB["profiles"] = {} end
-	if not DXEDB["profiles"][U.MyName.." - "..U.MyRealm] then DXEDB["profiles"][U.MyName.." - "..U.MyRealm] = {} end
-	if not DXEDB["profiles"][U.MyName.." - "..U.MyRealm]["Globals"] then DXEDB["profiles"][U.MyName.." - "..U.MyRealm]["Globals"] = {} end
-	DXEDB["profiles"][U.MyName.." - "..U.MyRealm]["Globals"]["BackgroundTexture"] = U.Blank
-	DXEDB["profiles"][U.MyName.." - "..U.MyRealm]["Globals"]["BarTexture"] = U.NormTex
-	DXEDB["profiles"][U.MyName.." - "..U.MyRealm]["Globals"]["Border"] = "None"
-	DXEDB["profiles"][U.MyName.." - "..U.MyRealm]["Globals"]["Font"] = U.Font
-	DXEDB["profiles"][U.MyName.." - "..U.MyRealm]["Globals"]["TimerFont"] = U.Font
+	if not DXEDB["profiles"][US.MyName.." - "..US.MyRealm] then DXEDB["profiles"][US.MyName.." - "..US.MyRealm] = {} end
+	if not DXEDB["profiles"][US.MyName.." - "..US.MyRealm]["Globals"] then DXEDB["profiles"][US.MyName.." - "..US.MyRealm]["Globals"] = {} end
+	DXEDB["profiles"][US.MyName.." - "..US.MyRealm]["Globals"]["BackgroundTexture"] = US.Blank
+	DXEDB["profiles"][US.MyName.." - "..US.MyRealm]["Globals"]["BarTexture"] = US.NormTex
+	DXEDB["profiles"][US.MyName.." - "..US.MyRealm]["Globals"]["Border"] = "None"
+	DXEDB["profiles"][US.MyName.." - "..US.MyRealm]["Globals"]["Font"] = US.Font
+	DXEDB["profiles"][US.MyName.." - "..US.MyRealm]["Globals"]["TimerFont"] = US.Font
 end
 
-U.RegisterSkin(name, SkinDXE)
+US:RegisterSkin(name, US.SkinDXE)

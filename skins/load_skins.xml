@@ -1,5 +1,6 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
 	<Script file="ACP.lua"/>
+	<Script file="AchieveIt.lua"/>
 	<Script file="AdiBags.lua"/>
 	<Script file="AffDots.lua"/>
 	<Script file="ATSW.lua"/>
@@ -30,6 +31,7 @@
 	<Script file="Cork.lua"/>
 	<Script file="CombustionHelper.lua"/>
 	<Script file="Critline.lua"/>
+	<Script file="DailyTamerCheck.lua"/>
 	<Script file="DBM.lua"/>
 	<Script file="DKDots.lua"/>
 	<Script file="Dresser.lua"/>
