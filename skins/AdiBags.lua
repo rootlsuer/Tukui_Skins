@@ -2,7 +2,7 @@ if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("
 local US = unpack(select(2,...))
 
 local name = "AdiBagsSkin"
-function US:SkinAdiBaga(event)
+function US:SkinAdiBags(event)
 
 	local function SkinFrame(frame)
 		local region = frame.HeaderRightRegion

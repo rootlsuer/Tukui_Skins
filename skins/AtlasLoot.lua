@@ -218,4 +218,4 @@ function US:SkinAtlasLoot()
 	if AtlasLootTooltip:GetName() ~= "GameTooltip" then US:SkinTooltip(AtlasLootTooltip) end
 end
 
-US:RegisterSkin(name, US.SkinAL)
+US:RegisterSkin(name, US.SkinAtlasLoot)
