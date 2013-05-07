@@ -1,9 +1,9 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "CLCProtSkin"
-function US:SkinCLCProt()
-	if US.MyClass ~= "PALADIN" then return end
+function AS:SkinCLCProt()
+	if AS.MyClass ~= "PALADIN" then return end
 
 	local function UpdateButtonLayout(frame, button, opt)
 		button:Size(opt.size)
@@ -17,7 +17,7 @@ function US:SkinCLCProt()
 	local function CreateButton(frame, name, size, point, parent, pointParent, offsetx, offsety, bfGroup, isChecked)
 		local db = frame.db.profile
 		clcprotFrame:SetScale(1)
-		clcprotFrame.SetScale = US.Noop
+		clcprotFrame.SetScale = AS.Noop
 
 		name = "clcprot" .. name
 		local button
@@ -38,7 +38,7 @@ function US:SkinCLCProt()
 		button.texture:Point("BOTTOMRIGHT", -2, 2)
 		button.texture:SetTexture(BGTEX)
 		button.texture:SetTexCoord(0.08, 0.92, 0.08, 0.92)
-		button.texture.SetTexCoord = US.Noop
+		button.texture.SetTexCoord = AS.Noop
 		button.texture.OldSetTexture = button.texture.SetTexture
 		button.texture.SetTexture = function(frame, tex, ...)
 			button.texture.OldSetTexture(frame, tex, ...)
@@ -61,7 +61,7 @@ function US:SkinCLCProt()
 		button.stack:ClearAllPoints()
 		button.stack:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 4, 0)
 		button.defaultSize = button:GetWidth()
-		button.SetScale = US.Noop
+		button.SetScale = AS.Noop
 		button:ClearAllPoints()
 		button:SetPoint(point, parent, pointParent, offsetx, offsety)
 
@@ -77,4 +77,4 @@ function US:SkinCLCProt()
 	clcprot.UpdateButtonLayout = UpdateButtonLayout
 end
 
-US:RegisterSkin(name, US.SkinCLCProt)
+AS:RegisterSkin(name, AS.SkinCLCProt)

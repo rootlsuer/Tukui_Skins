@@ -1,11 +1,11 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "PetBattleTeamsSkin"
-function US:SkinPetBattleTeams()
-	US:Delay(6, function()
-		US:SkinFrame(PetBattleTeamFrame)
-		US:SkinScrollBar(PetBattleTeamsScrollFrameScrollBar)
+function AS:SkinPetBattleTeams()
+	AS:Delay(6, function()
+		AS:SkinFrame(PetBattleTeamFrame)
+		AS:SkinScrollBar(PetBattleTeamsScrollFrameScrollBar)
 
 		PetBattleTeamsTooltip:HookScript("OnShow", function(self)
 			self.Icon:SetTexCoord(0.12, 0.88, 0.12, 0.88)
@@ -19,9 +19,9 @@ function US:SkinPetBattleTeams()
 			self.BorderBottom:SetTexture(nil)
 			self.BorderBottomRight:SetTexture(nil)
 			self.BorderBottomLeft:SetTexture(nil)
-			US:SkinFrame(self, false, true)
+			AS:SkinFrame(self, false, true)
 		end)
 	end)
 end
 
-US:RegisterSkin(name, US.SkinPetBattleTeams)
+AS:RegisterSkin(name, AS.SkinPetBattleTeams)

@@ -2,17 +2,17 @@
 -- Modified Skinning Core till Tukz implements it back in T16 --
 ----------------------------------------------------------------
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local function SetModifiedBackdrop(self)
-	local color = RAID_CLASS_COLORS[US.MyClass]
+	local color = RAID_CLASS_COLORS[AS.MyClass]
 	self:SetBackdropColor(color.r*.15, color.g*.15, color.b*.15)
 	self:SetBackdropBorderColor(color.r, color.g, color.b)
 end
 
 local function SetOriginalBackdrop(self)
-	local color = RAID_CLASS_COLORS[US.MyClass]
-	if US.C["General"].ClassColorTheme == true then
+	local color = RAID_CLASS_COLORS[AS.MyClass]
+	if AS.C["General"].ClassColorTheme == true then
 		self:SetBackdropBorderColor(color.r, color.g, color.b)
 	else
 		self:SetTemplate()
@@ -23,7 +23,7 @@ local function Kill(object)
 	if object.UnregisterAllEvents then
 		object:UnregisterAllEvents()
 	end
-	object.Show = US.Noop
+	object.Show = AS.Noop
 	object:Hide()
 end
 
@@ -100,20 +100,20 @@ local function SkinScrollBar(frame)
 		_G[frame:GetName().."ScrollUpButton"]:StripTextures()
 		_G[frame:GetName().."ScrollUpButton"]:SetTemplate("Default", true)
 		if not _G[frame:GetName().."ScrollUpButton"].text then
-			_G[frame:GetName().."ScrollUpButton"]:FontString("text", US.ActionBarFont, 12)
+			_G[frame:GetName().."ScrollUpButton"]:FontString("text", AS.ActionBarFont, 12)
 			_G[frame:GetName().."ScrollUpButton"].text:SetText("▲")
 			_G[frame:GetName().."ScrollUpButton"].text:SetPoint("CENTER", 0, 0)
-			_G[frame:GetName().."ScrollUpButton"].text:SetTextColor(unpack(US.BorderColor))
+			_G[frame:GetName().."ScrollUpButton"].text:SetTextColor(unpack(AS.BorderColor))
 		end	
 		
 		_G[frame:GetName().."ScrollDownButton"]:StripTextures()
 		_G[frame:GetName().."ScrollDownButton"]:SetTemplate("Default", true)
 	
 		if not _G[frame:GetName().."ScrollDownButton"].text then
-			_G[frame:GetName().."ScrollDownButton"]:FontString("text", US.ActionBarFont, 12)
+			_G[frame:GetName().."ScrollDownButton"]:FontString("text", AS.ActionBarFont, 12)
 			_G[frame:GetName().."ScrollDownButton"].text:SetText("▼")
 			_G[frame:GetName().."ScrollDownButton"].text:SetPoint("CENTER", 0, 0)
-			_G[frame:GetName().."ScrollDownButton"].text:SetTextColor(unpack(US.BorderColor))
+			_G[frame:GetName().."ScrollDownButton"].text:SetTextColor(unpack(AS.BorderColor))
 		end				
 		
 		if not frame.trackbg then
@@ -239,7 +239,7 @@ local function SkinDropDownBox(frame, width)
 
 	button:ClearAllPoints()
 	button:Point("RIGHT", frame, "RIGHT", -10, 3)
-	button.SetPoint = US.Noop
+	button.SetPoint = AS.Noop
 	
 	button:SkinNextPrevButton(true)
 	
@@ -270,9 +270,9 @@ local function SkinCheckBox(frame)
 		end
 	end)
 	
-	frame.SetNormalTexture = US.Noop
-	frame.SetPushedTexture = US.Noop
-	frame.SetHighlightTexture = US.Noop
+	frame.SetNormalTexture = AS.Noop
+	frame.SetPushedTexture = AS.Noop
+	frame.SetHighlightTexture = AS.Noop
 end
 
 local function SkinCloseButton(f, point)	
@@ -285,7 +285,7 @@ local function SkinCloseButton(f, point)
 	f:SetHighlightTexture("")
 	f:SetDisabledTexture("")
 
-	f:FontString("t", US.PixelFont, 12, "MONOCHROMEOUTLINE")
+	f:FontString("t", AS.PixelFont, 12, "MONOCHROMEOUTLINE")
 	f.t:SetPoint("CENTER", 0, 1)
 	f.t:SetText("x")
 end
@@ -304,8 +304,8 @@ local function SkinSlideBar(frame, height, movetext)
 		if(_G[frame:GetName().."Text"]) then _G[frame:GetName().."Text"]:Point("TOP", 0, 19) end
 	end
 
-	_G[frame:GetName()]:SetThumbTexture(US.Blank)
-	_G[frame:GetName()]:GetThumbTexture():SetVertexColor(unpack(US.BorderColor))
+	_G[frame:GetName()]:SetThumbTexture(AS.Blank)
+	_G[frame:GetName()]:GetThumbTexture():SetVertexColor(unpack(AS.BorderColor))
 	if(frame:GetWidth() < frame:GetHeight()) then
 		frame:Width(height)
 		_G[frame:GetName()]:GetThumbTexture():Size(frame:GetWidth(), frame:GetWidth() + 4)

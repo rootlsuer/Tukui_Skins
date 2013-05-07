@@ -1,22 +1,22 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
-function US:EmbedTooltip(frame)
+function AS:EmbedTooltip(frame)
 	local r, l, b, t = frame:GetRight(), EmbeddingWindow:GetLeft(), frame:GetBottom(), EmbeddingWindow:GetTop()
 	if not r or not l or not b or not t or r < l or b > t then return end
 	local point, relativeTo, relativePoint, xOffset, yOffset = frame:GetPoint(1)
-	if relativeTo == US.Tooltip and point == "BOTTOMRIGHT" and relativePoint == "TOPRIGHT" then
+	if relativeTo == AS.Tooltip and point == "BOTTOMRIGHT" and relativePoint == "TOPRIGHT" then
 		local found = false
-		if US:CheckOption("EmbedSkada","Skada") and Skada and Skada.GetWindows then
+		if AS:CheckOption("EmbedSkada","Skada") and Skada and Skada.GetWindows then
 			for _, window in pairs(Skada:GetWindows()) do if window:IsShown() then found = true end end
 		end
-		if US:CheckOption("EmbedOmen","Omen") then
+		if AS:CheckOption("EmbedOmen","Omen") then
 			if OmenBarList and OmenBarList:IsVisible() then found = true end
 		end
-		if US:CheckOption("EmbedRecount","Recount") then
+		if AS:CheckOption("EmbedRecount","Recount") then
 			if Recount_MainWindow and Recount_MainWindow:IsShown() then found = true end
 		end
-		if US:CheckOption("EmbedTinyDPS","TinyDPS") then
+		if AS:CheckOption("EmbedTinyDPS","TinyDPS") then
 			if tdpsFrame and tdpsFrame:IsShown() then found = true end
 		end
 		if found then
@@ -26,26 +26,26 @@ function US:EmbedTooltip(frame)
 	end
 end
 
-GameTooltip:HookScript("OnUpdate", function(frame, ...) US:EmbedTooltip(frame) end)
+GameTooltip:HookScript("OnUpdate", function(frame, ...) AS:EmbedTooltip(frame) end)
 
-function US:EmbedCheck(login)
-	if US:CheckOption("EmbedOmen","Omen") then US:EmbedOmen() end
-	if US:CheckOption("EmbedSkada","Skada") then
-		US:EmbedSkada()
+function AS:EmbedCheck(login)
+	if AS:CheckOption("EmbedOmen","Omen") then AS:EmbedOmen() end
+	if AS:CheckOption("EmbedSkada","Skada") then
+		AS:EmbedSkada()
 		if login then 
-			hooksecurefunc(Skada, "CreateWindow", US.EmbedSkada)
-			hooksecurefunc(Skada, "DeleteWindow", US.EmbedSkada)
+			hooksecurefunc(Skada, "CreateWindow", AS.EmbedSkada)
+			hooksecurefunc(Skada, "DeleteWindow", AS.EmbedSkada)
 		end
 	end
-	if US:CheckOption("EmbedTinyDPS","TinyDPS") then US:EmbedTDPS() end
-	if US:CheckOption("EmbedRecount","Recount") then US:EmbedRecount() end
-	if US:CheckOption("EmbedalDamageMeter","alDamageMeter") then US:EmbedALDamageMeter() end
+	if AS:CheckOption("EmbedTinyDPS","TinyDPS") then AS:EmbedTDPS() end
+	if AS:CheckOption("EmbedRecount","Recount") then AS:EmbedRecount() end
+	if AS:CheckOption("EmbedalDamageMeter","alDamageMeter") then AS:EmbedALDamageMeter() end
 end
 
-function US:EmbedRecount()
+function AS:EmbedRecount()
 	Recount:LockWindows(true)
 	Recount_MainWindow:ClearAllPoints()
-	US:EmbedRecountResize()
+	AS:EmbedRecountResize()
 	if UISkinOptions["EmbedLeft"] == "Recount" then
 		Recount_MainWindow:SetParent(EmbeddingWindowLeft)
 	else
@@ -54,7 +54,7 @@ function US:EmbedRecount()
 	Recount.MainWindow:SetFrameLevel(10)
 end
 
-function US:EmbedRecountResize()
+function AS:EmbedRecountResize()
 	if not InCombatLockdown() then
 		if UISkinOptions["EmbedLeft"] == "Recount" then
 			Recount_MainWindow:SetPoint("TOPLEFT", EmbeddingWindowLeft,"TOPLEFT", 0, 7)
@@ -66,7 +66,7 @@ function US:EmbedRecountResize()
 	end
 end
 
-function US:EmbedOmen()
+function AS:EmbedOmen()
 	Omen.db.profile.Locked = true
 	Omen:UpdateGrips()
 	Omen.UpdateGrips = function(...)
@@ -101,7 +101,7 @@ function US:EmbedOmen()
 	EmbedOmenResize()
 end
 
-function US:EmbedOmenResize()
+function AS:EmbedOmenResize()
 	if not InCombatLockdown() then
 		if UISkinOptions["EmbedLeft"] == "Omen" then
 			OmenBarList:SetPoint("TOPLEFT", EmbeddingWindowLeft, "TOPLEFT", 0, 0)
@@ -113,8 +113,8 @@ function US:EmbedOmenResize()
 	end
 end
 
-function US:EmbedTDPS()
-	US:SkinFrame(tdpsFrame, "Default")
+function AS:EmbedTDPS()
+	AS:SkinFrame(tdpsFrame, "Default")
 	tdpsFrame:SetFrameLevel(10)
 	if UISkinOptions["EmbedLeft"] == "TinyDPS" then
 		tdpsFrame:SetParent(EmbeddingWindowLeft)
@@ -127,7 +127,7 @@ function US:EmbedTDPS()
 	tdpsRefresh()
 end
 
-function US:EmbedTDPSResize()
+function AS:EmbedTDPSResize()
 	if not InCombatLockdown() then
 		if UISkinOptions["EmbedLeft"] == "TinyDPS" then
 			tdpsFrame:SetWidth(EmbeddingWindowLeft:GetWidth())
@@ -138,8 +138,8 @@ function US:EmbedTDPSResize()
 	end
 end
 
-function US:EmbedALDamageMeter()
-	dmconf.maxbars = US:Round(EmbeddingWindow:GetHeight() / (dmconf.barheight + dmconf.spacing))
+function AS:EmbedALDamageMeter()
+	dmconf.maxbars = AS:Round(EmbeddingWindow:GetHeight() / (dmconf.barheight + dmconf.spacing))
 	dmconf.width = EmbeddingWindow:GetWidth()
 	alDamageMeterFrame:ClearAllPoints()
 	if UISkinOptions["EmbedLeft"] == "alDamageMeter" then
@@ -152,7 +152,7 @@ function US:EmbedALDamageMeter()
 	alDamageMeterFrame:SetFrameLevel(10)
 end
 
-function US:EmbedSkada()
+function AS:EmbedSkada()
 	local windows = {}
 	for _, window in pairs(Skada:GetWindows()) do
 		tinsert(windows, window)
@@ -165,8 +165,8 @@ function US:EmbedSkada()
 		EmbedParent = EmbeddingWindow
 	end
 
-	local height = US:CheckOption("SkadaBelowTop") and 43 or 18
-	local yoffset = US:CheckOption("SkadaBelowTop") and -40 or -17
+	local height = AS:CheckOption("SkadaBelowTop") and 43 or 18
+	local yoffset = AS:CheckOption("SkadaBelowTop") and -40 or -17
 
 	local function EmbedWindow(window, width, height, point, relativeFrame, relativePoint, ofsx, ofsy)
 		local barmod = Skada.displays["bar"]
@@ -183,7 +183,7 @@ function US:EmbedSkada()
 	if(#windows == 1) then
 		EmbedWindow(windows[1], EmbedParent:GetWidth() - 4, (EmbedParent:GetHeight() - 19), "TOPRIGHT", EmbedParent, "TOPRIGHT", -2, yoffset)
 	elseif(#windows == 2) then
-		if US:CheckOption("SkadaTwoThirds") then
+		if AS:CheckOption("SkadaTwoThirds") then
 			EmbedWindow(windows[1], (((EmbedParent:GetWidth() - 4) / 3) * 2) - 2, EmbedParent:GetHeight() - height, "TOPRIGHT", EmbedParent, "TOPRIGHT", -2, yoffset)
 			EmbedWindow(windows[2], ((EmbedParent:GetWidth() - 4) / 3) - 2, EmbedParent:GetHeight() - height, "TOPLEFT", EmbedParent, "TOPLEFT", 2, yoffset)
 		else
@@ -197,24 +197,24 @@ function US:EmbedSkada()
 	end
 end
 
-function US:EmbedWindowResize()
-	if not US.ChatBackgroundRight then
-		EmbeddingWindow:SetPoint("BOTTOM", US.InfoRight, "TOP", 0, 2)
-		EmbeddingWindow:Size(US.InfoRight:GetWidth(), 142)
-		EmbeddingWindowLeft:SetPoint("BOTTOM", US.InfoLeft, "TOP", 0, 2)
-		EmbeddingWindowLeft:Size(US.InfoLeft:GetWidth(), 142)
+function AS:EmbedWindowResize()
+	if not AS.ChatBackgroundRight then
+		EmbeddingWindow:SetPoint("BOTTOM", AS.InfoRight, "TOP", 0, 2)
+		EmbeddingWindow:Size(AS.InfoRight:GetWidth(), 142)
+		EmbeddingWindowLeft:SetPoint("BOTTOM", AS.InfoLeft, "TOP", 0, 2)
+		EmbeddingWindowLeft:Size(AS.InfoLeft:GetWidth(), 142)
 	else
 		if DuffedUI then
-			EmbeddingWindow:SetInside(US.ChatBackgroundRight, 5, 5)
-			EmbeddingWindowLeft:SetInside(US.ChatBackgroundLeft, 5, 5)
+			EmbeddingWindow:SetInside(AS.ChatBackgroundRight, 5, 5)
+			EmbeddingWindowLeft:SetInside(AS.ChatBackgroundLeft, 5, 5)
 		else
-			EmbeddingWindow:SetPoint("TOP", US.ChatBackgroundRight, "TOP", 0, -5)
-			EmbeddingWindow:Size(U.InfoRight:GetWidth(), US.ChatBackgroundRight:GetHeight() - 34)
-			EmbeddingWindowLeft:SetPoint("TOP", US.ChatBackgroundLeft, "TOP", 0, -5)
-			EmbeddingWindowLeft:Size(U.InfoLeft:GetWidth(), US.ChatBackgroundLeft:GetHeight() - 34)
+			EmbeddingWindow:SetPoint("TOP", AS.ChatBackgroundRight, "TOP", 0, -5)
+			EmbeddingWindow:Size(U.InfoRight:GetWidth(), AS.ChatBackgroundRight:GetHeight() - 34)
+			EmbeddingWindowLeft:SetPoint("TOP", AS.ChatBackgroundLeft, "TOP", 0, -5)
+			EmbeddingWindowLeft:Size(U.InfoLeft:GetWidth(), AS.ChatBackgroundLeft:GetHeight() - 34)
 		end
 	end
-	US:EmbedCheck()
+	AS:EmbedCheck()
 end
 
 local EmbedOoCCombatStart, EmbedOoCCombatEnd -- Delay System Vars
@@ -226,23 +226,23 @@ EmbeddingWindow:RegisterEvent("PLAYER_REGEN_DISABLED")
 EmbeddingWindow:RegisterEvent("PLAYER_REGEN_ENABLED")
 EmbeddingWindow:SetScript("OnEvent", function(self, event)
 	if event == "PLAYER_ENTERING_WORLD" then
-		US:EmbedWindowResize()
-		US:EmbedCheck(true)
+		AS:EmbedWindowResize()
+		AS:EmbedCheck(true)
 	end
 	if event == "PLAYER_REGEN_DISABLED" or InCombatLockdown() then
 		EmbedOoCCombatStart = true
-		if US:CheckOption("EmbedOoC") then
+		if AS:CheckOption("EmbedOoC") then
 			if ChatFrame4Hide then ChatFrame4Tab:Hide() end
 			EmbeddingWindow:Show()
 			EmbeddingWindowLeft:Show()
 		end
 	else
 		EmbedOoCCombatStart = false
-		if US:CheckOption("EmbedOoC") then
+		if AS:CheckOption("EmbedOoC") then
 			if ChatFrame4Hide then ChatFrame4Tab:Show() end
 			if EmbedOoCCombatEnd then return end
 			EmbedOoCCombatEnd = true
-			US:Delay(10, function()
+			AS:Delay(10, function()
 				if not EmbedOoCCombatStart then
 					EmbeddingWindow:Hide()
 					EmbeddingWindowLeft:Hide()
@@ -253,18 +253,18 @@ EmbeddingWindow:SetScript("OnEvent", function(self, event)
 	end
 end)
 
-if US.ChatBackgroundRight then
-	US.ChatBackgroundRight:SetFrameStrata("Background")
-	US.ChatBackgroundLeft:SetFrameStrata("Background")
-	US.TabsRightBackground:SetParent(US.ChatBackgroundRight)
-	US.TabsLeftBackground:SetParent(US.ChatBackgroundLeft)
+if AS.ChatBackgroundRight then
+	AS.ChatBackgroundRight:SetFrameStrata("Background")
+	AS.ChatBackgroundLeft:SetFrameStrata("Background")
+	AS.TabsRightBackground:SetParent(AS.ChatBackgroundRight)
+	AS.TabsLeftBackground:SetParent(AS.ChatBackgroundLeft)
 end
 
 local function CreateToggleButton(name, buttontext, panel1, panel2, tooltiptext1, tooltiptext2)
 	local frame = CreateFrame("Button", name, UIParent)
 	frame:SetTemplate("Transparent")
 	frame:Size(panel1:GetHeight())
-	frame:FontString("text", US.ActionBarFont, 12)
+	frame:FontString("text", AS.ActionBarFont, 12)
 	frame.text:SetText(buttontext)
 	frame.text:SetPoint("CENTER", 0, 0)
 	frame:RegisterForClicks("LeftButtonDown", "RightButtonDown")
@@ -298,7 +298,7 @@ local function CreateToggleButton(name, buttontext, panel1, panel2, tooltiptext1
 		GameTooltip:SetOwner(self, name == "LeftToggleButton" and "ANCHOR_TOPLEFT" or "ANCHOR_TOPRIGHT", 0, 4)
 		GameTooltip:ClearLines()
 		if IsAddOnLoaded("Tukui_ChatTweaks") and ChatTweaksOptions["ChatHider"] then
-			if US.ChatBackgroundRight then
+			if AS.ChatBackgroundRight then
 				GameTooltip:AddDoubleLine("Left Click:", tooltiptext1, 1, 1, 1)
 			end
 		end
@@ -316,8 +316,8 @@ local function CreateToggleButton(name, buttontext, panel1, panel2, tooltiptext1
 	end)
 end
 
-CreateToggleButton("RightToggleButton", "►", US.InfoRight, US.ChatBackgroundRight, "Toggle Right Chat Panel", "Toggle Embedded AddOn")
-RightToggleButton:Point("LEFT", US.InfoRight, "RIGHT", 2, 0)
+CreateToggleButton("RightToggleButton", "►", AS.InfoRight, AS.ChatBackgroundRight, "Toggle Right Chat Panel", "Toggle Embedded AddOn")
+RightToggleButton:Point("LEFT", AS.InfoRight, "RIGHT", 2, 0)
 RightToggleButton:HookScript("OnClick", function(self, btn)
 	if btn == "RightButton" then
 		if EmbeddingWindow:IsShown() then
@@ -333,8 +333,8 @@ RightToggleButton:HookScript("OnClick", function(self, btn)
 end)
 RightToggleButton:SetScript("PreClick", function(self) if ChatFrame4Tab:IsShown() then ChatFrame4Hide = true end end)
 
-CreateToggleButton("LeftToggleButton", "◄", US.InfoLeft, US.ChatBackgroundLeft, "Toggle Left Chat Panel", "Toggle Extra Skins/Options")
-LeftToggleButton:Point("RIGHT", US.InfoLeft, "LEFT", -2, 0)
+CreateToggleButton("LeftToggleButton", "◄", AS.InfoLeft, AS.ChatBackgroundLeft, "Toggle Left Chat Panel", "Toggle Extra Skins/Options")
+LeftToggleButton:Point("RIGHT", AS.InfoLeft, "LEFT", -2, 0)
 LeftToggleButton:HookScript("OnClick", function(self, btn)
 	local Ace3Options = IsAddOnLoaded("Enhanced_Config") and true or false
 	if btn == "RightButton" then

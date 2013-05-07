@@ -1,8 +1,8 @@
 ﻿if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 --FIX ME
 local name = "TitanPanelSkin"
-function US:SkinTitanPanel()
+function AS:SkinTitanPanel()
 	local function SetEnabled(self, event, ...) 
 		if TPBar2and3Position == nil then
 			x = WorldFrame:GetWidth()/5 
@@ -18,10 +18,10 @@ function US:SkinTitanPanel()
 	if TPBar2and3Width == nil then TPBar2and3Width = 125 end 
 	if TPBar2and3Position == nil then TPBar2and3Position = WorldFrame:GetWidth()/5 end
 
-	US:SkinFrame(Titan_Bar__Display_Bar, "Default")
-	US:SkinFrame(Titan_Bar__Display_Bar2, "Default")
-	US:SkinFrame(Titan_Bar__Display_AuxBar, "Default")
-	US:SkinFrame(Titan_Bar__Display_AuxBar2, "Default")
+	AS:SkinFrame(Titan_Bar__Display_Bar, "Default")
+	AS:SkinFrame(Titan_Bar__Display_Bar2, "Default")
+	AS:SkinFrame(Titan_Bar__Display_AuxBar, "Default")
+	AS:SkinFrame(Titan_Bar__Display_AuxBar2, "Default")
 
 	local TP_Skin_OptionsFrame = CreateFrame("FRAME", "TP_Skin_OptionsFrame", UIParent)
 	TP_Skin_OptionsFrame:SetMovable(true)
@@ -31,10 +31,10 @@ function US:SkinTitanPanel()
 	TP_Skin_OptionsFrame:SetScript("OnDragStop", TP_Skin_OptionsFrame.StopMovingOrSizing)
 	TP_Skin_OptionsFrame:SetSize(250,250)
 	TP_Skin_OptionsFrame:SetPoint("CENTER", UIParent, "CENTER")
-	US:SkinFrame(TP_Skin_OptionsFrame)
+	AS:SkinFrame(TP_Skin_OptionsFrame)
 	TP_Skin_OptionsFrame:Hide()
 
-	TP_Skin_OptionsFrame:FontString("Title", US.Font, 17, nil)
+	TP_Skin_OptionsFrame:FontString("Title", AS.Font, 17, nil)
 	TP_Skin_OptionsFrame.Title:SetPoint("TOP", 0, -5)
 	TP_Skin_OptionsFrame.Title:SetText("Titan Panel Skin Options")
 	TP_Skin_OptionsFrame.Title:SetTextColor(23/255, 132/255, 209/255)
@@ -53,15 +53,15 @@ function US:SkinTitanPanel()
 	TP_Skin_OptionsFrame.btn:SetPoint("RIGHT", TP_Skin_CancelButton, "LEFT", -10, 0)
 	TP_Skin_OptionsFrame.btn:SetScript("OnClick", function() ReloadUI() end)
 
-	US:SkinButton(TP_Skin_OptionsFrame.btn)
-	US:SkinButton(TP_Skin_OptionsFrame.btn2)
+	AS:SkinButton(TP_Skin_OptionsFrame.btn)
+	AS:SkinButton(TP_Skin_OptionsFrame.btn2)
 
 	local EnableBars = CreateFrame("CheckButton", "tpskin_checkbox", TP_Skin_OptionsFrame, "OptionsBaseCheckButtonTemplate")
 	EnableBars:SetPoint("TOPLEFT", TP_Skin_OptionsFrame, "TOPLEFT", 16, -35)
-	EnableBars:FontString("Title", US.Font, 12, nil)
+	EnableBars:FontString("Title", AS.Font, 12, nil)
 	EnableBars.Title:SetPoint("LEFT", EnableBars, "RIGHT", 5, 0)
 	EnableBars.Title:SetText("Enable Top Bar 2 and Bottom Bar 2 at top")
-	US:SkinCheckBox(EnableBars)
+	AS:SkinCheckBox(EnableBars)
 	EnableBars:SetScript("OnClick" or "OnUpdate", function(frame)
 		if frame:GetChecked() then
 			if Titan_Bar__Display_Bar2 and Titan_Bar__Display_AuxBar2 then
@@ -92,7 +92,7 @@ function US:SkinTitanPanel()
 			Titan_Bar__Display_AuxBar2:SetWidth(TPBar2and3Width)
 		end
 	end)
-	US:SkinSlideBar(TPBar2and3WidthSlider, 10, true)
+	AS:SkinSlideBar(TPBar2and3WidthSlider, 10, true)
 
 	local TPBar2and3PositionSlider = CreateFrame("Slider", "TPBar2and3PositionSlider", TP_Skin_OptionsFrame, "OptionsSliderTemplate")
 	TPBar2and3PositionSlider:SetSize(200, 15)
@@ -113,7 +113,7 @@ function US:SkinTitanPanel()
 			Titan_Bar__Display_AuxBar2:SetPoint("TOPLEFT", WorldFrame, "TOP", x, -y)
 		end
 	end)
-	US:SkinSlideBar(TPBar2and3PositionSlider, 10, true)
+	AS:SkinSlideBar(TPBar2and3PositionSlider, 10, true)
 
 	local tpskin = CreateFrame("Frame", "tpskin", TP_Skin_OptionsFrame)
 	tpskin:SetScript("OnUpdate", function()
@@ -170,28 +170,28 @@ function US:SkinTitanPanel()
 		tpBar2Left:Point('BOTTOM', Titan_Bar__Display_Bar2, 'TOP',-x,0)
 		tpBar2Left:Width(2)
 		tpBar2Left:Height(Titan_Bar__Display_Bar2:GetHeight()/2)
-		US:SkinFrame(tpBar2Left,"Default")
+		AS:SkinFrame(tpBar2Left,"Default")
 		tpBar2Left:SetFrameLevel(Titan_Bar__Display_Bar2:GetFrameLevel())
 
 		local tpBar2Right = CreateFrame('Frame', nil, Titan_Bar__Display_Bar2)
 		tpBar2Right:Point('BOTTOM', Titan_Bar__Display_Bar2, 'TOP', x,0)
 		tpBar2Right:Width(2)
 		tpBar2Right:Height(Titan_Bar__Display_Bar2:GetHeight()/2)
-		US:SkinFrame(tpBar2Right,"Default")
+		AS:SkinFrame(tpBar2Right,"Default")
 		tpBar2Right:SetFrameLevel(Titan_Bar__Display_Bar2:GetFrameLevel())
 
 		local tpBar3Left = CreateFrame('Frame', nil, Titan_Bar__Display_AuxBar2)
 		tpBar3Left:Point('BOTTOM', Titan_Bar__Display_AuxBar2, 'TOP',-x,0)
 		tpBar3Left:Width(2)
 		tpBar3Left:Height(Titan_Bar__Display_AuxBar2:GetHeight()/2)
-		US:SkinFrame(tpBar3Left,"Default")
+		AS:SkinFrame(tpBar3Left,"Default")
 		tpBar3Left:SetFrameLevel(Titan_Bar__Display_AuxBar2:GetFrameLevel())
 		
 		local tpBar3Right = CreateFrame('Frame', nil, Titan_Bar__Display_AuxBar2)
 		tpBar3Right:Point('BOTTOM', Titan_Bar__Display_AuxBar2, 'TOP', x,0)
 		tpBar3Right:Width(2)
 		tpBar3Right:Height(Titan_Bar__Display_AuxBar2:GetHeight()/2)
-		US:SkinFrame(tpBar3Right,"Default")
+		AS:SkinFrame(tpBar3Right,"Default")
 		tpBar3Right:SetFrameLevel(Titan_Bar__Display_AuxBar2:GetFrameLevel())
 	end
 		local Enabled = _G["Titan_Bar__Display_AuxBar2"]
@@ -204,4 +204,4 @@ function US:SkinTitanPanel()
 	end
 end
 
-US:RegisterSkin(name, US.SkinTitanPanel)
+AS:RegisterSkin(name, AS.SkinTitanPanel)

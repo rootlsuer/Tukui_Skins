@@ -1,9 +1,9 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = 'IncomingSkin'
-function US:SkinIncoming(self)
-	US:SkinFrame(LocationMessageView)
+function AS:SkinIncoming(self)
+	AS:SkinFrame(LocationMessageView)
 
 	local buttons = {
 		"Incoming1",
@@ -17,7 +17,7 @@ function US:SkinIncoming(self)
 	}
 
 	for _, button in pairs(buttons) do
-		US:SkinButton(_G[button])
+		AS:SkinButton(_G[button])
 	end	
 
 	LocationMessageView:SetWidth(99)
@@ -34,4 +34,4 @@ function US:SkinIncoming(self)
 	SendMore:Point("TOPLEFT", LocationMessageView, "TOPLEFT", 3, -100)
 end
 
-US:RegisterSkin(name, US.SkinIncoming)
+AS:RegisterSkin(name, AS.SkinIncoming)

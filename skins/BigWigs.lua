@@ -1,8 +1,8 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "BigWigsSkin"
-function US:SkinBigWigs(event, addon)
+function AS:SkinBigWigs(event, addon)
 	if event == "PLAYER_ENTERING_WORLD" then return end
 	local buttonsize = 19
 	local freebg = {}
@@ -76,12 +76,12 @@ function US:SkinBigWigs(event, addon)
 			ibg:Show()
 			bar:Set("bigwigs:Tukui:ibg", ibg)
 		end
-		bar.candyBarLabel:SetFont(US.Font, 12, "OUTLINE")
+		bar.candyBarLabel:SetFont(AS.Font, 12, "OUTLINE")
 		bar.candyBarLabel:SetShadowColor(0, 0, 0, 0)
 		bar.candyBarLabel:SetJustifyH("LEFT")
 		bar.candyBarLabel:ClearAllPoints()
 		bar.candyBarLabel:Point("LEFT", bar, "LEFT", 4, 0)
-		bar.candyBarDuration:SetFont(US.Font, 12, "OUTLINE")
+		bar.candyBarDuration:SetFont(AS.Font, 12, "OUTLINE")
 		bar.candyBarDuration:SetShadowColor(0, 0, 0, 0)
 		bar.candyBarDuration:SetJustifyH("RIGHT")
 		bar.candyBarDuration:ClearAllPoints()
@@ -89,14 +89,14 @@ function US:SkinBigWigs(event, addon)
 		bar.candyBarBar:ClearAllPoints()
 		bar.candyBarBar:SetAllPoints(bar)
 		bar.candyBarBar.OldSetPoint = bar.candyBarBar.SetPoint
-		bar.candyBarBar.SetPoint = US.Noop
-		bar.candyBarBar:SetStatusBarTexture(US.NormTex)
-		bar.candyBarBackground:SetTexture(unpack(US.BackdropColor))
+		bar.candyBarBar.SetPoint = AS.Noop
+		bar.candyBarBar:SetStatusBarTexture(AS.NormTex)
+		bar.candyBarBackground:SetTexture(unpack(AS.BackdropColor))
 		bar.candyBarIconFrame:ClearAllPoints()
 		bar.candyBarIconFrame:Point("BOTTOMRIGHT", bar, "BOTTOMLEFT", -7, 0)
 		bar.candyBarIconFrame:SetSize(buttonsize, buttonsize)
 		bar.candyBarIconFrame.OldSetWidth = bar.candyBarIconFrame.SetWidth
-		bar.candyBarIconFrame.SetWidth = US.Noop
+		bar.candyBarIconFrame.SetWidth = AS.Noop
 		bar.candyBarIconFrame:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 	end
 
@@ -122,15 +122,15 @@ function US:SkinBigWigs(event, addon)
 
 	if addon == "BigWigs_Plugins" then
 		RegisterStyle()
-		local profile = BigWigs3DB["profileKeys"][US.MyName.." - "..US.MyRealm]
+		local profile = BigWigs3DB["profileKeys"][AS.MyName.." - "..AS.MyRealm]
 		local path = BigWigs3DB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"][profile]
-		path.texture = US.NormTex
+		path.texture = AS.NormTex
 		path.barStyle = "Tukui"
-		path.font = US.Font
+		path.font = AS.Font
 		path = BigWigs3DB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"][profile]
-		path.font = US.Font
+		path.font = AS.Font
 		self:UnregisterEvent("ADDON_LOADED")
 	end
 end
 
-US:RegisterSkin(name, US.SkinBigWigs, "ADDON_LOADED")
+AS:RegisterSkin(name, AS.SkinBigWigs, "ADDON_LOADED")

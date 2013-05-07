@@ -1,8 +1,8 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "LinkWranglerSkin"
-function US:SkinLinkWrangler()
+function AS:SkinLinkWrangler()
 	LWTukuiSkinner_Path = "Interface\\AddOns\\Tukui_Skins\\skins\\"
 	LWTukuiSkinner_Close = LWTukuiSkinner_Path.."Buttons\\close"
 	LWTukuiSkinner_Min = LWTukuiSkinner_Path.."Buttons\\min"
@@ -46,4 +46,4 @@ function US:SkinLinkWrangler()
 	LinkWrangler.RegisterCallback("Tukui_LinkWrangler_Skin", LWTukuiSkinner, "show", "showcomp")
 end
 
-US:RegisterSkin(name, US.SkinLinkWrangler)
+AS:RegisterSkin(name, AS.SkinLinkWrangler)

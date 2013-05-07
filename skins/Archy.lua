@@ -1,10 +1,10 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "ArchySkin"
-function US:SkinArchy()
+function AS:SkinArchy()
 	local function SkinArchyArtifactFrame()
-		US:SkinFrame(ArchyArtifactFrame)
+		AS:SkinFrame(ArchyArtifactFrame)
 
 		if ArchyArtifactFrameSkillBar then
 			ArchyArtifactFrameSkillBar.text:SetTextColor(1, 1, 1)
@@ -18,14 +18,14 @@ function US:SkinArchy()
 			local solveButton = _G['ArchyArtifactChildFrame'..i..'SolveButton']
 
 			if icon then
-				US:SkinFrame(icon, false, true)
+				AS:SkinFrame(icon, false, true)
 				icon:SetSize(solveButton:GetHeight(),solveButton:GetHeight())
 				icon.texture:SetTexCoord(.08, .92, .08, .92)
 				icon.texture:SetInside()
 			end
 
 			if solveButton then
-				US:SkinFrame(solveButton, false, true)
+				AS:SkinFrame(solveButton, false, true)
 				solveButton:GetNormalTexture():SetTexCoord(.08, .92, .08, .92)
 				solveButton:GetNormalTexture():SetInside()	
 				solveButton:GetDisabledTexture():SetTexCoord(.08, .92, .08, .92)
@@ -34,7 +34,7 @@ function US:SkinArchy()
 			end
 
 			if fragmentBar then
-				US:SkinStatusBar(fragmentBar)
+				AS:SkinStatusBar(fragmentBar)
 				fragmentBar:SetPoint("TOPLEFT", icon, "TOPRIGHT", 7, -2)
 			end
 		end
@@ -47,23 +47,23 @@ function US:SkinArchy()
 	Archy:RefreshRacesDisplay()
 
 	local function SkinArchyDigSiteFrame()
-		US:SkinFrame(ArchyDigSiteFrame)
+		AS:SkinFrame(ArchyDigSiteFrame)
 	end
 
 	hooksecurefunc(Archy, "UpdateDigSiteFrame", SkinArchyDigSiteFrame)
 
 	if ArchyArtifactFrameSkillBar then
-		US:SkinStatusBar(ArchyArtifactFrameSkillBar)	
+		AS:SkinStatusBar(ArchyArtifactFrameSkillBar)	
 	end
 
-	US:SkinButton(ArchyDistanceIndicatorFrameSurveyButton)
+	AS:SkinButton(ArchyDistanceIndicatorFrameSurveyButton)
 	ArchyDistanceIndicatorFrameSurveyButtonIcon:SetDrawLayer("OVERLAY")
-	US:SkinButton(ArchyDistanceIndicatorFrameCrateButton)
+	AS:SkinButton(ArchyDistanceIndicatorFrameCrateButton)
  	ArchyDistanceIndicatorFrameCrateButtonIcon:SetDrawLayer("OVERLAY")
  	if ArchyDistanceIndicatorFrameLorItemButton then
-		US:SkinButton(ArchyDistanceIndicatorFrameLorItemButton)
+		AS:SkinButton(ArchyDistanceIndicatorFrameLorItemButton)
 		ArchyDistanceIndicatorFrameLorItemButtonIcon:SetDrawLayer("OVERLAY")
 	end
 end
 
-US:RegisterSkin(name, US.SkinArchy)
+AS:RegisterSkin(name, AS.SkinArchy)

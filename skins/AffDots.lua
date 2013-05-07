@@ -1,9 +1,9 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "AffDotsSkin"
-function US:SkinAffDots()
-	US:SkinBackdropFrame(AffDotsTarget)
+function AS:SkinAffDots()
+	AS:SkinBackdropFrame(AffDotsTarget)
 end
 
-US:RegisterSkin(name, US.SkinAffDots)
+AS:RegisterSkin(name, AS.SkinAffDots)

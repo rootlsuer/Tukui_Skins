@@ -1,8 +1,8 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "MasterLootManagerRemixSkin"
-function US:SkinMasterLootManagerRemix()
+function AS:SkinMasterLootManagerRemix()
 	local StripAllTextures = {
 		"MasterLootManagerMain",
 		"MasterLootLoggerFrame",
@@ -62,19 +62,19 @@ function US:SkinMasterLootManagerRemix()
 	end	
 
 	for _, object in pairs(SetTemplateD) do
-		US:SkinFrame(_G[object],"Default",true)
+		AS:SkinFrame(_G[object],"Default",true)
 	end	
 
 	for _, object in pairs(SetTemplateT) do
-		US:SkinFrame(_G[object], false, true)
+		AS:SkinFrame(_G[object], false, true)
 	end	
 
 	for _, button in pairs(buttons) do
-		US:SkinButton(_G[button])
+		AS:SkinButton(_G[button])
 	end	
 
 	for _, button in pairs(checkboxes) do
-		US:SkinCheckBox(_G[button])
+		AS:SkinCheckBox(_G[button])
 	end	
 
 	MasterLootManagerMain_AssignDE:Point("TOPLEFT",  MasterLootManagerMain_SelectDE, "TOPRIGHT", 10, -2)
@@ -106,13 +106,13 @@ function US:SkinMasterLootManagerRemix()
 	MasterLootLoggerAddEditFrameHour:SetWidth(25)
 	MasterLootLoggerAddEditFrameMinute:SetJustifyH("CENTER")
 	MasterLootLoggerAddEditFrameMinute:SetWidth(25)
-	US:SkinDropDownBox(MasterLootManagerMain_SelectDE, 150)
-	US:SkinDropDownBox(MasterLootManagerMain_SelectBank, 150)
-	US:SkinDropDownBox(MasterLootLoggerAddEditFrameType, 150)
-	US:SkinScrollBar(MasterLootManagerMain_ScrollFrame_Slider, 5)
-	US:SkinScrollBar(MasterLootLoggerFrameContentScrollFrameScrollBar)
-	US:SkinCloseButton(MasterLootLoggerFrameCloseButton)
-	US:SkinCloseButton(MasterLootLoggerAddEditFrameCloseButton)
+	AS:SkinDropDownBox(MasterLootManagerMain_SelectDE, 150)
+	AS:SkinDropDownBox(MasterLootManagerMain_SelectBank, 150)
+	AS:SkinDropDownBox(MasterLootLoggerAddEditFrameType, 150)
+	AS:SkinScrollBar(MasterLootManagerMain_ScrollFrame_Slider, 5)
+	AS:SkinScrollBar(MasterLootLoggerFrameContentScrollFrameScrollBar)
+	AS:SkinCloseButton(MasterLootLoggerFrameCloseButton)
+	AS:SkinCloseButton(MasterLootLoggerAddEditFrameCloseButton)
 end
 
-US:RegisterSkin(name, US.SkinMasterLootManagerRemix)
+AS:RegisterSkin(name, AS.SkinMasterLootManagerRemix)

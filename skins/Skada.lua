@@ -1,8 +1,8 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "SkadaSkin"
-function US:SkinSkada()
+function AS:SkinSkada()
 	local barSpacing = 1
 	local borderWidth = 1
 	
@@ -22,25 +22,25 @@ function US:SkinSkada()
 	ResetFrame:SetPoint("CENTER", UIParent, "CENTER")
 	ResetFrame:SetFrameStrata("DIALOG")
 	ResetFrame:Hide()
-	ResetFrame:FontString("text", US.PixelFont, 14, "MONOCHROMEOUTLINE")
+	ResetFrame:FontString("text", AS.PixelFont, 14, "MONOCHROMEOUTLINE")
 	ResetFrame.text:SetPoint("TOP", ResetFrame, "TOP", 0, -10)
 	ResetFrame.text:SetText("Do you want to reset Skada?")
 
 	local ResetAccept = CreateFrame("Button", nil, ResetFrame)
-	US:SkinButton(ResetAccept)
+	AS:SkinButton(ResetAccept)
 	ResetAccept:SetSize(70, 25)
 	ResetAccept:SetPoint("RIGHT", ResetFrame, "BOTTOM", -1, 20)
 	ResetAccept:SetScript("OnClick", function(self) Skada:Reset() self:GetParent():Hide() end)
-	ResetAccept:FontString("text", US.PixelFont, 14, "MONOCHROMEOUTLINE")
+	ResetAccept:FontString("text", AS.PixelFont, 14, "MONOCHROMEOUTLINE")
 	ResetAccept.text:SetPoint("CENTER")
 	ResetAccept.text:SetText("Yes")
 
 	local ResetClose = CreateFrame("Button", nil, ResetFrame)
-	US:SkinButton(ResetClose)
+	AS:SkinButton(ResetClose)
 	ResetClose:SetSize(70, 25)
 	ResetClose:SetPoint("LEFT", ResetFrame, "BOTTOM", 1, 20)
 	ResetClose:SetScript("OnClick", function(self) self:GetParent():Hide() end)
-	ResetClose:FontString("text", US.PixelFont, 14, "MONOCHROMEOUTLINE")
+	ResetClose:FontString("text", AS.PixelFont, 14, "MONOCHROMEOUTLINE")
 	ResetClose.text:SetPoint("CENTER")
 	ResetClose.text:SetText("Yes")
 	
@@ -62,7 +62,7 @@ function US:SkinSkada()
 	end
 
 	local titleBG = {
-		bgFile = US.NormTex,
+		bgFile = AS.NormTex,
 		tile = false,
 		tileSize = 0
 	}
@@ -74,7 +74,7 @@ function US:SkinSkada()
 		if(win.db.enabletitle) then
 			skada.button:SetBackdrop(titleBG)
 		end
-		skada:SetTexture(US.NormTex)
+		skada:SetTexture(AS.NormTex)
 		skada:SetSpacing(barSpacing)
 		skada:SetFrameLevel(5)
 		if not skada.TitleBackGround then
@@ -83,7 +83,7 @@ function US:SkinSkada()
 			skada.TitleBackGround:SetPoint("LEFT")
 			skada.TitleBackGround:SetPoint("RIGHT")
 			skada.TitleBackGround:SetPoint("BOTTOM", 0, 1)
-			US:SkinFrame(skada.TitleBackGround,"Default")
+			AS:SkinFrame(skada.TitleBackGround,"Default")
 			skada.TitleBackGround:SetFrameLevel(skada.button:GetFrameLevel() -1)
 		end
 
@@ -93,7 +93,7 @@ function US:SkinSkada()
 		local color = win.db.title.color
 		skada.button:SetBackdropColor(0, 0, 0, 0)
 		skada:SetBackdrop(nil)
-		US:SkinBackdropFrame(skada)
+		AS:SkinBackdropFrame(skada)
 		skada.Backdrop:ClearAllPoints()
 		if win.db.enabletitle then
 			skada.Backdrop:Point("TOPLEFT", skada.button, "TOPLEFT", -2, 2)
@@ -101,8 +101,8 @@ function US:SkinSkada()
 			skada.Backdrop:Point("TOPLEFT", skada, "TOPLEFT", -2, 2)
 		end
 		skada.Backdrop:Point("BOTTOMRIGHT", skada, "BOTTOMRIGHT", 2, -2)
-		if not US:CheckOption("SkadaBackdrop") then skada.Backdrop:Hide() end
+		if not AS:CheckOption("SkadaBackdrop") then skada.Backdrop:Hide() end
 	end
 end
 
-US:RegisterSkin(name, US.SkinSkada)
+AS:RegisterSkin(name, AS.SkinSkada)

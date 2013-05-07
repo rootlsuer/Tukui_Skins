@@ -1,12 +1,12 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "WhollySkin"
-function US:SkinWholly()
+function AS:SkinWholly()
 	local function SkinWhollyFrame()
-		US:SkinFrame(com_mithrandir_whollyFrame)
-		US:SkinCloseButton(com_mithrandir_whollyFrameCloseButton)
-		US:SkinScrollBar(com_mithrandir_whollyFrameScrollBar)
+		AS:SkinFrame(com_mithrandir_whollyFrame)
+		AS:SkinCloseButton(com_mithrandir_whollyFrameCloseButton)
+		AS:SkinScrollBar(com_mithrandir_whollyFrameScrollBar)
 		com_mithrandir_whollyFrameZoneButton:ClearAllPoints()
 		com_mithrandir_whollyFrameZoneButton:Point("TOP", com_mithrandir_whollyFrame, "TOP", 60, -40)
 
@@ -16,10 +16,10 @@ function US:SkinWholly()
 			"SortButton"
 		}
 		for button,_ in pairs(buttons) do
-			US:SkinButton(_G["com_mithrandir_whollyFrame"..button])
+			AS:SkinButton(_G["com_mithrandir_whollyFrame"..button])
 		end
 	end
 	com_mithrandir_whollyFrame:HookScript("OnShow", function(self) SkinWhollyFrame() end)
 end
 
-US:RegisterSkin(name, US.SkinWholly)
+AS:RegisterSkin(name, AS.SkinWholly)

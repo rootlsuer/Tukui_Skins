@@ -1,10 +1,10 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "CorkSkin"
-function US:SkinCork()
-	US:SkinBackdropFrame(Corkboard, true)
+function AS:SkinCork()
+	AS:SkinBackdropFrame(Corkboard, true)
 	Corkboard:HookScript("OnUpdate", function(frame) frame:StripTextures() end)
 end
 
-US:RegisterSkin(name, US.SkinCork)
+AS:RegisterSkin(name, AS.SkinCork)

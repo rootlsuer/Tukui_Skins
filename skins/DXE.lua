@@ -1,23 +1,23 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 LoadAddOn("DXE")
 local name = "DXESkin"
-function US:SkinDXE()
-	DXE.NotifyBarTextureChanged = US.Noop
-	DXE.NotifyBorderChanged = US.Noop
-	DXE.NotifyBorderColorChanged = US.Noop
-	DXE.NotifyBorderEdgeSizeChanged = US.Noop
-	DXE.NotifyBackgroundTextureChanged = US.Noop
-	DXE.NotifyBackgroundInsetChanged = US.Noop
-	DXE.NotifyBackgroundColorChanged = US.Noop
+function AS:SkinDXE()
+	DXE.NotifyBarTextureChanged = AS.Noop
+	DXE.NotifyBorderChanged = AS.Noop
+	DXE.NotifyBorderColorChanged = AS.Noop
+	DXE.NotifyBorderEdgeSizeChanged = AS.Noop
+	DXE.NotifyBackgroundTextureChanged = AS.Noop
+	DXE.NotifyBackgroundInsetChanged = AS.Noop
+	DXE.NotifyBackgroundColorChanged = AS.Noop
 
 	local function SkinDXEBar(bar)
 		bar:SetTemplate("Transparent")
 		bar.bg:SetTexture(nil)
 		bar.border.Show = function() end
 		bar.border:Hide()
-		bar.statusbar:SetStatusBarTexture(US.NormTex)
+		bar.statusbar:SetStatusBarTexture(AS.NormTex)
 		bar.statusbar:ClearAllPoints()
 		bar.statusbar:SetInside()
 		
@@ -50,7 +50,7 @@ function US:SkinDXE()
 				hw:SetTemplate("Transparent")
 				hw.border.Show = function() end
 				hw.border:Hide()
-				hw.healthbar:SetStatusBarTexture(US.NormTex)
+				hw.healthbar:SetStatusBarTexture(AS.NormTex)
 			end
 		end
 	end
@@ -92,13 +92,13 @@ function US:SkinDXE()
 
 	if not DXEDB then DXEDB = {} end
 	if not DXEDB["profiles"] then DXEDB["profiles"] = {} end
-	if not DXEDB["profiles"][US.MyName.." - "..US.MyRealm] then DXEDB["profiles"][US.MyName.." - "..US.MyRealm] = {} end
-	if not DXEDB["profiles"][US.MyName.." - "..US.MyRealm]["Globals"] then DXEDB["profiles"][US.MyName.." - "..US.MyRealm]["Globals"] = {} end
-	DXEDB["profiles"][US.MyName.." - "..US.MyRealm]["Globals"]["BackgroundTexture"] = US.Blank
-	DXEDB["profiles"][US.MyName.." - "..US.MyRealm]["Globals"]["BarTexture"] = US.NormTex
-	DXEDB["profiles"][US.MyName.." - "..US.MyRealm]["Globals"]["Border"] = "None"
-	DXEDB["profiles"][US.MyName.." - "..US.MyRealm]["Globals"]["Font"] = US.Font
-	DXEDB["profiles"][US.MyName.." - "..US.MyRealm]["Globals"]["TimerFont"] = US.Font
+	if not DXEDB["profiles"][AS.MyName.." - "..AS.MyRealm] then DXEDB["profiles"][AS.MyName.." - "..AS.MyRealm] = {} end
+	if not DXEDB["profiles"][AS.MyName.." - "..AS.MyRealm]["Globals"] then DXEDB["profiles"][AS.MyName.." - "..AS.MyRealm]["Globals"] = {} end
+	DXEDB["profiles"][AS.MyName.." - "..AS.MyRealm]["Globals"]["BackgroundTexture"] = AS.Blank
+	DXEDB["profiles"][AS.MyName.." - "..AS.MyRealm]["Globals"]["BarTexture"] = AS.NormTex
+	DXEDB["profiles"][AS.MyName.." - "..AS.MyRealm]["Globals"]["Border"] = "None"
+	DXEDB["profiles"][AS.MyName.." - "..AS.MyRealm]["Globals"]["Font"] = AS.Font
+	DXEDB["profiles"][AS.MyName.." - "..AS.MyRealm]["Globals"]["TimerFont"] = AS.Font
 end
 
-US:RegisterSkin(name, US.SkinDXE)
+AS:RegisterSkin(name, AS.SkinDXE)

@@ -1,9 +1,9 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "AraBrokerGuildFriendsSkin"
-function US:SkinAraBrokerGuildFriends()
-	AraBrokerGuildFriends:HookScript("OnUpdate", function(f) US:SkinFrame(f) end)
+function AS:SkinAraBrokerGuildFriends()
+	AraBrokerGuildFriends:HookScript("OnUpdate", function(f) AS:SkinFrame(f) end)
 end
 
-US:RegisterSkin(name, US.SkinAraBrokerGuildFriends)
+AS:RegisterSkin(name, AS.SkinAraBrokerGuildFriends)

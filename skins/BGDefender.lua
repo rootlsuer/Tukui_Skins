@@ -1,8 +1,8 @@
 ﻿if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = 'BGDefenderSkin'
-function US:SkinBGDefender()
+function AS:SkinBGDefender()
 	local function OnEnter(f)
 		local text
 		if f:GetName() == "Button9" then
@@ -21,7 +21,7 @@ function US:SkinBGDefender()
 	  GameTooltip:Hide()
 	end
 
-	US:SkinFrame(BGDefenderFrame)
+	AS:SkinFrame(BGDefenderFrame)
 
 	local StripAllTextures = {
 		"Button9",
@@ -48,7 +48,7 @@ function US:SkinBGDefender()
 	end	
 
 	for _, button in pairs(buttons) do
-		US:SkinButton(_G[button])
+		AS:SkinButton(_G[button])
 	end	
 
 	BGDefenderFrame:SetWidth(160)
@@ -70,10 +70,10 @@ function US:SkinBGDefender()
 	Button7:Point("TOPLEFT", BGDefenderFrame, "TOPLEFT", 5, -48)
 	Button8:Point("TOPLEFT", BGDefenderFrame, "TOPLEFT", 97, -48)
 
-	US:SkinDropDownBox(DropDown1, 200)
-	US:SkinDropDownBox(DropDown2, 200)
-	US:SkinDropDownBox(DropDown3, 200)
-	US:SkinCheckBox(BGDefenderPrefaceButton)
+	AS:SkinDropDownBox(DropDown1, 200)
+	AS:SkinDropDownBox(DropDown2, 200)
+	AS:SkinDropDownBox(DropDown3, 200)
+	AS:SkinCheckBox(BGDefenderPrefaceButton)
 	Text1:SetTextColor(23/255, 132/255, 209/255)
 	Button1:SetNormalFontObject("GameFontHighlight")
 	local font = Button1:GetNormalFontObject()
@@ -87,4 +87,4 @@ function US:SkinBGDefender()
 	Button11:SetScript("OnLeave", OnLeave)
 end
 
-US:RegisterSkin(name, US.SkinBGDefender)
+AS:RegisterSkin(name, AS.SkinBGDefender)

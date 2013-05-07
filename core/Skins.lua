@@ -1,7 +1,7 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
-US.Skins = {
+AS.Skins = {
 	["ACPSkin"] = {
 		["buttonText"] = "Addon Control Panel",
 		["addon"] = "ACP",

@@ -1,8 +1,8 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "OmenSkin"
-function US:SkinOmen()
+function AS:SkinOmen()
 	if TukuiThreatBar then TukuiThreatBar:Kill() end
 
 	Omen.UpdateTitleBar_ = Omen.UpdateTitleBar
@@ -24,8 +24,8 @@ function US:SkinOmen()
 		Omen.db.profile.Background.EdgeSize = 1
 		Omen.db.profile.Background.BarInset = 2
 		self:UpdateBackdrop_()
-		US:SkinFrame(self.BarList,"Default")
-		US:SkinFrame(self.Title,"Default")
+		AS:SkinFrame(self.BarList,"Default")
+		AS:SkinFrame(self.Title,"Default")
 		self.BarList:SetPoint("TOPLEFT", self.Title, "BOTTOMLEFT", 0, 1)
 	end
 
@@ -45,4 +45,4 @@ function US:SkinOmen()
 	Omen:ResizeBars()
 end
 
-US:RegisterSkin(name, US.SkinOmen)
+AS:RegisterSkin(name, AS.SkinOmen)

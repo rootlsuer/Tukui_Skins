@@ -1,9 +1,9 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "CLCRetSkin"
-function US:SkinCLCRet()
-	if US.MyClass ~= "PALADIN" then return end
+function AS:SkinCLCRet()
+	if AS.MyClass ~= "PALADIN" then return end
 
 	local function UpdateButtonLayout(frame, button, opt)
 		button:Size(opt.size)
@@ -16,7 +16,7 @@ function US:SkinCLCRet()
 
 	local function CreateButton(frame, name, size, point, parent, pointParent, offsetx, offsety, bfGroup, isChecked)
 		clcretFrame:SetScale(1)
-		clcretFrame.SetScale = US.Noop
+		clcretFrame.SetScale = AS.Noop
 
 		name = "clcret" .. name
 		local button
@@ -37,7 +37,7 @@ function US:SkinCLCRet()
 		button.texture:Point("BOTTOMRIGHT", -2, 2)
 		button.texture:SetTexture(BGTEX)
 		button.texture:SetTexCoord(0.08, 0.92, 0.08, 0.92)
-		button.texture.SetTexCoord = US.Noop
+		button.texture.SetTexCoord = AS.Noop
 		button.texture.OldSetTexture = button.texture.SetTexture
 		button.texture.SetTexture = function(frame, tex, ...)
 			button.texture.OldSetTexture(frame, tex, ...)
@@ -61,7 +61,7 @@ function US:SkinCLCRet()
 		button.stack:ClearAllPoints()
 		button.stack:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 4, 0)
 		button.defaultSize = button:GetWidth()
-		button.SetScale = US.Noop
+		button.SetScale = AS.Noop
 		button:ClearAllPoints()
 		button:SetPoint(point, parent, pointParent, offsetx, offsety)
 
@@ -77,4 +77,4 @@ function US:SkinCLCRet()
 	clcret.UpdateButtonLayout = UpdateButtonLayout
 end
 
-US:RegisterSkin(name, US.SkinCLCRet)
+AS:RegisterSkin(name, AS.SkinCLCRet)

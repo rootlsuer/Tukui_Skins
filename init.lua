@@ -1,5 +1,5 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local A, C, L, G = unpack(Tukui or AsphyxiaUI or DuffedUI)
+local A, C, L = unpack(Tukui or AsphyxiaUI or DuffedUI)
 local AddOnName, Engine = ...
 local AddOn = {};
 AddOn.FrameLocks = {}

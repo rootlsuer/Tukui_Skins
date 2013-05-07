@@ -1,9 +1,9 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "VengeanceStatusSkin"
-function US:SkinVengeanceStatus()
-	US:SkinStatusBar(VengeanceStatus_StatusBar)
+function AS:SkinVengeanceStatus()
+	AS:SkinStatusBar(VengeanceStatus_StatusBar)
 end
 
-US:RegisterSkin(name, US.SkinVengeanceStatus)
+AS:RegisterSkin(name, AS.SkinVengeanceStatus)

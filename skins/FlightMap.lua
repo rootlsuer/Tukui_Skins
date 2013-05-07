@@ -1,11 +1,11 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "FlightMapSkin"
-function US:SkinFlightMap()
-	US:SkinStatusBar(FlightMapTimesFrame)
+function AS:SkinFlightMap()
+	AS:SkinStatusBar(FlightMapTimesFrame)
 	FlightMapTimesText:ClearAllPoints()
 	FlightMapTimesText:SetPoint("CENTER", FlightMapTimesFrame, "CENTER", 0, 0)
 end
 
-US:RegisterSkin(name, US.SkinFlightMap)
+AS:RegisterSkin(name, AS.SkinFlightMap)

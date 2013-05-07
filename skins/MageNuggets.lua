@@ -1,8 +1,8 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "MageNuggetsSkin"
-function US:SkinMageNuggets()
+function AS:SkinMageNuggets()
 	local Frames = {
 		"MNSpellSteal_Frame",
 		"MNSpellStealFocus_Frame",
@@ -32,7 +32,7 @@ function US:SkinMageNuggets()
 	for _, object in pairs(Frames) do
 		if _G[object] then
 			_G[object]:SetBackdrop(nil)
-			US:SkinBackdropFrame(_G[object])
+			AS:SkinBackdropFrame(_G[object])
 		end
 	end
 
@@ -67,7 +67,7 @@ function US:SkinMageNuggets()
 			_G[object]:SetBackdrop(nil)
 			_G[object.."_Text"]:SetDrawLayer("OVERLAY", 8)
 			_G[object.."_Text2"]:SetDrawLayer("OVERLAY", 8)
-			_G[object.."_Bar"]:SetStatusBarTexture(US.NormTex)
+			_G[object.."_Bar"]:SetStatusBarTexture(AS.NormTex)
 			_G[object.."_Bar"]:CreateBackdrop()
 			_G[object.."_Bar"].Backdrop:SetPoint("TOPLEFT", -2, 2)
 			_G[object.."_Bar"].Backdrop:SetPoint("BOTTOMRIGHT", 2, -2)
@@ -78,13 +78,13 @@ function US:SkinMageNuggets()
 	MageNugLB2_Frame:SetPoint("BOTTOM", MageNugLB1_Frame, "TOP", 0, 4)
 	MageNugLB3_Frame:SetPoint("BOTTOM", MageNugLB2_Frame, "TOP", 0, 4)
 	MageNugLB4_Frame:SetPoint("BOTTOM", MageNugLB3_Frame, "TOP", 0, 4)
-	US:SkinStatusBar(MageNugCauterize_Frame_Bar)
-	US:SkinStatusBar(MageNugMI_Frame_MiBar)
-	US:SkinStatusBar(MageNugInvokers_Frame_Bar)
-	US:SkinStatusBar(MageNugManaGem_Frame_Bar)
-	US:SkinStatusBar(MageNugIgnite_Frame_Bar)
-	US:SkinStatusBar(MageNugAB_Frame_ABBar)
-	US:SkinStatusBar(MageNugClearcast_Frame_Bar)
+	AS:SkinStatusBar(MageNugCauterize_Frame_Bar)
+	AS:SkinStatusBar(MageNugMI_Frame_MiBar)
+	AS:SkinStatusBar(MageNugInvokers_Frame_Bar)
+	AS:SkinStatusBar(MageNugManaGem_Frame_Bar)
+	AS:SkinStatusBar(MageNugIgnite_Frame_Bar)
+	AS:SkinStatusBar(MageNugAB_Frame_ABBar)
+	AS:SkinStatusBar(MageNugClearcast_Frame_Bar)
 	MageNugMBProcFrame_ProcBar:SetStatusBarTexture(C["Media"].NormTex)
 	MageNugProcFrame_ProcBar:SetStatusBarTexture(C["Media"].NormTex)
 	MageNugProcHUFrame_ProcBar:SetStatusBarTexture(C["Media"].NormTex)
@@ -126,10 +126,10 @@ function US:SkinMageNuggets()
 	MageNugAB_FrameText2:ClearAllPoints()
 	MageNugAB_FrameText2:SetPoint("CENTER", MageNugAB_Frame_ABBar, "CENTER", 0, 0)
 	MageNugAB_FrameText2:SetFont("Fonts\\FRIZQT__.TTF", 8)
-	US:SkinButton(MageNugHordeFrameClose)
-	US:SkinButton(MageNugHordeFrameShowOptions)
-	US:SkinButton(MageNugAlliFrameClose)
-	US:SkinButton(MageNugAlliFrameShowOptions)
+	AS:SkinButton(MageNugHordeFrameClose)
+	AS:SkinButton(MageNugHordeFrameShowOptions)
+	AS:SkinButton(MageNugAlliFrameClose)
+	AS:SkinButton(MageNugAlliFrameShowOptions)
 	MageNugAB_Frame_ABBar:ClearAllPoints()
 	MageNugAB_Frame_ABBar:SetWidth(MageNugAB_Frame:GetWidth())
 	MageNugAB_Frame_ABBar:Point("TOP", MageNugAB_Frame, "BOTTOM", 0, -6)
@@ -218,7 +218,7 @@ function US:SkinMageNuggets()
 	}
 
 	for _,b in pairs(checkbuttons) do
-		US:SkinCheckBox(b)
+		AS:SkinCheckBox(b)
 	end
 
 	local sliders = {
@@ -237,7 +237,7 @@ function US:SkinMageNuggets()
 	}
 
 	for _,s in pairs(sliders) do
-		US:SkinSlideBar(s, 8, true)
+		AS:SkinSlideBar(s, 8, true)
 	end
 
 	local editbox = {
@@ -270,14 +270,14 @@ function US:SkinMageNuggets()
 	}
 
 	for _,f in pairs(editbox) do
-		US:SkinEditBox(f, false, 15)
+		AS:SkinEditBox(f, false, 15)
 	end
 	
-	US:SkinButton(MageNugStatMonOptionFrameBlackBackdropButton)
-	US:SkinButton(MageNugMoonkinOptionFrame_Button)
-	US:SkinButton(MageNugOption2FrameButton1)
-	US:SkinButton(MageNugOption2FrameButton2)
-	US:SkinButton(MageNugOption2FrameButton3)
+	AS:SkinButton(MageNugStatMonOptionFrameBlackBackdropButton)
+	AS:SkinButton(MageNugMoonkinOptionFrame_Button)
+	AS:SkinButton(MageNugOption2FrameButton1)
+	AS:SkinButton(MageNugOption2FrameButton2)
+	AS:SkinButton(MageNugOption2FrameButton3)
 end
 
-US:RegisterSkin(name, US.SkinMageNuggets)
+AS:RegisterSkin(name, AS.SkinMageNuggets)

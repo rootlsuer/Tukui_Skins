@@ -1,8 +1,8 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "SexyCooldownSkin"
-function US:SkinSexyCooldown()
+function AS:SkinSexyCooldown()
 	local function SCDStripSkinSettings(bar)
 		bar.optionsTable.args.icon.args.borderheader = nil
 		bar.optionsTable.args.icon.args.border = nil
@@ -21,19 +21,19 @@ function US:SkinSexyCooldown()
 
 	local function SkinSexyCooldownBar(bar)
 		SCDStripSkinSettings(bar)
-		US:SkinFrame(bar)
-		US:RegisterForPetBattleHide(bar)
-		if US:CheckOption("EmbedSexyCooldown") then
+		AS:SkinFrame(bar)
+		AS:RegisterForPetBattleHide(bar)
+		if AS:CheckOption("EmbedSexyCooldown") then
 			bar:ClearAllPoints()
-			US.ActionBar2:HookScript("OnShow", function() 
-				bar:Point('BOTTOM', US.ActionBar2, 'TOP', 0, 1)
+			AS.ActionBar2:HookScript("OnShow", function() 
+				bar:Point('BOTTOM', AS.ActionBar2, 'TOP', 0, 1)
 				bar:SetHeight(ActionButton1:GetHeight())
-				bar:SetWidth(US.ActionBar2:GetWidth())
+				bar:SetWidth(AS.ActionBar2:GetWidth())
 			end)
-			US.ActionBar2:HookScript("OnHide", function() 
-				bar:Point('BOTTOM', US.ActionBar1, 'TOP', 0, 1)
+			AS.ActionBar2:HookScript("OnHide", function() 
+				bar:Point('BOTTOM', AS.ActionBar1, 'TOP', 0, 1)
 				bar:SetHeight(ActionButton1:GetHeight())
-				bar:SetWidth(US.ActionBar1:GetWidth())
+				bar:SetWidth(AS.ActionBar1:GetWidth())
 			end)
 			bar:EnableMouse(false)
 		end
@@ -41,8 +41,8 @@ function US:SkinSexyCooldown()
 
 	local function SkinSexyCooldownIcon(bar, icon)
 		if not icon.skinned then
-			US:SkinFrame(icon)
-			US:SkinBackdropFrame(icon.overlay, false)
+			AS:SkinFrame(icon)
+			AS:SkinBackdropFrame(icon.overlay, false)
 			icon.tex:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 			icon.tex.SetTexCoord = function() end
 			icon.skinned = true
@@ -51,7 +51,7 @@ function US:SkinSexyCooldown()
 
 	local function SkinSexyCooldownLabel(bar,label,store)
 		if not label.skinned then
-			label:SetFont(US.PixelFont, store.fontsize, "OUTLINE")
+			label:SetFont(AS.PixelFont, store.fontsize, "OUTLINE")
 			label.skinned = true
 		end
 	end
@@ -80,4 +80,4 @@ function US:SkinSexyCooldown()
 	end
 end
 
-US:RegisterSkin(name, US.SkinSexyCooldown)
+AS:RegisterSkin(name, AS.SkinSexyCooldown)

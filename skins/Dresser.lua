@@ -1,12 +1,12 @@
 ﻿if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "DresserSkin"
-function US:SkinDresser()
-	US:SkinButton(DresserButton1)
-	US:SkinButton(DresserButton2)
-	US:SkinButton(DresserButton3)
-	US:SkinButton(DresserButton4)
+function AS:SkinDresser()
+	AS:SkinButton(DresserButton1)
+	AS:SkinButton(DresserButton2)
+	AS:SkinButton(DresserButton3)
+	AS:SkinButton(DresserButton4)
 	DresserButton1:ClearAllPoints()
 	DresserButton1:Point("BOTTOMLEFT", DressUpFrame, "BOTTOMLEFT", 138, 79)
 	DresserButton2:ClearAllPoints()
@@ -21,4 +21,4 @@ function US:SkinDresser()
 	DresserButton4:Size(38, 22)
 end
 
-US:RegisterSkin(name, US.SkinDresser)
+AS:RegisterSkin(name, AS.SkinDresser)

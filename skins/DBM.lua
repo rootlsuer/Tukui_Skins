@@ -1,8 +1,8 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "DBMSkin"
-function US:SkinDBM(event, addon)
+function AS:SkinDBM(event, addon)
 	if event == "PLAYER_ENTERING_WORLD" then
 		local croprwicons = false
 		local buttonsize = 22
@@ -21,14 +21,14 @@ function US:SkinDBM(event, addon)
 
 						if not (icon1.overlay) then
 							icon1.overlay = CreateFrame("Frame", "$parentIcon1Overlay", tbar)
-							US:SkinBackdropFrame(icon1.overlay)
+							AS:SkinBackdropFrame(icon1.overlay)
 							icon1.overlay:Size(buttonsize-4)
 							icon1.overlay:Point("BOTTOMRIGHT", frame, "BOTTOMLEFT", -5, 2)
 						end
 
 						if not (icon2.overlay) then
 							icon2.overlay = CreateFrame("Frame", "$parentIcon2Overlay", tbar)
-							US:SkinBackdropFrame(icon2.overlay)
+							AS:SkinBackdropFrame(icon2.overlay)
 							icon2.overlay:Point("BOTTOMLEFT", frame, "BOTTOMRIGHT", 5, 2)
 						end
 
@@ -43,8 +43,8 @@ function US:SkinDBM(event, addon)
 
 						if not frame.styled then
 							frame:SetHeight(buttonsize)
-							if US:CheckOption("DBMSkinHalf") then frame:SetHeight(buttonsize/3) end
-							US:SkinFrame(frame)
+							if AS:CheckOption("DBMSkinHalf") then frame:SetHeight(buttonsize/3) end
+							AS:SkinFrame(frame)
 							frame.styled = true
 						end
 
@@ -71,12 +71,12 @@ function US:SkinDBM(event, addon)
 						end
 
 						if not texture.styled then
-							texture:SetTexture(US.NormTex)
+							texture:SetTexture(AS.NormTex)
 							texture.styled = true
 						end
 
 						if not tbar.styled then
-							tbar:SetStatusBarTexture(US.NormTex)
+							tbar:SetStatusBarTexture(AS.NormTex)
 							tbar:SetInside(frame)
 							tbar.styled = true
 						end
@@ -84,24 +84,24 @@ function US:SkinDBM(event, addon)
 						if not name.styled then
 							name:ClearAllPoints()
 							name:Point("LEFT", frame, "LEFT", 4, 0)
-							if US:CheckOption("DBMSkinHalf") then name:Point("BOTTOMLEFT", frame, "TOPLEFT", 0, 4) end
+							if AS:CheckOption("DBMSkinHalf") then name:Point("BOTTOMLEFT", frame, "TOPLEFT", 0, 4) end
 							name:SetWidth(165)
 							name:SetHeight(8)
 							name:SetFont(DBT_SavedOptions["DBM"].Font, 12, "OUTLINE")
 							name:SetJustifyH("LEFT")
 							name:SetShadowColor(0, 0, 0, 0)
-							name.SetFont = US.Noop
+							name.SetFont = AS.Noop
 							name.styled = true
 						end
 
 						if not timer.styled then
 							timer:ClearAllPoints()
 							timer:Point("RIGHT", frame, "RIGHT", -4, 0)
-							if US:CheckOption("DBMSkinHalf") then timer:Point("BOTTOMRIGHT", frame, "TOPRIGHT", -1, 2) end
+							if AS:CheckOption("DBMSkinHalf") then timer:Point("BOTTOMRIGHT", frame, "TOPRIGHT", -1, 2) end
 							timer:SetFont(DBT_SavedOptions["DBM"].Font, 12, "OUTLINE")
 							timer:SetJustifyH("RIGHT")
 							timer:SetShadowColor(0, 0, 0, 0)
-							timer.SetFont = US.Noop
+							timer.SetFont = AS.Noop
 							timer.styled = true
 						end
 
@@ -163,14 +163,14 @@ function US:SkinDBM(event, addon)
 
 				if not bar.styled then
 					bar:SetHeight(buttonsize)
-					if US:CheckOption("DBMSkinHalf") then bar:SetHeight(buttonsize/3) end
-					US:SkinFrame(bar)
+					if AS:CheckOption("DBMSkinHalf") then bar:SetHeight(buttonsize/3) end
+					AS:SkinFrame(bar)
 					background:SetNormalTexture(nil)
 					bar.styled = true
 				end	
 
 				if not progress.styled then
-					progress:SetStatusBarTexture(US.NormTex)
+					progress:SetStatusBarTexture(AS.NormTex)
 					progress.styled = true
 				end				
 				progress:ClearAllPoints()
@@ -180,7 +180,7 @@ function US:SkinDBM(event, addon)
 				if not name.styled then
 					name:ClearAllPoints()
 					name:Point("LEFT", bar, "LEFT", 4, 0)
-					if US:CheckOption("DBMSkinHalf") then name:Point("BOTTOMLEFT", bar, "TOPLEFT", 1, 4) end
+					if AS:CheckOption("DBMSkinHalf") then name:Point("BOTTOMLEFT", bar, "TOPLEFT", 1, 4) end
 					name:SetFont(DBT_SavedOptions["DBM"].Font, 12, "OUTLINE")
 					name:SetJustifyH("LEFT")
 					name:SetShadowColor(0, 0, 0, 0)
@@ -190,7 +190,7 @@ function US:SkinDBM(event, addon)
 				if not timer.styled then
 					timer:ClearAllPoints()
 					timer:Point("RIGHT", bar, "RIGHT", -4, 0)
-					if US:CheckOption("DBMSkinHalf") then timer:Point("BOTTOMLEFT", bar, "TOPLEFT", 0, 2) end
+					if AS:CheckOption("DBMSkinHalf") then timer:Point("BOTTOMLEFT", bar, "TOPLEFT", 0, 2) end
 					timer:SetFont(DBT_SavedOptions["DBM"].Font, 12, "OUTLINE")
 					timer:SetJustifyH("RIGHT")
 					timer:SetShadowColor(0, 0, 0, 0)
@@ -208,15 +208,15 @@ function US:SkinDBM(event, addon)
 			DBM.RangeCheck:Show()
 			DBM.RangeCheck:Hide()
 			DBMRangeCheck:HookScript("OnShow",function(self)
-				US:SkinFrame(self)
+				AS:SkinFrame(self)
 			end)
-			US:SkinFrame(DBMRangeCheckRadar, false, true)
+			AS:SkinFrame(DBMRangeCheckRadar, false, true)
 		end
 		if DBM.InfoFrame then
 			DBM.InfoFrame:Show(5, "test")
 			DBM.InfoFrame:Hide()
 			DBMInfoFrame:HookScript("OnShow",function(self)
-				US:SkinFrame(self)
+				AS:SkinFrame(self)
 			end)
 		end
 		if croprwicons then
@@ -229,23 +229,23 @@ function US:SkinDBM(event, addon)
 			end
 		end
 		DBM_SavedOptions.Enabled = true
-		DBT_SavedOptions["DBM"].Texture = US.NormTex
-		DBT_SavedOptions["DBM"].Font = US.Font
+		DBT_SavedOptions["DBM"].Texture = AS.NormTex
+		DBT_SavedOptions["DBM"].Font = AS.Font
 	end
 
 	if addon == "DBM-GUI" then
 		DBM_GUI_OptionsFrame:HookScript("OnShow", function()
-			US:SkinFrame(DBM_GUI_OptionsFrame)
-			US:SkinFrame(DBM_GUI_OptionsFrameBossMods)
-			US:SkinFrame(DBM_GUI_OptionsFrameDBMOptions)
-			US:SkinFrame(DBM_GUI_OptionsFramePanelContainer)
+			AS:SkinFrame(DBM_GUI_OptionsFrame)
+			AS:SkinFrame(DBM_GUI_OptionsFrameBossMods)
+			AS:SkinFrame(DBM_GUI_OptionsFrameDBMOptions)
+			AS:SkinFrame(DBM_GUI_OptionsFramePanelContainer)
 		end)
-		US:SkinTab(DBM_GUI_OptionsFrameTab1)
-		US:SkinTab(DBM_GUI_OptionsFrameTab2)
-		US:SkinButton(DBM_GUI_OptionsFrameOkay, true)	
-		US:SkinScrollBar(DBM_GUI_OptionsFramePanelContainerFOVScrollBar)
-		US:UnregisterEvent(name, self, event)
+		AS:SkinTab(DBM_GUI_OptionsFrameTab1)
+		AS:SkinTab(DBM_GUI_OptionsFrameTab2)
+		AS:SkinButton(DBM_GUI_OptionsFrameOkay, true)	
+		AS:SkinScrollBar(DBM_GUI_OptionsFramePanelContainerFOVScrollBar)
+		AS:UnregisterEvent(name, self, event)
 	end
 end
 
-US:RegisterSkin(name, US.SkinDBM, "ADDON_LOADED")
+AS:RegisterSkin(name, AS.SkinDBM, "ADDON_LOADED")

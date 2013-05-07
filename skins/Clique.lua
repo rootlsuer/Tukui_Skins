@@ -1,8 +1,8 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "CliqueSkin"
-function US:SkinClique()
+function AS:SkinClique()
 	local Frames = {
 		"CliqueDialog",
 		"CliqueConfig",
@@ -12,7 +12,7 @@ function US:SkinClique()
 	}
 
 	for _, object in pairs(Frames) do
-		US:SkinBackdropFrame(_G[object], true)
+		AS:SkinBackdropFrame(_G[object], true)
 		if _G[object] == CliqueConfig then
 			_G[object].Backdrop:SetPoint("TOPLEFT",0,0)
 			_G[object].Backdrop:SetPoint("BOTTOMRIGHT",0,-5)
@@ -38,10 +38,10 @@ function US:SkinClique()
 	}
 
 	for _, object in pairs(CliqueButtons) do
-		US:SkinButton(_G[object], true)
+		AS:SkinButton(_G[object], true)
 	end
 
-	US:SkinCloseButton(CliqueDialog.CloseButton)
+	AS:SkinCloseButton(CliqueDialog.CloseButton)
 
 	local CliqueTabs = {
 		"CliqueConfigPage1Column1",
@@ -83,9 +83,9 @@ function US:SkinClique()
 	CliqueSpellTab:GetNormalTexture():SetTexCoord(.08, .92, .08, .92)
 	CliqueSpellTab:GetNormalTexture():ClearAllPoints()
 	CliqueSpellTab:GetNormalTexture():SetInside()
-	US:SkinBackdropFrame(CliqueSpellTab)
+	AS:SkinBackdropFrame(CliqueSpellTab)
 	CliqueSpellTab.Backdrop:SetAllPoints()
 	CliqueSpellTab:StyleButton(True)
 end
 
-US:RegisterSkin(name, US.SkinClique)
+AS:RegisterSkin(name, AS.SkinClique)

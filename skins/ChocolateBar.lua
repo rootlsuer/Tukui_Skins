@@ -1,8 +1,8 @@
 ﻿if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 -- FIX ME
 local name = "ChocolateBarSkin"
-function US:SkinChocolateBar()
+function AS:SkinChocolateBar()
 	if CBBar2and3Width == nil then
 		CBBar2and3Width = 125
 	end
@@ -12,7 +12,7 @@ function US:SkinChocolateBar()
 	for i = 1, 20 do   	
 	local f = _G["ChocolateBar"..i]
 		if f then
-			US:SkinFrame(f,"Default")
+			AS:SkinFrame(f,"Default")
 		end
 	end
 
@@ -24,10 +24,10 @@ function US:SkinChocolateBar()
 	CB_Skin_OptionsFrame:SetScript("OnDragStop", CB_Skin_OptionsFrame.StopMovingOrSizing)
 	CB_Skin_OptionsFrame:SetSize(250,250)
 	CB_Skin_OptionsFrame:SetPoint("CENTER", UIParent, "CENTER")
-	US:SkinFrame(CB_Skin_OptionsFrame)
+	AS:SkinFrame(CB_Skin_OptionsFrame)
 	CB_Skin_OptionsFrame:Hide()
 
-	CB_Skin_OptionsFrame:FontString("Title", US.Font, 17, nil)
+	CB_Skin_OptionsFrame:FontString("Title", AS.Font, 17, nil)
 	CB_Skin_OptionsFrame.Title:SetPoint("TOP", 0, -5)
 	CB_Skin_OptionsFrame.Title:SetText("ChocolateBar Skin Options")
 	CB_Skin_OptionsFrame.Title:SetTextColor(23/255, 132/255, 209/255)
@@ -46,15 +46,15 @@ function US:SkinChocolateBar()
 	CB_Skin_OptionsFrame.btn:SetPoint("RIGHT", CB_Skin_CancelButton, "LEFT", -10, 0)
 	CB_Skin_OptionsFrame.btn:SetScript("OnClick", function() ReloadUI() end)
 	
-	US:SkinButton(CB_Skin_OptionsFrame.btn)
-	US:SkinButton(CB_Skin_OptionsFrame.btn2)
+	AS:SkinButton(CB_Skin_OptionsFrame.btn)
+	AS:SkinButton(CB_Skin_OptionsFrame.btn2)
 
 	local EnableBars = CreateFrame("CheckButton", "cbskin_checkbox", CB_Skin_OptionsFrame, "OptionsBaseCheckButtonTemplate")
 	EnableBars:SetPoint("TOPLEFT", CB_Skin_OptionsFrame, "TOPLEFT", 16, -35)
-	EnableBars:FontString("Title", US.Font, 12, nil)
+	EnableBars:FontString("Title", AS.Font, 12, nil)
 	EnableBars.Title:SetPoint("LEFT", EnableBars, "RIGHT", 5, 0)
 	EnableBars.Title:SetText("Enable Bar 2 and Bar 3 at top")
-	US:SkinCheckBox(EnableBars)
+	AS:SkinCheckBox(EnableBars)
 	EnableBars:SetScript("OnClick" or "OnUpdate", function(frame)
 		if frame:GetChecked() then
 			if ChocolateBar2 and ChocolateBar3 then
@@ -85,7 +85,7 @@ function US:SkinChocolateBar()
 			ChocolateBar2:SetWidth(CBBar2and3Width)
 		end
 	end)
-	US:SkinSlideBar(CBBar2and3WidthSlider, 10, true)
+	AS:SkinSlideBar(CBBar2and3WidthSlider, 10, true)
 
 	CBBar2and3PositionSlider = CreateFrame("Slider", "CBBar2and3PositionSlider", CB_Skin_OptionsFrame, "OptionsSliderTemplate")
 	CBBar2and3PositionSlider:SetSize(200, 15)
@@ -106,7 +106,7 @@ function US:SkinChocolateBar()
 			ChocolateBar3:SetPoint("TOPLEFT", WorldFrame, "TOP", x, -y)
 		end
 	end)
-	US:SkinSlideBar(CBBar2and3PositionSlider, 10, true)
+	AS:SkinSlideBar(CBBar2and3PositionSlider, 10, true)
 
 	if CBEnableSpecialBars == true then
 		if ChocolateBar2 and ChocolateBar3 then
@@ -144,28 +144,28 @@ function US:SkinChocolateBar()
 			cbBar2Left:Point('BOTTOM', ChocolateBar2, 'TOP',-x,0)
 			cbBar2Left:Width(2)
 			cbBar2Left:Height(ChocolateBar2:GetHeight()/2)
-			US:SkinFrame(cbBar2Left,"Default")
+			AS:SkinFrame(cbBar2Left,"Default")
 			cbBar2Left:SetFrameLevel(ChocolateBar2:GetFrameLevel())
 
 			cbBar2Right = CreateFrame('Frame', nil, ChocolateBar2)
 			cbBar2Right:Point('BOTTOM', ChocolateBar2, 'TOP', x,0)
 			cbBar2Right:Width(2)
 			cbBar2Right:Height(ChocolateBar2:GetHeight()/2)
-			US:SkinFrame(cbBar2Right,"Default")
+			AS:SkinFrame(cbBar2Right,"Default")
 			cbBar2Right:SetFrameLevel(ChocolateBar2:GetFrameLevel())
 
 			cbBar3Left = CreateFrame('Frame', nil, ChocolateBar3)
 			cbBar3Left:Point('BOTTOM', ChocolateBar3, 'TOP',-x,0)
 			cbBar3Left:Width(2)
 			cbBar3Left:Height(ChocolateBar3:GetHeight()/2)
-			US:SkinFrame(cbBar3Left,"Default")
+			AS:SkinFrame(cbBar3Left,"Default")
 			cbBar3Left:SetFrameLevel(ChocolateBar3:GetFrameLevel())
 
 			cbBar3Right = CreateFrame('Frame', nil, ChocolateBar3)
 			cbBar3Right:Point('BOTTOM', ChocolateBar3, 'TOP', x,0)
 			cbBar3Right:Width(2)
 			cbBar3Right:Height(ChocolateBar3:GetHeight()/2)
-			US:SkinFrame(cbBar3Right,"Default")
+			AS:SkinFrame(cbBar3Right,"Default")
 			cbBar3Right:SetFrameLevel(ChocolateBar3:GetFrameLevel())
 		end
 	end
@@ -196,4 +196,4 @@ function US:SkinChocolateBar()
 	end
 end
 
-US:RegisterSkin(name, US.SkinChocolateBar)
+AS:RegisterSkin(name, AS.SkinChocolateBar)

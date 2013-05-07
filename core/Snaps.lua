@@ -1,5 +1,5 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local HolderFrames = {}
 local HolderUpdate = CreateFrame("Frame")
@@ -76,14 +76,14 @@ local OnDragStop = function(self)
 	Snap(self)
 end
 
-function US:SnapHolder(frame)
+function AS:SnapHolder(frame)
 	frame.MousedOver = false
 	frame.Holding = nil
 	tinsert(HolderFrames, frame)
 	HideHolders()
 end
 
-function US:SnapFrame(frame)
+function AS:SnapFrame(frame)
 	frame:SetMovable(true)
 	frame:EnableMouse(true)
 	frame:SetClampedToScreen(true)

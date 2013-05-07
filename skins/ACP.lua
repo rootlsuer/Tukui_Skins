@@ -1,8 +1,8 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "ACPSkin"
-function US:SkinACP()
+function AS:SkinACP()
 	local function cbResize(self, event, ...)
 		for i = 1, 20, 1 do
 			local checkbox = _G["ACP_AddonListEntry" .. i .. "Enabled"]
@@ -29,8 +29,8 @@ function US:SkinACP()
 		end
 	end
 
-	US:SkinFrame(ACP_AddonList)
-	US:SkinFrame(ACP_AddonList_ScrollFrame)
+	AS:SkinFrame(ACP_AddonList)
+	AS:SkinFrame(ACP_AddonList_ScrollFrame)
 
 	local buttons = {
 		"ACP_AddonListSetButton",
@@ -41,14 +41,14 @@ function US:SkinACP()
 	}
 
 	for _, button in pairs(buttons) do
-		US:SkinButton(_G[button])
+		AS:SkinButton(_G[button])
 	end	
 
 	for i = 1, 20 do
-		US:SkinButton(_G["ACP_AddonListEntry"..i.."LoadNow"])
+		AS:SkinButton(_G["ACP_AddonListEntry"..i.."LoadNow"])
 	end	
 
-	US:SkinCloseButton(ACP_AddonListCloseButton)
+	AS:SkinCloseButton(ACP_AddonListCloseButton)
 
 	for i = 1, 20, 1 do
 		local ACP_OnLoad = _G["ACP_AddonList"]
@@ -56,12 +56,12 @@ function US:SkinACP()
 	end
 
 	for i = 1, 20 do
-		US:SkinCheckBox(_G["ACP_AddonListEntry"..i.."Enabled"])
+		AS:SkinCheckBox(_G["ACP_AddonListEntry"..i.."Enabled"])
 	end
-	US:SkinCheckBox(ACP_AddonList_NoRecurse)
+	AS:SkinCheckBox(ACP_AddonList_NoRecurse)
 
-	US:SkinScrollBar(ACP_AddonList_ScrollFrameScrollBar)
-	US:SkinDropDownBox(ACP_AddonListSortDropDown)
+	AS:SkinScrollBar(ACP_AddonList_ScrollFrameScrollBar)
+	AS:SkinDropDownBox(ACP_AddonListSortDropDown)
 	ACP_AddonListSortDropDown:Width(130)
 	ACP_AddonList_ScrollFrame:SetWidth(590)
 	ACP_AddonList_ScrollFrame:SetHeight(412)
@@ -81,4 +81,4 @@ function US:SkinACP()
 	ACP_AddonList:SetParent(UIParent)
  end
 
- US:RegisterSkin(name, US.SkinACP)
+ AS:RegisterSkin(name, AS.SkinACP)

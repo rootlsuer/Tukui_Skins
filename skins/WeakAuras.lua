@@ -1,8 +1,8 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "WeakAurasSkin"
-function US:SkinWeakAuras()
+function AS:SkinWeakAuras()
 	local function Skin_WeakAuras(frame)
 		if not frame.Backdrop then
 			frame:CreateBackdrop('Default')
@@ -42,4 +42,4 @@ function US:SkinWeakAuras()
 	end
 end
 
-US:RegisterSkin(name, US.SkinWeakAuras)
+AS:RegisterSkin(name, AS.SkinWeakAuras)

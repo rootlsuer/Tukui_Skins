@@ -1,8 +1,8 @@
 ﻿if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "HealiumSkin"
-function US:SkinHealium()
+function AS:SkinHealium()
 	local captionFrames = {
 		"HealiumPartyFrame",
 		"HealiumPetFrame",
@@ -32,8 +32,8 @@ function US:SkinHealium()
 		local captionbar = self.CaptionBar
 		local captiontext = self.CaptionBar.Caption
 		local closebutton = self.CaptionBar.CloseButton
-		US:SkinFrame(captionbar, false, true)
-		US:SkinCloseButton(closebutton)
+		AS:SkinFrame(captionbar, false, true)
+		AS:SkinCloseButton(closebutton)
 		skinnedFrames[self:GetName()] = true
 	end
 
@@ -51,9 +51,9 @@ function US:SkinHealium()
 		local healthbar = self.HealthBar
 		local manabar = self.ManaBar
 		self:StripTextures()
-		US:SkinStatusBar(predictbar)
-		US:SkinStatusBar(healthbar)
-		US:SkinStatusBar(manabar)
+		AS:SkinStatusBar(predictbar)
+		AS:SkinStatusBar(healthbar)
+		AS:SkinStatusBar(manabar)
 		predictbar:SetHeight(24)
 		healthbar:SetHeight(24)
 		manabar:SetHeight(24)
@@ -70,7 +70,7 @@ function US:SkinHealium()
 		end
 		local icon = self.icon
 		local texture = icon:GetTexture()
-		US:SkinIconButton(self, true, true, true)
+		AS:SkinIconButton(self, true, true, true)
 		icon:SetTexture(texture)
 		icon:SetDrawLayer("OVERLAY")
 		icon:ClearAllPoints()
@@ -86,7 +86,7 @@ function US:SkinHealium()
 		local cooldown = self.cooldown
 		local count = self.count 
 		local border = self.border 
-		US:SkinIconButton(self, false, true, true)
+		AS:SkinIconButton(self, false, true, true)
 		self:SetSize(28,28)			
 		icon:SetDrawLayer("OVERLAY")
 		icon:ClearAllPoints()
@@ -133,4 +133,4 @@ function US:SkinHealium()
 	hooksecurefunc("HealiumUnitFrames_Button_OnLoad", skinUnitFrame)
 end
 
-US:RegisterSkin(name, US.SkinHealium)
+AS:RegisterSkin(name, AS.SkinHealium)

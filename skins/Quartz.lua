@@ -1,13 +1,13 @@
 ﻿if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "QuartzSkin"
-function US:SkinQuartz()
+function AS:SkinQuartz()
 	local Q3 = LibStub("AceAddon-3.0"):GetAddon("Quartz3")
 	SkinQuartzBar = function(self, bar)
 		if not self.IconBorder then
 			self.IconBorder = CreateFrame("Frame", nil, self)
-			US:SkinBackdropFrame(self.IconBorder)
+			AS:SkinBackdropFrame(self.IconBorder)
 			self.IconBorder:SetPoint("TOPLEFT",self.Icon, "TOPLEFT", 0, 0)
 			self.IconBorder:SetPoint("BOTTOMRIGHT", self.Icon, "BOTTOMRIGHT", 0, 0)
 		end
@@ -16,7 +16,7 @@ function US:SkinQuartz()
 		else
 			self.IconBorder:Show()
 		end
-		if not self.Bar.Backdrop then US:SkinBackdropFrame(self.Bar) end
+		if not self.Bar.Backdrop then AS:SkinBackdropFrame(self.Bar) end
 	end
 
 	local template = Q3.CastBarTemplate.template
@@ -52,4 +52,4 @@ function US:SkinQuartz()
 	Q3:ApplySettings()
 end
 
-US:RegisterSkin(name, US.SkinQuartz)
+AS:RegisterSkin(name, AS.SkinQuartz)

@@ -1,39 +1,39 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "CoolLineSkin"
-function US:SkinCoolLine()
+function AS:SkinCoolLine()
 	CoolLineDB.bgcolor = { r = 0, g = 0, b = 0, a = 0, }
 	CoolLineDB.border  = "None"
 	CoolLine.updatelook()
-	US:SkinBackdropFrame(CoolLine)
+	AS:SkinBackdropFrame(CoolLine)
 	CoolLine.Backdrop:SetAllPoints(CoolLine)
 	CoolLine.Backdrop:CreateShadow()
-	US:RegisterForPetBattleHide(CoolLine)
-	if US:CheckOption("EmbedCoolLine") then
+	AS:RegisterForPetBattleHide(CoolLine)
+	if AS:CheckOption("EmbedCoolLine") then
 
 		local function OnShow()
-			CoolLine:Point('BOTTOM', US.ActionBar4, 'TOP', 0, 1)
+			CoolLine:Point('BOTTOM', AS.ActionBar4, 'TOP', 0, 1)
 			CoolLine:SetHeight(ActionButton1:GetHeight())
-			CoolLine:SetWidth(US.ActionBar4:GetWidth())
+			CoolLine:SetWidth(AS.ActionBar4:GetWidth())
 		end
 
 		local function OnHide()
-			CoolLine:Point('BOTTOM', US.ActionBar1, 'TOP', 0, 1)
+			CoolLine:Point('BOTTOM', AS.ActionBar1, 'TOP', 0, 1)
 			CoolLine:SetHeight(ActionButton1:GetHeight())
-			CoolLine:SetWidth(US.ActionBar1:GetWidth())
+			CoolLine:SetWidth(AS.ActionBar1:GetWidth())
 		end
 
 		if not CoolLineDB.vertical then
-			if US.ActionBar4:IsShown() then
+			if AS.ActionBar4:IsShown() then
 				OnShow()
 			else
 				OnHide()
 			end
-			US.ActionBar4:HookScript("OnShow", OnShow)
-			US.ActionBar4:HookScript("OnHide", OnHide)
+			AS.ActionBar4:HookScript("OnShow", OnShow)
+			AS.ActionBar4:HookScript("OnHide", OnHide)
 		end
 	end
 end
 
-US:RegisterSkin(name, US.SkinCoolLine)
+AS:RegisterSkin(name, AS.SkinCoolLine)

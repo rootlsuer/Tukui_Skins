@@ -1,21 +1,21 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "AnalystSkin"
-function US:SkinAnalyst()
-	US:SkinFrame(EconomyFrame)
+function AS:SkinAnalyst()
+	AS:SkinFrame(EconomyFrame)
 	EconomyFrame:SetHeight(450)
 	EconomyFrame:SetWidth(364)
 	EconomyFrameTitleFrame:ClearAllPoints()
 	EconomyFrameTitleFrame:SetPoint("TOP", EconomyFrame, "TOP", 0, -5)
-	US:SkinCloseButton(EconomyFrameCloseButton)
-	US:SkinFrame(EconomyFrameTopStats)
-	US:SkinFrame(EconomyFrameLeftStats)
-	US:SkinFrame(EconomyFrameRightStats)
-	US:SkinDropDownBox(EconomyFramePeriodDropDown)
-	US:SkinDropDownBox(EconomyFrameLeftStatsReportDropDown)
-	US:SkinDropDownBox(EconomyFrameRightStatsReportDropDown)
-	US:SkinCheckBox(EconomyFrameAllCharacters)
+	AS:SkinCloseButton(EconomyFrameCloseButton)
+	AS:SkinFrame(EconomyFrameTopStats)
+	AS:SkinFrame(EconomyFrameLeftStats)
+	AS:SkinFrame(EconomyFrameRightStats)
+	AS:SkinDropDownBox(EconomyFramePeriodDropDown)
+	AS:SkinDropDownBox(EconomyFrameLeftStatsReportDropDown)
+	AS:SkinDropDownBox(EconomyFrameRightStatsReportDropDown)
+	AS:SkinCheckBox(EconomyFrameAllCharacters)
 end
 
-US:RegisterSkin(name, US.SkinAnalyst)
+AS:RegisterSkin(name, AS.SkinAnalyst)

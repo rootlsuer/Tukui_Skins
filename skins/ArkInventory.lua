@@ -1,8 +1,8 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "ArkInventorySkin"
-function US:SkinArkInventory()
+function AS:SkinArkInventory()
 	local ArkInventory = LibStub("AceAddon-3.0"):GetAddon("ArkInventory")
 	ArkInventory.Frame_Main_Paint_ = ArkInventory.Frame_Main_Paint
 	ArkInventory.Frame_Main_Paint = function(frame)
@@ -14,7 +14,7 @@ function US:SkinArkInventory()
 				if _G[name.."ArkBorder"] then _G[name.."ArkBorder"]:Hide() end
 				if _G[name.."Background"] then _G[name.."Background"]:Hide() end
 			end
-			US:SkinFrame(subframe)
+			AS:SkinFrame(subframe)
 		end
 	end
 
@@ -52,13 +52,13 @@ function US:SkinArkInventory()
 		ARKINV_Frame4ChangerWindowPurchaseInfo:ClearAllPoints()
 		ARKINV_Frame4ChangerWindowPurchaseInfo:SetPoint("TOP", ARKINV_Frame4ChangerWindowGoldAvailable, "BOTTOM", 0, -12)
 		_G[status:GetName().."EmptyText"]:SetPoint("LEFT",2,0)
-		_G[status:GetName().."EmptyText"]:SetFont(US.Font, 12)
+		_G[status:GetName().."EmptyText"]:SetFont(AS.Font, 12)
 		_G[status:GetName().."GoldCopperButton"]:SetPoint("RIGHT",-1,0)
-		_G[status:GetName().."GoldCopperButtonText"]:SetFont(US.Font, 12)
+		_G[status:GetName().."GoldCopperButtonText"]:SetFont(AS.Font, 12)
 		_G[status:GetName().."GoldSilverButton"]:SetPoint("RIGHT",_G[status:GetName().."GoldCopperButtonText"],"LEFT",-1,0)
-		_G[status:GetName().."GoldSilverButtonText"]:SetFont(US.Font, 12)
+		_G[status:GetName().."GoldSilverButtonText"]:SetFont(AS.Font, 12)
 		_G[status:GetName().."GoldGoldButton"]:SetPoint("RIGHT",_G[status:GetName().."GoldSilverButtonText"],"LEFT",-1,0)
-		_G[status:GetName().."GoldGoldButtonText"]:SetFont(US.Font, 12)
+		_G[status:GetName().."GoldGoldButtonText"]:SetFont(AS.Font, 12)
 	end
 
 	ArkInventory.Frame_Bar_Paint_ = ArkInventory.Frame_Bar_Paint
@@ -69,7 +69,7 @@ function US:SkinArkInventory()
 		local name = bar:GetName()
 		if _G[name.."ArkBorder"] then _G[name.."ArkBorder"]:Hide() end
 		if _G[name.."Background"] then _G[name.."Background"]:Hide() end
-		US:SkinFrame(bar)
+		AS:SkinFrame(bar)
 
 		if ArkInventory.Global.Mode.Edit then
 			bar:SetBackdropBorderColor(1,0,0,1)
@@ -99,9 +99,9 @@ function US:SkinArkInventory()
 		obj:Hide()
 		if _G[frame:GetName()] == ARKINV_Frame1ChangerWindowBag1 then ARKINV_Frame1ChangerWindowBag1IconTexture:SetTexture("interface\\icons\\inv_misc_bag_07_green") end
 		if _G[frame:GetName().."Background"] then _G[frame:GetName().."Background"]:Hide() end
-		US:SkinIconButton(frame, true, false, true)
+		AS:SkinIconButton(frame, true, false, true)
 		frame.Backdrop:SetBackdropBorderColor(r,g,b,a)
 	end
 end
 
-US:RegisterSkin(name, US.SkinArkInventory)
+AS:RegisterSkin(name, AS.SkinArkInventory)

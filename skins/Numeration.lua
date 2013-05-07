@@ -1,9 +1,9 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "NumerationSkin"
-function US:SkinNumeration()
-	US:SkinFrame(NumerationFrame)
+function AS:SkinNumeration()
+	AS:SkinFrame(NumerationFrame)
 end
 
-US:RegisterSkin(name, US.SkinNumeration)
+AS:RegisterSkin(name, AS.SkinNumeration)

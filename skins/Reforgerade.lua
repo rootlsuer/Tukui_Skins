@@ -1,16 +1,16 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
-local US = unpack(select(2,...))
+local AS = unpack(select(2,...))
 
 local name = "ReforgeradeSkin"
-function US:SkinReforgerade()
-	US:SkinFrame(ReforgeradeInputFrame.frame)
-	US:SkinButton(ReforgeCompareButton)
-	US:SkinButton(ReforgeItButton)
-	US:SkinCloseButton(ReforgeradeCloseButton)
-	US:SkinScrollBar(ExportScrollScrollBar)
+function AS:SkinReforgerade()
+	AS:SkinFrame(ReforgeradeInputFrame.frame)
+	AS:SkinButton(ReforgeCompareButton)
+	AS:SkinButton(ReforgeItButton)
+	AS:SkinCloseButton(ReforgeradeCloseButton)
+	AS:SkinScrollBar(ExportScrollScrollBar)
 	ExportScroll:CreateBackdrop()
 	ExportScrollScrollBar:SetPoint("TOPLEFT", ExportScroll, "TOPRIGHT", 4, -15)
-	US:SkinTooltip(ReforgeradeTooltip)
+	AS:SkinTooltip(ReforgeradeTooltip)
 end
 
-US:RegisterSkin(name, US.SkinReforgerade)
+AS:RegisterSkin(name, AS.SkinReforgerade)
