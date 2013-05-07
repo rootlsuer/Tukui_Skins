@@ -242,7 +242,7 @@ EmbeddingWindow:SetScript("OnEvent", function(self, event)
 			if ChatFrame4Hide then ChatFrame4Tab:Show() end
 			if EmbedOoCCombatEnd then return end
 			EmbedOoCCombatEnd = true
-			US:Delay(8, function()
+			US:Delay(10, function()
 				if not EmbedOoCCombatStart then
 					EmbeddingWindow:Hide()
 					EmbeddingWindowLeft:Hide()
