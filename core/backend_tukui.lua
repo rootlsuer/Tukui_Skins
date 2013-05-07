@@ -44,7 +44,7 @@ XS.Init = function(self)
 			if US:CheckOption(skin) and XS.events[event] and XS.events[event][skin] then
 				for func, _ in pairs(funcs) do
 					local args = {}
-					for i = 1, ('#',...) do
+					for i = 1, select('#',...) do
 						local arg = select(i, ...)
 						if not arg then break end
 						tinsert(args, arg)
