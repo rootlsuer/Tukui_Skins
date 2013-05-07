@@ -247,7 +247,7 @@ EmbeddingWindow:SetScript("OnEvent", function(self, event)
 					EmbeddingWindow:Hide()
 					EmbeddingWindowLeft:Hide()
 				end
-				CombatEnd = false
+				EmbedOoCCombatEnd = false
 			end)
 		end
 	end
