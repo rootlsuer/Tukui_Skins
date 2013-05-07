@@ -267,11 +267,11 @@ local function CreateToggleButton(name, buttontext, panel1, panel2, tooltiptext1
 	frame:FontString("text", US.ActionBarFont, 12)
 	frame.text:SetText(buttontext)
 	frame.text:SetPoint("CENTER", 0, 0)
-	frame:RegisterForClicks("LeftButtonDown", "RightButtonDown");
+	frame:RegisterForClicks("LeftButtonDown", "RightButtonDown")
 	UIFrameFadeOut(frame, 0.2, frame:GetAlpha(), 0)
 	frame:SetScript("OnClick", function(self, btn)
 		if btn == 'LeftButton' then
-			if (IsAddOnLoaded("Tukui_ChatTweaks") and ChatTweaksOptions["ChatHider"] == "Enabled") then
+			if IsAddOnLoaded("Tukui_ChatTweaks") and ChatTweaksOptions["ChatHider"] then
 				if panel2 then
 					if self.Faded then
 						self.Faded = nil
@@ -295,14 +295,15 @@ local function CreateToggleButton(name, buttontext, panel1, panel2, tooltiptext1
 			UIFrameFadeIn(panel2, 0.2, panel2:GetAlpha(), 1)
 			if name == "LeftToggleButton" then UIFrameFadeIn(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 1) end
 		end
-		GameTooltip:SetOwner(self, 'ANCHOR_TOPLEFT', 0, 4)
+		GameTooltip:SetOwner(self, name == "LeftToggleButton" and "ANCHOR_TOPLEFT" or "ANCHOR_TOPRIGHT", 0, 4)
 		GameTooltip:ClearLines()
-		if IsAddOnLoaded("Tukui_ChatTweaks") and ChatTweaksOptions["ChatHider"] == "Enabled" then
+		if IsAddOnLoaded("Tukui_ChatTweaks") and ChatTweaksOptions["ChatHider"] then
 			if US.ChatBackgroundRight then
 				GameTooltip:AddDoubleLine("Left Click:", tooltiptext1, 1, 1, 1)
 			end
 		end
 		GameTooltip:AddDoubleLine("Right Click:", tooltiptext2, 1, 1, 1)
+		GameTooltip:Show()
 	end)
 	frame:SetScript("OnLeave", function(self, ...)
 		UIFrameFadeOut(self, 0.2, self:GetAlpha(), 0)
@@ -311,6 +312,7 @@ local function CreateToggleButton(name, buttontext, panel1, panel2, tooltiptext1
 			UIFrameFadeOut(panel2, 0.2, panel2:GetAlpha(), 0)
 			if name == "LeftToggleButton" then UIFrameFadeOut(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 0) end
 		end
+		GameTooltip:Hide()
 	end)
 end
 
