@@ -352,6 +352,7 @@ LeftToggleButton:HookScript("OnClick", function(self, btn)
 				SkinOptions:Show()
 			end
 		else
+			Enhanced_Config[1]:ToggleConfig()
 		end
 	end
 end)

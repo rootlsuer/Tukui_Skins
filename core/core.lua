@@ -1,6 +1,6 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local AS = unpack(select(2,...))
-local debug = true
+local debug = false
 
 function AS:Round(num, idp)
 	local mult = 10^(idp or 0)
@@ -96,7 +96,7 @@ function AS:SkinFrame(frame, template, overridestrip)
 end
 
 function AS:SkinBackdropFrame(frame, strip, icon)
-	if (not debug) then
+	if not debug then
 		if frame == nil then return end
 	end
 	if strip then frame:StripTextures(true) end
@@ -213,21 +213,24 @@ function AS:ToggleOption(optionName)
 end
 
 function AS:RegisterSkin(skinName,skinFunc,...)
-	local XS = AS.x
 	local events = {}
+	local priority = 1
 	for i = 1,select('#',...) do
 		local event = select(i,...)
 		if not event then break end
-		events[event] = true
+		if type(event) == 'number' then
+			priority = event
+		else
+			events[event] = true
+		end
 	end
-	local registerMe = { func = skinFunc, events = events }
-	if not XS.register[skinName] then XS.register[skinName] = {} end
-	XS.register[skinName][skinFunc] = registerMe
+	local registerMe = { func = skinFunc, events = events, priority = priority }
+	if not AS.register[skinName] then AS.register[skinName] = {} end
+	AS.register[skinName][skinFunc] = registerMe
 end
 
 function AS:UnregisterEvent(skinName,frame,event)
-	local XS = AS.x
-	XS:UnregisterEvent(skinName,event)
+	AS:EventUnregister(skinName,event)
 end
 
 function AS:AddNonPetBattleFrames()
