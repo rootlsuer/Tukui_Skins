@@ -73,7 +73,7 @@ function AS:SkinRegistered(skinName, priority, func, events)
     end
 end
 
-function AS:EventUnregister(skinName, event)
+function AS:UnregisterEvent(skinName, event)
 	if not self.events[event] then return end
 	if not self.events[event][skinName] then return end
 	self.events[event][skinName] = nil

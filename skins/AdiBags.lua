@@ -23,7 +23,7 @@ function AS:SkinAdiBags(event)
 		end
 	elseif event == "BANKFRAME_OPENED" then
 		SkinFrame(AdiBagsContainer2)
-		AS:UnregisterEvent(name, self, event)
+		AS:UnregisterEvent(name, event)
 	end
 end
 

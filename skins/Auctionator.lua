@@ -183,7 +183,7 @@ function AS:SkinAuctionator(event)
 		AS:SkinTab(_G["AuctionFrameTab"..i])
 	end
 	AuctionFrameTab1:Point("TOPLEFT", AuctionFrame, "BOTTOMLEFT", 5, 2)
-	AS:UnregisterEvent(name, self, event)
+	AS:UnregisterEvent(name, event)
 end
 
 AS:RegisterSkin(name, AS.SkinAuctionator, 'AUCTION_HOASE_SHOW')

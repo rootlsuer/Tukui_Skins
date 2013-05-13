@@ -13,7 +13,7 @@ function AS:SkinInboxMailBag(event)
 		if not name then return end
 		AS:SkinIconButton(name, true, true)
 	end
-	AS:UnregisterEvent(name, self, event)
+	AS:UnregisterEvent(name, event)
 end
 
 AS:RegisterSkin(name, AS.SkinInboxMailBag, "MAIL_SHOW")

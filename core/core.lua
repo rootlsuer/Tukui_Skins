@@ -229,10 +229,6 @@ function AS:RegisterSkin(skinName,skinFunc,...)
 	AS.register[skinName][skinFunc] = registerMe
 end
 
-function AS:UnregisterEvent(skinName,frame,event)
-	AS:EventUnregister(skinName,event)
-end
-
 function AS:AddNonPetBattleFrames()
 	for frame,data in pairs(AS.FrameLocks) do
 		if data.shown then

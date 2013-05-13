@@ -204,20 +204,16 @@ function AS:SkinDBM(event, addon)
 		hooksecurefunc(DBM.BossHealth, "Show", SkinBossTitle)
 		hooksecurefunc(DBM.BossHealth, "AddBoss", SkinBoss)
 		hooksecurefunc(DBM.BossHealth, "UpdateSettings", SkinBoss)
-		if DBM.RangeCheck then
+		if not DBM_SavedOptions["DontShowRangeFrame"] then
 			DBM.RangeCheck:Show()
 			DBM.RangeCheck:Hide()
-			DBMRangeCheck:HookScript("OnShow",function(self)
-				AS:SkinFrame(self)
-			end)
-			AS:SkinFrame(DBMRangeCheckRadar, false, true)
+			DBMRangeCheck:HookScript("OnShow",function(self) self:SetTemplate("Transparent") end)
+			DBMRangeCheckRadar:SetTemplate("Transparent")
 		end
-		if DBM.InfoFrame then
+		if not DBM_SavedOptions["DontShowInfoFrame"] then
 			DBM.InfoFrame:Show(5, "test")
 			DBM.InfoFrame:Hide()
-			DBMInfoFrame:HookScript("OnShow",function(self)
-				AS:SkinFrame(self)
-			end)
+			DBMInfoFrame:HookScript("OnShow",function(self) self:SetTemplate("Transparent") end)
 		end
 		if croprwicons then
 			local RaidNotice_AddMessage_ = RaidNotice_AddMessage
@@ -244,7 +240,7 @@ function AS:SkinDBM(event, addon)
 		AS:SkinTab(DBM_GUI_OptionsFrameTab2)
 		AS:SkinButton(DBM_GUI_OptionsFrameOkay, true)	
 		AS:SkinScrollBar(DBM_GUI_OptionsFramePanelContainerFOVScrollBar)
-		AS:UnregisterEvent(name, self, event)
+		AS:UnregisterEvent(name, event)
 	end
 end
 

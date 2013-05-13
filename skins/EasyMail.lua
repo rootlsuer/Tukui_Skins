@@ -38,7 +38,7 @@ function AS:SkinEasyMail(event)
 			t:Point("TOPRIGHT", -10, -4)
 		end				
 	end
-	AS:UnregisterEvent(name, self, event)
+	AS:UnregisterEvent(name, event)
 end
 
 AS:RegisterSkin(name, AS.SkinEasyMail, "MAIL_SHOW")

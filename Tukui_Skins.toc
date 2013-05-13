@@ -2,7 +2,7 @@
 ## Title: |cFFC495DDTukui|r |cFFFFFFFFSkins|r
 ## Version: 1.32
 ## Author: Azilroka, Sortokk, and others see Credits.txt
-## OptionalDeps: AsphyxiaUI, DuffedUI, Skada, Tukui, Tukui_ChatTweaks
+## OptionalDeps: AsphyxiaUI, DuffedUI, Tukui, Tukui_ChatTweaks
 ## SavedVariables: UISkinOptions, CBEnableSpecialBars, CBBar2and3Width, CBBar2and3Position, CBShowButtonPosition, TPEnableSpecialBars, TPBar2and3Width, TPBar2and3Position, TPShowButtonPosition
 ## X-Tukui-ProjectID: 127
 ## X-Tukui-ProjectFolders: Tukui_Skins

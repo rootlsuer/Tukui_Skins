@@ -118,20 +118,13 @@ function AS:LegacyOptions()
 		frame.text:SetPoint("LEFT", frame, "RIGHT", 10, 0)
 		frame.text:SetText(btntext)
 		frame:SetScript("OnShow", function(self)
-			if AS:CheckOption(name) then
-				self:SetBackdropColor(0.11,0.66,0.11,1)
-			else
-				self:SetBackdropColor(0.68,0.14,0.14,1)
-			end
+			local r, g, b = AS:CheckOption(name) and .11, .66, .11 or .68, .14, .14
+			self:SetBackdropColor(r, g, b)
 		end)
 		frame:SetScript("OnClick", function(self)
-			if AS:CheckOption(name) then
-				AS:DisableOption(name)
-				self:SetBackdropColor(0.68,0.14,0.14,1)
-			else
-				AS:EnableOption(name)
-				self:SetBackdropColor(0.11,0.66,0.11,1)
-			end
+			local r, g, b = AS:CheckOption(name) and .11, .66, .11 or .68, .14, .14
+			self:SetBackdropColor(r, g, b)
+			UISkinOptions[name] = not UISkinOptions[name]
 		end)
 	end
 
@@ -184,20 +177,13 @@ function AS:LegacyOptions()
 		button.text:SetPoint("LEFT", button, "RIGHT", 10, 0)
 		button.text:SetText(buttonText)
 		button:SetScript("OnShow", function(self)
-			if AS:CheckOption(option) then
-				self:SetBackdropColor(.6, 0, .86)
-			else
-				self:SetBackdropColor(.68, .14, .14)
-			end
+			local r, g, b = AS:CheckOption(option) and .6, 0, .86 or .68, .14, .14
+			self:SetBackdropColor(r, g, b)
 		end)
 		button:SetScript("OnClick", function(self)
-			if UISkinOptions[option] then
-				AS:DisableOption(option)
-				self:SetBackdropColor(.68, .14, .14)
-			else
-				AS:EnableOption(option)
-				self:SetBackdropColor(.6, 0, .86)
-			end
+			local r, g, b = AS:CheckOption(option) and .6, 0, .86 or .68, .14, .14
+			self:SetBackdropColor(r, g, b)
+			UISkinOptions[option] = not UISkinOptions[option]
 		end)
 	end
 
