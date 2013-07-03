@@ -1,6 +1,5 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local AS = unpack(select(2,...))
-local debug = false
 
 function AS:Round(num, idp)
 	local mult = 10^(idp or 0)
@@ -8,75 +7,45 @@ function AS:Round(num, idp)
 end
 
 function AS:SkinButton(frame, strip)
-	if not debug then
-		if frame == nil then return end
-	end
 	frame:SkinButton(strip)
 end
 
 function AS:SkinScrollBar(frame)
-	if not debug then
-		if frame == nil then return end
-	end
 	frame:SkinScrollBar()
 end
 
 function AS:SkinTab(frame, strip)
-	if not debug then
-		if frame == nil then return end
-	end
 	if strip then frame:StripTextures(true) end
 	frame:SkinTab()
 end
 
 function AS:SkinNextPrevButton(frame, horizonal)
-	if not debug then
-		if frame == nil then return end
-	end
 	frame:SkinNextPrevButton(horizonal)
 end
 
 function AS:SkinRotateButton(frame)
-	if not debug then
-		if frame == nil then return end
-	end
 	frame:SkinRotateButton()
 end
 
 function AS:SkinEditBox(frame, width, height)
-	if not debug then
-		if frame == nil then return end
-	end
 	frame:SkinEditBox()
 	if width then frame:SetWidth(width) end
 	if height then frame:SetHeight(height) end
 end
 
 function AS:SkinDropDownBox(frame, width)
-	if not debug then
-		if frame == nil then return end
-	end
 	frame:SkinDropDownBox(width)
 end
 
 function AS:SkinCheckBox(frame)
-	if not debug then
-		if frame == nil then return end
-	end
 	frame:SkinCheckBox()
 end
 
-function AS:SkinCloseButton(frame)
-	if not debug then
-		if frame == nil then return end
-	end
-	frame:SkinCloseButton()
+function AS:SkinCloseButton(frame, point)
+	frame:SkinCloseButton(point)
 end
 
 function AS:SkinSlideBar(frame, height, movetext)
-	if not debug then
-		if frame == nil then return end
-	end
 	frame:SkinSlideBar(height, movetext)
 end
 
@@ -87,18 +56,12 @@ function AS:RegisterForPetBattleHide(frame)
 end
 
 function AS:SkinFrame(frame, template, overridestrip)
-	if not debug then
-		if frame == nil then return end
-	end
 	if not template then template = "Transparent" end
 	if not overridestrip then frame:StripTextures(true) end
 	frame:SetTemplate(template)
 end
 
 function AS:SkinBackdropFrame(frame, strip, icon)
-	if not debug then
-		if frame == nil then return end
-	end
 	if strip then frame:StripTextures(true) end
 	if not icon then
 		frame:CreateBackdrop()
@@ -109,9 +72,6 @@ function AS:SkinBackdropFrame(frame, strip, icon)
 end
 
 function AS:SkinStatusBar(frame, ClassColor)
-	if not debug then
-		if frame == nil then return end
-	end
 	AS:SkinBackdropFrame(frame, true)
 	frame:SetStatusBarTexture(AS.NormTex)
 	if ClassColor then
@@ -121,9 +81,6 @@ function AS:SkinStatusBar(frame, ClassColor)
 end
 
 function AS:SkinTooltip(tooltip, scale)
-	if not debug then
-		if tooltip == nil then return end
-	end
 	tooltip:HookScript("OnShow", function(frame)
 		frame:SetTemplate("Transparent")
 		if scale then frame:SetScale(AS.UIScale) end
@@ -131,16 +88,10 @@ function AS:SkinTooltip(tooltip, scale)
 end
 
 function AS:SkinTexture(frame)
-	if not debug then
-		if frame == nil then return end
-	end
 	frame:SetTexCoord(0.12, 0.88, 0.12, 0.88)
 end
 
 function AS:SkinIconButton(frame, strip, style, shrinkIcon)
-	if not debug then
-		if frame == nil then return end
-	end
 	if frame.isSkinned then return end
 
 	if strip then frame:StripTextures() end
@@ -169,9 +120,6 @@ function AS:SkinIconButton(frame, strip, style, shrinkIcon)
 end
 
 function AS:Desaturate(frame, point)
-	if not debug then
-		if frame == nil then return end
-	end
 	for i = 1, frame:GetNumRegions() do
 		local region = select(i, frame:GetRegions())
 		if region:GetObjectType() == "Texture" then

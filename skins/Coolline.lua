@@ -7,8 +7,8 @@ function AS:SkinCoolLine()
 	CoolLineDB.border  = "None"
 	CoolLine.updatelook()
 	AS:SkinBackdropFrame(CoolLine)
-	CoolLine.Backdrop:SetAllPoints(CoolLine)
-	CoolLine.Backdrop:CreateShadow()
+	CoolLine.backdrop:SetAllPoints(CoolLine)
+	CoolLine.backdrop:CreateShadow()
 	AS:RegisterForPetBattleHide(CoolLine)
 	if AS:CheckOption("EmbedCoolLine") then
 

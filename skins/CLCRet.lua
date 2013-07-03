@@ -29,7 +29,7 @@ function AS:SkinCLCRet()
 			button:CreateBackdrop("Default")
 		end
 
-		button.Backdrop:SetAllPoints()
+		button.backdrop:SetAllPoints()
 		button:EnableMouse(false)
 		button:Size(size)
 		button.texture = button:CreateTexture("$parentIcon", "OVERLAY")
@@ -42,9 +42,9 @@ function AS:SkinCLCRet()
 		button.texture.SetTexture = function(frame, tex, ...)
 			button.texture.OldSetTexture(frame, tex, ...)
 			if tex ~= nil then
-				button.Backdrop:Show();
+				button.backdrop:Show();
 			else
-				button.Backdrop:Hide()
+				button.backdrop:Hide()
 			end
 		end
 
