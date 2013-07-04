@@ -211,9 +211,9 @@ function AS:EmbedWindowResize()
 			EmbeddingWindowLeft:SetInside(AS.ChatBackgroundLeft, 5, 5)
 		else
 			EmbeddingWindow:SetPoint("TOP", AS.ChatBackgroundRight, "TOP", 0, -5)
-			EmbeddingWindow:Size(U.InfoRight:GetWidth(), AS.ChatBackgroundRight:GetHeight() - 34)
+			EmbeddingWindow:Size(AS.InfoRight:GetWidth(), AS.ChatBackgroundRight:GetHeight() - 34)
 			EmbeddingWindowLeft:SetPoint("TOP", AS.ChatBackgroundLeft, "TOP", 0, -5)
-			EmbeddingWindowLeft:Size(U.InfoLeft:GetWidth(), AS.ChatBackgroundLeft:GetHeight() - 34)
+			EmbeddingWindowLeft:Size(AS.InfoLeft:GetWidth(), AS.ChatBackgroundLeft:GetHeight() - 34)
 		end
 	end
 	AS:EmbedCheck()
