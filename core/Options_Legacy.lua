@@ -78,7 +78,7 @@ function AS:LegacyOptions()
 		AS:DisableOption("EmbedSkada")
 		AS:EnableOption("Embed"..UISkinOptions["EmbedRight"])
 		AS:EnableOption("Embed"..UISkinOptions["EmbedLeft"])
-		EmbedCheck()
+		AS:EmbedCheck()
 	end
 
 	local function CreateEmbedEditBox(name, boxtext)
@@ -110,21 +110,27 @@ function AS:LegacyOptions()
 	EmbedLeftEditBox:SetPoint("TOPLEFT", 12, -100)
 
 	local function CreateEmbedButton(name, btntext)
-		local frame = CreateFrame("Button", name.."Button", SkinOptions3)
-		frame:Size(16)
-		AS:SkinBackdropFrame(frame)
-		frame:SetBackdrop({bgFile = AS.NormTex, edgeFile = nil, tile = false, tileSize = 0, edgeSize = 0})
-		frame:FontString("text", AS.Font, 12, "OUTLINE")
-		frame.text:SetPoint("LEFT", frame, "RIGHT", 10, 0)
-		frame.text:SetText(btntext)
-		frame:SetScript("OnShow", function(self)
-			local r, g, b = AS:CheckOption(name) and .11, .66, .11 or .68, .14, .14
+		local button = CreateFrame("Button", name.."Button", SkinOptions3)
+		button:Size(16)
+		AS:SkinBackdropFrame(button)
+		button:SetBackdrop({bgFile = AS.NormTex, edgeFile = nil, tile = false, tileSize = 0, edgeSize = 0})
+		button:FontString("text", AS.Font, 12, "OUTLINE")
+		button.text:SetPoint("LEFT", button, "RIGHT", 10, 0)
+		button.text:SetText(btntext)
+		button:SetScript("OnShow", function(self)
+			local r, g, b = .68, .14, .14
+			if AS:CheckOption(name) then
+				r, g, b = .6, 0, .86
+			end
 			self:SetBackdropColor(r, g, b)
 		end)
-		frame:SetScript("OnClick", function(self)
-			local r, g, b = AS:CheckOption(name) and .11, .66, .11 or .68, .14, .14
+		button:SetScript("OnClick", function(self)
+			local r, g, b = .68, .14, .14
+			AS:ToggleOption(name)
+			if AS:CheckOption(name) then
+				r, g, b = .6, 0, .86
+			end
 			self:SetBackdropColor(r, g, b)
-			UISkinOptions[name] = not UISkinOptions[name]
 		end)
 	end
 
@@ -135,13 +141,13 @@ function AS:LegacyOptions()
 	EmbedSexyCooldownButton:SetPoint("TOP", -68, -50)
 
 	CreateEmbedButton("EmbedCoolLine", "Embed CoolLine")
-	EmbedCoolLineButton:SetPoint("TOP", -68, -100)
+	EmbedCoolLineButton:SetPoint("TOP", -68, -75)
 
 	CreateEmbedButton("SkadaTwoThirds", "Skada 1/3 | 2/3")
-	SkadaTwoThirdsButton:SetPoint("TOP", -68, -150)
+	SkadaTwoThirdsButton:SetPoint("TOP", -68, -100)
 
 	CreateEmbedButton("SkadaBelowTop", "Skada Below Top Chat Tabs")
-	SkadaBelowTopButton:SetPoint("TOP", -68, -200)
+	SkadaBelowTopButton:SetPoint("TOP", -68, -125)
 
 	local SkinsGameMenuButton = CreateFrame("Button", "SkinsGameMenuButton", GameMenuFrame, "GameMenuButtonTemplate")
 	SkinsGameMenuButton:Point("TOP", GameMenuButtonMacros, "BOTTOM", 0 , -1)
@@ -177,13 +183,19 @@ function AS:LegacyOptions()
 		button.text:SetPoint("LEFT", button, "RIGHT", 10, 0)
 		button.text:SetText(buttonText)
 		button:SetScript("OnShow", function(self)
-			local r, g, b = AS:CheckOption(option) and .6, 0, .86 or .68, .14, .14
+			local r, g, b = .68, .14, .14
+			if AS:CheckOption(option) then
+				r, g, b = .11, .66, .11
+			end
 			self:SetBackdropColor(r, g, b)
 		end)
 		button:SetScript("OnClick", function(self)
-			local r, g, b = AS:CheckOption(option) and .6, 0, .86 or .68, .14, .14
+			local r, g, b = .68, .14, .14
+			AS:ToggleOption(option)
+			if AS:CheckOption(option) then
+				r, g, b = .11, .66, .11
+			end
 			self:SetBackdropColor(r, g, b)
-			UISkinOptions[option] = not UISkinOptions[option]
 		end)
 	end
 
