@@ -315,6 +315,22 @@ local function SkinSlideBar(frame, height, movetext)
 	end
 end
 
+local function FontString(parent, name, fontName, fontHeight, fontStyle)
+	local fs = parent:CreateFontString(nil, "OVERLAY")
+	fs:SetFont(fontName, fontHeight, fontStyle)
+	fs:SetJustifyH("LEFT")
+	fs:SetShadowColor(0, 0, 0)
+	fs:SetShadowOffset(Mult, -Mult)
+
+	if not name then
+		parent.Text = fs
+	else
+		parent[name] = fs
+	end
+
+	return fs
+end
+
 local function addapi(object)
 	local mt = getmetatable(object).__index
 	if not object.SkinButton then mt.SkinButton = SkinButton end
@@ -329,6 +345,7 @@ local function addapi(object)
 	if not object.SkinCloseButton then mt.SkinCloseButton = SkinCloseButton end
 	if not object.SkinSlideBar then mt.SkinSlideBar = SkinSlideBar end
 	if not object.Kill then mt.Kill = Kill end
+	if not object.FontString then mt.FontString = FontString end
 end
 
 local handled = {["Frame"] = true}
