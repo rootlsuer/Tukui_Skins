@@ -61,9 +61,9 @@ function AS:CallSkin(skin, func, event, ...)
 	end
 	local Pass, Error = pcall(func, self, event, unpack(args))
 	if not Pass then
-		local message = "%s: |cFFFF0000There was an error in the|r |cFF0AFFFF%s|r |cFFFF0000skin|r. Please report this to the Azilroka immediately @ http://www.tukui.org/tickets/tukuiskins"
+		local message = "%s: |cFFFF0000There was an error in the|r |cFF0AFFFF%s|r |cFFFF0000skin|r. Please report this to Azilroka immediately @ http://www.tukui.org/tickets/tukuiskins"
 		DEFAULT_CHAT_FRAME:AddMessage(format(message, AS.Title, gsub(skin, "Skin", "")))
-		DEFAULT_CHAT_FRAME:AddMessage(AS.Title, "Error Message: ", Error)
+		DEFAULT_CHAT_FRAME:AddMessage(AS.Title.." Error Message: "..Error)
 	end
 end
 

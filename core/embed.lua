@@ -100,7 +100,7 @@ function AS:EmbedOmen()
 		OmenBarList:SetParent(EmbeddingWindow)
 	end
 	OmenBarList:SetFrameLevel(10)
-	EmbedOmenResize()
+	AS:EmbedOmenResize()
 end
 
 function AS:EmbedOmenResize()
@@ -125,7 +125,7 @@ function AS:EmbedTDPS()
 		tdpsFrame:SetParent(EmbeddingWindow)
 		tdpsAnchor:Point("TOPLEFT", EmbeddingWindow, "TOPLEFT", 0, 0)
 	end
-	EmbedTDPSResize()
+	AS:EmbedTDPSResize()
 	tdpsRefresh()
 end
 
