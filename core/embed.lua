@@ -226,6 +226,7 @@ local EmbeddingWindow = CreateFrame("Frame", "EmbeddingWindow", UIParent)
 EmbeddingWindow:RegisterEvent("PLAYER_ENTERING_WORLD")
 EmbeddingWindow:RegisterEvent("PLAYER_REGEN_DISABLED")
 EmbeddingWindow:RegisterEvent("PLAYER_REGEN_ENABLED")
+EmbeddingWindow:SetScript("OnShow", AS.EmbedCheck)
 EmbeddingWindow:SetScript("OnEvent", function(self, event)
 	if event == "PLAYER_ENTERING_WORLD" then
 		AS:EmbedWindowResize()

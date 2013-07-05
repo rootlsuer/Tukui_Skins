@@ -7,19 +7,20 @@ function AS:SkinOmen()
 
 	Omen.UpdateBarTextureSettings_ = Omen.UpdateBarTextureSettings
 	Omen.UpdateBarTextureSettings = function(self)
-		for i, v in ipairs(self.Bars) do
+		self:UpdateBarTextureSettings_()
+		--[[for i, v in ipairs(self.Bars) do
 			v.texture:SetTexture(AS.NormTex)
-		end
+		end]]
 	end
 
 	Omen.UpdateBarLabelSettings_ = Omen.UpdateBarLabelSettings
 	Omen.UpdateBarLabelSettings = function(self)
 		self:UpdateBarLabelSettings_()
-		for i, v in ipairs(self.Bars) do
-			--v.Text1:SetFont(AS.Font, AS.DataTextFontSize)
-			--v.Text2:SetFont(AS.Font, AS.DataTextFontSize)
-			--v.Text3:SetFont(AS.Font, AS.DataTextFontSize)
-		end
+		--[[for i, v in ipairs(self.Bars) do
+			v.Text1:SetFont(AS.Font, AS.DataTextFontSize)
+			v.Text2:SetFont(AS.Font, AS.DataTextFontSize)
+			v.Text3:SetFont(AS.Font, AS.DataTextFontSize)
+		end]]
 	end
 
 	Omen.UpdateTitleBar_ = Omen.UpdateTitleBar
