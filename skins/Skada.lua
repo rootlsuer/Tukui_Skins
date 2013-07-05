@@ -74,7 +74,6 @@ function AS:SkinSkada()
 		if(win.db.enabletitle) then
 			skada.button:SetBackdrop(titleBG)
 		end
-		skada:SetTexture(AS.NormTex)
 		skada:SetSpacing(barSpacing)
 		skada:SetFrameLevel(5)
 		if not skada.TitleBackGround then
