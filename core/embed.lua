@@ -31,6 +31,7 @@ if AS.TooltipEnable then
 end
 
 function AS:EmbedCheck(login)
+	if not AS:CheckOption("EmbedSystem") then return end
 	if AS:CheckOption("EmbedOmen","Omen") then AS:EmbedOmen() end
 	if AS:CheckOption("EmbedSkada","Skada") then
 		AS:EmbedSkada()
@@ -42,6 +43,43 @@ function AS:EmbedCheck(login)
 	if AS:CheckOption("EmbedTinyDPS","TinyDPS") then AS:EmbedTDPS() end
 	if AS:CheckOption("EmbedRecount","Recount") then AS:EmbedRecount() end
 	if AS:CheckOption("EmbedalDamageMeter","alDamageMeter") then AS:EmbedALDamageMeter() end
+end
+
+function AS:EmbedShow()
+	if AS:CheckOption("EmbedSkada","Skada") then
+		for _, window in pairs(Skada:GetWindows()) do window:Show() end
+	end
+	if AS:CheckOption("EmbedOmen","Omen") then
+		OmenBarList:Show()
+	end
+	if AS:CheckOption("EmbedRecount","Recount") then
+		Recount_MainWindow:Show()
+	end
+	if AS:CheckOption("EmbedTinyDPS","TinyDPS") then
+		tdpsFrame:Show()
+	end
+	if AS:CheckOption("EmbedalDamageMeter","alDamageMeter") then
+		alDamageMeterFrame:Show()
+	end
+end
+
+
+function AS:EmbedHide()
+	if AS:CheckOption("EmbedSkada","Skada") then
+		for _, window in pairs(Skada:GetWindows()) do window:Hide() end
+	end
+	if AS:CheckOption("EmbedOmen","Omen") then
+		OmenBarList:Hide()
+	end
+	if AS:CheckOption("EmbedRecount","Recount") then
+		Recount_MainWindow:Hide()
+	end
+	if AS:CheckOption("EmbedTinyDPS","TinyDPS") then
+		tdpsFrame:Hide()
+	end
+	if AS:CheckOption("EmbedalDamageMeter","alDamageMeter") then
+		alDamageMeterFrame:Hide()
+	end
 end
 
 function AS:EmbedRecount()
@@ -226,7 +264,8 @@ local EmbeddingWindow = CreateFrame("Frame", "EmbeddingWindow", UIParent)
 EmbeddingWindow:RegisterEvent("PLAYER_ENTERING_WORLD")
 EmbeddingWindow:RegisterEvent("PLAYER_REGEN_DISABLED")
 EmbeddingWindow:RegisterEvent("PLAYER_REGEN_ENABLED")
-EmbeddingWindow:SetScript("OnShow", AS.EmbedCheck)
+EmbeddingWindow:SetScript("OnShow", AS.EmbedShow)
+EmbeddingWindow:SetScript("OnHide", AS.EmbedHide)
 EmbeddingWindow:SetScript("OnEvent", function(self, event)
 	if event == "PLAYER_ENTERING_WORLD" then
 		AS:EmbedWindowResize()

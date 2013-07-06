@@ -71,13 +71,15 @@ function AS:LegacyOptions()
 	ApplySkinSettingsButton.text:SetText("Apply Settings")
 	ApplySkinSettingsButton:SetScript("OnClick", function() ReloadUI() end)
 
-	local function ToggleEmbed()
+	local function ToggleEmbed(AddOn)
 		AS:DisableOption("EmbedOmen")
 		AS:DisableOption("EmbedRecount")
 		AS:DisableOption("EmbedTinyDPS")
 		AS:DisableOption("EmbedSkada")
-		AS:EnableOption("Embed"..UISkinOptions["EmbedRight"])
-		AS:EnableOption("Embed"..UISkinOptions["EmbedLeft"])
+		if UISkinOptions["Embed"..AddOn] ~= nil then
+			AS:EnableOption("Embed"..AddOn)
+		end
+		print(AS.Title.." Embed System - Left: "..UISkinOptions["EmbedLeft"].." | Right: "..UISkinOptions["EmbedRight"])
 		AS:EmbedCheck()
 	end
 
@@ -98,8 +100,12 @@ function AS:LegacyOptions()
 		frame:SetScript("OnEscapePressed", function(self) self:ClearFocus() self:SetText(UISkinOptions[name]) end)
 		frame:SetScript("OnEnterPressed", function(self)
 			self:ClearFocus()
-			UISkinOptions[name] = self:GetText()
-			ToggleEmbed()
+			if self:GetText() == "" then
+				UISkinOptions[name] = "NONE"
+			else
+				UISkinOptions[name] = self:GetText()
+			end
+			ToggleEmbed(self:GetText())
 		end)
 	end
 
@@ -113,7 +119,7 @@ function AS:LegacyOptions()
 		local button = CreateFrame("Button", name.."Button", SkinOptions3)
 		button:Size(16)
 		AS:SkinBackdropFrame(button)
-		button:SetBackdrop({bgFile = AS.NormTex, edgeFile = nil, tile = false, tileSize = 0, edgeSize = 0})
+		button:SetBackdrop({bgFile = AS.NormTex, tile = false, tileSize = 0})
 		button:FontString("text", AS.Font, 12, "OUTLINE")
 		button.text:SetPoint("LEFT", button, "RIGHT", 10, 0)
 		button.text:SetText(btntext)
@@ -133,6 +139,9 @@ function AS:LegacyOptions()
 			self:SetBackdropColor(r, g, b)
 		end)
 	end
+
+	CreateEmbedButton("EmbedSystem", "Embed System")
+	EmbedSystemButton:SetPoint("TOPLEFT", EmbedLeftEditBox, "BOTTOMLEFT", 0, -45)
 
 	CreateEmbedButton("EmbedOoC", "OoC Hide")
 	EmbedOoCButton:SetPoint("TOPLEFT", EmbedLeftEditBox, "BOTTOMLEFT", 0, -20)

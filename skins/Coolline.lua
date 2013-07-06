@@ -11,7 +11,6 @@ function AS:SkinCoolLine()
 	CoolLine.backdrop:CreateShadow()
 	AS:RegisterForPetBattleHide(CoolLine)
 	if AS:CheckOption("EmbedCoolLine") then
-
 		local function OnShow()
 			CoolLine:Point('BOTTOM', AS.ActionBar4, 'TOP', 0, 1)
 			CoolLine:SetHeight(ActionButton1:GetHeight())

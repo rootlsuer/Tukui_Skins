@@ -100,7 +100,7 @@ function AS:SkinSkillet()
 		
 		if not SkilletShowOptionsButton.text then
 			SkilletShowOptionsButton.text = SkilletShowOptionsButton:CreateFontString(nil, 'OVERLAY')
-			SkilletShowOptionsButton.text:SetFont([[Interface\AddOns\Tukui\medias\fonts\normal_font.ttf]], 12, 'OUTLINE')
+			SkilletShowOptionsButton.text:SetFont(AS.Font, 12, 'OUTLINE')
 			SkilletShowOptionsButton.text:SetText(" ?")
 			SkilletShowOptionsButton.text:SetTextColor(1, 0, 0)	
 			SkilletShowOptionsButton.text:SetJustifyH('CENTER')
@@ -336,21 +336,17 @@ function AS:SkinSkillet()
 	AS:Desaturate(SkilletSearchFilterClear)
 	SkilletSortAscButton:StripTextures()
 	SkilletSortAscButton:SetTemplate("Default", true)
-	if not SkilletSortAscButton.texture then
-		SkilletSortAscButton.texture = SkilletSortAscButton:CreateTexture(nil, 'OVERLAY')
-		SkilletSortAscButton.texture:Point("TOPLEFT", 2, -2)
-		SkilletSortAscButton.texture:Point("BOTTOMRIGHT", -2, 2)
-		SkilletSortAscButton.texture:SetTexture([[Interface\AddOns\Tukui\medias\textures\arrowup.tga]])
-		SkilletSortAscButton.texture:SetVertexColor(unpack(c["media"].bordercolor))
+	if not SkilletSortAscButton.text then
+		SkilletSortAscButton:FontString("text", AS.PixelFont, AS.DataTextFontSize)
+		SkilletSortAscButton.text:Point("CENTER", 0, 0)
+		SkilletSortAscButton.text:SetText("^")
 	end
 	SkilletSortDescButton:StripTextures()
 	SkilletSortDescButton:SetTemplate("Default", true)
-	if not SkilletSortDescButton.texture then
-		SkilletSortDescButton.texture = SkilletSortDescButton:CreateTexture(nil, 'OVERLAY')
-		SkilletSortDescButton.texture:Point("TOPLEFT", 2, -2)
-		SkilletSortDescButton.texture:Point("BOTTOMRIGHT", -2, 2)
-		SkilletSortDescButton.texture:SetTexture([[Interface\AddOns\Tukui\medias\textures\arrowdown.tga]])
-		SkilletSortDescButton.texture:SetVertexColor(unpack(c["media"].bordercolor))
+	if not SkilletSortDescButton.text then
+		SkilletSortDescButton:FontString("text", AS.PixelFont, AS.DataTextFontSize)
+		SkilletSortDescButton.text:Point("CENTER", 0, 0)
+		SkilletSortDescButton.text:SetText("^")
 	end
 	AS:SkinNextPrevButton(SkilletRecipeGroupOperations)
 	AS:SkinEditBox(SkilletItemCountInputBox)
