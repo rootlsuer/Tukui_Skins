@@ -13,6 +13,7 @@ function AS:SkinSkillet()
 		else
 			button = ButtonOrSpellID
 		end
+		if not button then return end
 		local texture = button:GetNormalTexture()
 		if not texture then
 			texture = _G[button:GetName().."Icon"]
@@ -20,8 +21,7 @@ function AS:SkinSkillet()
 		button:SetTemplate()
 		texture:SetDrawLayer('OVERLAY')
 		texture:ClearAllPoints()
-		texture:Point("TOPLEFT", 2, -2)
-		texture:Point("BOTTOMRIGHT", -2, 2)
+		texture:SetInside()
 		texture:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 		button:SetHighlightTexture(nil)
 	end
@@ -35,6 +35,7 @@ function AS:SkinSkillet()
 		else
 			button = ButtonOrSpellID
 		end
+		if not button then return end
 		local texture = button:GetNormalTexture()
 		if not texture then
 			texture = _G[button:GetName().."Icon"]
@@ -44,8 +45,7 @@ function AS:SkinSkillet()
 		button:SetTemplate()
 		texture:SetDrawLayer('OVERLAY')
 		texture:ClearAllPoints()
-		texture:Point("TOPLEFT", 2, -2)
-		texture:Point("BOTTOMRIGHT", -2, 2)
+		texture:SetInside()
 		texture:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 		button:SetHighlightTexture(nil)
 	end
@@ -53,17 +53,16 @@ function AS:SkinSkillet()
 	local function SkinReagentButton(ButtonName)
 		if not ButtonName then return end
 		local button = ButtonName
-		if button then
-			local texture = button:GetNormalTexture()
-			if not texture then
-				texture = _G[button:GetName().."Icon"]
-			end
-			button:SetTemplate()
-			texture:SetDrawLayer('OVERLAY')
-			texture:ClearAllPoints()
-			texture:SetInside(button)
-			texture:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+		if not button then return end
+		local texture = button:GetNormalTexture()
+		if not texture then
+			texture = _G[button:GetName().."Icon"]
 		end
+		button:SetTemplate()
+		texture:SetDrawLayer('OERLAY')
+		texture:ClearAllPoints()
+		texture:SetInside()
+		texture:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 	end
 
 	local function SkinIcon(self)
