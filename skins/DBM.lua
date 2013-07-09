@@ -4,7 +4,7 @@ local AS = unpack(select(2,...))
 local name = "DBMSkin"
 function AS:SkinDBM(event, addon)
 	if event == "PLAYER_ENTERING_WORLD" then
-		local croprwicons = true
+		local croprwicons = false
 		local buttonsize = 22
 		local function SkinBars(self)
 			for bar in self:GetBarIterator() do
@@ -19,77 +19,103 @@ function AS:SkinDBM(event, addon)
 						local name = _G[frame:GetName().."BarName"]
 						local timer = _G[frame:GetName().."BarTimer"]
 
+						if not (icon1.overlay) then
+							icon1.overlay = CreateFrame("Frame", "$parentIcon1Overlay", tbar)
+							icon1.overlay:SetTemplate()
+							icon1.overlay:SetBackdropColor(0,0,0,0)
+							icon1.overlay:Size(buttonsize)
+							icon1.overlay:Point("BOTTOMRIGHT", frame, "BOTTOMLEFT", -3, 0)
+						end
+
+						if not (icon2.overlay) then
+							icon2.overlay = CreateFrame("Frame", "$parentIcon2Overlay", tbar)
+							icon2.overlay:SetTemplate()
+							icon2.overlay:SetBackdropColor(0,0,0,0)
+							icon2.overlay:Size(buttonsize)
+							icon2.overlay:Point("BOTTOMLEFT", frame, "BOTTOMRIGHT", 3, 0)
+						end
+
+						if bar.color then
+							tbar:SetStatusBarColor(bar.color.r, bar.color.g, bar.color.b)
+						else
+							tbar:SetStatusBarColor(bar.owner.options.StartColorR, bar.owner.options.StartColorG, bar.owner.options.StartColorB)
+						end
+
+						if bar.enlarged then frame:Width(bar.owner.options.HugeWidth) else frame:SetWidth(bar.owner.options.Width) end
+						if bar.enlarged then tbar:Width(bar.owner.options.HugeWidth) else tbar:SetWidth(bar.owner.options.Width) end
+
 						if not frame.styled then
-							icon1.backdrop = CreateFrame("Frame", nil, tbar)
-							icon1.backdrop:SetTemplate()
-							icon1.backdrop:SetBackdropColor(0,0,0,0)
-							icon1.backdrop:Size(buttonsize)
-							icon1.backdrop:Point("BOTTOMRIGHT", frame, "BOTTOMLEFT", -3, 0)
-							icon1:SetTexCoord(0.08, 0.92, 0.08, 0.92)
-							icon1:ClearAllPoints()
-							icon1:SetInside(icon1.backdrop, 1, 1)
-							icon1:SetDrawLayer("OVERLAY")
-
-							icon2.backdrop = CreateFrame("Frame", nil, tbar)
-							icon2.backdrop:SetTemplate()
-							icon2.backdrop:SetBackdropColor(0,0,0,0)
-							icon2.backdrop:Size(buttonsize)
-							icon2.backdrop:Point("BOTTOMLEFT", frame, "BOTTOMRIGHT", 3, 0)
-							icon2:SetTexCoord(0.08, 0.92, 0.08, 0.92)
-							icon2:ClearAllPoints()
-							icon2:SetInside(icon2.backdrop, 1, 1)
-							icon2:SetDrawLayer("OVERLAY")
-							if bar.color then
-								tbar:SetStatusBarColor(bar.color.r, bar.color.g, bar.color.b)
-							else
-								tbar:SetStatusBarColor(bar.owner.options.StartColorR, bar.owner.options.StartColorG, bar.owner.options.StartColorB)
-							end
-
-							if bar.enlarged then
-								frame:Width(bar.owner.options.HugeWidth)
-								tbar:Width(bar.owner.options.HugeWidth)
-							else
-								frame:SetWidth(bar.owner.options.Width)
-								tbar:SetWidth(bar.owner.options.Width)
-							end
-
+							frame:SetHeight(buttonsize)
+							if AS:CheckOption("DBMSkinHalf") then frame:SetHeight(buttonsize/3) end
 							AS:SkinFrame(frame)
+							frame.styled = true
+						end
+
+						if not spark.killed then
 							spark:SetAlpha(0)
 							spark:SetTexture(nil)
+							spark.killed = true
+						end
+
+						if not icon1.styled then
+							icon1:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+							icon1:ClearAllPoints()
+							icon1:SetInside(icon1.overlay)
+							icon1:SetDrawLayer("OVERLAY")
+							icon1.styled = true
+						end
+
+						if not icon2.styled then
+							icon2:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+							icon2:ClearAllPoints()
+							icon2:SetInside(icon2.overlay)
+							icon2:SetDrawLayer("OVERLAY")
+							icon2.styled = true
+						end
+
+						if not texture.styled then
 							texture:SetTexture(AS.NormTex)
+							texture.styled = true
+						end
+
+						if not tbar.styled then
 							tbar:SetStatusBarTexture(AS.NormTex)
 							tbar:SetInside(frame)
+							tbar.styled = true
+						end
+
+						if not name.styled then
 							name:ClearAllPoints()
+							name:Point("LEFT", frame, "LEFT", 4, 0)
+							if AS:CheckOption("DBMSkinHalf") then name:Point("BOTTOMLEFT", frame, "TOPLEFT", 0, 4) end
 							name:SetWidth(165)
 							name:SetHeight(8)
 							name:SetFont(DBT_SavedOptions["DBM"].Font, 12, "OUTLINE")
 							name:SetJustifyH("LEFT")
 							name:SetShadowColor(0, 0, 0, 0)
 							name.SetFont = AS.Noop
+							name.styled = true
+						end
+
+						if not timer.styled then
 							timer:ClearAllPoints()
+							timer:Point("RIGHT", frame, "RIGHT", -4, 0)
+							if AS:CheckOption("DBMSkinHalf") then timer:Point("BOTTOMRIGHT", frame, "TOPRIGHT", -1, 2) end
 							timer:SetFont(DBT_SavedOptions["DBM"].Font, 12, "OUTLINE")
 							timer:SetJustifyH("RIGHT")
 							timer:SetShadowColor(0, 0, 0, 0)
 							timer.SetFont = AS.Noop
-							tbar:SetAlpha(1)
-							frame:SetAlpha(1)
-							texture:SetAlpha(1)
-							frame:Show()
-							bar:Update(0)
-							if AS:CheckOption("DBMSkinHalf") then
-								frame:SetHeight(buttonsize/3)
-								name:Point("BOTTOMLEFT", frame, "TOPLEFT", 0, 4)
-								timer:Point("BOTTOMRIGHT", frame, "TOPRIGHT", -1, 2)
-							else
-								frame:SetHeight(buttonsize)
-								name:Point("LEFT", frame, "LEFT", 4, 0)
-								timer:Point("RIGHT", frame, "RIGHT", -4, 0)
-							end
-							frame.styled = true
-							bar.injected = true
+							timer.styled = true
 						end
-						if bar.owner.options.IconLeft then icon1:Show() icon1.backdrop:Show() else icon1:Hide() icon1.backdrop:Hide() end
-						if bar.owner.options.IconRight then icon2:Show() icon2.backdrop:Show() else icon2:Hide() icon2.backdrop:Hide() end
+
+						if bar.owner.options.IconLeft then icon1:Show() icon1.overlay:Show() else icon1:Hide() icon1.overlay:Hide() end
+						if bar.owner.options.IconRight then icon2:Show() icon2.overlay:Show() else icon2:Hide() icon2.overlay:Hide() end
+						tbar:SetAlpha(1)
+						frame:SetAlpha(1)
+						texture:SetAlpha(1)
+						frame:Show()
+						bar:Update(0)
+						bar.injected = true
 					end
 					bar:ApplyStyle()
 				end
@@ -196,7 +222,7 @@ function AS:SkinDBM(event, addon)
 			local RaidNotice_AddMessage_ = RaidNotice_AddMessage
 			RaidNotice_AddMessage = function(noticeFrame, textString, colorInfo)
 				if textString:find(" |T") then
-					textString = string.gsub(textString,"(:12:12)",":20:20:0:0:64:64:4:60:4:60")
+					textString = string.gsub(textString,"(:12:12)",":18:18:0:0:64:64:5:59:5:59")
 				end
 				return RaidNotice_AddMessage_(noticeFrame, textString, colorInfo)
 			end

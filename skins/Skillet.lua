@@ -18,6 +18,7 @@ function AS:SkinSkillet()
 		if not texture then
 			texture = _G[button:GetName().."Icon"]
 		end
+		if not texture then return end
 		button:SetTemplate()
 		texture:SetDrawLayer('OVERLAY')
 		texture:ClearAllPoints()
@@ -42,6 +43,7 @@ function AS:SkinSkillet()
 			button:ClearAllPoints()
 			button:SetPoint("BOTTOMLEFT", SkilletRankFrame, "TOPLEFT", 0, 3)
 		end
+		if not texture then return end
 		button:SetTemplate()
 		texture:SetDrawLayer('OVERLAY')
 		texture:ClearAllPoints()
@@ -58,8 +60,9 @@ function AS:SkinSkillet()
 		if not texture then
 			texture = _G[button:GetName().."Icon"]
 		end
+		if not texture then return end
 		button:SetTemplate()
-		texture:SetDrawLayer('OERLAY')
+		texture:SetDrawLayer('OVERLAY')
 		texture:ClearAllPoints()
 		texture:SetInside()
 		texture:SetTexCoord(0.08, 0.92, 0.08, 0.92)
