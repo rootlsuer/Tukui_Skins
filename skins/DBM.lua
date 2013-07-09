@@ -88,6 +88,8 @@ function AS:SkinDBM(event, addon)
 							frame.styled = true
 							bar.injected = true
 						end
+						if bar.owner.options.IconLeft then icon1:Show() icon1.backdrop:Show() else icon1:Hide() icon1.backdrop:Hide() end
+						if bar.owner.options.IconRight then icon2:Show() icon2.backdrop:Show() else icon2:Hide() icon2.backdrop:Hide() end
 					end
 					bar:ApplyStyle()
 				end
