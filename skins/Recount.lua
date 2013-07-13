@@ -208,7 +208,7 @@ function AS:SkinRecount()
 	ResetClose:SetScript("OnClick", function(self) self:GetParent():Hide() end)
 	ResetClose:FontString("text", AS.PixelFont, 14, "MONOCHROMEOUTLINE")
 	ResetClose.text:SetPoint("CENTER")
-	ResetClose.text:SetText("Yes")
+	ResetClose.text:SetText("No")
 
 	function Recount:ShowReset()
 		ResetFrame:Show()
