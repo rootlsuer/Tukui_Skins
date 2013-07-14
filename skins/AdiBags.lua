@@ -22,8 +22,12 @@ function AS:SkinAdiBags(event)
 			AdiBagsContainer1SearchBox:Point("TOPRIGHT", AdiBagsSimpleLayeredRegion2, "TOPRIGHT", -75, -1)
 		end
 	elseif event == "BANKFRAME_OPENED" then
-		SkinFrame(AdiBagsContainer2)
-		AS:UnregisterEvent(name, event)
+		AS.Delay(2, function()
+			if AdiBagsContainer2 then
+				SkinFrame(AdiBagsContainer2)
+				AS:UnregisterEvent(name, event)
+			end
+		end)
 	end
 end
 
