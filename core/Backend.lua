@@ -1,5 +1,8 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local AS = unpack(select(2,...))
+local format, gsub, strmatch, strfind = format, gsub, strmatch, strfind
+local tinsert, pairs, ipairs, unpack, select, pcall = tinsert, pairs, ipairs, unpack, select, pcall
+
 UISkinOptions = {}
 AS.skins = {}
 AS.events = {}
@@ -11,19 +14,26 @@ function AS:Init()
 	self.frame = CreateFrame("Frame")
 	self.frame:RegisterEvent("PET_BATTLE_CLOSE")
 	self.frame:RegisterEvent("PET_BATTLE_OPENING_START")
-	for skin, alldata in pairs(self.register) do
+	for skin, alldata in AS:OrderedPairs(self.register) do
 		for _, data in pairs(alldata) do
-			if IsAddOnLoaded(AS.Skins[skin].addon) then
-				if UISkinOptions[skin] == nil or UISkinOptions[skin] == "Enabled" then
-					UISkinOptions[skin] = true
-				elseif UISkinOptions[skin] == "Disabled" then
-					UISkinOptions[skin] = false
-				end
+			local addon
+			local sdata = self.Skins[skin]
+			if sdata and sdata.addon then
+				addon = sdata.addon
+			else
+				addon = gsub(skin, "Skin", "")
+			end
+			if UISkinOptions[skin] == nil or UISkinOptions[skin] == "Enabled" then
+				UISkinOptions[skin] = true
+			elseif UISkinOptions[skin] == "Disabled" then
+				UISkinOptions[skin] = false
+			end
+			if skin == "MiscFixes" or IsAddOnLoaded(addon) then
 				self:RegisteredSkin(skin, data.priority, data.func, data.events)
 			end
 		end
 	end
-	for skin, funcs in pairs(AS.skins) do
+	for skin, funcs in AS:OrderedPairs(AS.skins) do
 		if AS:CheckOption(skin) then
 			for _, func in ipairs(funcs) do
 				AS:CallSkin(skin, func, "PLAYER_ENTERING_WORLD")
@@ -59,26 +69,27 @@ function AS:CallSkin(skin, func, event, ...)
 		if not arg then break end
 		tinsert(args, arg)
 	end
-	local Pass, Error = pcall(func, self, event, unpack(args))
-	if not Pass then
+	local pass, error = pcall(func, self, event, unpack(args))
+	if not pass then
 		local message = "%s: |cFFFF0000There was an error in the|r |cFF0AFFFF%s|r |cFFFF0000skin|r. Please report this to Azilroka immediately @ http://www.tukui.org/tickets/tukuiskins"
-		DEFAULT_CHAT_FRAME:AddMessage(format(message, AS.Title, gsub(skin, "Skin", "")))
-		DEFAULT_CHAT_FRAME:AddMessage(AS.Title.." Error Message: "..Error)
+		local errormessage = "%s Error: %s"
+		print(format(message, AS.Title, gsub(skin, "Skin", "")))
+		print(format(errormessage, gsub(skin, "Skin", ""), error))
 	end
 end
 
 function AS:RegisteredSkin(skinName, priority, func, events)
     local events = events
 	for c,_ in pairs(events) do
-		if string.find(c,'%[') then
-			local conflict = string.match(c,'%[([!%w_]+)%]')
+		if strfind(c,'%[') then
+			local conflict = strmatch(c,'%[([!%w_]+)%]')
 			if IsAddOnLoaded(conflict) then return end
 		end
 	end
 	if not self.skins[skinName] then self.skins[skinName] = {} end
 	self.skins[skinName][priority] = func
 	for event, _ in pairs(events) do
-		if not string.find(event,'%[') then
+		if not strfind(event,'%[') then
 			if not self.events[event] then
 				self.frame:RegisterEvent(event)
 				self.events[event] = {}
@@ -126,6 +137,6 @@ ASFrame:SetScript("OnEvent", function(self, event)
 	if UISkinOptions["SkadaTwoThirds"] == nil then UISkinOptions["SkadaTwoThirds"] = false end
 	UISkinOptions["MiscFixes"] = true
 	AS:Init()
-	print(AS.Title.." by |cFFFF7D0AAzilroka|r - Version: |cFF1784D1"..AS.Version.."|r Loaded!")
+	print(format("%s by |cFFFF7D0AAzilroka|r - Version: |cFF1784D1%s|r Loaded!", AS.Title, AS.Version))
 	if IsAddOnLoaded("Enhanced_Config") then AS:Ace3Options() else AS:LegacyOptions() end
 end)

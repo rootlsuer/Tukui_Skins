@@ -1,5 +1,6 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local AS = unpack(select(2,...))
+local format, gsub, sort, tinsert, pairs = format, gsub, sort, tinsert, pairs
 
 function AS:LegacyOptions()
 	local function CreateOptionsFrame(name, frametext, parent)
@@ -79,7 +80,7 @@ function AS:LegacyOptions()
 		if UISkinOptions["Embed"..AddOn] ~= nil then
 			AS:EnableOption("Embed"..AddOn)
 		end
-		print(AS.Title.." Embed System - Left: "..UISkinOptions["EmbedLeft"].." | Right: "..UISkinOptions["EmbedRight"])
+		print(format("%s Embed System - Left: %s | Right: %s", AS.Title, UISkinOptions["EmbedLeft"], UISkinOptions["EmbedRight"]))
 		AS:EmbedCheck()
 	end
 
@@ -208,10 +209,10 @@ function AS:LegacyOptions()
 		end)
 	end
 
-	local function pairsByKeys (t, f)
+	local function pairsByKeys(t, f)
 		local a = {}
-		for n in pairs(t) do table.insert(a, n) end
-			table.sort(a, f)
+		for n in pairs(t) do tinsert(a, n) end
+			sort(a, f)
 			local i = 0
 			local iter = function()
 				i = i + 1
@@ -222,12 +223,17 @@ function AS:LegacyOptions()
 		return iter
 	end
     local curX, curY, maxY = 1, 1, 24
-	for skin,options in pairsByKeys(AS.Skins) do
-		local addon = options.addon
+	for skin, options in pairsByKeys(AS.Skins) do
+		local addon
+		if options and options.addon then
+			addon = options.addon
+		else
+			addon = gsub(skin, "Skin", "")
+		end
 		local buttonText = options.buttonText or addon
 		if options.hide ~= "True" then
 			if IsAddOnLoaded(addon) then
-				CreateButton(string.format('%sButton',skin),buttonText,addon,skin,curX,curY)
+				CreateButton(format('%sButton',skin),buttonText,addon,skin,curX,curY)
 				SkinOptions:Height(70+(curY*22))
 				SkinOptions2:Height(70+(curY*22))
 				SkinOptions3:Height(70+(curY*22))
@@ -264,7 +270,7 @@ function AS:LegacyOptions()
 	for skin,options in pairsByKeys(Skins2) do
 		local addon = nil
 		local buttonText = options.buttonText
-		CreateButton(string.format('%sButton',skin),buttonText,addon,skin,1,curY,true)
+		CreateButton(format('%sButton',skin),buttonText,addon,skin,1,curY,true)
 		curY = curY + 1
 	end
 

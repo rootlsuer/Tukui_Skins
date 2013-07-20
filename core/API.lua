@@ -12,11 +12,7 @@ end
 
 local function SetOriginalBackdrop(self)
 	local color = RAID_CLASS_COLORS[AS.MyClass]
-	if AS.C["General"].ClassColorTheme == true then
-		self:SetBackdropBorderColor(color.r, color.g, color.b)
-	else
-		self:SetTemplate()
-	end
+	self:SetTemplate()
 end
 
 local function Kill(object)
@@ -285,7 +281,7 @@ local function SkinCloseButton(f, point)
 	f:SetHighlightTexture("")
 	f:SetDisabledTexture("")
 
-	f:FontString("t", AS.PixelFont, 12, "MONOCHROMEOUTLINE")
+	f:FontString("t", AS.PixelFont, 12, "OUTLINE") -- "MONOCHROMEOUTLINE"
 	f.t:SetPoint("CENTER", 0, 1)
 	f.t:SetText("x")
 end

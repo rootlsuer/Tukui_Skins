@@ -1,6 +1,22 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local AS = unpack(select(2,...))
 
+local function orderednext(t, n)
+	local key = t[t.__next]
+	if not key then return end
+	t.__next = t.__next + 1
+	return key, t.__source[key]
+end
+
+function AS:OrderedPairs(t, f)
+	local keys, kn = {__source = t, __next = 1}, 1
+	for k in pairs(t) do
+		keys[kn], kn = k, kn + 1
+	end
+	table.sort(keys, f)
+	return orderednext, keys
+end
+
 function AS:Round(num, idp)
 	local mult = 10^(idp or 0)
 	return math.floor(num * mult + 0.5) / mult
