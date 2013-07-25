@@ -6,7 +6,8 @@ AddOn.FrameLocks = {}
 
 Engine[1] = AddOn
 UISkins = Engine
-if tonumber(GetAddOnMetadata('Tukui', 'Version')) < 15 then
+if tonumber(GetAddOnMetadata('Tukui', 'Version')) <= 16 then
+	AddOn.L = L
 	AddOn.Version = GetAddOnMetadata(AddOnName, "Version")
 	AddOn.Title = select(2, GetAddOnInfo(AddOnName))
 	AddOn.Blank = C["media"].blank
@@ -24,6 +25,7 @@ if tonumber(GetAddOnMetadata('Tukui', 'Version')) < 15 then
 	AddOn.BackdropColor = C["media"].backdropcolor
 	AddOn.BorderColor = C["media"].bordercolor
 	AddOn.Mult = 768/string.match(GetCVar("gxResolution"), "%d+x(%d+)")/AddOn.UIScale
+	AddOn.DataTexts = A["DataTexts"]
 
 	AddOn.InfoLeft = G.Panels.DataTextLeft
 	AddOn.InfoRight = G.Panels.DataTextRight
@@ -38,6 +40,7 @@ if tonumber(GetAddOnMetadata('Tukui', 'Version')) < 15 then
 	AddOn.ActionBar3 = G.ActionBars.Bar3
 	AddOn.ActionBar4 = G.ActionBars.Bar4
 else
+	AddOn.L = L
 	AddOn.Version = GetAddOnMetadata(AddOnName, "Version")
 	AddOn.Title = select(2, GetAddOnInfo(AddOnName))
 	AddOn.Blank = C["Media"].Blank
@@ -55,7 +58,7 @@ else
 	AddOn.BackdropColor = C["Media"].BackdropColor
 	AddOn.BorderColor = C["Media"].BorderColor
 	AddOn.Mult = 768/string.match(GetCVar("gxResolution"), "%d+x(%d+)")/AddOn.UIScale
-	AddOn.DataText = A["DataTexts"]
+	AddOn.DataTexts = A["DataTexts"]
 
 	AddOn.InfoLeft = A.Panels.DataTextLeft
 	AddOn.InfoRight = A.Panels.DataTextRight

@@ -373,10 +373,8 @@ LeftToggleButton:HookScript("OnClick", function(self, btn)
 	end
 end)
 
-if tonumber(GetAddOnMetadata('Tukui', 'Version')) < 15 then return end
-local T, C, L = Tukui:unpack()
-
-local DataText = T["DataTexts"]
+if tonumber(GetAddOnMetadata('Tukui', 'Version')) >= 16 then
+local DataText = AS["DataTexts"]
 
 local Update = function(self)
 	local Text = ''
@@ -428,3 +426,4 @@ local Disable = function(self)
 end
 
 DataText:Register('EmbedSystem', Enable, Disable, Update)
+end

@@ -1,18 +1,20 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local AS = unpack(select(2,...))
+local L = AS.L 
 local tinsert, sort, pairs, format, gsub = tinsert, sort, pairs, format, gsub
 
 function AS:Ace3Options()
 	local Ace3OptionsPanel = IsAddOnLoaded("Enhanced_Config") and Enhanced_Config[1] or nil
-	local function GenerateOptionTable(skinName,order)
-		local data = AS.Skins[skinName]
+	local function GenerateOptionTable(skinName, order)
+		local data = AS.register[skinName]
+		if data and data.hide then return end
 		local addon
 		if data and data.addon then
 			addon = data.addon
 		else
-			addon = gsub(skin, "Skin", "")
+			addon = gsub(skinName, "Skin", "")
 		end
-		local text = data.buttonText or addon
+		local text = data and data.buttonText or addon
 		local options = {
 			type = 'toggle',
 			name = text,
@@ -144,7 +146,7 @@ function AS:Ace3Options()
 	}
 
 	local order = 2
-	for skinName, _ in pairsByKeys(AS.Skins) do
+	for skinName, _ in pairsByKeys(AS.register) do
 		if skinName ~= "MiscFixes" then
 			Ace3OptionsPanel.Options.args.skins.args.skins.args[skinName] = GenerateOptionTable(skinName, order)
 			order = order + 1

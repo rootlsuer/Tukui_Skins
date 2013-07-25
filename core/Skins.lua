@@ -86,27 +86,27 @@ AS.Skins = {
 --DO NOT REMOVE THESE
 	["DBMSkinHalf"] = {
 		["addon"] = "DBM-Core",
-		["hide"] = "True",
+		["hide"] = true,
 	},
 	["CLCProtSkin"] = {
 		["addon"] = "CLCProt",
-		["hide"] = "True",
+		["hide"] = true,
 	},
 	["CLCRetSkin"] = {
 		["addon"] = "CLCRet",
-		["hide"] = "True",
+		["hide"] = true,
 	},
 	["PowerAurasIconsSkin"] = {
 		["addon"] = "PowerAuras",
-		["hide"] = "True",
+		["hide"] = true,
 	},
 	["WeakAurasSkin"] = {
 		["addon"] = "WeakAuras",
-		["hide"] = "True",
+		["hide"] = true,
 	},
 	["MiscFixes"] = {
 		["addon"] = "Tukui_Skins",
-		["hide"] = "True",
+		["hide"] = true,
 	},
 --
 }

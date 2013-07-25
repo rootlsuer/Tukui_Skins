@@ -1,4 +1,7 @@
-local A, C, L, G = unpack(Tukui or AsphyxiaUI or DuffedUI)
+local AS = unpack(select(2,...))
+local L = AS.L
+
+L.DataText = {}
 
 L.DataText.Toggle = 'Toggle'
 
