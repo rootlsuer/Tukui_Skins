@@ -1,16 +1,22 @@
 if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
 local AS = unpack(select(2,...))
+local tinsert, sort, pairs, format, gsub = tinsert, sort, pairs, format, gsub
 
 function AS:Ace3Options()
 	local Ace3OptionsPanel = IsAddOnLoaded("Enhanced_Config") and Enhanced_Config[1] or nil
 	local function GenerateOptionTable(skinName,order)
 		local data = AS.Skins[skinName]
-		local addon = data.addon
+		local addon
+		if data and data.addon then
+			addon = data.addon
+		else
+			addon = gsub(skin, "Skin", "")
+		end
 		local text = data.buttonText or addon
 		local options = {
 			type = 'toggle',
 			name = text,
-			desc = "Enable/Disable this skin.",
+			desc = L.Skins.ToggleSkinDesc,
 			order = order,
 			disabled = function() if addon then return not IsAddOnLoaded(addon) else return false end end,
 		}
@@ -19,8 +25,8 @@ function AS:Ace3Options()
 
 	local function pairsByKeys (t, f)
 		local a = {}
-		for n in pairs(t) do table.insert(a, n) end
-		table.sort(a, f)
+		for n in pairs(t) do tinsert(a, n) end
+		sort(a, f)
 		local i = 0
 		local iter = function()
 			i = i + 1
@@ -39,48 +45,48 @@ function AS:Ace3Options()
 	Ace3OptionsPanel.Options.args.skins.args.skins = {
 		order = 1000,
 		type = 'group',
-		name = AS.Title..' |cFFFFFFFFby|r |cFFFF7D0AAzilroka|r |cFFFFFFFF- Version:|r |cff1784d1'..AS.Version,
+		name = format('%s |cFFFFFFFFby|r |cFFFF7D0AAzilroka|r |cFFFFFFFF- Version:|r |cff1784d1%s|r', AS.Title, AS.Version),
 		get = function(info) return UISkinOptions[ info[#info] ] end,
 		set = function(info, value) UISkinOptions[ info[#info] ] = value end,
 		guiInline = true,
 		args = {
 			misc = {
 				type = 'group',
-				name = 'Misc Options',
+				name = L.Skins.MiscellaneousOptions,
 				order = 500,
 				args = {
 					DBMSkinHalf = {
 						type = 'toggle',
 						name = 'DBM Half-bar Skin',
-						desc = "Enable/Disable this skin.",
+						desc = L.Skins.ToggleSkinDesc,
 						order = 1,
 						disabled = function() return not (IsAddOnLoaded("DBM-Core") and UISkinOptions['DBMSkin']) end
 					},
 					RecountBackdrop = {
 						type = 'toggle',
 						name = 'Recount Backdrop',
-						desc = "Enable/Disable this skin.",
+						desc = L.Skins.ToggleOptionDesc,
 						order = 2,
 						disabled = function() return not (IsAddOnLoaded("Recount") and UISkinOptions["RecountSkin"]) end,
 					},
 					SkadaBackdrop = {
 						type = 'toggle',
 						name = 'Skada Backdrop',
-						desc = "Enable/Disable this skin.",
+						desc = L.Skins.ToggleOptionDesc,
 						order = 3,
 						disabled = function() return not (IsAddOnLoaded("Skada") and UISkinOptions["SkadaSkin"]) end,
 					},
 					SkadaBelowTop = {
 						type = 'toggle',
 						name = 'Skada Below Chat Tabs',
-						desc = "Enable/Disable this option.",
+						desc = L.Skins.ToggleOptionDesc,
 						order = 4,
 						disabled = function() return not (IsAddOnLoaded("Skada") and UISkinOptions["SkadaSkin"]) end,
 					},
 					SkadaTwoThirds = {
 						type = 'toggle',
 						name = 'Skada 1/3 | 2/3 Option',
-						desc = "Enable/Disable this option.",
+						desc = L.Skins.ToggleOptionDesc,
 						order = 5,
 						disabled = function() return not (IsAddOnLoaded("Skada") and UISkinOptions["SkadaSkin"]) end,
 					},
@@ -91,7 +97,7 @@ function AS:Ace3Options()
 				type = 'group',
 				name = 'Embed Settings',
 				get = function(info) return UISkinOptions[ info[#info] ] end,
-				set = function(info,value) UISkinOptions[ info[#info] ] = value end,
+				set = function(info, value) UISkinOptions[ info[#info] ] = value end,
 				args = {
 					desc = {
 						type = 'description',
@@ -115,20 +121,20 @@ function AS:Ace3Options()
 					EmbedOoC = {
 						type = 'toggle',
 						name = 'Hide while out of combat',
-						desc = "Enable/Disable this skin.",
+						desc = L.Skins.ToggleOptionDesc,
 						order = 10,
 					},
 					EmbedSexyCooldown = {
 						type = 'toggle',
 						name = 'Attach SexyCD to action bar',
-						desc = "Enable/Disable this skin.",
+						desc = L.Skins.ToggleEmbedDesc,
 						order = 11,
 						disabled = function() return not IsAddOnLoaded("SexyCooldown2") end,
 					},
 					EmbedCoolLine = {
 						type = 'toggle',
 						name = 'Attach CoolLine to action bar',
-						desc = "Enable/Disable this skin.",
+						desc = L.Skins.ToggleEmbedDesc,
 						order = 12,
 						disabled = function() return not IsAddOnLoaded("CoolLine") end,
 					},
@@ -138,9 +144,9 @@ function AS:Ace3Options()
 	}
 
 	local order = 2
-	for skinName,_ in pairsByKeys(AS.Skins) do
+	for skinName, _ in pairsByKeys(AS.Skins) do
 		if skinName ~= "MiscFixes" then
-			Ace3OptionsPanel.Options.args.skins.args.skins.args[skinName] = GenerateOptionTable(skinName,order)
+			Ace3OptionsPanel.Options.args.skins.args.skins.args[skinName] = GenerateOptionTable(skinName, order)
 			order = order + 1
 		end
 	end
