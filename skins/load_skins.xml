@@ -78,8 +78,9 @@
 	<Script file="QuestItemBar.lua"/>
 	<Script file="RBS.lua"/>
 	<Script file="RaidInviteOrganizer.lua"/>
-	<Script file="Raven.lua"/>
+	<Script file="RCLootCouncil.lua"/>
 	<Script file="Recount.lua"/>
+	<Script file="ReforgeLite.lua"/>
 	<Script file="Reforgenator.lua"/>
 	<Script file="Reforgerade.lua"/>
 	<Script file="SearingPlasmaTracker.lua"/>

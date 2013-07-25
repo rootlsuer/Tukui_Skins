@@ -6,7 +6,7 @@ AddOn.FrameLocks = {}
 
 Engine[1] = AddOn
 UISkins = Engine
-if tonumber(GetAddOnMetadata('Tukui', 'Version')) <= 16 then
+if tonumber(GetAddOnMetadata('Tukui', 'Version')) <= 15.99 then
 	AddOn.L = L
 	AddOn.Version = GetAddOnMetadata(AddOnName, "Version")
 	AddOn.Title = select(2, GetAddOnInfo(AddOnName))
