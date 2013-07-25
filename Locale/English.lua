@@ -1,8 +1,6 @@
 local AS = unpack(select(2,...))
 local L = AS.L
 
-L.DataText = {}
-
 L.DataText.Toggle = 'Toggle'
 
 L.Skins.ToggleSkinDesc = 'Enable/Disable this skin.'
