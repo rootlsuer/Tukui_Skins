@@ -7,7 +7,7 @@ function AS:SkinRCLootCouncil()
 	--MainFrame:SetScale(1)
 	AS:SkinFrame(MainFrame, "Transparent", true)
 	AS:SkinFrame(ContentFrame, "Default")
-	AS:SkinCloseButton(BtClose)
+	AS:SkinButton(BtClose)
 	if _G["BtAward"] then AS:SkinButton(BtAward) end
 	if _G["BtRemove"] then AS:SkinButton(BtRemove) end
 	if _G["BtClear"] then AS:SkinButton(BtClear) end
