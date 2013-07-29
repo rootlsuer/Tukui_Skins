@@ -83,30 +83,8 @@ AS.Skins = {
 		["buttonText"] = "Zygor",
 		["addon"] = "ZygorGuidesViewer",
 	},
---DO NOT REMOVE THESE
-	["DBMSkinHalf"] = {
-		["addon"] = "DBM-Core",
-		["hide"] = true,
-	},
-	["CLCProtSkin"] = {
-		["addon"] = "CLCProt",
-		["hide"] = true,
-	},
-	["CLCRetSkin"] = {
-		["addon"] = "CLCRet",
-		["hide"] = true,
-	},
-	["PowerAurasIconsSkin"] = {
-		["addon"] = "PowerAuras",
-		["hide"] = true,
-	},
-	["WeakAurasSkin"] = {
-		["addon"] = "WeakAuras",
-		["hide"] = true,
-	},
 	["MiscFixes"] = {
 		["addon"] = "Tukui_Skins",
 		["hide"] = true,
 	},
---
 }

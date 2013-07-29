@@ -147,9 +147,7 @@ function AS:Ace3Options()
 
 	local order = 2
 	for skinName, _ in pairsByKeys(AS.register) do
-		if skinName ~= "MiscFixes" then
-			Ace3OptionsPanel.Options.args.skins.args.skins.args[skinName] = GenerateOptionTable(skinName, order)
-			order = order + 1
-		end
+		Ace3OptionsPanel.Options.args.skins.args.skins.args[skinName] = GenerateOptionTable(skinName, order)
+		order = order + 1
 	end
 end

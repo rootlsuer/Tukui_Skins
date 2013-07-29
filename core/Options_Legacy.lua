@@ -231,22 +231,20 @@ function AS:LegacyOptions()
 			addon = gsub(skin, "Skin", "")
 		end
 		local buttonText = options.buttonText or addon
-		if options.hide ~= "True" then
-			if IsAddOnLoaded(addon) then
-				CreateButton(format('%sButton',skin),buttonText,addon,skin,curX,curY)
-				SkinOptions:Height(70+(curY*22))
-				SkinOptions2:Height(70+(curY*22))
-				SkinOptions3:Height(70+(curY*22))
-				if SkinOptions:GetHeight() < 210 then
-					SkinOptions:Height(210)
-					SkinOptions2:Height(210)
-					SkinOptions3:Height(210)
-				end
-				curY = curY + 1
-				if curY > maxY then
-					curX = curX + 1
-					curY = 1
-				end
+		if options.hide ~= true and IsAddOnLoaded(addon) then
+			CreateButton(format('%sButton',skin),buttonText,addon,skin,curX,curY)
+			SkinOptions:Height(70+(curY*22))
+			SkinOptions2:Height(70+(curY*22))
+			SkinOptions3:Height(70+(curY*22))
+			if SkinOptions:GetHeight() < 210 then
+				SkinOptions:Height(210)
+				SkinOptions2:Height(210)
+				SkinOptions3:Height(210)
+			end
+			curY = curY + 1
+			if curY > maxY then
+				curX = curX + 1
+				curY = 1
 			end
 		end
 	end
@@ -254,21 +252,25 @@ function AS:LegacyOptions()
 	local Skins2 = {
 		["DBMSkinHalf"] = {
 			["buttonText"] = "DBM Half-Bar Skin",
+			["addon"] = "DBM-Core",
 		},
 		["CLCProtSkin"] = {
 			["buttonText"] = "CLCProt Icons",
+			["addon"] = "CLCProt",
 		},
 		["CLCRetSkin"] = {
 			["buttonText"] = "CLCRet Icons",
+			["addon"] = "CLCRet",
 		},
 		["WeakAurasSkin"] = {
 			["buttonText"] = "WeakAuras Icons",
+			["addon"] = "WeakAuras",
 		},
 	}
 
 	curY = 1
-	for skin,options in pairsByKeys(Skins2) do
-		local addon = nil
+	for skin, options in pairsByKeys(Skins2) do
+		local addon = options.addon
 		local buttonText = options.buttonText
 		CreateButton(format('%sButton',skin),buttonText,addon,skin,1,curY,true)
 		curY = curY + 1
