@@ -1,258 +1,43 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
-local AS = unpack(select(2,...))
+local AS = unpack(select(2, ...))
+local L = AS.L
+
 local format, gsub, pairs, ipairs, select, tinsert, tonumber = format, gsub, pairs, ipairs, select, tinsert, tonumber
 
-function AS:EmbedTooltip(frame)
-	local r, l, b, t = frame:GetRight(), EmbeddingWindow:GetLeft(), frame:GetBottom(), EmbeddingWindow:GetTop()
-	if not r or not l or not b or not t or r < l or b > t then return end
-	local point, relativeTo, relativePoint, xOffset, yOffset = frame:GetPoint(1)
-	if relativeTo == frame and point == "BOTTOMRIGHT" and relativePoint == "TOPRIGHT" then
-		local found = false
-		if AS:CheckOption("EmbedSkada", "Skada") and Skada and Skada.GetWindows then
-			for _, window in pairs(Skada:GetWindows()) do if window:IsShown() then found = true end end
-		end
-		if AS:CheckOption("EmbedOmen", "Omen") then
-			if OmenBarList and OmenBarList:IsVisible() then found = true end
-		end
-		if AS:CheckOption("EmbedRecount", "Recount") then
-			if Recount_MainWindow and Recount_MainWindow:IsShown() then found = true end
-		end
-		if AS:CheckOption("EmbedTinyDPS", "TinyDPS") then
-			if tdpsFrame and tdpsFrame:IsShown() then found = true end
-		end
-		if found then
-			frame:ClearAllPoints()
-			frame:SetPoint(point, EmbeddingWindow, relativePoint, xOffset, yOffset)
-		end
-	end
-end
+local EmbedOoCCombatStart, EmbedOoCCombatEnd, ChatFrame4Hide
+local SkadaWindows = {}
+local Ace3Options = IsAddOnLoaded('Enhanced_Config') and true or false
 
-if AS.TooltipEnable then
-	GameTooltip:HookScript("OnUpdate", function(frame, ...) AS:EmbedTooltip(frame) end)
-end
+local EmbedSystem_MainWindow = CreateFrame('Frame', 'EmbedSystem_MainWindow', UIParent)
+local EmbedSystem_LeftWindow = CreateFrame('Frame', 'EmbedSystem_LeftWindow', EmbedSystem_MainWindow)
+local EmbedSystem_RightWindow = CreateFrame('Frame', 'EmbedSystem_RightWindow', EmbedSystem_MainWindow)
 
-function AS:EmbedCheck(login)
-	if not AS:CheckOption("EmbedSystem") then return end
-	if AS:CheckOption("EmbedOmen", "Omen") then AS:EmbedOmen() end
-	if AS:CheckOption("EmbedSkada", "Skada") then
-		AS:EmbedSkada()
-		if login then 
-			hooksecurefunc(Skada, "CreateWindow", AS.EmbedSkada)
-			hooksecurefunc(Skada, "DeleteWindow", AS.EmbedSkada)
-		end
-	end
-	if AS:CheckOption("EmbedTinyDPS", "TinyDPS") then AS:EmbedTDPS() end
-	if AS:CheckOption("EmbedRecount", "Recount") then AS:EmbedRecount() end
-	if AS:CheckOption("EmbedalDamageMeter", "alDamageMeter") then AS:EmbedALDamageMeter() end
-end
-
-function AS:EmbedShow()
-	if AS:CheckOption("EmbedSkada", "Skada") then
-		for _, window in pairs(Skada:GetWindows()) do window:Show() end
-	end
-	if AS:CheckOption("EmbedOmen", "Omen") then
-		OmenBarList:Show()
-	end
-	if AS:CheckOption("EmbedRecount", "Recount") then
-		Recount_MainWindow:Show()
-	end
-	if AS:CheckOption("EmbedTinyDPS", "TinyDPS") then
-		tdpsFrame:Show()
-	end
-	if AS:CheckOption("EmbedalDamageMeter", "alDamageMeter") then
-		alDamageMeterFrame:Show()
-	end
-end
-
-
-function AS:EmbedHide()
-	if AS:CheckOption("EmbedSkada", "Skada") then
-		for _, window in pairs(Skada:GetWindows()) do window:Hide() end
-	end
-	if AS:CheckOption("EmbedOmen", "Omen") then
-		OmenBarList:Hide()
-	end
-	if AS:CheckOption("EmbedRecount", "Recount") then
-		Recount_MainWindow:Hide()
-	end
-	if AS:CheckOption("EmbedTinyDPS", "TinyDPS") then
-		tdpsFrame:Hide()
-	end
-	if AS:CheckOption("EmbedalDamageMeter", "alDamageMeter") then
-		alDamageMeterFrame:Hide()
-	end
-end
-
-function AS:EmbedRecount()
-	Recount:LockWindows(true)
-	Recount_MainWindow:ClearAllPoints()
-	AS:EmbedRecountResize()
-	local Parent = UISkinOptions["EmbedLeft"] == "Recount" and EmbeddingWindowLeft or EmbeddingWindow
-	Recount_MainWindow:SetParent(Parent)
-	Recount_MainWindow:SetFrameLevel(10)
-end
-
-function AS:EmbedRecountResize()
-	local Parent = UISkinOptions["EmbedLeft"] == "Recount" and EmbeddingWindowLeft or EmbeddingWindow
-	Recount_MainWindow:SetPoint("TOPLEFT", Parent, "TOPLEFT", 0, 7)
-	Recount_MainWindow:SetPoint("BOTTOMRIGHT", Parent, "BOTTOMRIGHT", 0, 2)
-end
-
-function AS:EmbedOmen()
-	Omen.db.profile.Locked = true
-	Omen:UpdateGrips()
-	Omen.UpdateGrips = function(...)
-		local db = Omen.db.profile
-		Omen.VGrip1:ClearAllPoints()
-		Omen.VGrip1:SetPoint("TOPLEFT", Omen.BarList, "TOPLEFT", db.VGrip1, 0)
-		Omen.VGrip1:SetPoint("BOTTOMLEFT", Omen.BarList, "BOTTOMLEFT", db.VGrip1, 0)
-		Omen.VGrip2:ClearAllPoints()
-		Omen.VGrip2:SetPoint("TOPLEFT", Omen.BarList, "TOPLEFT", db.VGrip2, 0)
-		Omen.VGrip2:SetPoint("BOTTOMLEFT", Omen.BarList, "BOTTOMLEFT", db.VGrip2, 0)
-		Omen.Grip:Hide()
-		if db.Locked then
-			Omen.VGrip1:Hide()
-			Omen.VGrip2:Hide()
-		else
-			Omen.VGrip1:Show()
-			if db.Bar.ShowTPS then
-				Omen.VGrip2:Show()
-			else
-				Omen.VGrip2:Hide()
-			end
-		end
-	end
-	OmenTitle:Kill()
-	OmenAnchor:ClearAllPoints()
-	local Parent = UISkinOptions["EmbedLeft"] == "Omen" and EmbeddingWindowLeft or EmbeddingWindow
-	OmenBarList:SetParent(Parent)
-	OmenBarList:SetFrameLevel(10)
-	AS:EmbedOmenResize()
-end
-
-function AS:EmbedOmenResize()
-	local Parent = UISkinOptions["EmbedLeft"] == "Omen" and EmbeddingWindowLeft or EmbeddingWindow
-	OmenBarList:SetPoint("TOPLEFT", Parent, "TOPLEFT", 0, 0)
-	OmenBarList:SetPoint("BOTTOMRIGHT", Parent, "BOTTOMRIGHT", 0, 2)
-end
-
-function AS:EmbedTDPS()
-	AS:SkinFrame(tdpsFrame, "Default")
-	tdpsFrame:SetFrameLevel(10)
-	local Parent = UISkinOptions["EmbedLeft"] == "TinyDPS" and EmbeddingWindowLeft or EmbeddingWindow
-	tdpsFrame:SetParent(Parent)
-	tdpsAnchor:Point("TOPLEFT", Parent, "TOPLEFT", 0, 0)
-	AS:EmbedTDPSResize()
-	tdpsRefresh()
-end
-
-function AS:EmbedTDPSResize()
-	local Parent = UISkinOptions["EmbedLeft"] == "TinyDPS" and EmbeddingWindowLeft or EmbeddingWindow
-	tdpsFrame:SetWidth(Parent:GetWidth())
-	tdpsRefresh()
-end
-
-function AS:EmbedALDamageMeter()
-	dmconf.maxbars = AS:Round(EmbeddingWindow:GetHeight() / (dmconf.barheight + dmconf.spacing))
-	dmconf.width = EmbeddingWindow:GetWidth()
-	alDamageMeterFrame:ClearAllPoints()
-	local Parent = UISkinOptions["EmbedLeft"] == "alDamageMeter" and EmbeddingWindowLeft or EmbeddingWindow
-	alDamageMeterFrame:SetInside(Parent, 1, 1)
-	alDamageMeterFrame:SetParent(Parent)
-	alDamageMeterFrame:SetFrameLevel(10)
-end
-
-function AS:EmbedSkada()
-	local windows = {}
-	for _, window in pairs(Skada:GetWindows()) do
-		tinsert(windows, window)
-	end
-
-	local EmbedParent = UISkinOptions["EmbedLeft"] == "Skada" and EmbeddingWindowLeft or EmbeddingWindow
-
-	local height = AS:CheckOption("SkadaBelowTop") and 43 or 18
-	local yoffset = AS:CheckOption("SkadaBelowTop") and -40 or -17
-
-	local function EmbedWindow(window, width, height, point, relativeFrame, relativePoint, ofsx, ofsy)
-		local barmod = Skada.displays["bar"]
-		window.db.barwidth = width
-		window.db.background.height = height
-		window.db.spark = false
-		window.db.barslocked = true
-		window.bargroup:ClearAllPoints()
-		window.bargroup:SetPoint(point, relativeFrame, relativePoint, ofsx, ofsy)
-		window.bargroup:SetParent(EmbedParent)
-		barmod.ApplySettings(barmod, window)
-	end
-
-	if(#windows == 1) then
-		EmbedWindow(windows[1], EmbedParent:GetWidth() - 4, (EmbedParent:GetHeight() - 19), "TOPRIGHT", EmbedParent, "TOPRIGHT", -2, yoffset)
-	elseif(#windows == 2) then
-		if AS:CheckOption("SkadaTwoThirds") then
-			EmbedWindow(windows[1], (((EmbedParent:GetWidth() - 4) / 3) * 2) - 2, EmbedParent:GetHeight() - height, "TOPRIGHT", EmbedParent, "TOPRIGHT", -2, yoffset)
-			EmbedWindow(windows[2], ((EmbedParent:GetWidth() - 4) / 3) - 2, EmbedParent:GetHeight() - height, "TOPLEFT", EmbedParent, "TOPLEFT", 2, yoffset)
-		else
-			EmbedWindow(windows[1], ((EmbedParent:GetWidth() - 4) / 2) - 2, EmbedParent:GetHeight() - height, "TOPRIGHT", EmbedParent, "TOPRIGHT", -2, yoffset)
-			EmbedWindow(windows[2], ((EmbedParent:GetWidth() - 4) / 2) - 2, EmbedParent:GetHeight() - height, "TOPLEFT", EmbedParent, "TOPLEFT", 2, yoffset)
-		end
-	elseif(#windows > 2) then
-		EmbedWindow(windows[1], ((EmbedParent:GetWidth() - 4) / 2) - 2, EmbedParent:GetHeight() - height, "TOPRIGHT", EmbedParent, "TOPRIGHT", -2, yoffset)
-		EmbedWindow(windows[2], ((EmbedParent:GetWidth() - 4) / 2) - 2, (EmbedParent:GetHeight()/2) - height, "TOPLEFT", EmbedParent, "TOPLEFT", 2, yoffset)
-		EmbedWindow(windows[3], ((EmbedParent:GetWidth() - 4) / 2) - 2, (EmbedParent:GetHeight()/2) - height, "TOPLEFT", windows[2], "BOTTOMLEFT", 0, -2)
-	end
-end
-
-function AS:EmbedWindowResize()
-	if not AS.ChatBackgroundRight then
-		EmbeddingWindow:SetPoint("BOTTOM", AS.InfoRight, "TOP", 0, 2)
-		EmbeddingWindow:Size(AS.InfoRight:GetWidth(), 142)
-		EmbeddingWindowLeft:SetPoint("BOTTOM", AS.InfoLeft, "TOP", 0, 2)
-		EmbeddingWindowLeft:Size(AS.InfoLeft:GetWidth(), 142)
-	else
-		if DuffedUI then
-			EmbeddingWindow:SetInside(AS.ChatBackgroundRight, 5, 5)
-			EmbeddingWindowLeft:SetInside(AS.ChatBackgroundLeft, 5, 5)
-		else
-			EmbeddingWindow:SetPoint("TOP", AS.ChatBackgroundRight, "TOP", 0, -5)
-			EmbeddingWindow:Size(AS.InfoRight:GetWidth(), AS.ChatBackgroundRight:GetHeight() - 34)
-			EmbeddingWindowLeft:SetPoint("TOP", AS.ChatBackgroundLeft, "TOP", 0, -5)
-			EmbeddingWindowLeft:Size(AS.InfoLeft:GetWidth(), AS.ChatBackgroundLeft:GetHeight() - 34)
-		end
-	end
-	AS:EmbedCheck()
-end
-
-local EmbedOoCCombatStart, EmbedOoCCombatEnd -- Delay System Vars
-
-local EmbeddingWindowLeft = CreateFrame("Frame", "EmbeddingWindowLeft", UIParent)
-local EmbeddingWindow = CreateFrame("Frame", "EmbeddingWindow", UIParent)
-EmbeddingWindow:RegisterEvent("PLAYER_ENTERING_WORLD")
-EmbeddingWindow:RegisterEvent("PLAYER_REGEN_DISABLED")
-EmbeddingWindow:RegisterEvent("PLAYER_REGEN_ENABLED")
-EmbeddingWindow:SetScript("OnShow", AS.EmbedShow)
-EmbeddingWindow:SetScript("OnHide", AS.EmbedHide)
-EmbeddingWindow:SetScript("OnEvent", function(self, event)
-	if event == "PLAYER_ENTERING_WORLD" then
-		AS:EmbedWindowResize()
+EmbedSystem_MainWindow:RegisterEvent('PLAYER_LOGIN')
+EmbedSystem_MainWindow:RegisterEvent('PLAYER_REGEN_DISABLED')
+EmbedSystem_MainWindow:RegisterEvent('PLAYER_REGEN_ENABLED')
+EmbedSystem_MainWindow:SetScript('OnShow', AS.EmbedShow)
+EmbedSystem_MainWindow:SetScript('OnHide', AS.EmbedHide)
+EmbedSystem_MainWindow:SetScript('OnEvent', function(self, event)
+	if event == 'PLAYER_LOGIN' then
+		ChatFrame4Hide = ChatFrame4Tab:IsShown()
+		AS:EmbedSystem_MainWindowResize()
 		AS:EmbedCheck(true)
 	end
-	if event == "PLAYER_REGEN_DISABLED" or InCombatLockdown() then
+	if event == 'PLAYER_REGEN_DISABLED' then
 		EmbedOoCCombatStart = true
-		if AS:CheckOption("EmbedOoC") then
+		if AS:CheckOption('EmbedOoC') then
 			if ChatFrame4Hide then ChatFrame4Tab:Hide() end
-			EmbeddingWindow:Show()
-			EmbeddingWindowLeft:Show()
+			self:Show()
 		end
 	else
 		EmbedOoCCombatStart = false
-		if AS:CheckOption("EmbedOoC") then
+		if AS:CheckOption('EmbedOoC') then
 			if ChatFrame4Hide then ChatFrame4Tab:Show() end
 			if EmbedOoCCombatEnd then return end
 			EmbedOoCCombatEnd = true
 			AS:Delay(10, function()
 				if not EmbedOoCCombatStart then
-					EmbeddingWindow:Hide()
-					EmbeddingWindowLeft:Hide()
+					self:Hide()
 				end
 				EmbedOoCCombatEnd = false
 			end)
@@ -260,164 +45,238 @@ EmbeddingWindow:SetScript("OnEvent", function(self, event)
 	end
 end)
 
-if AS.ChatBackgroundRight then
-	AS.ChatBackgroundRight:SetFrameStrata("Background")
-	AS.ChatBackgroundLeft:SetFrameStrata("Background")
-	AS.TabsRightBackground:SetParent(AS.ChatBackgroundRight)
-	AS.TabsLeftBackground:SetParent(AS.ChatBackgroundLeft)
+function AS:EmbedSystem_MainWindowResize()
+	if not AS.ChatBackgroundRight then
+		EmbedSystem_MainWindow:SetPoint('BOTTOM', AS.InfoRight, 'TOP', 0, 2)
+		EmbedSystem_MainWindow:Size(AS.InfoRight:GetWidth(), 142)
+	else
+		if DuffedUI then
+			EmbedSystem_MainWindow:SetInside(AS.ChatBackgroundRight, 5, 5)
+		else
+			EmbedSystem_MainWindow:SetPoint('TOP', AS.ChatBackgroundRight, 'TOP', 0, -5)
+			EmbedSystem_MainWindow:Size(AS.InfoRight:GetWidth(), AS.ChatBackgroundRight:GetHeight() - 34)
+		end
+	end
+	AS:EmbedCheck()
 end
 
-local function CreateToggleButton(name, buttontext, panel1, panel2, tooltiptext1, tooltiptext2)
-	local frame = CreateFrame("Button", name, UIParent)
-	frame:SetTemplate("Transparent")
-	frame:Size(panel1:GetHeight())
-	--frame:FontString("text", AS.ActionBarFont, 12)
-	frame:FontString("text", AS.PixelFont, 12)
-	frame.text:SetText(buttontext)
-	frame.text:SetPoint("CENTER", 0, 0)
-	frame:RegisterForClicks("LeftButtonDown", "RightButtonDown")
-	UIFrameFadeOut(frame, 0.2, frame:GetAlpha(), 0)
-	frame:SetScript("OnClick", function(self, btn)
-		if btn == 'LeftButton' then
-			if IsAddOnLoaded("Tukui_ChatTweaks") and ChatTweaksOptions["ChatHider"] then
-				if panel2 then
-					if self.Faded then
-						self.Faded = nil
-						if not DuffedUI then UIFrameFadeIn(panel1, 0.2, panel1:GetAlpha(), 1) end
-						UIFrameFadeIn(panel2, 0.2, panel2:GetAlpha(), 1)
-						if name == "LeftToggleButton" then UIFrameFadeIn(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 1) end
-					else
-						self.Faded = true
-						if not DuffedUI then UIFrameFadeOut(panel1, 0.2, panel1:GetAlpha(), 0) end
-						UIFrameFadeOut(panel2, 0.2, panel2:GetAlpha(), 0)
-						if name == "LeftToggleButton" then UIFrameFadeOut(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 0) end
-					end
-				end
-			end
+function AS:EmbedSystem_WindowResize()
+	EmbedSystem_LeftWindow:SetPoint('RIGHT', EmbedSystem_RightWindow, 'LEFT', 0, 0)
+	EmbedSystem_RightWindow:SetPoint('RIGHT', EmbedSystem_MainWindow, 'RIGHT', 0, 0)
+	EmbedSystem_LeftWindow:SetSize((EmbedSystem_MainWindow:GetWidth() / 2) - 2, EmbedSystem_MainWindow:GetHeight())
+	EmbedSystem_RightWindow:SetSize((EmbedSystem_MainWindow:GetWidth() / 2) - 2, EmbedSystem_MainWindow:GetHeight())
+end
+
+function AS:EmbedCheck(Login)
+	if not AS:CheckOption('EmbedSystem') then return end
+	if AS:CheckOption('EmbedOmen', 'Omen') then AS:EmbedOmen() end
+	if AS:CheckOption('EmbedSkada', 'Skada') then
+		if Login then
+			AS:EmbedSkada_UpdateWindows()
+			hooksecurefunc(Skada, 'CreateWindow', AS.EmbedSkada_UpdateWindows)
+			hooksecurefunc(Skada, 'DeleteWindow', AS.EmbedSkada_UpdateWindows)
+		else
+			AS:EmbedSkada()
 		end
-	end)
-	frame:SetScript("OnEnter", function(self, ...)
+	end
+	if AS:CheckOption('EmbedTinyDPS', 'TinyDPS') then AS:EmbedTDPS() end
+	if AS:CheckOption('EmbedRecount', 'Recount') then AS:EmbedRecount() end
+	if AS:CheckOption('EmbedalDamageMeter', 'alDamageMeter') then AS:EmbedALDamageMeter() end
+end
+
+function AS:EmbedShow()
+	if EmbedSystem_MainWindow.FrameName ~= nil then
+		EmbedSystem_MainWindow.FrameName:Show()
+	end
+	if EmbedSystem_LeftWindow.FrameName ~= nil then
+		EmbedSystem_LeftWindow.FrameName:Show()
+	end
+	if EmbedSystem_RightWindow.FrameName ~= nil then
+		EmbedSystem_RightWindow.FrameName:Show()
+	end
+end
+
+function AS:EmbedHide()
+	if EmbedSystem_MainWindow.FrameName ~= nil then
+		EmbedSystem_MainWindow.FrameName:Hide()
+	end
+	if EmbedSystem_LeftWindow.FrameName ~= nil then
+		EmbedSystem_LeftWindow.FrameName:Hide()
+	end
+	if EmbedSystem_RightWindow.FrameName ~= nil then
+		EmbedSystem_RightWindow.FrameName:Hide()
+	end
+end
+
+function AS:EmbedRecount()
+	local EmbedParent = AS:CheckOption('EmbedRight') == 'Recount' and EmbedSystem_RightWindow or EmbedSystem_LeftWindow
+	EmbedParent.FrameName = Recount_MainWindow
+	Recount.db.profile.Locked = true
+	Recount.db.profile.Scaling = 1
+	Recount.db.profile.ClampToScreen = true
+	Recount:LockWindows(true)
+
+	Recount_MainWindow:SetParent(EmbedParent)
+	Recount_MainWindow:SetFrameStrata('LOW')
+
+	Recount_MainWindow:ClearAllPoints()
+	Recount_MainWindow:SetPoint('TOPLEFT', EmbedParent, 'TOPLEFT', 0, 7)
+	Recount_MainWindow:SetPoint('BOTTOMRIGHT', EmbedParent, 'BOTTOMRIGHT', 0, 2)
+end
+
+function AS:EmbedOmen()
+	local EmbedParent = AS:CheckOption('EmbedRight') == 'Omen' and EmbedSystem_RightWindow or EmbedSystem_LeftWindow
+	EmbedParent.FrameName = OmenAnchor
+	Omen.db.profile.ShowWith.UseShowWith = false
+	Omen.db.profile.Locked = true
+	Omen.db.profile.TitleBar.ShowTitleBar = false
+	Omen.db.profile.FrameStrata = '2-LOW'
+	Omen:UpdateGrips()
+
+	AS:SkinFrame(OmenTitle, AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default')
+	AS:SkinFrame(OmenBarList, AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default')
+
+	OmenAnchor:SetParent(EmbedParent)
+	OmenAnchor:SetFrameStrata(strsub(Omen.db.profile.FrameStrata, 3))
+
+	OmenAnchor:ClearAllPoints()
+	OmenAnchor:SetPoint('TOPLEFT', EmbedParent, 'TOPLEFT', 0, 0)
+	OmenAnchor:SetPoint('BOTTOMRIGHT', EmbedParent, 'BOTTOMRIGHT', 0, 2)
+end
+
+function AS:EmbedTDPS()
+	local EmbedParent = AS:CheckOption('EmbedRight') == 'TinyDPS' and EmbedSystem_RightWindow or EmbedSystem_LeftWindow
+	EmbedParent.FrameName = tdpsFrame
+	AS:SkinFrame(tdpsFrame, AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default')
+
+	tdpsFrame:SetParent(EmbedParent)
+	tdpsFrame:SetFrameStrata('LOW')
+
+	tdpsAnchor:ClearAllPoints()
+	tdpsAnchor:Point('TOPLEFT', EmbedParent, 'TOPLEFT', 0, 0)
+
+	tdpsFrame:SetWidth(EmbedParent:GetWidth())
+	tdpsRefresh()
+end
+
+function AS:EmbedALDamageMeter()
+	local EmbedParent = AS:CheckOption('EmbedRight') == 'alDamageMeter' and EmbedSystem_RightWindow or EmbedSystem_LeftWindow
+	EmbedParent.FrameName = alDamageMeterFrame
+	dmconf.maxbars = AS:Round(EmbedParent:GetHeight() / (dmconf.barheight + dmconf.spacing))
+	dmconf.width = EmbedParent:GetWidth()
+
+	AS:SkinFrame(alDamageMeterFrame.bg, AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default')
+	alDamageMeterFrame:ClearAllPoints()
+	alDamageMeterFrame:SetInside(EmbedParent, 1, 1)
+	alDamageMeterFrame:SetParent(EmbedParent)
+	alDamageMeterFrame:SetFrameStrata('LOW')
+end
+
+function AS:EmbedSkada_UpdateWindows()
+	for k, window in pairs(Skada:GetWindows()) do
+		tinsert(SkadaWindows, window)
+	end
+	AS:EmbedSkada()
+end
+
+function AS:EmbedSkada()
+	local NumberToEmbed = 0
+	if AS:CheckOption('EmbedRight') == 'Skada' then NumberToEmbed = NumberToEmbed + 1 end
+	if AS:CheckOption('EmbedLeft') == 'Skada' then NumberToEmbed = NumberToEmbed + 1 end
+	if NumberToEmbed > #SkadaWindows then NumberToEmbed = #SkadaWindows end
+
+	local function EmbedWindow(window, width, height, point, relativeFrame, relativePoint, ofsx, ofsy)
+		local barmod = Skada.displays['bar']
+		window.db.barwidth = width
+		window.db.background.height = height - (window.db.enabletitle and window.db.title.height or 0)
+		window.db.spark = false
+		window.db.barslocked = true
+		window.bargroup:ClearAllPoints()
+		window.bargroup:SetPoint(point, relativeFrame, relativePoint, ofsx, ofsy)
+		barmod.ApplySettings(barmod, window)
+	end
+
+	if NumberToEmbed == 1 then
+		local EmbedParent = AS:CheckOption('EmbedRight') == 'Skada' and EmbedSystem_RightWindow or EmbedSystem_LeftWindow
+		EmbedWindow(SkadaWindows[1], EmbedParent:GetWidth() - 4, (EmbedParent:GetHeight() - 19), 'TOPRIGHT', EmbedParent, 'TOPRIGHT', -2, -17)
+		SkadaWindows[1].bargroup:SetParent(EmbedParent)
+		EmbedParent.FrameName = SkadaWindows[1]
+	elseif NumberToEmbed == 2 then
+		EmbedWindow(SkadaWindows[1], ((EmbedSystem_LeftWindow:GetWidth() - 4) / 2) - 2, EmbedSystem_LeftWindow:GetHeight(), 'TOPRIGHT', EmbedSystem_LeftWindow, 'TOPRIGHT', -2, -17)
+		SkadaWindows[1].bargroup:SetParent(EmbedSystem_LeftWindow)
+		EmbedSystem_LeftWindow.FrameName = SkadaWindows[1]
+		EmbedWindow(SkadaWindows[2], ((EmbedSystem_RightWindow:GetWidth() - 4) / 2) - 2, EmbedSystem_RightWindow:GetHeight() - height, 'TOPLEFT', EmbedSystem_RightWindow, 'TOPLEFT', 2, -17)
+		SkadaWindows[2].bargroup:SetParent(EmbedSystem_RightWindow)
+		EmbedSystem_RightWindow.FrameName = SkadaWindows[2]
+	end
+end
+
+local function CreateToggleButton(Name, Text, Panel1, Panel2, TooltipText1, TooltipText2)
+	local Frame = CreateFrame('Button', Name, UIParent)
+	Frame:SetTemplate('Transparent')
+	Frame:Size(Panel1:GetHeight())
+	--Frame:FontString('Text', AS.ActionBarFont, 12)
+	Frame:FontString('Text', AS.PixelFont, 12)
+	Frame.Text:SetText(Text)
+	Frame.Text:SetPoint('CENTER', 0, 0)
+	Frame:RegisterForClicks('LeftButtonDown', 'RightButtonDown')
+	UIFrameFadeOut(Frame, 0.2, Frame:GetAlpha(), 0)
+	Frame:SetScript('OnEnter', function(self, ...)
 		UIFrameFadeIn(self, 0.2, self:GetAlpha(), 1)
 		if self.Faded then
-			if not DuffedUI then UIFrameFadeIn(panel1, 0.2, panel1:GetAlpha(), 1) end
-			UIFrameFadeIn(panel2, 0.2, panel2:GetAlpha(), 1)
-			if name == "LeftToggleButton" then UIFrameFadeIn(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 1) end
+			if not DuffedUI then UIFrameFadeIn(Panel1, 0.2, Panel1:GetAlpha(), 1) end
+			UIFrameFadeIn(Panel2, 0.2, Panel2:GetAlpha(), 1)
+			if Name == 'LeftToggleButton' then UIFrameFadeIn(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 1) end
 		end
-		GameTooltip:SetOwner(self, name == "LeftToggleButton" and "ANCHOR_TOPLEFT" or "ANCHOR_TOPRIGHT", 0, 4)
+		GameTooltip:SetOwner(self, Name == 'LeftToggleButton' and 'ANCHOR_TOPLEFT' or 'ANCHOR_TOPRIGHT', 0, 4)
 		GameTooltip:ClearLines()
-		if IsAddOnLoaded("Tukui_ChatTweaks") and ChatTweaksOptions["ChatHider"] then
+		if IsAddOnLoaded('Tukui_ChatTweaks') and ChatTweaksOptions['ChatHider'] then
 			if AS.ChatBackgroundRight then
-				GameTooltip:AddDoubleLine("Left Click:", tooltiptext1, 1, 1, 1)
+				GameTooltip:AddDoubleLine('Left Click:', TooltipText1, 1, 1, 1)
 			end
 		end
-		GameTooltip:AddDoubleLine("Right Click:", tooltiptext2, 1, 1, 1)
+		GameTooltip:AddDoubleLine('Right Click:', TooltipText2, 1, 1, 1)
 		GameTooltip:Show()
 	end)
-	frame:SetScript("OnLeave", function(self, ...)
+	frame:SetScript('OnLeave', function(self, ...)
 		UIFrameFadeOut(self, 0.2, self:GetAlpha(), 0)
 		if self.Faded then
-			if not DuffedUI then UIFrameFadeOut(panel1, 0.2, panel1:GetAlpha(), 0) end
-			UIFrameFadeOut(panel2, 0.2, panel2:GetAlpha(), 0)
-			if name == "LeftToggleButton" then UIFrameFadeOut(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 0) end
+			if not DuffedUI then UIFrameFadeOut(Panel1, 0.2, Panel1:GetAlpha(), 0) end
+			UIFrameFadeOut(Panel2, 0.2, Panel2:GetAlpha(), 0)
+			if Name == 'LeftToggleButton' then UIFrameFadeOut(GeneralDockManager, 0.2, GeneralDockManager:GetAlpha(), 0) end
 		end
 		GameTooltip:Hide()
 	end)
 end
 
-CreateToggleButton("RightToggleButton", ">", AS.InfoRight, AS.ChatBackgroundRight, "Toggle Right Chat Panel", "Toggle Embedded AddOn")
---CreateToggleButton("RightToggleButton", "►", AS.InfoRight, AS.ChatBackgroundRight, "Toggle Right Chat Panel", "Toggle Embedded AddOn")
-RightToggleButton:Point("LEFT", AS.InfoRight, "RIGHT", 2, 0)
-RightToggleButton:HookScript("OnClick", function(self, btn)
-	if btn == "RightButton" then
-		if EmbeddingWindow:IsShown() then
-			EmbeddingWindow:Hide()
-			EmbeddingWindowLeft:Hide()
+CreateToggleButton('RightToggleButton', '>', AS.InfoRight, AS.ChatBackgroundRight, L.Skins.ToggleRightChat, L.Skins.ToggleEmbed)
+--CreateToggleButton('RightToggleButton', '►', AS.InfoRight, AS.ChatBackgroundRight, L.Skins.ToggleRightChat, L.Skins.ToggleEmbed)
+RightToggleButton:Point('LEFT', AS.InfoRight, 'RIGHT', 2, 0)
+RightToggleButton:HookScript('OnClick', function(self, button)
+	if button == 'RightButton' then
+		if EmbedSystem_MainWindow:IsShown() then
+			EmbedSystem_MainWindow:Hide()
 			if ChatFrame4Hide then ChatFrame4Tab:Show() end
 		else
-			EmbeddingWindow:Show()
-			EmbeddingWindowLeft:Show()
+			EmbedSystem_MainWindow:Show()
 			if ChatFrame4Hide then ChatFrame4Tab:Hide() end
 		end
 	end
 end)
-RightToggleButton:SetScript("PreClick", function(self) if ChatFrame4Tab:IsShown() then ChatFrame4Hide = true end end)
 
-CreateToggleButton("LeftToggleButton", "<", AS.InfoLeft, AS.ChatBackgroundLeft, "Toggle Left Chat Panel", "Toggle Extra Skins/Options")
---CreateToggleButton("LeftToggleButton", "◄", AS.InfoLeft, AS.ChatBackgroundLeft, "Toggle Left Chat Panel", "Toggle Extra Skins/Options")
-LeftToggleButton:Point("RIGHT", AS.InfoLeft, "LEFT", -2, 0)
-LeftToggleButton:HookScript("OnClick", function(self, btn)
-	local Ace3Options = IsAddOnLoaded("Enhanced_Config") and true or false
-	if btn == "RightButton" then
+CreateToggleButton('LeftToggleButton', '<', AS.InfoLeft, AS.ChatBackgroundLeft, L.Skins.ToggleLeftChat, L.Skins.ToggleOptions)
+--CreateToggleButton('LeftToggleButton', '◄', AS.InfoLeft, AS.ChatBackgroundLeft, L.Skins.ToggleLeftChat, L.Skins.ToggleOptions)
+LeftToggleButton:Point('RIGHT', AS.InfoLeft, 'LEFT', -2, 0)
+LeftToggleButton:HookScript('OnClick', function(self, button)
+	if button == 'RightButton' then
 		if not Ace3Options then
-			if SkinOptions:IsShown() or SkinOptions2:IsShown() or SkinOptions3:IsShown() then
-				SkinOptions:Hide()
-				SkinOptions2:Hide()
-				SkinOptions3:Hide()
-				SkinOptions1Button:SetParent(SkinOptions)
-				SkinOptions2Button:SetParent(SkinOptions)
-				EmbedWindowSettingsButton:SetParent(SkinOptions)
-				ApplySkinSettingsButton:SetParent(SkinOptions)
-				SkinOptionsCloseButton:SetParent(SkinOptions)
+			if SkinOptions_Main:IsShown() then
+				SkinOptions_Main:Hide()
 			else
-				SkinOptions:Show()
+				SkinOptions_Main:Show()
 			end
 		else
 			Enhanced_Config[1]:ToggleConfig()
 		end
 	end
 end)
-
-if Tukui and tonumber(GetAddOnMetadata('Tukui', 'Version')) >= 16 then
-local DataText = AS["DataTexts"]
-
-local Update = function(self)
-	local Text = ''
-	if AS:CheckOption('EmbedRecount', 'Recount') then Text = 'Recount' end
-	if AS:CheckOption('EmbedRO', 'Recount', 'Omen') then Text = 'Recount/Omen' end
-	if AS:CheckOption('EmbedSkada', 'Skada') then Text = 'Skada' end
-	if AS:CheckOption('EmbedOmen', 'Omen') then Text = 'Omen' end
-	if AS:CheckOption('EmbedTDPS', 'TinyDPS') then Text = 'TinyDPS' end
-	self.Text:SetText(format('%s %s', L.DataText.Toggle, Text))
-end
-
-local function OnClick(self, button)
-	if button == 'LeftButton' then
-		AS:EmbedShow()
-	elseif button == 'RightButton' then
-		AS:EmbedHide()
-	end
-end
-
-local function OnEnter(self)
-	local Panel, Anchor, xOff, yOff = self:GetTooltipAnchor()
-	GameTooltip:SetOwner(Panel, Anchor, xOff, yOff)
-	GameTooltip:ClearLines()
-	GameTooltip:AddLine('Left Click to Show')
-	GameTooltip:AddLine('Right Click to Hide')
-	GameTooltip:Show()
-	self:Update()
-end
-
-local Enable = function(self)
-	if (not self.Text) then
-		local Text = self:CreateFontString(nil, 'OVERLAY')
-		Text:SetFont(DataText.Font, DataText.Size, DataText.Flags)
-
-		self.Text = Text
-	end
-
-	self:RegisterEvent('PLAYER_ENTERING_WORLD')
-	self:SetScript('OnEvent', Update)
-	self:SetScript('OnEnter', OnEnter)
-	self:SetScript('OnLeave', GameTooltip_Hide)
-	self:Update()
-end
-
-local Disable = function(self)
-	self.Text:SetText('')
-	self:SetScript('OnEvent', nil)
-	self:UnregisterAllEvents()
-end
-
-DataText:Register('EmbedSystem', Enable, Disable, Update)
-end
