@@ -3,20 +3,18 @@ local AS = unpack(select(2,...))
 
 local pairs, sort, tinsert, tremove, unpack, floor = pairs, sort, tinsert, tremove, unpack, floor
 
-local function orderednext(t, n)
-	local key = t[t.__next]
-	if not key then return end
-	t.__next = t.__next + 1
-	return key, t.__source[key]
-end
-
 function AS:OrderedPairs(t, f)
-	local keys, kn = {__source = t, __next = 1}, 1
-	for k in pairs(t) do
-		keys[kn], kn = k, kn + 1
+	local a = {}
+	for n in pairs(t) do tinsert(a, n) end
+	sort(a, f)
+	local i = 0
+	local iter = function()
+		i = i + 1
+		if a[i] == nil then return nil
+			else return a[i], t[a[i]]
+		end
 	end
-	sort(keys, f)
-	return orderednext, keys
+	return iter
 end
 
 function AS:Round(num, idp)

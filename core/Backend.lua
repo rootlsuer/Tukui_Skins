@@ -24,11 +24,7 @@ function AS:Init()
 			else
 				addon = gsub(skin, "Skin", "")
 			end
-			if UISkinOptions[skin] == nil or UISkinOptions[skin] == "Enabled" then
-				UISkinOptions[skin] = true
-			elseif UISkinOptions[skin] == "Disabled" then
-				UISkinOptions[skin] = false
-			end
+			if UISkinOptions[skin] == nil then UISkinOptions[skin] = true end
 			if skin == "MiscFixes" or IsAddOnLoaded(addon) then
 				self:RegisteredSkin(skin, data.priority, data.func, data.events)
 			end
@@ -47,7 +43,7 @@ function AS:Init()
 		elseif event == "PET_BATTLE_OPENING_START" then
 			AS:RemoveNonPetBattleFrames()
 		end 
-		for skin, funcs in pairs(AS.skins) do
+		for skin, funcs in AS:OrderedPairs(AS.skins) do
 			if AS:CheckOption(skin) and AS.events[event] and AS.events[event][skin] then
 				for _, func in ipairs(funcs) do
 					local args = {}
@@ -64,13 +60,7 @@ function AS:Init()
 end
 
 function AS:CallSkin(skin, func, event, ...)
-	local args = {}
-	for i = 1, select('#',...) do
-		local arg = select(i, ...)
-		if not arg then break end
-		tinsert(args, arg)
-	end
-	local pass, error = pcall(func, self, event, unpack(args))
+	local pass, error = pcall(func, self, event, ...)
 	if not pass then
 		local message = "%s: |cFFFF0000There was an error in the|r |cFF0AFFFF%s|r |cFFFF0000skin|r. Please report this to Azilroka immediately @ http://www.tukui.org/tickets/tukuiskins"
 		local errormessage = "%s Error: %s"

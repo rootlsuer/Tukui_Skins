@@ -25,19 +25,6 @@ function AS:Ace3Options()
 		return options
 	end
 
-	local function pairsByKeys (t, f)
-		local a = {}
-		for n in pairs(t) do tinsert(a, n) end
-		sort(a, f)
-		local i = 0
-		local iter = function()
-			i = i + 1
-			if a[i] == nil then return nil
-				else return a[i], t[a[i]]
-			end
-		end
-		return iter
-	end
 	Ace3OptionsPanel.Options.args.skins = {
 		order = 100,
 		type = 'group',
@@ -146,7 +133,7 @@ function AS:Ace3Options()
 	}
 
 	local order = 2
-	for skinName, _ in pairsByKeys(AS.register) do
+	for skinName, _ in AS:OrderedPairs(AS.register) do
 		Ace3OptionsPanel.Options.args.skins.args.skins.args[skinName] = GenerateOptionTable(skinName, order)
 		order = order + 1
 	end
