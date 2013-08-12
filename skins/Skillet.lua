@@ -1,4 +1,4 @@
-﻿if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
+﻿if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
 local name = "SkilletSkin"
@@ -84,12 +84,11 @@ function AS:SkinSkillet()
 		if 2108  then SkinButton(2108)  end -- Leatherworking
 		if 2656  then SkinButton(2656)  end -- Smelting
 		if 3908  then SkinButton(3908)  end -- Tailoring
-		if 2550  then SkinButton(2550)  end -- Cooking	
+		if 2550  then SkinButton(2550)  end -- Cooking
 		if 3273  then SkinButton(3273)  end -- Firstaid
 		if 53428 then SkinButton(53428) end -- Runeforging
 
-		local icon = _G["SkilletHideUncraftableRecipes"]
-		icon:SetScript("OnUpdate", nil)
+		_G["SkilletHideUncraftableRecipes"]:SetScript("OnUpdate", nil)
 
 		SkinButton(SkilletHideUncraftableRecipes)
 		SkinButton(SkilletRecipeDifficultyButton)
@@ -268,10 +267,10 @@ function AS:SkinSkillet()
 		SkinGuildRecipes(2550)
 
 		local Skillet = _G.Skillet
-		x = 0
+		local x = 0
 		local player = UnitName("player")
-		icon = "SkilletFrameTradeButtons-"..player
-		template = "SkilletTradeButtonTemplate"
+		local icon = "SkilletFrameTradeButtons-"..player
+		local template = "SkilletTradeButtonTemplate"
 		local tradeSkillList = Skillet.tradeSkillList
 		local nonLinkingTrade = { [2656] = true, [53428] = true }
 		for i = 1, #tradeSkillList, 1 do
@@ -362,23 +361,12 @@ function AS:SkinSkillet()
 	SkilletRankFrame:SetHeight(10)		
 	AS:SkinScrollBar(SkilletSkillListScrollBar, 5)
 
-	local SkilletOnload = _G["SkilletSkillListParent"]
-	SkilletOnload:SetScript("OnShow", SkilletFrameOnShow)
-	
-	local SkilletOnUpdate = _G["SkilletSkillListParent"]
-	SkilletOnUpdate:SetScript("OnUpdate", SkilletFrameOnUpdate)
-
-	local Shopping = _G["SkilletShoppingList"]
-	Shopping:SetScript("OnShow", SkinShopping)
-
-	local icon = _G["SkilletHideUncraftableRecipes"]
-	icon:SetScript("OnUpdate", SkinIcon)
-
-	local reagent = _G["SkilletReagentParent"]
-	reagent:SetScript("OnUpdate", SkinReagentIcon)
-
-	local plugin = _G["SkilletPluginButton"]
-	plugin:SetScript("PostClick", SkinPluginButtons)
+	_G["SkilletSkillListParent"]:SetScript("OnShow", SkilletFrameOnShow)
+	_G["SkilletSkillListParent"]:SetScript("OnUpdate", SkilletFrameOnUpdate)
+	_G["SkilletShoppingList"]:SetScript("OnShow", SkinShopping)
+	_G["SkilletHideUncraftableRecipes"]:SetScript("OnUpdate", SkinIcon)
+	_G["SkilletReagentParent"]:SetScript("OnUpdate", SkinReagentIcon)
+	_G["SkilletPluginButton"]:SetScript("PostClick", SkinPluginButtons)
 end
 
 AS:RegisterSkin(name, AS.SkinSkillet)

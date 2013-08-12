@@ -1,7 +1,7 @@
 ----------------------------------------------------------------
 -- Modified Skinning Core till Tukz implements it back in T16 --
 ----------------------------------------------------------------
-if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
+if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
 local function SetModifiedBackdrop(self)

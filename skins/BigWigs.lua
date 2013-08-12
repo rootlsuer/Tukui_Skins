@@ -1,33 +1,33 @@
-if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
+if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
 local name = "BigWigsSkin"
 function AS:SkinBigWigs(event, addon)
 	if event == "PLAYER_ENTERING_WORLD" then return end
 	local buttonsize = 19
-	local freebg = {}
+	-- local freebg = {}
 
-	local createbg = function()
-		local bg = CreateFrame("Frame")
-		bg:SetTemplate("Transparent")
-		return bg
-	end
+	-- local createbg = function()
+		-- local bg = CreateFrame("Frame")
+		-- bg:SetTemplate("Transparent")
+		-- return bg
+	-- end
 
 	local function freestyle(bar)
-		local bg = bar:Get("bigwigs:Tukui:bg")
-		if bg then
-			bg:ClearAllPoints()
-			bg:SetParent(UIParent)
-			bg:Hide()
-			freebg[#freebg + 1] = bg
-		end
-		local ibg = bar:Get("bigwigs:Tukui:ibg")
-		if ibg then
-			ibg:ClearAllPoints()
-			ibg:SetParent(UIParent)
-			ibg:Hide()
-			freebg[#freebg + 1] = ibg
-		end
+		-- local bg = bar:Get("bigwigs:Tukui:bg")
+		-- if bg then
+			-- bg:ClearAllPoints()
+			-- bg:SetParent(UIParent)
+			-- bg:Hide()
+			-- freebg[#freebg + 1] = bg
+		-- end
+		-- local ibg = bar:Get("bigwigs:Tukui:ibg")
+		-- if ibg then
+			-- ibg:ClearAllPoints()
+			-- ibg:SetParent(UIParent)
+			-- ibg:Hide()
+			-- freebg[#freebg + 1] = ibg
+		-- end
 		bar.candyBarBar.SetPoint = bar.candyBarBar.OldSetPoint
 		bar.candyBarIconFrame.SetWidth = bar.candyBarIconFrame.OldSetWidth
 		bar.SetScale = bar.OldSetScale
@@ -48,34 +48,30 @@ function AS:SkinBigWigs(event, addon)
 
 	local applystyle = function(bar)
 		bar:SetHeight(buttonsize)
-		local bg = nil
-		if #freebg > 0 then
-			bg = table.remove(freebg)
-		else
-			bg = createbg()
-		end
-		bg:SetParent(bar)
-		bg:ClearAllPoints()
-		bg:Point("TOPLEFT", bar, "TOPLEFT", -2, 2)
-		bg:Point("BOTTOMRIGHT", bar, "BOTTOMRIGHT", 2, -2)
-		bg:SetFrameStrata("BACKGROUND")
-		bg:Show()
-		bar:Set("bigwigs:Tukui:bg", bg)
-		local ibg = nil
-		if bar.candyBarIconFrame:GetTexture() then
-			if #freebg > 0 then
-				ibg = table.remove(freebg)
-			else
-				ibg = createbg()
-			end
-			ibg:SetParent(bar)
-			ibg:ClearAllPoints()
-			ibg:Point("TOPLEFT", bar.candyBarIconFrame, "TOPLEFT", -2, 2)
-			ibg:Point("BOTTOMRIGHT", bar.candyBarIconFrame, "BOTTOMRIGHT", 2, -2)
-			ibg:SetFrameStrata("BACKGROUND")
-			ibg:Show()
-			bar:Set("bigwigs:Tukui:ibg", ibg)
-		end
+		-- local bg = nil
+		-- if #freebg > 0 then
+			-- bg = tremove(freebg)
+		-- else
+			-- bg = createbg()
+		-- end
+		-- bg:SetParent(bar)
+		-- bg:ClearAllPoints()
+		-- bg:SetOutside(bar)
+		-- bg:Show()
+		-- bar:Set("bigwigs:Tukui:bg", bg)
+		-- local ibg = nil
+		-- if bar.candyBarIconFrame:GetTexture() then
+			-- if #freebg > 0 then
+				-- ibg = tremove(freebg)
+			-- else
+				-- ibg = createbg()
+			-- end
+			-- ibg:SetParent(bar)
+			-- ibg:ClearAllPoints()
+			-- ibg:SetOutside(bar.candyBarIconFrame)
+			-- ibg:Show()
+			-- bar:Set("bigwigs:Tukui:ibg", ibg)
+		-- end
 		bar.candyBarLabel:SetFont(AS.Font, 12, "OUTLINE")
 		bar.candyBarLabel:SetShadowColor(0, 0, 0, 0)
 		bar.candyBarLabel:SetJustifyH("LEFT")
@@ -87,12 +83,14 @@ function AS:SkinBigWigs(event, addon)
 		bar.candyBarDuration:ClearAllPoints()
 		bar.candyBarDuration:Point("RIGHT", bar, "RIGHT", -4, 0)
 		bar.candyBarBar:ClearAllPoints()
+		bar.candyBarBar:CreateBackdrop()
 		bar.candyBarBar:SetAllPoints(bar)
 		bar.candyBarBar.OldSetPoint = bar.candyBarBar.SetPoint
 		bar.candyBarBar.SetPoint = AS.Noop
 		bar.candyBarBar:SetStatusBarTexture(AS.NormTex)
 		bar.candyBarBackground:SetTexture(unpack(AS.BackdropColor))
 		bar.candyBarIconFrame:ClearAllPoints()
+		bar.candyBarIconFrame:CreateBackdrop()
 		bar.candyBarIconFrame:Point("BOTTOMRIGHT", bar, "BOTTOMLEFT", -7, 0)
 		bar.candyBarIconFrame:SetSize(buttonsize, buttonsize)
 		bar.candyBarIconFrame.OldSetWidth = bar.candyBarIconFrame.SetWidth

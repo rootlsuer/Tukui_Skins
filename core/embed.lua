@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
+if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 local format, gsub, pairs, ipairs, select, tinsert, tonumber = format, gsub, pairs, ipairs, select, tinsert, tonumber
 
@@ -93,11 +93,9 @@ function AS:EmbedRecount()
 end
 
 function AS:EmbedRecountResize()
---	if not InCombatLockdown() then
-		local Parent = UISkinOptions["EmbedLeft"] == "Recount" and EmbeddingWindowLeft or EmbeddingWindow
-		Recount_MainWindow:SetPoint("TOPLEFT", Parent, "TOPLEFT", 0, 7)
-		Recount_MainWindow:SetPoint("BOTTOMRIGHT", Parent, "BOTTOMRIGHT", 0, 2)
---	end
+	local Parent = UISkinOptions["EmbedLeft"] == "Recount" and EmbeddingWindowLeft or EmbeddingWindow
+	Recount_MainWindow:SetPoint("TOPLEFT", Parent, "TOPLEFT", 0, 7)
+	Recount_MainWindow:SetPoint("BOTTOMRIGHT", Parent, "BOTTOMRIGHT", 0, 2)
 end
 
 function AS:EmbedOmen()
@@ -133,11 +131,9 @@ function AS:EmbedOmen()
 end
 
 function AS:EmbedOmenResize()
---	if not InCombatLockdown() then
 	local Parent = UISkinOptions["EmbedLeft"] == "Omen" and EmbeddingWindowLeft or EmbeddingWindow
 	OmenBarList:SetPoint("TOPLEFT", Parent, "TOPLEFT", 0, 0)
 	OmenBarList:SetPoint("BOTTOMRIGHT", Parent, "BOTTOMRIGHT", 0, 2)
---	end
 end
 
 function AS:EmbedTDPS()
@@ -151,11 +147,9 @@ function AS:EmbedTDPS()
 end
 
 function AS:EmbedTDPSResize()
---	if not InCombatLockdown() then
 	local Parent = UISkinOptions["EmbedLeft"] == "TinyDPS" and EmbeddingWindowLeft or EmbeddingWindow
 	tdpsFrame:SetWidth(Parent:GetWidth())
 	tdpsRefresh()
---	end
 end
 
 function AS:EmbedALDamageMeter()
@@ -373,7 +367,7 @@ LeftToggleButton:HookScript("OnClick", function(self, btn)
 	end
 end)
 
-if tonumber(GetAddOnMetadata('Tukui', 'Version')) >= 16 then
+if Tukui and tonumber(GetAddOnMetadata('Tukui', 'Version')) >= 16 then
 local DataText = AS["DataTexts"]
 
 local Update = function(self)

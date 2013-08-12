@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
+if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
 local name = "MageNuggetsSkin"
@@ -85,13 +85,13 @@ function AS:SkinMageNuggets()
 	AS:SkinStatusBar(MageNugIgnite_Frame_Bar)
 	AS:SkinStatusBar(MageNugAB_Frame_ABBar)
 	AS:SkinStatusBar(MageNugClearcast_Frame_Bar)
-	MageNugMBProcFrame_ProcBar:SetStatusBarTexture(C["Media"].NormTex)
-	MageNugProcFrame_ProcBar:SetStatusBarTexture(C["Media"].NormTex)
-	MageNugProcHUFrame_ProcBar:SetStatusBarTexture(C["Media"].NormTex)
-	MageNugPolyFrame_Bar:SetStatusBarTexture(C["Media"].NormTex)
-	MageNugImpactProcFrame_ProcBar:SetStatusBarTexture(C["Media"].NormTex)
-	MageNugBFProcFrame_ProcBar:SetStatusBarTexture(C["Media"].NormTex)
-	MageNugFoFProcFrame_ProcBar:SetStatusBarTexture(C["Media"].NormTex)
+	MageNugMBProcFrame_ProcBar:SetStatusBarTexture(AS.NormTex)
+	MageNugProcFrame_ProcBar:SetStatusBarTexture(AS.NormTex)
+	MageNugProcHUFrame_ProcBar:SetStatusBarTexture(AS.NormTex)
+	MageNugPolyFrame_Bar:SetStatusBarTexture(AS.NormTex)
+	MageNugImpactProcFrame_ProcBar:SetStatusBarTexture(AS.NormTex)
+	MageNugBFProcFrame_ProcBar:SetStatusBarTexture(AS.NormTex)
+	MageNugFoFProcFrame_ProcBar:SetStatusBarTexture(AS.NormTex)
 	MageNugMI_FrameTexture1BG = CreateFrame("Frame", nil, MageNugMI_Frame)
 	MageNugMI_FrameTexture1BG:CreateBackdrop()
 	MageNugMI_FrameTexture1BG.backdrop:SetOutside(MageNugMI_FrameTexture1)

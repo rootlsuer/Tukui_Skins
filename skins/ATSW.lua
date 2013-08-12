@@ -1,4 +1,4 @@
-if not (IsAddOnLoaded("Tukui") or IsAddOnLoaded("AsphyxiaUI") or IsAddOnLoaded("DuffedUI")) then return end
+if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
 local name = 'ATSWSkin'
@@ -103,7 +103,7 @@ function AS:SkinATSW()
 	AS:SkinTooltip(ATSWTradeskillTooltip)
 	AS:SkinFrame(ATSWReagentFrame)
 	AS:SkinFrame(ATSWOptionsFrame)
-	ATSWOptionsFrame:SetScale(c.general.uiscale)
+	ATSWOptionsFrame:SetScale(AS.UIScale)
 
 	AS:SkinFrame(ATSWCSFrame)
 	ATSWCSUListScrollFrame:StripTextures(true)
