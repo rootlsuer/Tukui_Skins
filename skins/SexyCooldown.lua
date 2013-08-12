@@ -43,7 +43,7 @@ function AS:SkinSexyCooldown()
 		if not icon.skinned then
 			AS:SkinFrame(icon)
 			AS:SkinBackdropFrame(icon.overlay, false)
-			icon.tex:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+			AS:SkinTexture(icon.tex)
 			icon.tex.SetTexCoord = function() end
 			icon.skinned = true
 		end

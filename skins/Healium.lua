@@ -70,7 +70,7 @@ function AS:SkinHealium()
 		end
 		local icon = self.icon
 		local texture = icon:GetTexture()
-		AS:SkinIconButton(self, true, true, true)
+		AS:SkinIconButton(self, true)
 		icon:SetTexture(texture)
 		icon:SetDrawLayer("OVERLAY")
 		icon:ClearAllPoints()
@@ -86,7 +86,7 @@ function AS:SkinHealium()
 		local cooldown = self.cooldown
 		local count = self.count 
 		local border = self.border 
-		AS:SkinIconButton(self, false, true, true)
+		AS:SkinIconButton(self, true)
 		self:SetSize(28,28)			
 		icon:SetDrawLayer("OVERLAY")
 		icon:ClearAllPoints()

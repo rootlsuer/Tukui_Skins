@@ -13,7 +13,7 @@ function AS:SkinOvale()
 			_G["Icon"..i.."n1"].backdrop:SetAllPoints()
 			_G["Icon"..i.."n1"].backdrop:SetScale(AS.UIScale)
 			_G["Icon"..i.."n1"].icone:SetDrawLayer("OVERLAY")
-			_G["Icon"..i.."n1"].icone:SetTexCoord(0.12, 0.88, 0.12, 0.88)
+			AS:SkinTexture(_G["Icon"..i.."n1"].icone)
 			_G["Icon"..i.."n1"].icone:SetInside(_G["Icon"..i.."n1"].backdrop, 1, 1)
 		end
 	end)

@@ -11,7 +11,7 @@ function AS:SkinInboxMailBag(event)
 	for i = 1, 99 do
 		local name = _G["InboxMailbagFrameItem"..i]
 		if not name then return end
-		AS:SkinIconButton(name, true, true)
+		AS:SkinIconButton(name)
 	end
 	AS:UnregisterEvent(name, event)
 end

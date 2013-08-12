@@ -20,15 +20,15 @@ function AS:SkinArchy()
 			if icon then
 				AS:SkinFrame(icon, false, true)
 				icon:SetSize(solveButton:GetHeight(),solveButton:GetHeight())
-				icon.texture:SetTexCoord(.08, .92, .08, .92)
+				AS:SkinTexture(icon.texture)
 				icon.texture:SetInside()
 			end
 
 			if solveButton then
 				AS:SkinFrame(solveButton, false, true)
-				solveButton:GetNormalTexture():SetTexCoord(.08, .92, .08, .92)
+				AS:SkinTexture(solveButton:GetNormalTexture())
 				solveButton:GetNormalTexture():SetInside()	
-				solveButton:GetDisabledTexture():SetTexCoord(.08, .92, .08, .92)
+				AS:SkinTexture(solveButton:GetDisabledTexture())
 				solveButton:GetDisabledTexture():SetInside()		
 				solveButton:StyleButton()
 			end

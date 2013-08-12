@@ -114,7 +114,7 @@ function AS:SkinATSW()
 		local button = _G["ATSWReagent"..i]
 		local icon = _G["ATSWReagent"..i.."IconTexture"]
 		local count = _G["ATSWReagent"..i.."Count"]
-		icon:SetTexCoord(.08, .92, .08, .92)
+		AS:SkinTexture(icon)
 		icon:SetDrawLayer("OVERLAY")
 
 		if not icon.backdrop then

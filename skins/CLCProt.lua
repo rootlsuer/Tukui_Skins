@@ -37,7 +37,7 @@ function AS:SkinCLCProt()
 		button.texture:Point("TOPLEFT", 2, -2)
 		button.texture:Point("BOTTOMRIGHT", -2, 2)
 		button.texture:SetTexture(BGTEX)
-		button.texture:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+		AS:SkinTexture(button.texture)
 		button.texture.SetTexCoord = AS.Noop
 		button.texture.OldSetTexture = button.texture.SetTexture
 		button.texture.SetTexture = function(frame, tex, ...)

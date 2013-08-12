@@ -13,7 +13,7 @@ function AS:SkinWeakAuras()
 			end
 		end
 
-		frame.icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+		AS:SkinTexture(frame.icon)
 		frame.icon.SetTexCoord = function() end
 	end
 

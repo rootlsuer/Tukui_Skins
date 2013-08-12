@@ -40,7 +40,7 @@ function AS:SkinTradeSkillDW()
 	hooksecurefunc("TradeSkillFrame_SetSelection", function(id)
 		TradeSkillSkillIcon:StyleButton()
 		if TradeSkillSkillIcon:GetNormalTexture() then
-			TradeSkillSkillIcon:GetNormalTexture():SetTexCoord(.08, .92, .08, .92)
+			AS:SkinTexture(TradeSkillSkillIcon:GetNormalTexture())
 			TradeSkillSkillIcon:GetNormalTexture():ClearAllPoints()
 			TradeSkillSkillIcon:GetNormalTexture():Point("TOPLEFT", 2, -2)
 			TradeSkillSkillIcon:GetNormalTexture():Point("BOTTOMRIGHT", -2, 2)
@@ -50,7 +50,7 @@ function AS:SkinTradeSkillDW()
 			local button = _G["TradeSkillReagent"..i]
 			local icon = _G["TradeSkillReagent"..i.."IconTexture"]
 			local count = _G["TradeSkillReagent"..i.."Count"]
-			icon:SetTexCoord(.08, .92, .08, .92)
+			AS:SkinTexture(icon)
 			icon:SetDrawLayer("OVERLAY")
 			if not icon.backdrop then
 				icon.backdrop = CreateFrame("Frame", nil, button)

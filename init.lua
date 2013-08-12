@@ -14,7 +14,7 @@ AddOn.MyClass = select(2, UnitClass("player"))
 AddOn.MyName = UnitName("player")
 AddOn.MyRealm = GetCVar("realmName")
 AddOn.Noop = function() return end
-AddOn.TexCoords = { .1, .9, .1, .9 }
+AddOn.TexCoords = {.08, .92, .08, .92}
 
 if Tukui and tonumber(GetAddOnMetadata('Tukui', 'Version')) >= 16.00 then
 	AddOn.Blank = C["Media"].Blank

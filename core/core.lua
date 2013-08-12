@@ -77,14 +77,11 @@ function AS:SkinFrame(frame, template, overridestrip)
 	frame:SetTemplate(template)
 end
 
-function AS:SkinBackdropFrame(frame, strip, icon)
+function AS:SkinBackdropFrame(frame, strip)
 	if strip then frame:StripTextures(true) end
-	if not icon then
-		frame:CreateBackdrop()
-	else
-		if frame.icon then frame.icon:SetTexCoord(0.12, 0.88, 0.12, 0.88) end
-		if _G[frame:GetName().."_Background"] then _G[frame:GetName().."_Background"]:SetTexCoord(0.12, 0.88, 0.12, 0.88) end
-	end
+	frame:CreateBackdrop()
+	if frame.icon then AS:SkinTexture(frame.icon) end
+	if _G[frame:GetName().."_Background"] then AS:SkinTexture(_G[frame:GetName().."_Background"]) end
 end
 
 function AS:SkinStatusBar(frame, ClassColor)
@@ -104,16 +101,11 @@ function AS:SkinTooltip(tooltip, scale)
 end
 
 function AS:SkinTexture(frame)
-	frame:SetTexCoord(0.12, 0.88, 0.12, 0.88)
+	frame:SetTexCoord(unpack(AS.TexCoords))
 end
 
-function AS:SkinIconButton(frame, strip, style, shrinkIcon)
-	if frame.isSkinned then return end
-
-	if strip then frame:StripTextures() end
-	frame:CreateBackdrop("Default", true)
-	if style then frame:StyleButton() end
-
+function AS:SkinIconButton(frame, shrinkIcon)
+	frame:SkinIconButton(shrinkIcon)
 	local icon = frame.icon
 	if frame:GetName() and _G[frame:GetName().."IconTexture"] then
 		icon = _G[frame:GetName().."IconTexture"]
@@ -122,17 +114,8 @@ function AS:SkinIconButton(frame, strip, style, shrinkIcon)
 	end
 
 	if icon then
-		icon:SetTexCoord(.08,.88,.08,.88)
-
-		if shrinkIcon then
-			frame.backdrop:SetAllPoints()
-			icon:SetInside(frame)
-		else
-			frame.backdrop:SetOutside(icon)
-		end
-		icon:SetParent(frame.backdrop)
+		AS:SkinTexture(icon)
 	end
-	frame.isSkinned = true
 end
 
 function AS:Desaturate(frame, point)
@@ -169,14 +152,10 @@ function AS:EnableOption(optionName)
 end
 
 function AS:ToggleOption(optionName)
-	if AS:CheckOption(optionName) then
-		AS:DisableOption(optionName)
-	else
-		AS:EnableOption(optionName)
-	end
+	UISkinOptions[optionName] = not UISkinOptions[optionName]
 end
 
-function AS:RegisterSkin(skinName,skinFunc,...)
+function AS:RegisterSkin(skinName, skinFunc, ...)
 	local events = {}
 	local priority = 1
 	for i = 1,select('#',...) do
@@ -215,7 +194,7 @@ end
 local waitTable = {}
 local waitFrame
 function AS:Delay(delay, func, ...)
-	if(type(delay)~="number" or type(func)~="function") then
+	if(type(delay) ~= "number" or type(func) ~= "function") then
 		return false
 	end
 	if(waitFrame == nil) then
@@ -223,21 +202,21 @@ function AS:Delay(delay, func, ...)
 		waitFrame:SetScript("OnUpdate",function (frame, elapse)
 			local count = #waitTable
 			local i = 1
-			while(i<=count) do
-				local waitRecord = tremove(waitTable,i)
-				local d = tremove(waitRecord,1)
-				local f = tremove(waitRecord,1)
-				local p = tremove(waitRecord,1)
-				if(d>elapse) then
-				  tinsert(waitTable,i,{d-elapse,f,p})
-				  i = i + 1
+			while(i <= count) do
+				local waitRecord = tremove(waitTable, i)
+				local d = tremove(waitRecord, 1)
+				local f = tremove(waitRecord, 1)
+				local p = tremove(waitRecord, 1)
+				if(d > elapse) then
+					tinsert(waitTable, i, {d - elapse, f, p})
+					i = i + 1
 				else
-				  count = count - 1
-				  f(unpack(p))
+					count = count - 1
+					f(unpack(p))
 				end
 			end
 		end)
 	end
-	tinsert(waitTable,{delay,func,{...}})
+	tinsert(waitTable, {delay, func, {...} } )
 	return true
 end

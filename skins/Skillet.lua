@@ -23,7 +23,7 @@ function AS:SkinSkillet()
 		texture:SetDrawLayer('OVERLAY')
 		texture:ClearAllPoints()
 		texture:SetInside()
-		texture:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+		AS:SkinTexture(texture)
 		button:SetHighlightTexture(nil)
 	end
 
@@ -48,7 +48,7 @@ function AS:SkinSkillet()
 		texture:SetDrawLayer('OVERLAY')
 		texture:ClearAllPoints()
 		texture:SetInside()
-		texture:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+		AS:SkinTexture(texture)
 		button:SetHighlightTexture(nil)
 	end
 
@@ -65,7 +65,7 @@ function AS:SkinSkillet()
 		texture:SetDrawLayer('OVERLAY')
 		texture:ClearAllPoints()
 		texture:SetInside()
-		texture:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+		AS:SkinTexture(texture)
 	end
 
 	local function SkinIcon(self)

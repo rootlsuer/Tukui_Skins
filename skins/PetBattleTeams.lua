@@ -8,7 +8,7 @@ function AS:SkinPetBattleTeams()
 		AS:SkinScrollBar(PetBattleTeamsScrollFrameScrollBar)
 
 		PetBattleTeamsTooltip:HookScript("OnShow", function(self)
-			self.Icon:SetTexCoord(0.12, 0.88, 0.12, 0.88)
+			AS:SkinTexture(self.Icon)
 			self.rarityGlow:SetTexture(nil)
 			self.Background:SetTexture(nil)
 			self.BorderTop:SetTexture(nil)

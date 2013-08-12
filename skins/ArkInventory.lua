@@ -84,7 +84,7 @@ function AS:SkinArkInventory()
 			obj:Hide()
 		else
 			obj:SetTexture(texture)
-			obj:SetTexCoord(.08, .92, .08, .92)
+			AS:SkinTexture(obj)
 			obj:SetVertexColor(r or 1, r and g or 1, r and b or 1)
 			obj:ClearAllPoints()
 			obj:SetInside()
@@ -99,7 +99,7 @@ function AS:SkinArkInventory()
 		obj:Hide()
 		if _G[frame:GetName()] == ARKINV_Frame1ChangerWindowBag1 then ARKINV_Frame1ChangerWindowBag1IconTexture:SetTexture("interface\\icons\\inv_misc_bag_07_green") end
 		if _G[frame:GetName().."Background"] then _G[frame:GetName().."Background"]:Hide() end
-		AS:SkinIconButton(frame, true, false, true)
+		AS:SkinIconButton(frame, true)
 		frame.backdrop:SetBackdropBorderColor(r,g,b,a)
 	end
 end

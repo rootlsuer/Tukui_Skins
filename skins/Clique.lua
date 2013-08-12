@@ -55,7 +55,7 @@ function AS:SkinClique()
 	CliqueConfigPage1:SetScript("OnShow", function(self)
 		for i = 1, 12 do
 			if _G["CliqueRow"..i] then
-				_G["CliqueRow"..i.."Icon"]:SetTexCoord(.08, .92, .08, .92)
+				AS:SkinTexture(_G["CliqueRow"..i.."Icon"])
 				_G["CliqueRow"..i.."Bind"]:ClearAllPoints()
 				if _G["CliqueRow"..i] == CliqueRow1 then
 					_G["CliqueRow"..i.."Bind"]:SetPoint("RIGHT", _G["CliqueRow"..i], 8,0)
@@ -80,7 +80,7 @@ function AS:SkinClique()
 	CliqueConfigPage2ButtonSave:SetPoint("TOPLEFT", CliqueConfigPage2,"BOTTOMLEFT",0,-4)
 	CliqueConfigPage2ButtonCancel:SetPoint("TOPRIGHT", CliqueConfigPage2,"BOTTOMRIGHT",2,-4)
 	CliqueSpellTab:GetRegions():SetSize(.1,.1)
-	CliqueSpellTab:GetNormalTexture():SetTexCoord(.08, .92, .08, .92)
+	AS:SkinTexture(CliqueSpellTab:GetNormalTexture())
 	CliqueSpellTab:GetNormalTexture():ClearAllPoints()
 	CliqueSpellTab:GetNormalTexture():SetInside()
 	AS:SkinBackdropFrame(CliqueSpellTab)

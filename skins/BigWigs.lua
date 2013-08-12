@@ -34,7 +34,7 @@ function AS:SkinBigWigs(event, addon)
 		bar.candyBarIconFrame:ClearAllPoints()
 		bar.candyBarIconFrame:SetPoint("TOPLEFT")
 		bar.candyBarIconFrame:SetPoint("BOTTOMLEFT")
-		bar.candyBarIconFrame:SetTexCoord(0.07, 0.93, 0.07, 0.93)
+		AS:SkinTexture(bar.candyBarIconFrame)
 		bar.candyBarBar:ClearAllPoints()
 		bar.candyBarBar:SetPoint("TOPRIGHT")
 		bar.candyBarBar:SetPoint("BOTTOMRIGHT")
@@ -95,7 +95,7 @@ function AS:SkinBigWigs(event, addon)
 		bar.candyBarIconFrame:SetSize(buttonsize, buttonsize)
 		bar.candyBarIconFrame.OldSetWidth = bar.candyBarIconFrame.SetWidth
 		bar.candyBarIconFrame.SetWidth = AS.Noop
-		bar.candyBarIconFrame:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+		AS:SkinTexture(bar.candyBarIconFrame)
 	end
 
 	local function RegisterStyle()

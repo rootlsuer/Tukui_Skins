@@ -27,7 +27,7 @@ function AS:SkinMogIt()
 
 			for _, object in pairs(MogItGearSlots) do
 				if _G["MogItPreview"..i..object] then
-					AS:SkinIconButton(_G["MogItPreview"..i..object], true)
+					AS:SkinIconButton(_G["MogItPreview"..i..object])
 					_G["MogItPreview"..i..object]:SetPushedTexture(nil)
 					_G["MogItPreview"..i..object]:SetHighlightTexture(nil)
 				end

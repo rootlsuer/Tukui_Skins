@@ -58,7 +58,7 @@ function AS:SkinDBM(event, addon)
 						end
 
 						if not icon1.styled then
-							icon1:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+							AS:SkinTexture(icon1)
 							icon1:ClearAllPoints()
 							icon1:SetInside(icon1.overlay)
 							icon1:SetDrawLayer("OVERLAY")
@@ -66,7 +66,7 @@ function AS:SkinDBM(event, addon)
 						end
 
 						if not icon2.styled then
-							icon2:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+							AS:SkinTexture(icon2)
 							icon2:ClearAllPoints()
 							icon2:SetInside(icon2.overlay)
 							icon2:SetDrawLayer("OVERLAY")
