@@ -12,9 +12,9 @@ AS.register = {}
 function AS:Init()
 	if self.frame then return end
 
-	self.frame = CreateFrame("Frame")
-	self.frame:RegisterEvent("PET_BATTLE_CLOSE")
-	self.frame:RegisterEvent("PET_BATTLE_OPENING_START")
+	self.frame = CreateFrame('Frame')
+	self.frame:RegisterEvent('PET_BATTLE_CLOSE')
+	self.frame:RegisterEvent('PET_BATTLE_OPENING_START')
 	for skin, alldata in AS:OrderedPairs(self.register) do
 		for _, data in pairs(alldata) do
 			local addon
@@ -22,10 +22,10 @@ function AS:Init()
 			if sdata and sdata.addon then
 				addon = sdata.addon
 			else
-				addon = gsub(skin, "Skin", "")
+				addon = gsub(skin, 'Skin', '')
 			end
 			if UISkinOptions[skin] == nil then UISkinOptions[skin] = true end
-			if skin == "MiscFixes" or IsAddOnLoaded(addon) then
+			if skin == 'MiscFixes' or IsAddOnLoaded(addon) then
 				self:RegisteredSkin(skin, data.priority, data.func, data.events)
 			end
 		end
@@ -33,14 +33,14 @@ function AS:Init()
 	for skin, funcs in AS:OrderedPairs(AS.skins) do
 		if AS:CheckOption(skin) then
 			for _, func in ipairs(funcs) do
-				AS:CallSkin(skin, func, "PLAYER_ENTERING_WORLD")
+				AS:CallSkin(skin, func, 'PLAYER_ENTERING_WORLD')
 			end
 		end
 	end
-	self.frame:SetScript("OnEvent", function(self, event, ...)
-		if event == "PET_BATTLE_CLOSE" then
+	self.frame:SetScript('OnEvent', function(self, event, ...)
+		if event == 'PET_BATTLE_CLOSE' then
 			AS:AddNonPetBattleFrames()
-		elseif event == "PET_BATTLE_OPENING_START" then
+		elseif event == 'PET_BATTLE_OPENING_START' then
 			AS:RemoveNonPetBattleFrames()
 		end 
 		for skin, funcs in AS:OrderedPairs(AS.skins) do
@@ -62,10 +62,10 @@ end
 function AS:CallSkin(skin, func, event, ...)
 	local pass, error = pcall(func, self, event, ...)
 	if not pass then
-		local message = "%s: |cFFFF0000There was an error in the|r |cFF0AFFFF%s|r |cFFFF0000skin|r. Please report this to Azilroka immediately @ http://www.tukui.org/tickets/tukuiskins"
-		local errormessage = "%s Error: %s"
-		print(format(message, AS.Title, gsub(skin, "Skin", "")))
-		print(format(errormessage, gsub(skin, "Skin", ""), error))
+		local message = '%s: |cFFFF0000There was an error in the|r |cFF0AFFFF%s|r |cFFFF0000skin|r. Please report this to Azilroka immediately @ http://www.tukui.org/tickets/tukuiskins'
+		local errormessage = '%s Error: %s'
+		print(format(message, AS.Title, gsub(skin, 'Skin', '')))
+		print(format(errormessage, gsub(skin, 'Skin', ''), error))
 	end
 end
 
@@ -106,28 +106,24 @@ function AS:UnregisterEvent(skinName, event)
 	end
 end
 
-local ASFrame = CreateFrame("Frame")
-ASFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
-ASFrame:SetScript("OnEvent", function(self, event)
+local ASFrame = CreateFrame('Frame')
+ASFrame:RegisterEvent('PLAYER_ENTERING_WORLD')
+ASFrame:SetScript('OnEvent', function(self, event)
 	self:UnregisterEvent(event)
-	if UISkinOptions["RecountBackdrop"] == nil then UISkinOptions["RecountBackdrop"] = true end
-	if UISkinOptions["SkadaBackdrop"] == nil then UISkinOptions["SkadaBackdrop"] = true end
-	if UISkinOptions["CLCProtSkin"] == nil then UISkinOptions["CLCProtSkin"] = true end
-	if UISkinOptions["CLCRetSkin"] == nil then UISkinOptions["CLCRetSkin"] = true end
-	if UISkinOptions["DBMSkinHalf"] == nil then UISkinOptions["DBMSkinHalf"] = false end
-	if UISkinOptions["WeakAurasSkin"] == nil then UISkinOptions["WeakAurasSkin"] = true end
-	if UISkinOptions["EmbedOoC"] == nil then UISkinOptions["EmbedOoC"] = false end
-	if UISkinOptions["EmbedOmen"] == nil then UISkinOptions["EmbedOmen"] = false end
-	if UISkinOptions["EmbedTinyDPS"] == nil then UISkinOptions["EmbedTinyDPS"] = false end
-	if UISkinOptions["EmbedSkada"] == nil then UISkinOptions["EmbedSkada"] = false end
-	if UISkinOptions["EmbedRecount"] == nil then UISkinOptions["EmbedRecount"] = false end
-	if UISkinOptions["EmbedCoolLine"] == nil then UISkinOptions["EmbedCoolLine"] = false end
-	if UISkinOptions["EmbedLeft"] == nil then UISkinOptions["EmbedLeft"] = "Omen" end
-	if UISkinOptions["EmbedRight"] == nil then UISkinOptions["EmbedRight"] = "Skada" end
-	if UISkinOptions["SkadaBelowTop"] == nil then UISkinOptions["SkadaBelowTop"] = false end
-	if UISkinOptions["SkadaTwoThirds"] == nil then UISkinOptions["SkadaTwoThirds"] = false end
-	UISkinOptions["MiscFixes"] = true
+	if UISkinOptions['RecountBackdrop'] == nil then UISkinOptions['RecountBackdrop'] = true end
+	if UISkinOptions['SkadaBackdrop'] == nil then UISkinOptions['SkadaBackdrop'] = true end
+	if UISkinOptions['DBMSkinHalf'] == nil then UISkinOptions['DBMSkinHalf'] = false end
+	if UISkinOptions['EmbedOoC'] == nil then UISkinOptions['EmbedOoC'] = false end
+	if UISkinOptions['EmbedOmen'] == nil then UISkinOptions['EmbedOmen'] = false end
+	if UISkinOptions['EmbedTinyDPS'] == nil then UISkinOptions['EmbedTinyDPS'] = false end
+	if UISkinOptions['EmbedSkada'] == nil then UISkinOptions['EmbedSkada'] = false end
+	if UISkinOptions['EmbedRecount'] == nil then UISkinOptions['EmbedRecount'] = false end
+	if UISkinOptions['EmbedCoolLine'] == nil then UISkinOptions['EmbedCoolLine'] = false end
+	if UISkinOptions['EmbedLeft'] == nil then UISkinOptions['EmbedLeft'] = 'Omen' end
+	if UISkinOptions['EmbedRight'] == nil then UISkinOptions['EmbedRight'] = 'Skada' end
+	if UISkinOptions['TransparentEmbed'] == nil then UISkinOptions['TransparentEmbed'] = false end
+	UISkinOptions['MiscFixes'] = true
 	AS:Init()
-	print(format("%s by |cFFFF7D0AAzilroka|r - Version: |cFF1784D1%s|r Loaded!", AS.Title, AS.Version))
-	if IsAddOnLoaded("Enhanced_Config") then AS:Ace3Options() else AS:LegacyOptions() end
+	print(format('%s by |cFFFF7D0AAzilroka|r - Version: |cFF1784D1%s|r Loaded!', AS.Title, AS.Version))
+	if IsAddOnLoaded('Enhanced_Config') then AS:Ace3Options() else AS:LegacyOptions() end
 end)
