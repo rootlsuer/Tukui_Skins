@@ -24,7 +24,7 @@ function AS:Init()
 			else
 				addon = gsub(skin, 'Skin', '')
 			end
-			if UISkinOptions[skin] == nil then UISkinOptions[skin] = true end
+			if AS:CheckOption(skin) == nil then AS:EnableOption(skin) end
 			if skin == 'MiscFixes' or IsAddOnLoaded(addon) then
 				self:RegisteredSkin(skin, data.priority, data.func, data.events)
 			end
@@ -110,19 +110,19 @@ local ASFrame = CreateFrame('Frame')
 ASFrame:RegisterEvent('PLAYER_ENTERING_WORLD')
 ASFrame:SetScript('OnEvent', function(self, event)
 	self:UnregisterEvent(event)
-	if UISkinOptions['RecountBackdrop'] == nil then UISkinOptions['RecountBackdrop'] = true end
-	if UISkinOptions['SkadaBackdrop'] == nil then UISkinOptions['SkadaBackdrop'] = true end
-	if UISkinOptions['DBMSkinHalf'] == nil then UISkinOptions['DBMSkinHalf'] = false end
-	if UISkinOptions['EmbedOoC'] == nil then UISkinOptions['EmbedOoC'] = false end
-	if UISkinOptions['EmbedOmen'] == nil then UISkinOptions['EmbedOmen'] = false end
-	if UISkinOptions['EmbedTinyDPS'] == nil then UISkinOptions['EmbedTinyDPS'] = false end
-	if UISkinOptions['EmbedSkada'] == nil then UISkinOptions['EmbedSkada'] = false end
-	if UISkinOptions['EmbedRecount'] == nil then UISkinOptions['EmbedRecount'] = false end
-	if UISkinOptions['EmbedCoolLine'] == nil then UISkinOptions['EmbedCoolLine'] = false end
-	if UISkinOptions['EmbedLeft'] == nil then UISkinOptions['EmbedLeft'] = 'Omen' end
-	if UISkinOptions['EmbedRight'] == nil then UISkinOptions['EmbedRight'] = 'Skada' end
-	if UISkinOptions['TransparentEmbed'] == nil then UISkinOptions['TransparentEmbed'] = false end
-	UISkinOptions['MiscFixes'] = true
+	if AS:CheckOption('RecountBackdrop') == nil then AS:EnableOption('RecountBackdrop') end
+	if AS:CheckOption('SkadaBackdrop') == nil then AS:EnableOption('SkadaBackdrop') end
+	if AS:CheckOption('DBMSkinHalf') == nil then AS:DisableOption('DBMSkinHalf') end
+	if AS:CheckOption('EmbedOoC') == nil then AS:DisableOption('EmbedOoC') end
+	if AS:CheckOption('EmbedOmen') == nil then AS:DisableOption('EmbedOmen') end
+	if AS:CheckOption('EmbedTinyDPS') == nil then AS:DisableOption('EmbedTinyDPS') end
+	if AS:CheckOption('EmbedSkada') == nil then AS:DisableOption('EmbedSkada') end
+	if AS:CheckOption('EmbedRecount') == nil then AS:DisableOption('EmbedRecount') end
+	if AS:CheckOption('EmbedCoolLine') == nil then AS:DisableOption('EmbedCoolLine') end
+	if AS:CheckOption('EmbedLeft') == nil then AS:SetOption('EmbedLeft', 'Omen') end
+	if AS:CheckOption('EmbedRight') == nil then AS:SetOption('EmbedRight', 'Skada') end
+	if AS:CheckOption('TransparentEmbed') == nil then AS:DisableOption('TransparentEmbed') end
+	AS:EnableOption('MiscFixes')
 	AS:Init()
 	print(format('%s by |cFFFF7D0AAzilroka|r - Version: |cFF1784D1%s|r Loaded!', AS.Title, AS.Version))
 	if IsAddOnLoaded('Enhanced_Config') then AS:Ace3Options() else AS:LegacyOptions() end

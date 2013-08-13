@@ -155,6 +155,10 @@ function AS:ToggleOption(optionName)
 	UISkinOptions[optionName] = not UISkinOptions[optionName]
 end
 
+function AS:SetOption(optionName, value)
+	UISkinOptions[optionName] = value
+end
+
 function AS:RegisterSkin(skinName, skinFunc, ...)
 	local events = {}
 	local priority = 1

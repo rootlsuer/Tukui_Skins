@@ -26,7 +26,7 @@ function AS:SkinOmen()
 	Omen.UpdateTitleBar_ = Omen.UpdateTitleBar
 	Omen.UpdateTitleBar = function(self)
 		Omen.db.profile.Scale = 1
-		Omen.db.profile.Background.EdgeSize = 1
+		Omen.db.profile.Background.EdgeSize = 2
 		Omen.db.profile.Background.BarInset = 2
 		Omen.db.profile.TitleBar.UseSameBG = true
 		self:UpdateTitleBar_()
@@ -40,7 +40,7 @@ function AS:SkinOmen()
 	Omen.UpdateBackdrop_ = Omen.UpdateBackdrop
 	Omen.UpdateBackdrop = function(self)
 		Omen.db.profile.Scale = 1
-		Omen.db.profile.Background.EdgeSize = 1
+		Omen.db.profile.Background.EdgeSize = 2
 		Omen.db.profile.Background.BarInset = 2
 		self:UpdateBackdrop_()
 		AS:SkinFrame(self.BarList, "Default")

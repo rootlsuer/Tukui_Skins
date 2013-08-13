@@ -1,8 +1,9 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
-local L = AS.L
+local L = AS.Locale
 
 L.DataText.Toggle = 'Toggle'
+L.DataText.Embed = 'Embed'
 
 L.Skins.ToggleSkinDesc = 'Enable/Disable this skin.'
 L.Skins.ToggleEmbedDesc = 'Enable/Disable this embed.'

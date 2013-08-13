@@ -1,7 +1,7 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 
 local AS = unpack(select(2, ...))
-local L = AS.L
+local L = AS.Locale
 
-L.Skins = {}
+if not L.Skins then L.Skins = {} end
 if not L.DataText then L.DataText = {} end

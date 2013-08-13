@@ -9,13 +9,14 @@ function AS:LegacyOptions()
 		Frame:Point('CENTER', Parent, 'CENTER', 0, 0)
 		Frame:SetFrameStrata('DIALOG')
 		Frame:Width(550)
-		Frame:Height(210)
+		Frame:Height(550)
 	end
 
 	CreateOptionsFrame('SkinOptions_Main', UIParent)
 	CreateOptionsFrame('SkinOptions_Frame_1', SkinOptions_Main)
 	CreateOptionsFrame('SkinOptions_Frame_2', SkinOptions_Main)
 	CreateOptionsFrame('SkinOptions_Frame_3', SkinOptions_Main)
+	CreateOptionsFrame('SkinOptions_Credits', SkinOptions_Main)
 
 	SkinOptions_Main:FontString('Text', AS.Font, 14, 'OUTLINE')
 	SkinOptions_Main.Text:SetPoint('TOP', SkinOptions_Main, 0, -6)
@@ -33,45 +34,59 @@ function AS:LegacyOptions()
 	SkinOptions_Frame_3.Text:SetPoint('TOPRIGHT', SkinOptions_Frame_3, 'TOPRIGHT', -30, -38)
 	SkinOptions_Frame_3.Text:SetText('|cff00AAFFAvailable Embeds|r:\n\nalDamageMeter\nOmen\nRecount\nSkada\nTinyDPS')
 
+	SkinOptions_Credits:FontString('Text', AS.Font, 14, 'OUTLINE')
+	SkinOptions_Credits.Text:SetPoint('TOPLEFT', SkinOptions_Credits, 'TOPLEFT', 12, -30)
+	SkinOptions_Credits.Text:SetText(format('Coding:\n%s', AS.CreditsString))
+
 	local function CreateOptionsButton(Name)
 		local Frame = CreateFrame('Button', format('SkinOptions_Main_%sButton', Name), SkinOptions_Main)
-		Frame:Size(100, 24)
+		Frame:Size(106, 24)
 		AS:SkinButton(Frame)
 		Frame:FontString('Text', AS.Font, 12, 'OUTLINE')
 		Frame.Text:SetPoint('CENTER', Frame, 0, 0)
-		Frame.text:SetText(Name)
+		Frame.Text:SetText(Name)
 	end
 
-	CreateOptionsButton('Skins')
-	SkinOptions_Main_SkinsButton:SetPoint('TOP', SkinOptions, 'BOTTOM', 0, -2)
-	SkinOptions_Main_SkinsButton:HookScript('OnClick', function() SkinOptions_Frame_1:Show() SkinOptions_Frame_2:Hide() SkinOptions_Frame_3:Hide() end)
-
-	CreateOptionsButton('Modules')
-	SkinOptions_Main_ModulesButton:SetPoint('LEFT', SkinOptions_Main_SkinsButton, 'RIGHT', -2, 0)
-	SkinOptions_Main_ModulesButton:HookScript('OnClick', function() SkinOptions_Frame_1:Hide() SkinOptions_Frame_2:Show() SkinOptions_Frame_3:Hide() end)
-
-	CreateOptionsButton('Embeds')
-	SkinOptions_Main_EmbedsButton:SetPoint('LEFT', SkinOptions_Main_ModulesButton, 'RIGHT', -2, 0)
-	SkinOptions_Main_EmbedsButton:HookScript('OnClick', function() SkinOptions_Frame_1:Hide() SkinOptions_Frame_2:Hide() SkinOptions_Frame_3:Show() end)
-
-	CreateOptionsButton('Close')
-	SkinOptions_Main_CloseButton:SetPoint('LEFT', SkinOptions_Main_EmbedsButton, 'RIGHT', -2, 0)
-	SkinOptions_Main_CloseButton:HookScript('OnClick', function() SkinOptions_Main:Hide() end)
-
 	CreateOptionsButton('ApplySettings')
-	SkinOptions_Main_ApplySettingsButton:SetPoint('LEFT', EmbedWindowSettingsButton, 'RIGHT', -2, 0)
+	SkinOptions_Main_ApplySettingsButton:SetPoint('BOTTOMLEFT', SkinOptions_Main, 'BOTTOMLEFT', 4, 4)
 	SkinOptions_Main_ApplySettingsButton.Text:SetText('Apply Settings')
 	SkinOptions_Main_ApplySettingsButton:SetScript('OnClick', function() ReloadUI() end)
 
+	CreateOptionsButton('Skins')
+	SkinOptions_Main_SkinsButton:SetPoint('LEFT', SkinOptions_Main_ApplySettingsButton, 'RIGHT', 3, 0)
+	SkinOptions_Main_SkinsButton:HookScript('OnClick', function() SkinOptions_Frame_1:Show() SkinOptions_Frame_2:Hide() SkinOptions_Frame_3:Hide() end)
+
+	CreateOptionsButton('Modules')
+	SkinOptions_Main_ModulesButton:SetPoint('LEFT', SkinOptions_Main_SkinsButton, 'RIGHT', 3, 0)
+	SkinOptions_Main_ModulesButton:HookScript('OnClick', function() SkinOptions_Frame_1:Hide() SkinOptions_Frame_2:Show() SkinOptions_Frame_3:Hide() end)
+
+	CreateOptionsButton('Embeds')
+	SkinOptions_Main_EmbedsButton:SetPoint('LEFT', SkinOptions_Main_ModulesButton, 'RIGHT', 3, 0)
+	SkinOptions_Main_EmbedsButton:HookScript('OnClick', function() SkinOptions_Frame_1:Hide() SkinOptions_Frame_2:Hide() SkinOptions_Frame_3:Show() end)
+
+	CreateOptionsButton('Close')
+	SkinOptions_Main_CloseButton:SetPoint('LEFT', SkinOptions_Main_EmbedsButton, 'RIGHT', 3, 0)
+	SkinOptions_Main_CloseButton:HookScript('OnClick', function() SkinOptions_Main:Hide() end)
+
 	local function ToggleEmbed(AddOn)
+		local LeftEmbed, RightEmbed = AS:CheckOption('EmbedLeft'), AS:CheckOption('EmbedRight')
 		AS:DisableOption('EmbedOmen')
 		AS:DisableOption('EmbedRecount')
 		AS:DisableOption('EmbedTinyDPS')
 		AS:DisableOption('EmbedSkada')
-		if UISkinOptions['Embed'..AddOn] ~= nil then
-			AS:EnableOption('Embed'..AddOn)
+		if LeftEmbed == 'Skada' or RightEmbed == 'Skada' then
+			AS:EnableOption('EmbedSkada')
 		end
-		print(format('%s Embed System - Left: %s | Right: %s', AS.Title, UISkinOptions['EmbedLeft'], UISkinOptions['EmbedRight']))
+		if LeftEmbed == 'Omen' or RightEmbed == 'Omen' then
+			AS:EnableOption('EmbedOmen')
+		end
+		if LeftEmbed == 'Recount' or RightEmbed == 'Recount' then
+			AS:EnableOption('EmbedRecount')
+		end
+		if LeftEmbed  == 'TinyDPS' or RightEmbed == 'TinyDPS' then
+			AS:EnableOption('EmbedTinyDPS')
+		end
+		print(format('%s Embed System - Left: %s | Right: %s', AS.Title, AS:CheckOption('EmbedLeft'), AS:CheckOption('EmbedRight')))
 		AS:EmbedCheck()
 	end
 
@@ -88,14 +103,14 @@ function AS:LegacyOptions()
 		Frame:SetTextInsets(3,0,0,0)
 		Frame:SetFontObject(GameFontHighlight)
 		Frame:SetTemplate()
-		Frame:SetText(UISkinOptions[Name])
-		Frame:SetScript('OnEscapePressed', function(self) self:ClearFocus() self:SetText(UISkinOptions[Name]) end)
+		Frame:SetText(AS:CheckOption(Name))
+		Frame:SetScript('OnEscapePressed', function(self) self:ClearFocus() self:SetText(AS:CheckOption(Name)) end)
 		Frame:SetScript('OnEnterPressed', function(self)
 			self:ClearFocus()
 			if self:GetText() == '' then
-				UISkinOptions[Name] = 'NONE'
+				AS:SetOption(Name, 'NONE')
 			else
-				UISkinOptions[Name] = self:GetText()
+				AS:SetOption(Name, self:GetText())
 			end
 			ToggleEmbed(self:GetText())
 		end)
@@ -194,8 +209,8 @@ function AS:LegacyOptions()
 		end)
 	end
 
-	local curX, curY, maxY, maxHeight = 1, 1, 24, 1
-	for skin, options in AS:OrderedPairs(AS.Skins) do
+	local curX, curY, maxY = 1, 1, 24
+	for skin, options in AS:OrderedPairs(AS.skins) do
 		local addon
 		if options and options.addon then
 			addon = options.addon
@@ -203,17 +218,9 @@ function AS:LegacyOptions()
 			addon = gsub(skin, 'Skin', '')
 		end
 		local buttonText = options.buttonText or addon
-		if options.hide ~= true and IsAddOnLoaded(addon) then
+		if addon ~= 'MiscFixes' and IsAddOnLoaded(addon) then
 			CreateButton(format('%sButton', skin), buttonText, addon, skin, curX, curY)
 			curY = curY + 1
-			if maxHeight ~= maxY then
-				maxHeight = maxHeight + 1
-			end
-			if maxHeight > 7 then
-				SkinOptions_Main:Height(210)
-			else
-				SkinOptions_Main:Height(70 + (maxHeight * 22))
-			end
 			if curY > maxY then
 				curX = curX + 1
 				curY = 1

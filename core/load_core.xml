@@ -5,7 +5,6 @@
 	<Script file="Options_Ace3.lua"/>
 	<Script file="Options_Legacy.lua"/>
 	<Script file="Backend.lua"/>
-	<Script file="Snaps.lua"/>
 	<Script file="Embed.lua"/>
 	<Script file="DataText.lua"/>
 </Ui>

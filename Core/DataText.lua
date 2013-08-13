@@ -1,18 +1,11 @@
-if Tukui and tonumber(GetAddOnMetadata('Tukui', 'Version')) < 16 then return end
+if not Tukui then return end
+local AS = unpack(select(2, ...))
+local L = AS.Locale
+if tonumber(GetAddOnMetadata('Tukui', 'Version')) < 16 then return end
 
 local DataText = AS["DataTexts"]
 
-local Update = function(self)
-	local Text = ''
-	if AS:CheckOption('EmbedRecount', 'Recount') then Text = 'Recount' end
-	if AS:CheckOption('EmbedRO', 'Recount', 'Omen') then Text = 'Recount/Omen' end
-	if AS:CheckOption('EmbedSkada', 'Skada') then Text = 'Skada' end
-	if AS:CheckOption('EmbedOmen', 'Omen') then Text = 'Omen' end
-	if AS:CheckOption('EmbedTDPS', 'TinyDPS') then Text = 'TinyDPS' end
-	self.Text:SetText(format('%s %s', L.DataText.Toggle, Text))
-end
-
-local function OnClick(self, button)
+local OnClick = function(self, button)
 	if button == 'LeftButton' then
 		AS:EmbedShow()
 	elseif button == 'RightButton' then
@@ -20,29 +13,27 @@ local function OnClick(self, button)
 	end
 end
 
-local function OnEnter(self)
+local OnEnter = function(self)
 	local Panel, Anchor, xOff, yOff = self:GetTooltipAnchor()
 	GameTooltip:SetOwner(Panel, Anchor, xOff, yOff)
 	GameTooltip:ClearLines()
 	GameTooltip:AddLine('Left Click to Show')
 	GameTooltip:AddLine('Right Click to Hide')
 	GameTooltip:Show()
-	self:Update()
 end
 
 local Enable = function(self)
 	if (not self.Text) then
 		local Text = self:CreateFontString(nil, 'OVERLAY')
 		Text:SetFont(DataText.Font, DataText.Size, DataText.Flags)
-
+		Text:SetText(format('%s %s', L.DataText.Toggle, L.DataText.Embed))
 		self.Text = Text
 	end
 
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
-	self:SetScript('OnEvent', Update)
+	self:SetScript('OnMouseDown', OnClick)
 	self:SetScript('OnEnter', OnEnter)
 	self:SetScript('OnLeave', GameTooltip_Hide)
-	self:Update()
 end
 
 local Disable = function(self)
