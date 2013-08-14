@@ -12,20 +12,20 @@ local EmbedSystem_MainWindow = CreateFrame('Frame', 'EmbedSystem_MainWindow', UI
 local EmbedSystem_LeftWindow = CreateFrame('Frame', 'EmbedSystem_LeftWindow', EmbedSystem_MainWindow)
 local EmbedSystem_RightWindow = CreateFrame('Frame', 'EmbedSystem_RightWindow', EmbedSystem_MainWindow)
 
-EmbedSystem_MainWindow:RegisterEvent('PLAYER_LOGIN')
+EmbedSystem_MainWindow:RegisterEvent('PLAYER_ENTERING_WORLD')
 EmbedSystem_MainWindow:RegisterEvent('PLAYER_REGEN_DISABLED')
 EmbedSystem_MainWindow:RegisterEvent('PLAYER_REGEN_ENABLED')
 EmbedSystem_MainWindow:SetScript('OnEvent', function(self, event)
-	if event == 'PLAYER_LOGIN' then
+	if event == 'PLAYER_ENTERING_WORLD' then
 		ChatFrame4Hide = ChatFrame4Tab:IsShown()
-		AS:EmbedSystem_MainWindowResize()
+		AS:EmbedSystem_WindowResize()
 		AS:EmbedCheck(true)
 	end
 	if event == 'PLAYER_REGEN_DISABLED' then
 		EmbedOoCCombatStart = true
 		if AS:CheckOption('EmbedOoC') then
 			if ChatFrame4Hide then ChatFrame4Tab:Hide() end
-			self:Show()
+			AS:EmbedShow()
 		end
 	else
 		EmbedOoCCombatStart = false
@@ -35,7 +35,7 @@ EmbedSystem_MainWindow:SetScript('OnEvent', function(self, event)
 			EmbedOoCCombatEnd = true
 			AS:Delay(10, function()
 				if not EmbedOoCCombatStart then
-					self:Hide()
+					AS:EmbedHide()
 				end
 				EmbedOoCCombatEnd = false
 			end)
@@ -44,6 +44,9 @@ EmbedSystem_MainWindow:SetScript('OnEvent', function(self, event)
 end)
 
 function AS:EmbedShow()
+	EmbedSystem_MainWindow:Show()
+	EmbedSystem_LeftWindow:Show()
+	EmbedSystem_RightWindow:Show()
 	if EmbedSystem_MainWindow.FrameName ~= nil then
 		EmbedSystem_MainWindow.FrameName:Show()
 	end
@@ -54,9 +57,11 @@ function AS:EmbedShow()
 		EmbedSystem_RightWindow.FrameName:Show()
 	end
 end
-EmbedSystem_MainWindow:SetScript('OnShow', AS.EmbedShow)
 
 function AS:EmbedHide()
+	EmbedSystem_MainWindow:Hide()
+	EmbedSystem_LeftWindow:Hide()
+	EmbedSystem_RightWindow:Hide()
 	if EmbedSystem_MainWindow.FrameName ~= nil then
 		EmbedSystem_MainWindow.FrameName:Hide()
 	end
@@ -67,25 +72,22 @@ function AS:EmbedHide()
 		EmbedSystem_RightWindow.FrameName:Hide()
 	end
 end
+
+EmbedSystem_MainWindow:SetScript('OnShow', AS.EmbedShow)
 EmbedSystem_MainWindow:SetScript('OnHide', AS.EmbedHide)
 
-function AS:EmbedSystem_MainWindowResize()
+function AS:EmbedSystem_WindowResize()
 	if not AS.ChatBackgroundRight then
 		EmbedSystem_MainWindow:SetPoint('BOTTOM', AS.InfoRight, 'TOP', 0, 2)
-		EmbedSystem_MainWindow:Size(AS.InfoRight:GetWidth(), 142)
+		EmbedSystem_MainWindow:SetSize(AS.InfoRight:GetWidth(), 142)
 	else
 		if DuffedUI then
 			EmbedSystem_MainWindow:SetInside(AS.ChatBackgroundRight, 5, 5)
 		else
 			EmbedSystem_MainWindow:SetPoint('TOP', AS.ChatBackgroundRight, 'TOP', 0, -5)
-			EmbedSystem_MainWindow:Size(AS.InfoRight:GetWidth(), AS.ChatBackgroundRight:GetHeight() - 34)
+			EmbedSystem_MainWindow:SetSize(AS.InfoRight:GetWidth(), AS.ChatBackgroundRight:GetHeight() - 34)
 		end
 	end
-	AS:EmbedCheck()
-	AS:EmbedSystem_WindowResize()
-end
-
-function AS:EmbedSystem_WindowResize()
 	EmbedSystem_LeftWindow:SetPoint('RIGHT', EmbedSystem_RightWindow, 'LEFT', -2, 0)
 	EmbedSystem_RightWindow:SetPoint('RIGHT', EmbedSystem_MainWindow, 'RIGHT', 0, 0)
 	EmbedSystem_LeftWindow:SetSize((EmbedSystem_MainWindow:GetWidth() / 2) - 1, EmbedSystem_MainWindow:GetHeight())
@@ -96,17 +98,18 @@ function AS:EmbedCheck(Login)
 	if not AS:CheckOption('EmbedSystem') then return end
 	if AS:CheckOption('EmbedOmen', 'Omen') then AS:EmbedOmen() end
 	if AS:CheckOption('EmbedSkada', 'Skada') then
+		AS:EmbedSkada()
 		if Login then
-			AS:EmbedSkada_UpdateWindows()
-			hooksecurefunc(Skada, 'CreateWindow', AS.EmbedSkada_UpdateWindows)
-			hooksecurefunc(Skada, 'DeleteWindow', AS.EmbedSkada_UpdateWindows)
-		else
-			AS:EmbedSkada()
+			hooksecurefunc(Skada, 'CreateWindow', AS.EmbedSkada)
+			hooksecurefunc(Skada, 'DeleteWindow', AS.EmbedSkada)
+			hooksecurefunc(Skada, 'UpdateDisplay', AS.EmbedSkada)
 		end
 	end
 	if AS:CheckOption('EmbedTinyDPS', 'TinyDPS') then AS:EmbedTDPS() end
 	if AS:CheckOption('EmbedRecount', 'Recount') then AS:EmbedRecount() end
 	if AS:CheckOption('EmbedalDamageMeter', 'alDamageMeter') then AS:EmbedALDamageMeter() end
+	AS:EmbedShow()
+	if AS:CheckOption('EmbedOoC') and not InCombatLockdown() then AS:EmbedHide() end
 end
 
 function AS:EmbedRecount()
@@ -178,14 +181,11 @@ function AS:EmbedALDamageMeter()
 	alDamageMeterFrame:SetFrameStrata('LOW')
 end
 
-function AS:EmbedSkada_UpdateWindows()
+function AS:EmbedSkada()
+	wipe(SkadaWindows)
 	for k, window in pairs(Skada:GetWindows()) do
 		tinsert(SkadaWindows, window)
 	end
-	AS:EmbedSkada()
-end
-
-function AS:EmbedSkada()
 	local NumberToEmbed = 0
 	if AS:CheckOption('EmbedRight') == 'Skada' then NumberToEmbed = NumberToEmbed + 1 end
 	if AS:CheckOption('EmbedLeft') == 'Skada' then NumberToEmbed = NumberToEmbed + 1 end
@@ -193,26 +193,24 @@ function AS:EmbedSkada()
 
 	local function EmbedWindow(window, width, height, point, relativeFrame, relativePoint, ofsx, ofsy)
 		local barmod = Skada.displays['bar']
-		window.db.barwidth = width
-		window.db.background.height = height - (window.db.enabletitle and window.db.title.height or 0)
+		local offsety = (window.db.enabletitle and window.db.title.height or 0) + 2
+		window.db.barwidth = width - 4
+		window.db.background.height = height - (window.db.enabletitle and window.db.title.height or 0) - 4
 		window.db.spark = false
 		window.db.barslocked = true
 		window.bargroup:ClearAllPoints()
-		window.bargroup:SetPoint(point, relativeFrame, relativePoint, ofsx, ofsy)
+		window.bargroup:SetPoint(point, relativeFrame, relativePoint, ofsx, -offsety)
+		window.bargroup:SetParent(relativeFrame)
 		barmod.ApplySettings(barmod, window)
 	end
-
 	if NumberToEmbed == 1 then
 		local EmbedParent = AS:CheckOption('EmbedRight') == 'Skada' and EmbedSystem_RightWindow or EmbedSystem_LeftWindow
-		EmbedWindow(SkadaWindows[1], EmbedParent:GetWidth() - 4, EmbedParent:GetHeight() - 4, 'TOPRIGHT', EmbedParent, 'TOPRIGHT', -2, -17)
-		SkadaWindows[1].bargroup:SetParent(EmbedParent)
+		EmbedWindow(SkadaWindows[1], EmbedParent:GetWidth(), EmbedParent:GetHeight(), 'TOPLEFT', EmbedParent, 'TOPLEFT', 2, 0)
 		EmbedParent.FrameName = SkadaWindows[1]
 	elseif NumberToEmbed == 2 then
-		EmbedWindow(SkadaWindows[1], EmbedSystem_LeftWindow:GetWidth() - 4, EmbedSystem_LeftWindow:GetHeight() - 4, 'TOPRIGHT', EmbedSystem_LeftWindow, 'TOPRIGHT', -2, -17)
-		SkadaWindows[1].bargroup:SetParent(EmbedSystem_LeftWindow)
+		EmbedWindow(SkadaWindows[1], EmbedSystem_LeftWindow:GetWidth(), EmbedSystem_LeftWindow:GetHeight(), 'TOPLEFT', EmbedSystem_LeftWindow, 'TOPLEFT', 2, 0)
 		EmbedSystem_LeftWindow.FrameName = SkadaWindows[1]
-		EmbedWindow(SkadaWindows[2], EmbedSystem_LeftWindow:GetWidth() - 4, EmbedSystem_RightWindow:GetHeight() - 4, 'TOPLEFT', EmbedSystem_RightWindow, 'TOPLEFT', 2, -17)
-		SkadaWindows[2].bargroup:SetParent(EmbedSystem_RightWindow)
+		EmbedWindow(SkadaWindows[2], EmbedSystem_LeftWindow:GetWidth(), EmbedSystem_RightWindow:GetHeight(), 'TOPLEFT', EmbedSystem_RightWindow, 'TOPLEFT', 2, 0)
 		EmbedSystem_RightWindow.FrameName = SkadaWindows[2]
 	end
 end
