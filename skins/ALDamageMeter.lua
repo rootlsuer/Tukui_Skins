@@ -3,7 +3,8 @@ local AS = unpack(select(2,...))
 
 local name = "ALDamageMeterSkin"
 function AS:SkinALDamageMeter()
-	AS:SkinFrame(alDamageMeterFrame.bg)
+	alDamageMeterFrame.bg:Kill()
+	AS:SkinBackdropFrame(alDamageMeterFrame, 'Transparent')
 end
 
 AS:RegisterSkin(name, AS.SkinALDamageMeter)

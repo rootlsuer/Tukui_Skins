@@ -3,8 +3,6 @@ local AS = unpack(select(2,...))
 
 local name = "SkadaSkin"
 function AS:SkinSkada()
-	local barSpacing = 1
-	local borderWidth = 1
 	
 	local function StripOptions(options)
 		options.baroptions.args.barspacing = nil
@@ -74,7 +72,7 @@ function AS:SkinSkada()
 		if(win.db.enabletitle) then
 			skada.button:SetBackdrop(titleBG)
 		end
-		skada:SetSpacing(barSpacing)
+		skada:SetSpacing(1)
 		skada:SetFrameLevel(5)
 		if not skada.TitleBackGround then
 			skada.TitleBackGround = CreateFrame("Frame", nil, skada.button)
@@ -85,11 +83,8 @@ function AS:SkinSkada()
 			AS:SkinFrame(skada.TitleBackGround,"Default")
 			skada.TitleBackGround:SetFrameLevel(skada.button:GetFrameLevel() -1)
 		end
-
 		local titlefont = CreateFont("TitleFont" .. win.db.name)
 		skada.button:SetNormalFontObject(titlefont)
-
-		local color = win.db.title.color
 		skada.button:SetBackdropColor(0, 0, 0, 0)
 		skada:SetBackdrop(nil)
 		AS:SkinBackdropFrame(skada)

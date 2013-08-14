@@ -11,6 +11,7 @@ local Ace3Options = IsAddOnLoaded('Enhanced_Config') and true or false
 local EmbedSystem_MainWindow = CreateFrame('Frame', 'EmbedSystem_MainWindow', UIParent)
 local EmbedSystem_LeftWindow = CreateFrame('Frame', 'EmbedSystem_LeftWindow', EmbedSystem_MainWindow)
 local EmbedSystem_RightWindow = CreateFrame('Frame', 'EmbedSystem_RightWindow', EmbedSystem_MainWindow)
+local EmbedSystem_WidthSlider = CreateFrame("Slider", "EmbedSystem_WidthSlider", EmbedSystem_MainWindow, "OptionsSliderTemplate")
 
 EmbedSystem_MainWindow:RegisterEvent('PLAYER_ENTERING_WORLD')
 EmbedSystem_MainWindow:RegisterEvent('PLAYER_REGEN_DISABLED')
@@ -90,8 +91,31 @@ function AS:EmbedSystem_WindowResize()
 	end
 	EmbedSystem_LeftWindow:SetPoint('RIGHT', EmbedSystem_RightWindow, 'LEFT', -2, 0)
 	EmbedSystem_RightWindow:SetPoint('RIGHT', EmbedSystem_MainWindow, 'RIGHT', 0, 0)
-	EmbedSystem_LeftWindow:SetSize((EmbedSystem_MainWindow:GetWidth() / 2) - 1, EmbedSystem_MainWindow:GetHeight())
-	EmbedSystem_RightWindow:SetSize((EmbedSystem_MainWindow:GetWidth() / 2) - 1, EmbedSystem_MainWindow:GetHeight())
+	EmbedSystem_LeftWindow:SetSize(AS:CheckOption('EmbedLeftWidth'), EmbedSystem_MainWindow:GetHeight())
+	EmbedSystem_RightWindow:SetSize((EmbedSystem_MainWindow:GetWidth() - AS:CheckOption('EmbedLeftWidth')) - 1, EmbedSystem_MainWindow:GetHeight())
+	AS:EmbedSystem_ResizeSlider()
+end
+
+EmbedSystem_WidthSlider:Hide()
+EmbedSystem_WidthSlider:SetSize(AS.InfoRight:GetWidth(), AS.InfoRight:GetHeight())
+EmbedSystem_WidthSlider:SetPoint(AS.InfoRight:GetPoint())
+EmbedSystem_WidthSlider:SetValueStep(1)
+EmbedSystem_WidthSliderLow:SetText('')
+EmbedSystem_WidthSliderHigh:SetText('')
+EmbedSystem_WidthSliderText:SetText('')
+if not EmbedSystem_WidthSlider.isSkinned then
+	AS:SkinSlideBar(EmbedSystem_WidthSlider, AS.InfoRight:GetHeight(), true)
+end
+
+function AS:EmbedSystem_ResizeSlider()
+	local min, max = floor(EmbedSystem_MainWindow:GetWidth() * .25), floor(EmbedSystem_MainWindow:GetWidth() * .75)
+	EmbedSystem_WidthSlider:SetMinMaxValues(min, max)
+	EmbedSystem_WidthSlider:SetValue(AS:CheckOption('EmbedLeftWidth'))
+	EmbedSystem_WidthSlider:SetScript('OnValueChanged', function(self, value)
+		AS:SetOption('EmbedLeftWidth', value)
+		AS:EmbedSystem_WindowResize()
+		AS:EmbedCheck()
+	end)
 end
 
 function AS:EmbedCheck(Login)
@@ -109,7 +133,7 @@ function AS:EmbedCheck(Login)
 	if AS:CheckOption('EmbedRecount', 'Recount') then AS:EmbedRecount() end
 	if AS:CheckOption('EmbedalDamageMeter', 'alDamageMeter') then AS:EmbedALDamageMeter() end
 	AS:EmbedShow()
-	if AS:CheckOption('EmbedOoC') and not InCombatLockdown() then AS:EmbedHide() end
+	--if AS:CheckOption('EmbedOoC') and not InCombatLockdown() then AS:EmbedHide() end
 end
 
 function AS:EmbedRecount()
@@ -160,11 +184,20 @@ function AS:EmbedTDPS()
 
 	tdpsFrame:SetParent(EmbedParent)
 	tdpsFrame:SetFrameStrata('LOW')
+	tdpsFrame:Point('TOPLEFT', EmbedParent, 'TOPLEFT', 0, 0)
+	tdpsFrame:Point('BOTTOMRIGHT', EmbedParent, 'BOTTOMRIGHT', 0, 0)
 
 	tdpsAnchor:ClearAllPoints()
 	tdpsAnchor:Point('TOPLEFT', EmbedParent, 'TOPLEFT', 0, 0)
+	tdpsAnchor:Point('BOTTOMRIGHT', EmbedParent, 'BOTTOMRIGHT', 0, 0)
 
 	tdpsFrame:SetWidth(EmbedParent:GetWidth())
+
+	tdps["hideOOC"] = false
+	tdps["hideIC"] = false
+	tdps['hideSolo'] = false
+	tdps["hidePvP"] = false
+
 	tdpsRefresh()
 end
 
@@ -174,9 +207,10 @@ function AS:EmbedALDamageMeter()
 	dmconf.maxbars = AS:Round(EmbedParent:GetHeight() / (dmconf.barheight + dmconf.spacing))
 	dmconf.width = EmbedParent:GetWidth()
 
-	AS:SkinFrame(alDamageMeterFrame.bg, AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default')
+	alDamageMeterFrame.Backdrop:SetTemplate(AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default')
+	alDamageMeterFrame.bg:Kill()
 	alDamageMeterFrame:ClearAllPoints()
-	alDamageMeterFrame:SetInside(EmbedParent, 1, 1)
+	alDamageMeterFrame:SetInside(EmbedParent, 2, 2)
 	alDamageMeterFrame:SetParent(EmbedParent)
 	alDamageMeterFrame:SetFrameStrata('LOW')
 end
@@ -201,6 +235,9 @@ function AS:EmbedSkada()
 		window.bargroup:ClearAllPoints()
 		window.bargroup:SetPoint(point, relativeFrame, relativePoint, ofsx, -offsety)
 		window.bargroup:SetParent(relativeFrame)
+		if window.bargroup.Backdrop then
+			window.bargroup.Backdrop:SetTemplate(AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default')
+		end
 		barmod.ApplySettings(barmod, window)
 	end
 	if NumberToEmbed == 1 then
@@ -210,7 +247,7 @@ function AS:EmbedSkada()
 	elseif NumberToEmbed == 2 then
 		EmbedWindow(SkadaWindows[1], EmbedSystem_LeftWindow:GetWidth(), EmbedSystem_LeftWindow:GetHeight(), 'TOPLEFT', EmbedSystem_LeftWindow, 'TOPLEFT', 2, 0)
 		EmbedSystem_LeftWindow.FrameName = SkadaWindows[1]
-		EmbedWindow(SkadaWindows[2], EmbedSystem_LeftWindow:GetWidth(), EmbedSystem_RightWindow:GetHeight(), 'TOPLEFT', EmbedSystem_RightWindow, 'TOPLEFT', 2, 0)
+		EmbedWindow(SkadaWindows[2], EmbedSystem_RightWindow:GetWidth(), EmbedSystem_RightWindow:GetHeight(), 'TOPLEFT', EmbedSystem_RightWindow, 'TOPLEFT', 2, 0)
 		EmbedSystem_RightWindow.FrameName = SkadaWindows[2]
 	end
 end
@@ -258,12 +295,20 @@ CreateToggleButton('RightToggleButton', '>', AS.InfoRight, AS.ChatBackgroundRigh
 RightToggleButton:Point('LEFT', AS.InfoRight, 'RIGHT', 2, 0)
 RightToggleButton:HookScript('OnClick', function(self, button)
 	if button == 'RightButton' then
-		if EmbedSystem_MainWindow:IsShown() then
-			EmbedSystem_MainWindow:Hide()
-			if ChatFrame4Hide then ChatFrame4Tab:Show() end
+		if IsAltKeyDown() then
+			if EmbedSystem_WidthSlider:IsShown() then
+				EmbedSystem_WidthSlider:Hide()
+			else
+				EmbedSystem_WidthSlider:Show()
+			end
 		else
-			EmbedSystem_MainWindow:Show()
-			if ChatFrame4Hide then ChatFrame4Tab:Hide() end
+			if EmbedSystem_MainWindow:IsShown() then
+				EmbedSystem_MainWindow:Hide()
+				if ChatFrame4Hide then ChatFrame4Tab:Show() end
+			else
+				EmbedSystem_MainWindow:Show()
+				if ChatFrame4Hide then ChatFrame4Tab:Hide() end
+			end
 		end
 	end
 end)

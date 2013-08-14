@@ -155,7 +155,7 @@ function AS:Ace3Options()
 			text = {
 				order = 1,
 				type = 'description',
-				name = 'Coding:\n'..AS.CreditsString,
+				name = 'Credits:\n'..AS.CreditsString,
 			},
 		},
 	}
