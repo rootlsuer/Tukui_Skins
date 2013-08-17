@@ -3,7 +3,7 @@ local AS = unpack(select(2,...))
 
 local name = "CorkSkin"
 function AS:SkinCork()
-	AS:SkinBackdropFrame(Corkboard, true)
+	AS:SkinBackdropFrame(Corkboard)
 	Corkboard:HookScript("OnUpdate", function(frame) frame:StripTextures() end)
 end
 

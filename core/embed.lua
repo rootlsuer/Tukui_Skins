@@ -11,7 +11,7 @@ local Ace3Options = IsAddOnLoaded('Enhanced_Config') and true or false
 local EmbedSystem_MainWindow = CreateFrame('Frame', 'EmbedSystem_MainWindow', UIParent)
 local EmbedSystem_LeftWindow = CreateFrame('Frame', 'EmbedSystem_LeftWindow', EmbedSystem_MainWindow)
 local EmbedSystem_RightWindow = CreateFrame('Frame', 'EmbedSystem_RightWindow', EmbedSystem_MainWindow)
-local EmbedSystem_WidthSlider = CreateFrame("Slider", "EmbedSystem_WidthSlider", EmbedSystem_MainWindow, "OptionsSliderTemplate")
+local EmbedSystem_WidthSlider = CreateFrame('Slider', 'EmbedSystem_WidthSlider', EmbedSystem_MainWindow, 'OptionsSliderTemplate')
 
 EmbedSystem_MainWindow:RegisterEvent('PLAYER_ENTERING_WORLD')
 EmbedSystem_MainWindow:RegisterEvent('PLAYER_REGEN_DISABLED')
@@ -19,14 +19,30 @@ EmbedSystem_MainWindow:RegisterEvent('PLAYER_REGEN_ENABLED')
 EmbedSystem_MainWindow:SetScript('OnEvent', function(self, event)
 	if event == 'PLAYER_ENTERING_WORLD' then
 		ChatFrame4Hide = ChatFrame4Tab:IsShown()
+		EmbedSystem_WidthSlider:Hide()
+		EmbedSystem_WidthSlider:SetSize(AS.InfoRight:GetWidth(), AS.InfoRight:GetHeight())
+		EmbedSystem_WidthSlider:SetPoint(AS.InfoRight:GetPoint())
+		EmbedSystem_WidthSlider:SetValueStep(1)
+		EmbedSystem_WidthSliderLow:SetText('')
+		EmbedSystem_WidthSliderHigh:SetText('')
+		EmbedSystem_WidthSliderText:SetText('')
+		EmbedSystem_WidthSlider:SetScript('OnValueChanged', function(self, value)
+			AS:SetOption('EmbedLeftWidth', value)
+			AS:EmbedSystem_WindowResize()
+			AS:Embed_Check()
+		end)
+		if not EmbedSystem_WidthSlider.isSkinned then
+			AS:SkinSlideBar(EmbedSystem_WidthSlider, AS.InfoRight:GetHeight(), true)
+		end
 		AS:EmbedSystem_WindowResize()
-		AS:EmbedCheck(true)
+		AS:Embed_Check(true)
+		if AS:CheckOption('EmbedOoC') and not InCombatLockdown() then AS:Embed_Hide() end
 	end
 	if event == 'PLAYER_REGEN_DISABLED' then
 		EmbedOoCCombatStart = true
 		if AS:CheckOption('EmbedOoC') then
 			if ChatFrame4Hide then ChatFrame4Tab:Hide() end
-			AS:EmbedShow()
+			AS:Embed_Show()
 		end
 	else
 		EmbedOoCCombatStart = false
@@ -36,7 +52,7 @@ EmbedSystem_MainWindow:SetScript('OnEvent', function(self, event)
 			EmbedOoCCombatEnd = true
 			AS:Delay(10, function()
 				if not EmbedOoCCombatStart then
-					AS:EmbedHide()
+					AS:Embed_Hide()
 				end
 				EmbedOoCCombatEnd = false
 			end)
@@ -44,22 +60,24 @@ EmbedSystem_MainWindow:SetScript('OnEvent', function(self, event)
 	end
 end)
 
-function AS:EmbedShow()
+function AS:Embed_Show()
 	EmbedSystem_MainWindow:Show()
-	EmbedSystem_LeftWindow:Show()
-	EmbedSystem_RightWindow:Show()
 	if EmbedSystem_MainWindow.FrameName ~= nil then
 		EmbedSystem_MainWindow.FrameName:Show()
 	end
-	if EmbedSystem_LeftWindow.FrameName ~= nil then
-		EmbedSystem_LeftWindow.FrameName:Show()
-	end
-	if EmbedSystem_RightWindow.FrameName ~= nil then
-		EmbedSystem_RightWindow.FrameName:Show()
+	if AS:CheckOption('EmbedSystemDual') then
+		EmbedSystem_LeftWindow:Show()
+		EmbedSystem_RightWindow:Show()
+		if EmbedSystem_LeftWindow.FrameName ~= nil then
+			EmbedSystem_LeftWindow.FrameName:Show()
+		end
+		if EmbedSystem_RightWindow.FrameName ~= nil then
+			EmbedSystem_RightWindow.FrameName:Show()
+		end
 	end
 end
 
-function AS:EmbedHide()
+function AS:Embed_Hide()
 	EmbedSystem_MainWindow:Hide()
 	EmbedSystem_LeftWindow:Hide()
 	EmbedSystem_RightWindow:Hide()
@@ -74,8 +92,8 @@ function AS:EmbedHide()
 	end
 end
 
-EmbedSystem_MainWindow:SetScript('OnShow', AS.EmbedShow)
-EmbedSystem_MainWindow:SetScript('OnHide', AS.EmbedHide)
+EmbedSystem_MainWindow:SetScript('OnShow', AS.Embed_Show)
+EmbedSystem_MainWindow:SetScript('OnHide', AS.Embed_Hide)
 
 function AS:EmbedSystem_WindowResize()
 	if not AS.ChatBackgroundRight then
@@ -91,119 +109,170 @@ function AS:EmbedSystem_WindowResize()
 	end
 	EmbedSystem_LeftWindow:SetPoint('RIGHT', EmbedSystem_RightWindow, 'LEFT', -2, 0)
 	EmbedSystem_RightWindow:SetPoint('RIGHT', EmbedSystem_MainWindow, 'RIGHT', 0, 0)
-	EmbedSystem_LeftWindow:SetSize(AS:CheckOption('EmbedLeftWidth'), EmbedSystem_MainWindow:GetHeight())
+	EmbedSystem_LeftWindow:SetSize(AS:CheckOption('EmbedLeftWidth') - 1, EmbedSystem_MainWindow:GetHeight())
 	EmbedSystem_RightWindow:SetSize((EmbedSystem_MainWindow:GetWidth() - AS:CheckOption('EmbedLeftWidth')) - 1, EmbedSystem_MainWindow:GetHeight())
 	AS:EmbedSystem_ResizeSlider()
-end
-
-EmbedSystem_WidthSlider:Hide()
-EmbedSystem_WidthSlider:SetSize(AS.InfoRight:GetWidth(), AS.InfoRight:GetHeight())
-EmbedSystem_WidthSlider:SetPoint(AS.InfoRight:GetPoint())
-EmbedSystem_WidthSlider:SetValueStep(1)
-EmbedSystem_WidthSliderLow:SetText('')
-EmbedSystem_WidthSliderHigh:SetText('')
-EmbedSystem_WidthSliderText:SetText('')
-if not EmbedSystem_WidthSlider.isSkinned then
-	AS:SkinSlideBar(EmbedSystem_WidthSlider, AS.InfoRight:GetHeight(), true)
 end
 
 function AS:EmbedSystem_ResizeSlider()
 	local min, max = floor(EmbedSystem_MainWindow:GetWidth() * .25), floor(EmbedSystem_MainWindow:GetWidth() * .75)
 	EmbedSystem_WidthSlider:SetMinMaxValues(min, max)
 	EmbedSystem_WidthSlider:SetValue(AS:CheckOption('EmbedLeftWidth'))
-	EmbedSystem_WidthSlider:SetScript('OnValueChanged', function(self, value)
-		AS:SetOption('EmbedLeftWidth', value)
-		AS:EmbedSystem_WindowResize()
-		AS:EmbedCheck()
-	end)
 end
 
-function AS:EmbedCheck(Login)
-	if not AS:CheckOption('EmbedSystem') then return end
-	if AS:CheckOption('EmbedOmen', 'Omen') then AS:EmbedOmen() end
-	if AS:CheckOption('EmbedSkada', 'Skada') then
-		AS:EmbedSkada()
-		if Login then
-			hooksecurefunc(Skada, 'CreateWindow', AS.EmbedSkada)
-			hooksecurefunc(Skada, 'DeleteWindow', AS.EmbedSkada)
-			hooksecurefunc(Skada, 'UpdateDisplay', AS.EmbedSkada)
+function AS:Embed_Check(Login)
+	if not (AS:CheckOption('EmbedSystem') or AS:CheckOption('EmbedSystemDual')) then return end
+	AS:Embed_Toggle(Login and true or false)
+	if AS:CheckOption('EmbedOmen', 'Omen') then AS:Embed_Omen() end
+	if AS:CheckOption('EmbedSkada', 'Skada') then AS:Embed_Skada(Login and true or false) end
+	if AS:CheckOption('EmbedTinyDPS', 'TinyDPS') then AS:Embed_TinyDPS() end
+	if AS:CheckOption('EmbedRecount', 'Recount') then AS:Embed_Recount() end
+	if AS:CheckOption('EmbedalDamageMeter', 'alDamageMeter') then AS:Embed_alDamageMeter() end
+end
+
+function AS:Embed_Toggle(NoMessage)
+	local MainEmbed, LeftEmbed, RightEmbed = 'NONE', 'NONE', 'NONE'
+	EmbedSystem_MainWindow.FrameName = nil
+	EmbedSystem_LeftWindow.FrameName = nil
+	EmbedSystem_RightWindow.FrameName = nil
+	if AS:CheckOption('EmbedSystem') then
+		MainEmbed = AS:CheckOption('EmbedMain')
+		if MainEmbed ~= 'Skada' and MainEmbed ~= 'Omen' and MainEmbed ~= 'Recount' and MainEmbed ~= 'TinyDPS' and MainEmbed ~= 'alDamageMeter' then
+			EmbedSystem_MainWindow.FrameName = MainEmbed
 		end
 	end
-	if AS:CheckOption('EmbedTinyDPS', 'TinyDPS') then AS:EmbedTDPS() end
-	if AS:CheckOption('EmbedRecount', 'Recount') then AS:EmbedRecount() end
-	if AS:CheckOption('EmbedalDamageMeter', 'alDamageMeter') then AS:EmbedALDamageMeter() end
-	AS:EmbedShow()
-	--if AS:CheckOption('EmbedOoC') and not InCombatLockdown() then AS:EmbedHide() end
+	if AS:CheckOption('EmbedSystemDual') then
+		LeftEmbed, RightEmbed = AS:CheckOption('EmbedLeft'), AS:CheckOption('EmbedRight')
+		if LeftEmbed ~= 'Skada' and LeftEmbed ~= 'Omen' and LeftEmbed ~= 'Recount' and LeftEmbed ~= 'TinyDPS' and LeftEmbed ~= 'alDamageMeter' then
+			EmbedSystem_LeftWindow.FrameName = LeftEmbed
+		end
+		if RightEmbed ~= 'Skada' and RightEmbed ~= 'Omen' and RightEmbed ~= 'Recount' and RightEmbed ~= 'TinyDPS' and RightEmbed ~= 'alDamageMeter' then
+			EmbedSystem_RightWindow.FrameName = RightEmbed
+		end
+	end
+	AS:DisableOption('EmbedalDamageMeter')
+	AS:DisableOption('EmbedOmen')
+	AS:DisableOption('EmbedRecount')
+	AS:DisableOption('EmbedTinyDPS')
+	AS:DisableOption('EmbedSkada')
+	local Frame = nil
+	if EmbedSystem_MainWindow.FrameName ~= nil then
+		Frame = EmbedSystem_MainWindow.FrameName
+		if Frame:IsObjectType('Frame') and not Frame:IsProtected() then
+			Frame:ClearAllPoints()
+			Frame:SetInside(EmbedSystem_MainWindow, 0, 0)
+		end
+	end
+	if EmbedSystem_LeftWindow.FrameName ~= nil then
+		Frame = EmbedSystem_LeftWindow.FrameName
+		if Frame:IsObjectType('Frame') and not Frame:IsProtected() then
+			Frame:ClearAllPoints()
+			Frame:SetInside(EmbedSystem_LeftWindow, 0, 0)
+		end
+	end
+	if EmbedSystem_RightWindow.FrameName ~= nil then
+		Frame = EmbedSystem_RightWindow.FrameName
+		if Frame:IsObjectType('Frame') and not Frame:IsProtected() then
+			Frame:ClearAllPoints()
+			Frame:SetInside(EmbedSystem_RightWindow, 0, 0)
+		end
+	end
+	if MainEmbed == 'Skada' or LeftEmbed == 'Skada' or RightEmbed == 'Skada' then
+		AS:EnableOption('EmbedSkada')
+	end
+	if MainEmbed == 'Omen' or LeftEmbed == 'Omen' or RightEmbed == 'Omen' then
+		AS:EnableOption('EmbedOmen')
+	end
+	if MainEmbed == 'Recount' or LeftEmbed == 'Recount' or RightEmbed == 'Recount' then
+		AS:EnableOption('EmbedRecount')
+	end
+	if MainEmbed == 'TinyDPS' or LeftEmbed  == 'TinyDPS' or RightEmbed == 'TinyDPS' then
+		AS:EnableOption('EmbedTinyDPS')
+	end
+	if MainEmbed == 'alDamageMeter' or LeftEmbed  == 'alDamageMeter' or RightEmbed == 'alDamageMeter' then
+		AS:EnableOption('EmbedalDamageMeter')
+	end
+	if not NoMessage then
+		local Message = format('%s Embed System - Main: %s', AS.Title, AS:CheckOption('EmbedMain'))
+		if AS:CheckOption('EmbedSystemDual') then Message = format('%s Embed System - Left: %s | Right: %s', AS.Title, AS:CheckOption('EmbedLeft'), AS:CheckOption('EmbedRight')) end
+		print(Message)
+	end
 end
 
-function AS:EmbedRecount()
-	local EmbedParent = AS:CheckOption('EmbedRight') == 'Recount' and EmbedSystem_RightWindow or EmbedSystem_LeftWindow
+function AS:Embed_Recount()
+	local EmbedParent = EmbedSystem_MainWindow
+	if AS:CheckOption('EmbedSystemDual') then EmbedParent = AS:CheckOption('EmbedRight') == 'Recount' and EmbedSystem_RightWindow or EmbedSystem_LeftWindow end
 	EmbedParent.FrameName = Recount_MainWindow
-	Recount.db.profile.Locked = true
-	Recount.db.profile.Scaling = 1
-	Recount.db.profile.ClampToScreen = true
-	Recount:LockWindows(true)
 
 	Recount_MainWindow:SetParent(EmbedParent)
-	Recount_MainWindow:SetFrameStrata('LOW')
-
 	Recount_MainWindow:ClearAllPoints()
 	Recount_MainWindow:SetPoint('TOPLEFT', EmbedParent, 'TOPLEFT', 0, 7)
 	Recount_MainWindow:SetPoint('BOTTOMRIGHT', EmbedParent, 'BOTTOMRIGHT', 0, 0)
+	if not AS:CheckOption('RecountBackdrop') then Recount.MainWindow.Backdrop:Hide() end
+
+	Recount.db.profile.Locked = true
+	Recount.db.profile.Scaling = 1
+	Recount.db.profile.ClampToScreen = true
+	Recount.db.profile.FrameStrata = '2-LOW'
+	Recount:SetStrataAndClamp()
+	Recount:LockWindows(true)
+	Recount:ResizeMainWindow()
 end
 
-function AS:EmbedOmen()
-	local EmbedParent = AS:CheckOption('EmbedRight') == 'Omen' and EmbedSystem_RightWindow or EmbedSystem_LeftWindow
+function AS:Embed_Omen()
+	local EmbedParent = EmbedSystem_MainWindow
+	if AS:CheckOption('EmbedSystemDual') then EmbedParent = AS:CheckOption('EmbedRight') == 'Omen' and EmbedSystem_RightWindow or EmbedSystem_LeftWindow end
 	EmbedParent.FrameName = OmenAnchor
+
+	AS:SkinFrame(OmenTitle, AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default')
+	AS:SkinFrame(OmenBarList, AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default')
+	if not AS:CheckOption('OmenBackdrop') then OmenBarList:StripTextures() end
+
+	OmenAnchor:SetParent(EmbedParent)
+	OmenAnchor:ClearAllPoints()
+	OmenAnchor:SetPoint('TOPLEFT', EmbedParent, 'TOPLEFT', 0, 0)
+	OmenAnchor:SetPoint('BOTTOMRIGHT', EmbedParent, 'BOTTOMRIGHT', 0, 0)
+	--[[if not OmenAnchor.Backdrop then
+		OmenAnchor:CreateBackdrop()
+		OmenAnchor.Backdrop:SetOutside(OmenAnchor, 0, 0)
+	end]]
+
+	Omen.db.profile.Scale = 1
+	Omen.db.profile.Bar.Spacing = 1
+	Omen.db.profile.Background.EdgeSize = 2
+	Omen.db.profile.Background.BarInset = 2
+	Omen.db.profile.TitleBar.UseSameBG = true
 	Omen.db.profile.ShowWith.UseShowWith = false
 	Omen.db.profile.Locked = true
 	Omen.db.profile.TitleBar.ShowTitleBar = true
 	Omen.db.profile.FrameStrata = '2-LOW'
-	Omen:UpdateGrips()
-
-	AS:SkinFrame(OmenTitle, AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default')
-	AS:SkinFrame(OmenBarList, AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default')
-
-	if not OmenAnchor.Backdrop then
-		OmenAnchor:CreateBackdrop()
-		OmenAnchor.Backdrop:SetOutside(OmenAnchor, 0, 0)
-	end
-
-	OmenAnchor:SetParent(EmbedParent)
-	OmenAnchor:SetFrameStrata(strsub(Omen.db.profile.FrameStrata, 3))
-
-	OmenAnchor:ClearAllPoints()
-	OmenAnchor:SetPoint('TOPLEFT', EmbedParent, 'TOPLEFT', 0, 0)
-	OmenAnchor:SetPoint('BOTTOMRIGHT', EmbedParent, 'BOTTOMRIGHT', 0, 0)
+	Omen:OnProfileChanged(nil, 'Omen3DB')
 end
 
-function AS:EmbedTDPS()
-	local EmbedParent = AS:CheckOption('EmbedRight') == 'TinyDPS' and EmbedSystem_RightWindow or EmbedSystem_LeftWindow
+function AS:Embed_TinyDPS()
+	local EmbedParent = EmbedSystem_MainWindow
+	if AS:CheckOption('EmbedSystemDual') then EmbedParent = AS:CheckOption('EmbedRight') == 'TinyDPS' and EmbedSystem_RightWindow or EmbedSystem_LeftWindow end
 	EmbedParent.FrameName = tdpsFrame
-	AS:SkinFrame(tdpsFrame, AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default')
 
+	AS:SkinFrame(tdpsFrame, AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default')
 	tdpsFrame:SetParent(EmbedParent)
 	tdpsFrame:SetFrameStrata('LOW')
-	tdpsFrame:Point('TOPLEFT', EmbedParent, 'TOPLEFT', 0, 0)
-	tdpsFrame:Point('BOTTOMRIGHT', EmbedParent, 'BOTTOMRIGHT', 0, 0)
-
 	tdpsAnchor:ClearAllPoints()
 	tdpsAnchor:Point('TOPLEFT', EmbedParent, 'TOPLEFT', 0, 0)
 	tdpsAnchor:Point('BOTTOMRIGHT', EmbedParent, 'BOTTOMRIGHT', 0, 0)
 
-	tdpsFrame:SetWidth(EmbedParent:GetWidth())
-
-	tdps["hideOOC"] = false
-	tdps["hideIC"] = false
-	tdps['hideSolo'] = false
-	tdps["hidePvP"] = false
-
+	tdps.hideOOC = false
+	tdps.hideIC = false
+	tdps.hideSolo = false
+	tdps.hidePvP = false
 	tdpsRefresh()
 end
 
-function AS:EmbedALDamageMeter()
-	local EmbedParent = AS:CheckOption('EmbedRight') == 'alDamageMeter' and EmbedSystem_RightWindow or EmbedSystem_LeftWindow
+function AS:Embed_alDamageMeter()
+	local EmbedParent = EmbedSystem_MainWindow
+	if AS:CheckOption('EmbedSystemDual') then EmbedParent = AS:CheckOption('EmbedRight') == 'alDamageMeter' and EmbedSystem_RightWindow or EmbedSystem_LeftWindow end
 	EmbedParent.FrameName = alDamageMeterFrame
+
 	dmconf.maxbars = AS:Round(EmbedParent:GetHeight() / (dmconf.barheight + dmconf.spacing))
 	dmconf.width = EmbedParent:GetWidth()
 
@@ -215,15 +284,20 @@ function AS:EmbedALDamageMeter()
 	alDamageMeterFrame:SetFrameStrata('LOW')
 end
 
-function AS:EmbedSkada()
+function AS:Embed_Skada(Login)
 	wipe(SkadaWindows)
 	for k, window in pairs(Skada:GetWindows()) do
 		tinsert(SkadaWindows, window)
 	end
+
 	local NumberToEmbed = 0
-	if AS:CheckOption('EmbedRight') == 'Skada' then NumberToEmbed = NumberToEmbed + 1 end
-	if AS:CheckOption('EmbedLeft') == 'Skada' then NumberToEmbed = NumberToEmbed + 1 end
-	if NumberToEmbed > #SkadaWindows then NumberToEmbed = #SkadaWindows end
+	if AS:CheckOption('EmbedSystem') then
+		NumberToEmbed = 1
+	end
+	if AS:CheckOption('EmbedSystemDual') then
+		if AS:CheckOption('EmbedRight') == 'Skada' then NumberToEmbed = NumberToEmbed + 1 end
+		if AS:CheckOption('EmbedLeft') == 'Skada' then NumberToEmbed = NumberToEmbed + 1 end
+	end
 
 	local function EmbedWindow(window, width, height, point, relativeFrame, relativePoint, ofsx, ofsy)
 		local barmod = Skada.displays['bar']
@@ -240,8 +314,10 @@ function AS:EmbedSkada()
 		end
 		barmod.ApplySettings(barmod, window)
 	end
+
 	if NumberToEmbed == 1 then
-		local EmbedParent = AS:CheckOption('EmbedRight') == 'Skada' and EmbedSystem_RightWindow or EmbedSystem_LeftWindow
+		local EmbedParent = EmbedSystem_MainWindow
+		if AS:CheckOption('EmbedSystemDual') then EmbedParent = AS:CheckOption('EmbedRight') == 'Skada' and EmbedSystem_RightWindow or EmbedSystem_LeftWindow end
 		EmbedWindow(SkadaWindows[1], EmbedParent:GetWidth(), EmbedParent:GetHeight(), 'TOPLEFT', EmbedParent, 'TOPLEFT', 2, 0)
 		EmbedParent.FrameName = SkadaWindows[1]
 	elseif NumberToEmbed == 2 then
@@ -249,6 +325,11 @@ function AS:EmbedSkada()
 		EmbedSystem_LeftWindow.FrameName = SkadaWindows[1]
 		EmbedWindow(SkadaWindows[2], EmbedSystem_RightWindow:GetWidth(), EmbedSystem_RightWindow:GetHeight(), 'TOPLEFT', EmbedSystem_RightWindow, 'TOPLEFT', 2, 0)
 		EmbedSystem_RightWindow.FrameName = SkadaWindows[2]
+	end
+	if Login then
+		hooksecurefunc(Skada, 'CreateWindow', AS.Embed_Skada)
+		hooksecurefunc(Skada, 'DeleteWindow', AS.Embed_Skada)
+		hooksecurefunc(Skada, 'UpdateDisplay', AS.Embed_Skada)
 	end
 end
 
@@ -299,6 +380,7 @@ RightToggleButton:HookScript('OnClick', function(self, button)
 			if EmbedSystem_WidthSlider:IsShown() then
 				EmbedSystem_WidthSlider:Hide()
 			else
+				EmbedSystem_MainWindow:Show()
 				EmbedSystem_WidthSlider:Show()
 			end
 		else

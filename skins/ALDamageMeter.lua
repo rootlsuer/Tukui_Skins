@@ -1,7 +1,7 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "ALDamageMeterSkin"
+local name = "alDamageMeterSkin"
 function AS:SkinALDamageMeter()
 	alDamageMeterFrame.bg:Kill()
 	AS:SkinBackdropFrame(alDamageMeterFrame, 'Transparent')

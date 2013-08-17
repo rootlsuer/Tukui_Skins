@@ -145,7 +145,7 @@ function AS:SkinAtlasLoot()
 	end
 
 	for _, object in pairs(SetTemplateD) do
-		AS:SkinFrame(_G[object],"Default")
+		AS:SkinFrame(_G[object], "Default")
 	end
 
 	for _, object in pairs(SetTemplateT) do

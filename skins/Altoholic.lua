@@ -11,7 +11,7 @@ function AS:SkinAltoholic(event, addon)
 		AS:SkinButton(AltoMsgBoxYesButton)
 		AS:SkinButton(AltoMsgBoxNoButton)
 		AS:SkinCloseButton(AltoholicFrameCloseButton)
-		AS:SkinEditBox(AltoholicFrame_SearchEditBox)
+		AS:SkinEditBox(AltoholicFrame_SearchEditBox, 175, 15)
 		AS:SkinButton(AltoholicFrame_ResetButton)
 		AS:SkinButton(AltoholicFrame_SearchButton)
 		AltoholicFrameTab1:Point("TOPLEFT", AltoholicFrame, "BOTTOMLEFT", -5, 2)
@@ -19,7 +19,6 @@ function AS:SkinAltoholic(event, addon)
 		AltoholicFrame_SearchEditBox:Point("TOPLEFT", AltoholicFrame, "TOPLEFT", 37, -56)
 		AltoholicFrame_ResetButton:Size(85, 24)
 		AltoholicFrame_SearchButton:Size(85, 24)
-		AltoholicFrame_SearchEditBox:Size(175, 15)
 	end
 
 	if addon == "Altoholic_Summary" then
@@ -75,18 +74,18 @@ function AS:SkinAltoholic(event, addon)
 		AltoholicFrameQuestsScrollFrame:StripTextures(true)
 		AltoholicFrameRecipesScrollFrame:StripTextures(true)
 		for i = 1, 14 do
-			AS:SkinBackdropFrame(_G["AltoholicFrameContainersEntry1Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameContainersEntry2Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameContainersEntry3Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameContainersEntry4Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameContainersEntry5Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameContainersEntry6Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameContainersEntry7Item"..i], true)
+			AS:SkinBackdropFrame(_G["AltoholicFrameContainersEntry1Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameContainersEntry2Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameContainersEntry3Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameContainersEntry4Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameContainersEntry5Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameContainersEntry6Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameContainersEntry7Item"..i])
 		end
 	end
 
 	if addon == "Altoholic_Achievements" then
-		AS:SkinBackdropFrame(AltoholicFrameAchievements, true)
+		AS:SkinBackdropFrame(AltoholicFrameAchievements)
 		AltoholicFrameAchievementsScrollFrame:StripTextures(true)
 		AltoholicAchievementsMenuScrollFrame:StripTextures(true)
 		AS:SkinScrollBar(AltoholicFrameAchievementsScrollFrameScrollBar)
@@ -99,14 +98,14 @@ function AS:SkinAltoholic(event, addon)
 		end
 
 		for i = 1, 10 do
-			AS:SkinBackdropFrame(_G["AltoholicFrameAchievementsEntry1Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameAchievementsEntry2Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameAchievementsEntry3Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameAchievementsEntry4Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameAchievementsEntry5Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameAchievementsEntry6Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameAchievementsEntry7Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameAchievementsEntry8Item"..i], true)
+			AS:SkinBackdropFrame(_G["AltoholicFrameAchievementsEntry1Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameAchievementsEntry2Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameAchievementsEntry3Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameAchievementsEntry4Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameAchievementsEntry5Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameAchievementsEntry6Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameAchievementsEntry7Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameAchievementsEntry8Item"..i])
 		end
 	end
 
@@ -131,14 +130,14 @@ function AS:SkinAltoholic(event, addon)
 		AS:SkinDropDownBox(AltoholicTabGrids_SelectView)
 
 		for i = 1, 10 do
-			AS:SkinBackdropFrame(_G["AltoholicFrameGridsEntry1Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameGridsEntry2Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameGridsEntry3Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameGridsEntry4Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameGridsEntry5Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameGridsEntry6Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameGridsEntry7Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameGridsEntry8Item"..i], true)
+			AS:SkinBackdropFrame(_G["AltoholicFrameGridsEntry1Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameGridsEntry2Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameGridsEntry3Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameGridsEntry4Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameGridsEntry5Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameGridsEntry6Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameGridsEntry7Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameGridsEntry8Item"..i])
 		end
 	end
 
@@ -153,17 +152,17 @@ function AS:SkinAltoholic(event, addon)
 		end
 
 		for i = 1, 14 do
-			AS:SkinBackdropFrame(_G["AltoholicFrameGuildBankEntry1Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameGuildBankEntry2Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameGuildBankEntry3Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameGuildBankEntry4Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameGuildBankEntry5Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameGuildBankEntry6Item"..i], true)
-			AS:SkinBackdropFrame(_G["AltoholicFrameGuildBankEntry7Item"..i], true)
+			AS:SkinBackdropFrame(_G["AltoholicFrameGuildBankEntry1Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameGuildBankEntry2Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameGuildBankEntry3Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameGuildBankEntry4Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameGuildBankEntry5Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameGuildBankEntry6Item"..i])
+			AS:SkinBackdropFrame(_G["AltoholicFrameGuildBankEntry7Item"..i])
 		end
 
 		for i = 1, 19 do
-			AS:SkinBackdropFrame(_G["AltoholicFrameGuildMembersItem"..i], true)
+			AS:SkinBackdropFrame(_G["AltoholicFrameGuildMembersItem"..i])
 		end
 
 		for i = 1, 5 do

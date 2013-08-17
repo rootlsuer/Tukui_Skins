@@ -12,7 +12,7 @@ function AS:SkinClique()
 	}
 
 	for _, object in pairs(Frames) do
-		AS:SkinBackdropFrame(_G[object], true)
+		AS:SkinBackdropFrame(_G[object])
 		if _G[object] == CliqueConfig then
 			_G[object].backdrop:SetPoint("TOPLEFT",0,0)
 			_G[object].backdrop:SetPoint("BOTTOMRIGHT",0,-5)

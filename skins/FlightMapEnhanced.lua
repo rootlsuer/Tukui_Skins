@@ -3,7 +3,7 @@ local AS = unpack(select(2,...))
 
 local name = "FlightMapEnhancedSkin"
 function AS:SkinFlightMapEnhanced()
-	AS:SkinBackdropFrame(FlightMapEnhancedTaxiChoice, true)
+	AS:SkinBackdropFrame(FlightMapEnhancedTaxiChoice)
 	AS:SkinCloseButton(FlightMapEnhancedTaxiChoice.CloseButton)
 	AS:SkinScrollBar(FlightMapEnhancedTaxiChoiceContainerScrollBar)
 	FlightMapEnhancedTaxiChoice:HookScript("OnShow", function()

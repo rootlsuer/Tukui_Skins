@@ -4,7 +4,6 @@ local AS = unpack(select(2,...))
 local format, gsub, strmatch, strfind = format, gsub, strmatch, strfind
 local tinsert, pairs, ipairs, unpack, select, pcall = tinsert, pairs, ipairs, unpack, select, pcall
 
-UISkinOptions = {}
 AS.skins = {}
 AS.events = {}
 AS.register = {}
@@ -119,9 +118,12 @@ ASFrame:SetScript('OnEvent', function(self, event)
 	if AS:CheckOption('EmbedSkada') == nil then AS:DisableOption('EmbedSkada') end
 	if AS:CheckOption('EmbedRecount') == nil then AS:DisableOption('EmbedRecount') end
 	if AS:CheckOption('EmbedCoolLine') == nil then AS:DisableOption('EmbedCoolLine') end
+	if AS:CheckOption('EmbedMain') == nil then AS:SetOption('EmbedMain', 'Recount') end
 	if AS:CheckOption('EmbedLeft') == nil then AS:SetOption('EmbedLeft', 'Omen') end
 	if AS:CheckOption('EmbedRight') == nil then AS:SetOption('EmbedRight', 'Skada') end
 	if AS:CheckOption('TransparentEmbed') == nil then AS:DisableOption('TransparentEmbed') end
+	if AS:CheckOption('EmbedSystem') == nil then AS:DisableOption('EmbedSystem') end
+	if AS:CheckOption('EmbedSystemDual') == nil then AS:DisableOption('EmbedSystemDual') end
 	AS:EnableOption('MiscFixes')
 	AS:Init()
 	print(format('%s by |cFFFF7D0AAzilroka|r - Version: |cFF1784D1%s|r Loaded!', AS.Title, AS.Version))

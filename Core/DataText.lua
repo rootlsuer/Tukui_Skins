@@ -7,9 +7,9 @@ local DataText = AS["DataTexts"]
 
 local OnClick = function(self, button)
 	if button == 'LeftButton' then
-		AS:EmbedShow()
+		AS:Embed_Show()
 	elseif button == 'RightButton' then
-		AS:EmbedHide()
+		AS:Embed_Hide()
 	end
 end
 

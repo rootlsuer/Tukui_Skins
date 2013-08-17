@@ -48,7 +48,7 @@ function AS:SkinMageNuggets()
 		"MNstarSurge_Frame",
 	}
 
-	for _, object in pairs(Frames) do
+	for _, object in pairs(SmallIcons) do
 		if _G[object] then
 			_G[object]:SetBackdrop(nil)
 		end

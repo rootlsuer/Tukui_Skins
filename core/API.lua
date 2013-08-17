@@ -4,50 +4,6 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local function SetModifiedBackdrop(self)
-	local color = RAID_CLASS_COLORS[AS.MyClass]
-	self:SetBackdropColor(color.r*.15, color.g*.15, color.b*.15)
-	self:SetBackdropBorderColor(color.r, color.g, color.b)
-end
-
-local function SetOriginalBackdrop(self)
-	local color = RAID_CLASS_COLORS[AS.MyClass]
-	self:SetTemplate()
-end
-
-local function Kill(object)
-	if object.UnregisterAllEvents then
-		object:UnregisterAllEvents()
-	end
-	object.Show = AS.Noop
-	object:Hide()
-end
-
-local function SkinButton(f, strip)
-	if f:GetName() then
-		local l = _G[f:GetName().."Left"]
-		local m = _G[f:GetName().."Middle"]
-		local r = _G[f:GetName().."Right"]
-
-		if l then l:SetAlpha(0) end
-		if m then m:SetAlpha(0) end
-		if r then r:SetAlpha(0) end
-	end
-
-	if f.Left then f.Left:SetAlpha(0) end
-	if f.Right then f.Right:SetAlpha(0) end	
-	if f.Middle then f.Middle:SetAlpha(0) end
-	if f.SetNormalTexture then f:SetNormalTexture("") end	
-	if f.SetHighlightTexture then f:SetHighlightTexture("") end
-	if f.SetPushedTexture then f:SetPushedTexture("") end	
-	if f.SetDisabledTexture then f:SetDisabledTexture("") end	
-	if strip then f:StripTextures() end
-	
-	f:SetTemplate("Default")
-	f:HookScript("OnEnter", SetModifiedBackdrop)
-	f:HookScript("OnLeave", SetOriginalBackdrop)
-end
-
 local function SkinIconButton(b, shrinkIcon)
 	if b.isSkinned then return end
 
@@ -211,18 +167,6 @@ local function SkinRotateButton(btn)
 	btn:GetHighlightTexture():SetAllPoints(btn:GetNormalTexture())
 end
 
-local function SkinEditBox(frame)
-	if _G[frame:GetName().."Left"] then _G[frame:GetName().."Left"]:Kill() end
-	if _G[frame:GetName().."Middle"] then _G[frame:GetName().."Middle"]:Kill() end
-	if _G[frame:GetName().."Right"] then _G[frame:GetName().."Right"]:Kill() end
-	if _G[frame:GetName().."Mid"] then _G[frame:GetName().."Mid"]:Kill() end
-	frame:CreateBackdrop("Default")
-	
-	if frame:GetName() and frame:GetName():find("Silver") or frame:GetName():find("Copper") then
-		frame.Backdrop:Point("BOTTOMRIGHT", -12, -2)
-	end
-end
-
 local function SkinDropDownBox(frame, width)
 	local button = _G[frame:GetName().."Button"]
 	if not width then width = 155 end
@@ -271,21 +215,6 @@ local function SkinCheckBox(frame)
 	frame.SetHighlightTexture = AS.Noop
 end
 
-local function SkinCloseButton(f, point)	
-	if point then
-		f:Point("TOPRIGHT", point, "TOPRIGHT", 2, 2)
-	end
-	
-	f:SetNormalTexture("")
-	f:SetPushedTexture("")
-	f:SetHighlightTexture("")
-	f:SetDisabledTexture("")
-
-	f:FontString("t", AS.PixelFont, 12, "OUTLINE") -- "MONOCHROMEOUTLINE"
-	f.t:SetPoint("CENTER", 0, 1)
-	f.t:SetText("x")
-end
-
 local function SkinSlideBar(frame, height, movetext)
 	frame:SetTemplate("Default")
 	frame:SetBackdropColor(0, 0, 0, .8)
@@ -316,7 +245,7 @@ local function FontString(parent, name, fontName, fontHeight, fontStyle)
 	fs:SetFont(fontName, fontHeight, fontStyle)
 	fs:SetJustifyH("LEFT")
 	fs:SetShadowColor(0, 0, 0)
-	fs:SetShadowOffset(Mult, -Mult)
+	fs:SetShadowOffset(AS.Mult, -AS.Mult)
 
 	if not name then
 		parent.Text = fs
@@ -329,18 +258,14 @@ end
 
 local function addapi(object)
 	local mt = getmetatable(object).__index
-	if not object.SkinButton then mt.SkinButton = SkinButton end
 	if not object.SkinIconButton then mt.SkinIconButton = SkinIconButton end
 	if not object.SkinScrollBar then mt.SkinScrollBar = SkinScrollBar end
 	if not object.SkinTab then mt.SkinTab = SkinTab end
 	if not object.SkinNextPrevButton then mt.SkinNextPrevButton = SkinNextPrevButton end
 	if not object.SkinRotateButton then mt.SkinRotateButton = SkinRotateButton end
-	if not object.SkinEditBox then mt.SkinEditBox = SkinEditBox end
 	if not object.SkinDropDownBox then mt.SkinDropDownBox = SkinDropDownBox end
 	if not object.SkinCheckBox then mt.SkinCheckBox = SkinCheckBox end
-	if not object.SkinCloseButton then mt.SkinCloseButton = SkinCloseButton end
 	if not object.SkinSlideBar then mt.SkinSlideBar = SkinSlideBar end
-	if not object.Kill then mt.Kill = Kill end
 	if not object.FontString then mt.FontString = FontString end
 end
 

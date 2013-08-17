@@ -1,27 +1,29 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "BigWigsSkin"
+local name = 'BigWigsSkin'
 function AS:SkinBigWigs(event, addon)
-	if event == "PLAYER_ENTERING_WORLD" then return end
+	if event == 'PLAYER_ENTERING_WORLD' then return end
+	local BigWigsBars = BigWigs:GetPlugin('Bars')
+	local BigWigsProximity = BigWigs:GetPlugin('Proximity')
 	local buttonsize = 19
 	local freebg = {}
 
 	local createbg = function()
-		local bg = CreateFrame("Frame")
-		bg:SetTemplate("Transparent")
+		local bg = CreateFrame('Frame')
+		bg:SetTemplate('Transparent')
 		return bg
 	end
 
 	local function freestyle(bar)
-		local bg = bar:Get("bigwigs:Tukui:bg")
+		local bg = bar:Get('bigwigs:Tukui:bg')
 		if bg then
 			bg:ClearAllPoints()
 			bg:SetParent(UIParent)
 			bg:Hide()
 			freebg[#freebg + 1] = bg
 		end
-		local ibg = bar:Get("bigwigs:Tukui:ibg")
+		local ibg = bar:Get('bigwigs:Tukui:ibg')
 		if ibg then
 			ibg:ClearAllPoints()
 			ibg:SetParent(UIParent)
@@ -32,18 +34,18 @@ function AS:SkinBigWigs(event, addon)
 		bar.candyBarIconFrame.SetWidth = bar.candyBarIconFrame.OldSetWidth
 		bar.SetScale = bar.OldSetScale
 		bar.candyBarIconFrame:ClearAllPoints()
-		bar.candyBarIconFrame:SetPoint("TOPLEFT")
-		bar.candyBarIconFrame:SetPoint("BOTTOMLEFT")
+		bar.candyBarIconFrame:SetPoint('TOPLEFT')
+		bar.candyBarIconFrame:SetPoint('BOTTOMLEFT')
 		AS:SkinTexture(bar.candyBarIconFrame.icon)
 		bar.candyBarBar:ClearAllPoints()
-		bar.candyBarBar:SetPoint("TOPRIGHT")
-		bar.candyBarBar:SetPoint("BOTTOMRIGHT")
+		bar.candyBarBar:SetPoint('TOPRIGHT')
+		bar.candyBarBar:SetPoint('BOTTOMRIGHT')
 		bar.candyBarBackground:SetAllPoints()
 		bar.candyBarDuration:ClearAllPoints()
-		bar.candyBarDuration:SetPoint("RIGHT", bar.candyBarBar, "RIGHT", -2, 0)
+		bar.candyBarDuration:SetPoint('RIGHT', bar.candyBarBar, 'RIGHT', -2, 0)
 		bar.candyBarLabel:ClearAllPoints()
-		bar.candyBarLabel:SetPoint("LEFT", bar.candyBarBar, "LEFT", 2, 0)
-		bar.candyBarLabel:SetPoint("RIGHT", bar.candyBarBar, "RIGHT", -2, 0)
+		bar.candyBarLabel:SetPoint('LEFT', bar.candyBarBar, 'LEFT', 2, 0)
+		bar.candyBarLabel:SetPoint('RIGHT', bar.candyBarBar, 'RIGHT', -2, 0)
 	end
 
 	local applystyle = function(bar)
@@ -59,7 +61,7 @@ function AS:SkinBigWigs(event, addon)
 		bg:SetOutside(bar)
 		bg:SetTemplate('Transparent')
 		bg:Show()
-		bar:Set("bigwigs:Tukui:bg", bg)
+		bar:Set('bigwigs:Tukui:bg', bg)
 		local ibg = nil
 		if bar.candyBarIconFrame:GetTexture() then
 			if #freebg > 0 then
@@ -72,18 +74,18 @@ function AS:SkinBigWigs(event, addon)
 			ibg:SetOutside(bar.candyBarIconFrame)
 			ibg:SetBackdropColor(0, 0, 0, 0)
 			ibg:Show()
-			bar:Set("bigwigs:Tukui:ibg", ibg)
+			bar:Set('bigwigs:Tukui:ibg', ibg)
 		end
-		bar.candyBarLabel:SetFont(AS.Font, 12, "OUTLINE")
+		bar.candyBarLabel:SetFont(AS.Font, 12, 'OUTLINE')
 		bar.candyBarLabel:SetShadowColor(0, 0, 0, 0)
-		bar.candyBarLabel:SetJustifyH("LEFT")
+		bar.candyBarLabel:SetJustifyH('LEFT')
 		bar.candyBarLabel:ClearAllPoints()
-		bar.candyBarLabel:Point("LEFT", bar, "LEFT", 4, 0)
-		bar.candyBarDuration:SetFont(AS.Font, 12, "OUTLINE")
+		bar.candyBarLabel:Point('LEFT', bar, 'LEFT', 4, 0)
+		bar.candyBarDuration:SetFont(AS.Font, 12, 'OUTLINE')
 		bar.candyBarDuration:SetShadowColor(0, 0, 0, 0)
-		bar.candyBarDuration:SetJustifyH("RIGHT")
+		bar.candyBarDuration:SetJustifyH('RIGHT')
 		bar.candyBarDuration:ClearAllPoints()
-		bar.candyBarDuration:Point("RIGHT", bar, "RIGHT", -4, 0)
+		bar.candyBarDuration:Point('RIGHT', bar, 'RIGHT', -4, 0)
 		bar.candyBarBar:ClearAllPoints()
 		bar.candyBarBar:CreateBackdrop()
 		bar.candyBarBar:SetAllPoints(bar)
@@ -93,7 +95,7 @@ function AS:SkinBigWigs(event, addon)
 		bar.candyBarBackground:SetTexture(unpack(AS.BackdropColor))
 		bar.candyBarIconFrame:ClearAllPoints()
 		bar.candyBarIconFrame:CreateBackdrop()
-		bar.candyBarIconFrame:Point("BOTTOMRIGHT", bar, "BOTTOMLEFT", -7, 0)
+		bar.candyBarIconFrame:Point('BOTTOMRIGHT', bar, 'BOTTOMLEFT', -7, 0)
 		bar.candyBarIconFrame:SetSize(buttonsize, buttonsize)
 		bar.candyBarIconFrame.OldSetWidth = bar.candyBarIconFrame.SetWidth
 		bar.candyBarIconFrame.SetWidth = AS.Noop
@@ -101,32 +103,24 @@ function AS:SkinBigWigs(event, addon)
 	end
 
 	local function RegisterStyle()
-		local bars = BigWigs:GetPlugin("Bars")
-		local prox = BigWigs:GetPlugin("Proximity")
-		bars:RegisterBarStyle("Tukui", {
+		BigWigsBars:RegisterBarStyle('Tukui', {
 			apiVersion = 1,
 			version = 1,
 			GetSpacing = function(bar) return 4 end,
 			ApplyStyle = applystyle,
 			BarStopped = freestyle,
-			GetStyleName = function() return "Tukui" end,
+			GetStyleName = function() return 'Tukui' end,
 		})
-		if prox and BigWigs.pluginCore.modules.Bars.db.profile.barStyle == "Tukui" then
-			hooksecurefunc(BigWigs.pluginCore.modules.Proximity, "RestyleWindow", function()
-				BigWigsProximityAnchor:SetTemplate("Transparent")
-			end)
-		end
 	end
 
-	if addon == "BigWigs_Plugins" then
-		RegisterStyle()
-		local profile = AS.MyName.." - "..AS.MyRealm
-		local path = BigWigs3DB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"][profile]
-		path.texture = AS.NormTex
-		path.barStyle = "Tukui"
-		path.font = AS.Font
-		BigWigs3DB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"][profile]['font'] = AS.Font
+	if addon == 'BigWigs_Plugins' then
+		hooksecurefunc(BigWigsBars, 'OnPluginEnable', RegisterStyle)
+		hooksecurefunc(BigWigsProximity, 'RestyleWindow', function()
+			if BigWigs.pluginCore.modules.Bars.db.profile.barStyle == 'Tukui' then
+				BigWigsProximityAnchor:SetTemplate('Transparent')
+			end
+		end)
 	end
 end
 
-AS:RegisterSkin(name, AS.SkinBigWigs, "ADDON_LOADED")
+AS:RegisterSkin(name, AS.SkinBigWigs, 'ADDON_LOADED')

@@ -3,6 +3,8 @@ local AS = unpack(select(2,...))
 
 local pairs, sort, tinsert, tremove, unpack, floor = pairs, sort, tinsert, tremove, unpack, floor
 
+UISkinOptions = {}
+
 function AS:OrderedPairs(t, f)
 	local a = {}
 	for n in pairs(t) do tinsert(a, n) end
@@ -45,8 +47,8 @@ end
 
 function AS:SkinEditBox(frame, width, height)
 	frame:SkinEditBox()
-	if width then frame:SetWidth(width) end
-	if height then frame:SetHeight(height) end
+	if width then frame:Width(width) end
+	if height then frame:Height(height) end
 end
 
 function AS:SkinDropDownBox(frame, width)
@@ -72,16 +74,15 @@ function AS:RegisterForPetBattleHide(frame)
 end
 
 function AS:SkinFrame(frame, template, overridestrip)
-	if not template then template = "Transparent" end
+	if not template then template = 'Transparent' end
 	if not overridestrip then frame:StripTextures(true) end
 	frame:SetTemplate(template)
 end
 
-function AS:SkinBackdropFrame(frame, strip)
-	if strip then frame:StripTextures(true) end
+function AS:SkinBackdropFrame(frame, template, overridestrip)
+	if not template then template = 'Transparent' end
+	if not overridestrip then frame:StripTextures(true) end
 	frame:CreateBackdrop()
-	if frame.icon then AS:SkinTexture(frame.icon) end
-	if _G[frame:GetName().."_Background"] then AS:SkinTexture(_G[frame:GetName().."_Background"]) end
 end
 
 function AS:SkinStatusBar(frame, ClassColor)
@@ -94,8 +95,8 @@ function AS:SkinStatusBar(frame, ClassColor)
 end
 
 function AS:SkinTooltip(tooltip, scale)
-	tooltip:HookScript("OnShow", function(frame)
-		frame:SetTemplate("Transparent")
+	tooltip:HookScript('OnShow', function(frame)
+		frame:SetTemplate('Transparent')
 		if scale then frame:SetScale(AS.UIScale) end
 	end)
 end
@@ -107,10 +108,10 @@ end
 function AS:SkinIconButton(frame, shrinkIcon)
 	frame:SkinIconButton(shrinkIcon)
 	local icon = frame.icon
-	if frame:GetName() and _G[frame:GetName().."IconTexture"] then
-		icon = _G[frame:GetName().."IconTexture"]
-	elseif frame:GetName() and _G[frame:GetName().."Icon"] then
-		icon = _G[frame:GetName().."Icon"]
+	if frame:GetName() and _G[frame:GetName()..'IconTexture'] then
+		icon = _G[frame:GetName()..'IconTexture']
+	elseif frame:GetName() and _G[frame:GetName()..'Icon'] then
+		icon = _G[frame:GetName()..'Icon']
 	end
 
 	if icon then
@@ -121,49 +122,55 @@ end
 function AS:Desaturate(frame, point)
 	for i = 1, frame:GetNumRegions() do
 		local region = select(i, frame:GetRegions())
-		if region:GetObjectType() == "Texture" then
-			region:SetDesaturated(1)
-			if region:GetTexture() == "Interface\\DialogFrame\\UI-DialogBox-Corner" then
+		if region:GetObjectType() == 'Texture' then
+			region:SetDesaturated(true)
+			if region:GetTexture() == 'Interface\\DialogFrame\\UI-DialogBox-Corner' then
 				region:Kill()
 			end
 		end
 	end	
-
+	if frame:GetNormalTexture() then
+		frame:GetNormalTexture():SetDesaturated(true)
+	end
+	if frame:GetHighlightTexture() then
+		frame:GetHighlightTexture():SetDesaturated(true)
+	end
 	if point then
-		frame:Point("TOPRIGHT", point, "TOPRIGHT", 2, 2)
+		frame:ClearAllPoints()
+		frame:Point('TOPRIGHT', point, 'TOPRIGHT', 2, 2)
 	end
 end
 
-function AS:CheckOption(optionName,...)
-	for i = 1,select('#',...) do
-		local addon = select(i,...)
+function AS:CheckOption(optionName, ...)
+	for i = 1,select('#', ...) do
+		local addon = select(i, ...)
 		if not addon then break end
 		if not IsAddOnLoaded(addon) then return false end
 	end
 	return UISkinOptions[optionName]
 end
 
+function AS:SetOption(optionName, value)
+	UISkinOptions[optionName] = value
+end
+
 function AS:DisableOption(optionName)
-	UISkinOptions[optionName] = false
+	AS:SetOption(optionName, false)
 end
 
 function AS:EnableOption(optionName)
-	UISkinOptions[optionName] = true
+	AS:SetOption(optionName, true)
 end
 
 function AS:ToggleOption(optionName)
 	UISkinOptions[optionName] = not UISkinOptions[optionName]
 end
 
-function AS:SetOption(optionName, value)
-	UISkinOptions[optionName] = value
-end
-
 function AS:RegisterSkin(skinName, skinFunc, ...)
 	local events = {}
 	local priority = 1
-	for i = 1,select('#',...) do
-		local event = select(i,...)
+	for i = 1,select('#', ...) do
+		local event = select(i, ...)
 		if not event then break end
 		if type(event) == 'number' then
 			priority = event
@@ -195,23 +202,54 @@ function AS:RemoveNonPetBattleFrames()
 	end
 end
 
+local AcceptFrame
+function AS:AcceptFrame(MainText, Function)
+	if not AcceptFrame then
+		AcceptFrame = CreateFrame('Frame', nil, UIParent)
+		AcceptFrame:SetTemplate('Transparent')
+		AcceptFrame:SetSize(250, 70)
+		AcceptFrame:SetPoint('CENTER', UIParent, 'CENTER')
+		AcceptFrame:SetFrameStrata('DIALOG')
+		AcceptFrame:FontString('Text', AS.Font, 12)
+		AcceptFrame.Text:SetPoint('TOP', AcceptFrame, 'TOP', 0, -10)
+		AcceptFrame.Accept = CreateFrame('Button', nil, AcceptFrame)
+		AS:SkinButton(AcceptFrame.Accept)
+		AcceptFrame.Accept:SetSize(70, 25)
+		AcceptFrame.Accept:SetPoint('RIGHT', AcceptFrame, 'BOTTOM', -10, 20)
+		AcceptFrame.Accept:FontString('Text', AS.Font, 10)
+		AcceptFrame.Accept.Text:SetPoint('CENTER')
+		AcceptFrame.Accept.Text:SetText(YES)
+		AcceptFrame.Close = CreateFrame('Button', nil, AcceptFrame)
+		AS:SkinButton(AcceptFrame.Close)
+		AcceptFrame.Close:SetSize(70, 25)
+		AcceptFrame.Close:SetPoint('LEFT', AcceptFrame, 'BOTTOM', 10, 20)
+		AcceptFrame.Close:SetScript('OnClick', function(self) self:GetParent():Hide() end)
+		AcceptFrame.Close:FontString('Text', AS.Font, 10)
+		AcceptFrame.Close.Text:SetPoint('CENTER')
+		AcceptFrame.Close.Text:SetText(NO)
+	end
+	AcceptFrame.Text:SetText(MainText)
+	AcceptFrame.Accept:SetScript('OnClick', Function)
+	AcceptFrame:Show()
+end
+
 local waitTable = {}
 local waitFrame
 function AS:Delay(delay, func, ...)
-	if(type(delay) ~= "number" or type(func) ~= "function") then
+	if (type(delay) ~= 'number' or type(func) ~= 'function') then
 		return false
 	end
 	if(waitFrame == nil) then
-		waitFrame = CreateFrame("Frame")
-		waitFrame:SetScript("OnUpdate",function (frame, elapse)
+		waitFrame = CreateFrame('Frame')
+		waitFrame:SetScript('OnUpdate',function (frame, elapse)
 			local count = #waitTable
 			local i = 1
-			while(i <= count) do
+			while i <= count do
 				local waitRecord = tremove(waitTable, i)
 				local d = tremove(waitRecord, 1)
 				local f = tremove(waitRecord, 1)
 				local p = tremove(waitRecord, 1)
-				if(d > elapse) then
+				if d > elapse then
 					tinsert(waitTable, i, {d - elapse, f, p})
 					i = i + 1
 				else

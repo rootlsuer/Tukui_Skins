@@ -1,8 +1,8 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = 'ATSWSkin'
-function AS:SkinATSW()
+local name = 'AdvancedTradeSkillWindowSkin'
+function AS:SkinAdvancedTradeSkillWindow()
 	AS:SkinFrame(ATSWFrame)
 	ATSWSkillIcon:StripTextures(true)
 	ATSWListScrollFrame:StripTextures(true)
@@ -176,4 +176,4 @@ function AS:SkinATSW()
 	ATSWInputBox:SetJustifyH("CENTER")
 end
 
-AS:RegisterSkin(name, AS.SkinATSW)
+AS:RegisterSkin(name, AS.SkinAdvancedTradeSkillWindow)

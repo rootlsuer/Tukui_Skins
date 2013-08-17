@@ -72,31 +72,6 @@ function AS:LegacyOptions()
 	SkinOptions_Main_CloseButton:SetPoint('LEFT', SkinOptions_Main_CreditsButton, 'RIGHT', 4, 0)
 	SkinOptions_Main_CloseButton:HookScript('OnClick', function() SkinOptions_Main:Hide() end)
 
-	local function ToggleEmbed(AddOn)
-		local LeftEmbed, RightEmbed = AS:CheckOption('EmbedLeft'), AS:CheckOption('EmbedRight')
-		AS:DisableOption('EmbedOmen')
-		AS:DisableOption('EmbedRecount')
-		AS:DisableOption('EmbedTinyDPS')
-		AS:DisableOption('EmbedSkada')
-		if LeftEmbed == 'Skada' or RightEmbed == 'Skada' then
-			AS:EnableOption('EmbedSkada')
-		end
-		if LeftEmbed == 'Omen' or RightEmbed == 'Omen' then
-			AS:EnableOption('EmbedOmen')
-		end
-		if LeftEmbed == 'Recount' or RightEmbed == 'Recount' then
-			AS:EnableOption('EmbedRecount')
-		end
-		if LeftEmbed  == 'TinyDPS' or RightEmbed == 'TinyDPS' then
-			AS:EnableOption('EmbedTinyDPS')
-		end
-		if LeftEmbed  == 'alDamageMeter' or RightEmbed == 'alDamageMeter' then
-			AS:EnableOption('EmbedalDamageMeter')
-		end
-		print(format('%s Embed System - Left: %s | Right: %s', AS.Title, AS:CheckOption('EmbedLeft'), AS:CheckOption('EmbedRight')))
-		AS:EmbedCheck()
-	end
-
 	local function CreateEmbedEditBox(Name, Text)
 		local Frame = CreateFrame('EditBox', format('%sEditBox', Name), SkinOptions_Frame_3)
 		Frame:FontString('Text', AS.Font, 12, 'OUTLINE')
@@ -110,7 +85,7 @@ function AS:LegacyOptions()
 		Frame:SetTextInsets(3,0,0,0)
 		Frame:SetFontObject(GameFontHighlight)
 		Frame:SetTemplate()
-		Frame:SetText(AS:CheckOption(Name))
+		Frame:SetScript('OnShow', function(self) self:SetText(AS:CheckOption(Name)) end)
 		Frame:SetScript('OnEscapePressed', function(self) self:ClearFocus() self:SetText(AS:CheckOption(Name)) end)
 		Frame:SetScript('OnEnterPressed', function(self)
 			self:ClearFocus()
@@ -119,15 +94,18 @@ function AS:LegacyOptions()
 			else
 				AS:SetOption(Name, self:GetText())
 			end
-			ToggleEmbed(self:GetText())
+			AS:Embed_Check()
 		end)
 	end
 
+	CreateEmbedEditBox('EmbedMain', 'Embed Main AddOn')
+	EmbedMainEditBox:SetPoint('TOPLEFT', 12, -50)
+
 	CreateEmbedEditBox('EmbedRight', 'Embed Right AddOn')
-	EmbedRightEditBox:SetPoint('TOPLEFT', 12, -50)
+	EmbedRightEditBox:SetPoint('TOPLEFT', 12, -100)
 
 	CreateEmbedEditBox('EmbedLeft', 'Embed Left AddOn')
-	EmbedLeftEditBox:SetPoint('TOPLEFT', 12, -100)
+	EmbedLeftEditBox:SetPoint('TOPLEFT', 12, -150)
 
 	local function CreateEmbedButton(Name, Text)
 		local Button = CreateFrame('Button', format('%sButton', Name), SkinOptions_Frame_3)
@@ -160,8 +138,19 @@ function AS:LegacyOptions()
 	CreateEmbedButton('EmbedSystem', 'Embed System')
 	EmbedSystemButton:SetPoint('TOPLEFT', EmbedOoCButton, 'BOTTOMLEFT', 0, -10)
 
+	CreateEmbedButton('EmbedSystemDual', 'Dual Embed System')
+	EmbedSystemDualButton:SetPoint('TOPLEFT', EmbedSystemButton, 'BOTTOMLEFT', 0, -10)
+	EmbedSystemDualButton:HookScript('OnClick', function()
+		AS:DisableOption('EmbedSystem')
+		EmbedSystemButton:SetBackdropColor(.68, .14, .14)
+	end)
+	EmbedSystemButton:HookScript('OnClick', function()
+		AS:DisableOption('EmbedSystemDual')
+		EmbedSystemDualButton:SetBackdropColor(.68, .14, .14)
+	end)
+
 	CreateEmbedButton('TransparentEmbed', 'Embed Transparenacy')
-	TransparentEmbedButton:SetPoint('TOPLEFT', EmbedSystemButton, 'BOTTOMLEFT', 0, -10)
+	TransparentEmbedButton:SetPoint('TOPLEFT', EmbedSystemDualButton, 'BOTTOMLEFT', 0, -10)
 
 	CreateEmbedButton('EmbedSexyCooldown', 'Embed SexyCooldown')
 	EmbedSexyCooldownButton:SetPoint('TOP', -68, -50)

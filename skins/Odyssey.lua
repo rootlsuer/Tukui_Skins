@@ -43,14 +43,14 @@ function AS:SkinOdyssey()
 		AS:SkinFrame(_G["OdysseyTabSearchMenuItem"..i])
 	end
 	for i = 1, 10 do
-		AS:SkinBackdropFrame(_G["OdysseyFrameRealmSummaryEntry1Item"..i], true)
-		AS:SkinBackdropFrame(_G["OdysseyFrameRealmSummaryEntry2Item"..i], true)
-		AS:SkinBackdropFrame(_G["OdysseyFrameRealmSummaryEntry3Item"..i], true)
-		AS:SkinBackdropFrame(_G["OdysseyFrameRealmSummaryEntry4Item"..i], true)
-		AS:SkinBackdropFrame(_G["OdysseyFrameRealmSummaryEntry5Item"..i], true)
-		AS:SkinBackdropFrame(_G["OdysseyFrameRealmSummaryEntry6Item"..i], true)
-		AS:SkinBackdropFrame(_G["OdysseyFrameRealmSummaryEntry7Item"..i], true)
-		AS:SkinBackdropFrame(_G["OdysseyFrameRealmSummaryEntry8Item"..i], true)
+		AS:SkinBackdropFrame(_G["OdysseyFrameRealmSummaryEntry1Item"..i])
+		AS:SkinBackdropFrame(_G["OdysseyFrameRealmSummaryEntry2Item"..i])
+		AS:SkinBackdropFrame(_G["OdysseyFrameRealmSummaryEntry3Item"..i])
+		AS:SkinBackdropFrame(_G["OdysseyFrameRealmSummaryEntry4Item"..i])
+		AS:SkinBackdropFrame(_G["OdysseyFrameRealmSummaryEntry5Item"..i])
+		AS:SkinBackdropFrame(_G["OdysseyFrameRealmSummaryEntry6Item"..i])
+		AS:SkinBackdropFrame(_G["OdysseyFrameRealmSummaryEntry7Item"..i])
+		AS:SkinBackdropFrame(_G["OdysseyFrameRealmSummaryEntry8Item"..i])
 	end
 	AS:SkinTooltip(OdyTooltip)
 end

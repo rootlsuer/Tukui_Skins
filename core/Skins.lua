@@ -20,9 +20,6 @@ AS.Skins = {
 		["buttonText"] = "AtlasLoot",
 		["addon"] = "AtlasLoot_Loader",
 	},
-	["ATSWSkin"] = {
-		["addon"] = "AdvancedTradeSkillWindow",
-	},
 	["AuctioneerSkin"] = {
 		["buttonText"] = "Auctioneer",
 		["addon"] = "Auc-Advanced"
