@@ -18,9 +18,17 @@ function AS:SkinRecount()
 		frame.TitleBackground = CreateFrame('Frame', nil, frame)
 		frame.TitleBackground:SetTemplate()
 		frame.TitleBackground:SetPoint('TOP', frame, 'TOP', 0, -8)
-		frame.TitleBackground:SetSize(frame:GetWidth() - 4, 22)
+		frame.TitleBackground:SetScript('OnUpdate', function(self) self:SetSize(frame:GetWidth() - 4, 22) end)
 		frame.TitleBackground:SetFrameLevel(frame:GetFrameLevel())
 		frame.Title:SetPoint('TOPLEFT', frame, 'TOPLEFT', 6, -12)
+		AS:Desaturate(frame.CloseButton)
+		if frame.ConfigButton then AS:Desaturate(frame.ConfigButton) end
+		if frame.FileButton then AS:Desaturate(frame.FileButton) end
+		if frame.LeftButton then AS:Desaturate(frame.LeftButton) end
+		if frame.ResetButton then AS:Desaturate(frame.ResetButton) end
+		if frame.RightButton then AS:Desaturate(frame.RightButton) end
+		if frame.ReportButton then AS:Desaturate(frame.ReportButton) end
+		if frame.SummaryButton then AS:Desaturate(frame.SummaryButton) end
 	end
 
 	local RecountFrames = {
@@ -30,30 +38,9 @@ function AS:SkinRecount()
 		Recount.DetailWindow,
 	}
 
-	local RecountButtons = {
-		Recount.MainWindow.CloseButton,
-		Recount.MainWindow.ConfigButton,
-		Recount.MainWindow.FileButton,
-		Recount.MainWindow.LeftButton,
-		Recount.MainWindow.ResetButton,
-		Recount.MainWindow.ReportButton,
-		Recount.MainWindow.RightButton,
-		Recount.DetailWindow.CloseButton,
-		Recount.DetailWindow.LeftButton,
-		Recount.DetailWindow.ReportButton,
-		Recount.DetailWindow.RightButton,
-		Recount.DetailWindow.SummaryButton,
-	}
-
 	for _, frame in pairs(RecountFrames) do
 		if frame then
 			SkinFrame(frame)
-		end
-	end
-
-	for _, button in pairs(RecountButtons) do
-		if button then
-			AS:Desaturate(button)
 		end
 	end
 
@@ -67,17 +54,17 @@ function AS:SkinRecount()
 		end
 	end)
 
-	hooksecurefunc(Recount, 'CreateFrame', function(frame) SkinFrame(frame) end)
+	hooksecurefunc(Recount, 'CreateFrame', function(self, frame)
+		SkinFrame(_G[frame])
+	end)
 
 	Recount.MainWindow.FileButton:HookScript('OnClick', function(self) if LibDropdownFrame0 then LibDropdownFrame0:SetTemplate() end end)
 
 	hooksecurefunc(Recount, 'ShowReport', function(self)
 		if Recount_ReportWindow.isSkinned then return end
 		Recount_ReportWindow.isSkinned = true
-		AS:SkinFrame(Recount_ReportWindow, 'Transparent')
 		AS:SkinBackdropFrame(Recount_ReportWindow.Whisper)
 		AS:SkinButton(Recount_ReportWindow.ReportButton)
-		AS:SkinCloseButton(Recount_ReportWindow.CloseButton)
 		AS:SkinSlideBar(Recount_ReportWindow_Slider, 8, true)
 	end)
 end

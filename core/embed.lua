@@ -206,7 +206,7 @@ function AS:Embed_Recount()
 
 	Recount_MainWindow:SetParent(EmbedParent)
 	Recount_MainWindow:ClearAllPoints()
-	Recount_MainWindow:SetPoint('TOPLEFT', EmbedParent, 'TOPLEFT', 0, 7)
+	Recount_MainWindow:SetPoint('TOPLEFT', EmbedParent, 'TOPLEFT', 0, 6)
 	Recount_MainWindow:SetPoint('BOTTOMRIGHT', EmbedParent, 'BOTTOMRIGHT', 0, 0)
 	if not AS:CheckOption('RecountBackdrop') then Recount.MainWindow.Backdrop:Hide() end
 
@@ -228,25 +228,26 @@ function AS:Embed_Omen()
 	AS:SkinFrame(OmenBarList, AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default')
 	if not AS:CheckOption('OmenBackdrop') then OmenBarList:StripTextures() end
 
+	local db = Omen.db
+	db.profile.Scale = 1
+	db.profile.Bar.Spacing = 1
+	db.profile.Background.EdgeSize = 2
+	db.profile.Background.BarInset = 2
+	db.profile.TitleBar.UseSameBG = true
+	db.profile.ShowWith.UseShowWith = false
+	db.profile.Locked = true
+	db.profile.TitleBar.ShowTitleBar = true
+	db.profile.FrameStrata = '2-LOW'
+	Omen:OnProfileChanged(nil, db)
+
 	OmenAnchor:SetParent(EmbedParent)
 	OmenAnchor:ClearAllPoints()
 	OmenAnchor:SetPoint('TOPLEFT', EmbedParent, 'TOPLEFT', 0, 0)
 	OmenAnchor:SetPoint('BOTTOMRIGHT', EmbedParent, 'BOTTOMRIGHT', 0, 0)
-	--[[if not OmenAnchor.Backdrop then
+	if not OmenAnchor.Backdrop then
 		OmenAnchor:CreateBackdrop()
 		OmenAnchor.Backdrop:SetOutside(OmenAnchor, 0, 0)
-	end]]
-
-	Omen.db.profile.Scale = 1
-	Omen.db.profile.Bar.Spacing = 1
-	Omen.db.profile.Background.EdgeSize = 2
-	Omen.db.profile.Background.BarInset = 2
-	Omen.db.profile.TitleBar.UseSameBG = true
-	Omen.db.profile.ShowWith.UseShowWith = false
-	Omen.db.profile.Locked = true
-	Omen.db.profile.TitleBar.ShowTitleBar = true
-	Omen.db.profile.FrameStrata = '2-LOW'
-	Omen:OnProfileChanged(nil, 'Omen3DB')
+	end
 end
 
 function AS:Embed_TinyDPS()
@@ -309,6 +310,7 @@ function AS:Embed_Skada(Login)
 		window.bargroup:ClearAllPoints()
 		window.bargroup:SetPoint(point, relativeFrame, relativePoint, ofsx, -offsety)
 		window.bargroup:SetParent(relativeFrame)
+		window.bargroup:SetFrameStrata('LOW')
 		if window.bargroup.Backdrop then
 			window.bargroup.Backdrop:SetTemplate(AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default')
 		end

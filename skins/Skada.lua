@@ -41,7 +41,6 @@ function AS:SkinSkada()
 			skada.Backdrop:ClearAllPoints()
 			skada.Backdrop:Point('TOPLEFT', win.db.enabletitle and skada.button or skada, 'TOPLEFT', -2, 2)
 			skada.Backdrop:Point('BOTTOMRIGHT', skada, 'BOTTOMRIGHT', 2, -2)
-			skada.Backdrop:SetFrameStrata('LOW')
 		end 
 	end)
 end
