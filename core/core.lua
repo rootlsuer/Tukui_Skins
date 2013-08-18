@@ -75,13 +75,13 @@ end
 
 function AS:SkinFrame(frame, template, overridestrip)
 	if not template then template = 'Transparent' end
-	if not overridestrip then frame:StripTextures() end
+	if not overridestrip then frame:StripTextures(true) end
 	frame:SetTemplate(template)
 end
 
 function AS:SkinBackdropFrame(frame, template, overridestrip)
 	if not template then template = 'Transparent' end
-	if not overridestrip then frame:StripTextures() end
+	if not overridestrip then frame:StripTextures(true) end
 	frame:CreateBackdrop()
 end
 
