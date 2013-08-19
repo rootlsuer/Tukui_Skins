@@ -1,7 +1,7 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "ReforgeradeSkin"
+local name = 'ReforgeradeSkin'
 function AS:SkinReforgerade()
 	AS:SkinFrame(ReforgeradeInputFrame.frame)
 	AS:SkinButton(ReforgeCompareButton)
@@ -9,7 +9,7 @@ function AS:SkinReforgerade()
 	AS:SkinCloseButton(ReforgeradeCloseButton)
 	AS:SkinScrollBar(ExportScrollScrollBar)
 	ExportScroll:CreateBackdrop()
-	ExportScrollScrollBar:SetPoint("TOPLEFT", ExportScroll, "TOPRIGHT", 4, -15)
+	ExportScrollScrollBar:SetPoint('TOPLEFT', ExportScroll, 'TOPRIGHT', 4, -15)
 	AS:SkinTooltip(ReforgeradeTooltip)
 end
 

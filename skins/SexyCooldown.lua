@@ -1,7 +1,7 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "SexyCooldownSkin"
+local name = 'SexyCooldownSkin'
 function AS:SkinSexyCooldown()
 	local function SCDStripSkinSettings(bar)
 		bar.optionsTable.args.icon.args.borderheader = nil
@@ -23,14 +23,14 @@ function AS:SkinSexyCooldown()
 		SCDStripSkinSettings(bar)
 		AS:SkinFrame(bar)
 		AS:RegisterForPetBattleHide(bar)
-		if AS:CheckOption("EmbedSexyCooldown") then
+		if AS:CheckOption('EmbedSexyCooldown') then
 			bar:ClearAllPoints()
-			AS.ActionBar2:HookScript("OnShow", function() 
+			AS.ActionBar2:HookScript('OnShow', function() 
 				bar:Point('BOTTOM', AS.ActionBar2, 'TOP', 0, 1)
 				bar:SetHeight(ActionButton1:GetHeight())
 				bar:SetWidth(AS.ActionBar2:GetWidth())
 			end)
-			AS.ActionBar2:HookScript("OnHide", function() 
+			AS.ActionBar2:HookScript('OnHide', function() 
 				bar:Point('BOTTOM', AS.ActionBar1, 'TOP', 0, 1)
 				bar:SetHeight(ActionButton1:GetHeight())
 				bar:SetWidth(AS.ActionBar1:GetWidth())
@@ -51,19 +51,19 @@ function AS:SkinSexyCooldown()
 
 	local function SkinSexyCooldownLabel(bar,label,store)
 		if not label.skinned then
-			label:SetFont(AS.PixelFont, store.fontsize, "OUTLINE")
+			label:SetFont(AS.PixelFont, store.fontsize, 'OUTLINE')
 			label.skinned = true
 		end
 	end
 	local function SkinSexyCooldownBackdrop(bar)
-		bar:SetTemplate("Transparent")
+		bar:SetTemplate('Transparent')
 	end
 
 	local function HookSCDBar(bar)
-		hooksecurefunc(bar, "UpdateBarLook", SkinSexyCooldownBar)
-		hooksecurefunc(bar, "UpdateSingleIconLook", SkinSexyCooldownIcon)
-		hooksecurefunc(bar, "UpdateLabel", SkinSexyCooldownLabel)
-		hooksecurefunc(bar, "UpdateBarBackdrop", SkinSexyCooldownBackdrop)
+		hooksecurefunc(bar, 'UpdateBarLook', SkinSexyCooldownBar)
+		hooksecurefunc(bar, 'UpdateSingleIconLook', SkinSexyCooldownIcon)
+		hooksecurefunc(bar, 'UpdateLabel', SkinSexyCooldownLabel)
+		hooksecurefunc(bar, 'UpdateBarBackdrop', SkinSexyCooldownBackdrop)
 		bar.settings.icon.borderInset = 0
 	end
 	local scd = SexyCooldown2

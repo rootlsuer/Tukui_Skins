@@ -1,20 +1,20 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "QuestCompletistSkin"
+local name = 'QuestCompletistSkin'
 function AS:SkinQuestCompletist()
 	local tooltips = {
-		"qcMapTooltip",
-		"qcQuestInformationTooltip",
-		"qcToastTooltip",
-		"qcQuestReputationTooltip",
-		"qcNewDataAlertTooltip",
-		"qcMutuallyExclusiveAlertTooltip",
+		'qcMapTooltip',
+		'qcQuestInformationTooltip',
+		'qcToastTooltip',
+		'qcQuestReputationTooltip',
+		'qcNewDataAlertTooltip',
+		'qcMutuallyExclusiveAlertTooltip',
 	}
 
 	for _, object in pairs(tooltips) do
 		if _G[object] then
-			_G[object]:SetFrameStrata("DIALOG")
+			_G[object]:SetFrameStrata('DIALOG')
 			AS:SkinTooltip(_G[object])
 		end
 	end
@@ -26,7 +26,7 @@ function AS:SkinQuestCompletist()
 	AS:SkinButton(qcCategoryDropdownButton)
 	AS:SkinCloseButton(qcXButton)
 	AS:SkinSlideBar(qcMenuSlider, 16)
-	qcMenuSlider:Point("TOPLEFT", qcQuestCompletistUI, "TOPLEFT", 303, -90)
+	qcMenuSlider:Point('TOPLEFT', qcQuestCompletistUI, 'TOPLEFT', 303, -90)
 	qcMenuSlider:Height(256)
 end
 

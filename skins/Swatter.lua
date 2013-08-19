@@ -1,7 +1,7 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "SwatterSkin"
+local name = 'SwatterSkin'
 function AS:SkinSwatter()
 	if SwatterErrorFrame then
 		AS:SkinFrame(SwatterErrorFrame)
@@ -13,4 +13,4 @@ function AS:SkinSwatter()
 	end
 end
 
-AS:RegisterSkin(name, AS.SkinSwatter, "[!BugGrabber]", "[!ImprovedErrorFrame]")
+AS:RegisterSkin(name, AS.SkinSwatter, '[!BugGrabber]', '[!ImprovedErrorFrame]')

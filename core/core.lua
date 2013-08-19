@@ -125,20 +125,14 @@ function AS:Desaturate(frame, point)
 		if region:GetObjectType() == 'Texture' then
 			region:SetDesaturated(true)
 			if region:GetTexture() == 'Interface\\DialogFrame\\UI-DialogBox-Corner' then
+				region:SetTexture(nil)
 				region:Kill()
 			end
 		end
 	end	
-	if frame:GetNormalTexture() then
-		frame:GetNormalTexture():SetDesaturated(true)
-	end
-	if frame:GetHighlightTexture() then
-		frame:GetHighlightTexture():SetDesaturated(true)
-	end
-	if point then
-		frame:ClearAllPoints()
-		frame:Point('TOPRIGHT', point, 'TOPRIGHT', 2, 2)
-	end
+	if frame:GetNormalTexture() then frame:GetNormalTexture():SetDesaturated(true) end
+	if frame:GetPushedTexture() then frame:GetPushedTexture():SetDesaturated(true) end
+	if frame:GetHighlightTexture() then frame:GetHighlightTexture():SetDesaturated(true) end
 end
 
 function AS:CheckOption(optionName, ...)
@@ -231,34 +225,4 @@ function AS:AcceptFrame(MainText, Function)
 	AcceptFrame.Text:SetText(MainText)
 	AcceptFrame.Accept:SetScript('OnClick', Function)
 	AcceptFrame:Show()
-end
-
-local waitTable = {}
-local waitFrame
-function AS:Delay(delay, func, ...)
-	if (type(delay) ~= 'number' or type(func) ~= 'function') then
-		return false
-	end
-	if(waitFrame == nil) then
-		waitFrame = CreateFrame('Frame')
-		waitFrame:SetScript('OnUpdate',function (frame, elapse)
-			local count = #waitTable
-			local i = 1
-			while i <= count do
-				local waitRecord = tremove(waitTable, i)
-				local d = tremove(waitRecord, 1)
-				local f = tremove(waitRecord, 1)
-				local p = tremove(waitRecord, 1)
-				if d > elapse then
-					tinsert(waitTable, i, {d - elapse, f, p})
-					i = i + 1
-				else
-					count = count - 1
-					f(unpack(p))
-				end
-			end
-		end)
-	end
-	tinsert(waitTable, {delay, func, {...} } )
-	return true
 end

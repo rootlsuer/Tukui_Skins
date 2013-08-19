@@ -1,7 +1,7 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "GupPetSkin"
+local name = 'GupPetSkin'
 function AS:SkinGupPet()
 	AS:SkinFrame(GupPet_InterfaceOptionsFrame)
 	AS:SkinFrame(GupPet_InterfaceOptionsFrameOptions)

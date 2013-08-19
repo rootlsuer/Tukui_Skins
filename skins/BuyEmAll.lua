@@ -1,7 +1,7 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "BuyEmAllSkin"
+local name = 'BuyEmAllSkin'
 function AS:SkinBuyEmAll()
 	AS:SkinFrame(BuyEmAllFrame)
 	AS:SkinButton(BuyEmAllStackButton)

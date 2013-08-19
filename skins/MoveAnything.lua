@@ -1,7 +1,7 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "MoveAnythingSkin"
+local name = 'MoveAnythingSkin'
 function AS:SkinMoveAnything()
 	AS:SkinFrame(MAOptions)
 	MAScrollBorder:StripTextures(true)
@@ -12,7 +12,7 @@ function AS:SkinMoveAnything()
 	AS:SkinButton(GameMenuButtonMoveAnything)
 	AS:SkinBackdropFrame(GameMenuButtonMoveAnything)
 	GameMenuButtonMoveAnything:ClearAllPoints()
-	GameMenuButtonMoveAnything:Point("TOP", GameMenuFrame, "BOTTOM", 0, -3)
+	GameMenuButtonMoveAnything:Point('TOP', GameMenuFrame, 'BOTTOM', 0, -3)
 	AS:SkinEditBox(MA_Search)
 	AS:SkinCheckBox(MAOptionsToggleModifiedFramesOnly)
 	AS:SkinCheckBox(MAOptionsToggleCategories)
@@ -20,11 +20,11 @@ function AS:SkinMoveAnything()
 	AS:SkinCheckBox(MAOptionsToggleMovers)
 	AS:SkinCheckBox(MAOptionsToggleFrameEditors)
 	for i = 1, 100 do
-		if _G["MAMove"..i.."Reset"] then AS:SkinButton(_G["MAMove"..i.."Reset"]) end
-		if _G["MAMove"..i.."Reset"] then AS:SkinButton(_G["MAMove"..i.."Reset"]) end
-		if _G["MAMove"..i.."Backdrop"] then AS:SkinFrame(_G["MAMove"..i.."Backdrop"]) end
-		if _G["MAMove"..i.."Move"] then AS:SkinCheckBox(_G["MAMove"..i.."Move"]) end
-		if _G["MAMove"..i.."Hide"] then AS:SkinCheckBox(_G["MAMove"..i.."Hide"]) end
+		if _G['MAMove'..i..'Reset'] then AS:SkinButton(_G['MAMove'..i..'Reset']) end
+		if _G['MAMove'..i..'Reset'] then AS:SkinButton(_G['MAMove'..i..'Reset']) end
+		if _G['MAMove'..i..'Backdrop'] then AS:SkinFrame(_G['MAMove'..i..'Backdrop']) end
+		if _G['MAMove'..i..'Move'] then AS:SkinCheckBox(_G['MAMove'..i..'Move']) end
+		if _G['MAMove'..i..'Hide'] then AS:SkinCheckBox(_G['MAMove'..i..'Hide']) end
 	end
 	AS:SkinFrame(MANudger)
 	AS:SkinButton(MANudger_CenterMe)

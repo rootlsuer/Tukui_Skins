@@ -1,7 +1,7 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "ArchySkin"
+local name = 'ArchySkin'
 function AS:SkinArchy()
 	local function SkinArchyArtifactFrame()
 		AS:SkinFrame(ArchyArtifactFrame)
@@ -35,13 +35,13 @@ function AS:SkinArchy()
 
 			if fragmentBar then
 				AS:SkinStatusBar(fragmentBar)
-				fragmentBar:SetPoint("TOPLEFT", icon, "TOPRIGHT", 7, -2)
+				fragmentBar:SetPoint('TOPLEFT', icon, 'TOPRIGHT', 7, -2)
 			end
 		end
 	end
 
 	hooksecurefunc(Archy, 'RefreshRacesDisplay', SkinArchyArtifactFrame)
-	hooksecurefunc(Archy, "UpdateRacesFrame", SkinArchyArtifactFrame)
+	hooksecurefunc(Archy, 'UpdateRacesFrame', SkinArchyArtifactFrame)
 
 	Archy:UpdateRacesFrame()
 	Archy:RefreshRacesDisplay()
@@ -50,19 +50,19 @@ function AS:SkinArchy()
 		AS:SkinFrame(ArchyDigSiteFrame)
 	end
 
-	hooksecurefunc(Archy, "UpdateDigSiteFrame", SkinArchyDigSiteFrame)
+	hooksecurefunc(Archy, 'UpdateDigSiteFrame', SkinArchyDigSiteFrame)
 
 	if ArchyArtifactFrameSkillBar then
 		AS:SkinStatusBar(ArchyArtifactFrameSkillBar)	
 	end
 
 	AS:SkinButton(ArchyDistanceIndicatorFrameSurveyButton)
-	ArchyDistanceIndicatorFrameSurveyButtonIcon:SetDrawLayer("OVERLAY")
+	ArchyDistanceIndicatorFrameSurveyButtonIcon:SetDrawLayer('OVERLAY')
 	AS:SkinButton(ArchyDistanceIndicatorFrameCrateButton)
- 	ArchyDistanceIndicatorFrameCrateButtonIcon:SetDrawLayer("OVERLAY")
+ 	ArchyDistanceIndicatorFrameCrateButtonIcon:SetDrawLayer('OVERLAY')
  	if ArchyDistanceIndicatorFrameLorItemButton then
 		AS:SkinButton(ArchyDistanceIndicatorFrameLorItemButton)
-		ArchyDistanceIndicatorFrameLorItemButtonIcon:SetDrawLayer("OVERLAY")
+		ArchyDistanceIndicatorFrameLorItemButtonIcon:SetDrawLayer('OVERLAY')
 	end
 end
 

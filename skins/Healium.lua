@@ -1,26 +1,26 @@
 ﻿if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "HealiumSkin"
+local name = 'HealiumSkin'
 function AS:SkinHealium()
 	local captionFrames = {
-		"HealiumPartyFrame",
-		"HealiumPetFrame",
-		"HealiumMeFrame",
-		"HealiumFriendsFrame",
-		"HealiumDanagersFrame",
-		"HealiumHealersFrame",
-		"HealiumTanksFrame",
-		"HealiumTargetFrame",
-		"HealiumFocusFrame",
-		"HealiumGroup1Frame",
-		"HealiumGroup2Frame",
-		"HealiumGroup3Frame",
-		"HealiumGroup4Frame",
-		"HealiumGroup5Frame",
-		"HealiumGroup6Frame",
-		"HealiumGroup7Frame",
-		"HealiumGroup8Frame",
+		'HealiumPartyFrame',
+		'HealiumPetFrame',
+		'HealiumMeFrame',
+		'HealiumFriendsFrame',
+		'HealiumDanagersFrame',
+		'HealiumHealersFrame',
+		'HealiumTanksFrame',
+		'HealiumTargetFrame',
+		'HealiumFocusFrame',
+		'HealiumGroup1Frame',
+		'HealiumGroup2Frame',
+		'HealiumGroup3Frame',
+		'HealiumGroup4Frame',
+		'HealiumGroup5Frame',
+		'HealiumGroup6Frame',
+		'HealiumGroup7Frame',
+		'HealiumGroup8Frame',
 	}
 
 	local skinnedFrames = {}
@@ -57,10 +57,10 @@ function AS:SkinHealium()
 		predictbar:SetHeight(24)
 		healthbar:SetHeight(24)
 		manabar:SetHeight(24)
-		predictbar:SetPoint("TOPLEFT", 7, 0)
-		healthbar:SetPoint("TOPLEFT", 7, 0)
+		predictbar:SetPoint('TOPLEFT', 7, 0)
+		healthbar:SetPoint('TOPLEFT', 7, 0)
 		manabar:ClearAllPoints()
-		manabar:SetPoint("TOPLEFT", -4, 0)
+		manabar:SetPoint('TOPLEFT', -4, 0)
 		skinnedFrames[self:GetName()] = true
 	end
 
@@ -72,7 +72,7 @@ function AS:SkinHealium()
 		local texture = icon:GetTexture()
 		AS:SkinIconButton(self, true)
 		icon:SetTexture(texture)
-		icon:SetDrawLayer("OVERLAY")
+		icon:SetDrawLayer('OVERLAY')
 		icon:ClearAllPoints()
 		icon:SetInside()
 		skinnedFrames[self:GetName()] = true
@@ -84,15 +84,15 @@ function AS:SkinHealium()
 		end
 		local icon = self.icon
 		local cooldown = self.cooldown
-		local count = self.count 
-		local border = self.border 
+		local count = self.count
+		local border = self.border
 		AS:SkinIconButton(self, true)
 		self:SetSize(28,28)			
-		icon:SetDrawLayer("OVERLAY")
+		icon:SetDrawLayer('OVERLAY')
 		icon:ClearAllPoints()
 		icon:SetInside()
 		count:ClearAllPoints()
-		count:SetPoint("BOTTOMRIGHT", icon, "BOTTOMRIGHT", -1, 1)
+		count:SetPoint('BOTTOMRIGHT', icon, 'BOTTOMRIGHT', -1, 1)
 		skinnedFrames[self:GetName()] = true
 	end
 
@@ -100,26 +100,26 @@ function AS:SkinHealium()
 		if not(Healium_Frames) then
 			return
 		end
-		for i,frameName in pairs(captionFrames) do
+		for _, frameName in pairs(captionFrames) do
 			if (_G[frameName]) then
 				skinHeader(_G[frameName])
 			end
-			for i,frame in pairs(Healium_Frames) do
+			for _, frame in pairs(Healium_Frames) do
 				skinUnitFrame(frame)
 				for v = 1, Healium_MaxButtons do
-					skinHeal(_G[frame:GetName().. "_Heal" .. v])
+					skinHeal(_G[frame:GetName().. '_Heal' .. v])
 					if v == 1 then
-						_G[frame:GetName().. "_Heal" .. v]:SetPoint("LEFT", frame:GetName(), "RIGHT", 2, 2)
+						_G[frame:GetName().. '_Heal' .. v]:SetPoint('LEFT', frame:GetName(), 'RIGHT', 2, 2)
 					else
-						_G[frame:GetName().. "_Heal" .. v]:SetPoint("LEFT", _G[frame:GetName().. "_Heal".. (v-1)], "RIGHT", 2, 0)
+						_G[frame:GetName().. '_Heal' .. v]:SetPoint('LEFT', _G[frame:GetName().. '_Heal'.. (v-1)], 'RIGHT', 2, 0)
 					end
 				end
 				for v = 1, 6 do
-					skinBuff(_G[frame:GetName() .. "_Buff" .. v])
+					skinBuff(_G[frame:GetName() .. '_Buff' .. v])
 					if v == 1 then
-						_G[frame:GetName().. "_Buff" .. v]:SetPoint("RIGHT", frame:GetName(), "LEFT", -8, 2)
+						_G[frame:GetName().. '_Buff' .. v]:SetPoint('RIGHT', frame:GetName(), 'LEFT', -8, 2)
 					else
-						_G[frame:GetName().. "_Buff" .. v]:SetPoint("RIGHT", _G[frame:GetName().. "_Buff".. (v-1)], "LEFT", -2, 0)
+						_G[frame:GetName().. '_Buff' .. v]:SetPoint('RIGHT', _G[frame:GetName().. '_Buff'.. (v-1)], 'LEFT', -2, 0)
 					end
 				end
 			end
@@ -128,9 +128,9 @@ function AS:SkinHealium()
 
 	skinAllHealiumFrames()
 
-	hooksecurefunc("Healium_HealButton_OnLoad", skinHeal)
-	hooksecurefunc("Healium_CreateUnitFrames", skinAllHealiumFrames)
-	hooksecurefunc("HealiumUnitFrames_Button_OnLoad", skinUnitFrame)
+	hooksecurefunc('Healium_HealButton_OnLoad', skinHeal)
+	hooksecurefunc('Healium_CreateUnitFrames', skinAllHealiumFrames)
+	hooksecurefunc('HealiumUnitFrames_Button_OnLoad', skinUnitFrame)
 end
 
 AS:RegisterSkin(name, AS.SkinHealium)

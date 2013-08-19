@@ -1,9 +1,9 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "AuctionLiteSkin"
+local name = 'AuctionLiteSkin'
 function AS:SkinAuctionLite(event)
-	if event == "PLAYER_ENTERING_WORLD" then return end
+	if event == 'PLAYER_ENTERING_WORLD' then return end
 	AS:SkinTab(AuctionFrameTab4)
 	AS:SkinTab(AuctionFrameTab5)
 	AS:SkinEditBox(BuyName)
@@ -28,4 +28,4 @@ function AS:SkinAuctionLite(event)
 	AS:UnregisterEvent(name, event)
 end
 
-AS:RegisterSkin(name, AS.SkinAuctionLite, "AUCTION_HOASE_SHOW")
+AS:RegisterSkin(name, AS.SkinAuctionLite, 'AUCTION_HOUSE_SHOW')

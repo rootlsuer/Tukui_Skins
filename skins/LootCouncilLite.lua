@@ -1,7 +1,7 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "LootCouncilLiteSkin"
+local name = 'LootCouncilLiteSkin'
 function AS:SkinLootCouncilLite()
 	AS:SkinFrame(RankFrame)
 	AS:SkinDropDownBox(RankDropDown)
@@ -15,9 +15,9 @@ function AS:SkinLootCouncilLite()
 	AS:SkinButton(TestCancelButton)
 	AS:SkinButton(AbortButton)
 	for i = 1,40 do
-		if _G["EntryFrameEntry"..i.."AgainstButton"] then AS:SkinCloseButton(_G["EntryFrameEntry"..i.."AgainstButton"]) end
-		if _G["EntryFrameEntry"..i.."ForButton"] then AS:Desaturate(_G["EntryFrameEntry"..i.."ForButton"]) end
-		if _G["EntryFrameEntry"..i.."CancelButton"] then AS:Desaturate(_G["EntryFrameEntry"..i.."CancelButton"]) end
+		if _G['EntryFrameEntry'..i..'AgainstButton'] then AS:SkinCloseButton(_G['EntryFrameEntry'..i..'AgainstButton']) end
+		if _G['EntryFrameEntry'..i..'ForButton'] then AS:Desaturate(_G['EntryFrameEntry'..i..'ForButton']) end
+		if _G['EntryFrameEntry'..i..'CancelButton'] then AS:Desaturate(_G['EntryFrameEntry'..i..'CancelButton']) end
 	end
 end
 

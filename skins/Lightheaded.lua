@@ -1,25 +1,25 @@
 ﻿if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "LightheadedSkin"
+local name = 'LightheadedSkin'
 function AS:SkinLightHeaded()
 	local function DoDis()
 		QuestNPCModel:ClearAllPoints()
-		QuestNPCModel:SetPoint("TOPLEFT", LightHeadedFrame, "TOPRIGHT", 5, -10)
+		QuestNPCModel:SetPoint('TOPLEFT', LightHeadedFrame, 'TOPRIGHT', 5, -10)
 		QuestNPCModel:SetAlpha(0.85)
-		LightHeadedFrame:Point("LEFT",  QuestLogFrame, "RIGHT", 2, 0)
+		LightHeadedFrame:Point('LEFT',  QuestLogFrame, 'RIGHT', 2, 0)
 	end
 
 	local function SkinOptions(self, event, ...)
-		local lhp = _G["LightHeaded_Panel"]
+		local lhp = _G['LightHeaded_Panel']
 		if lhp:IsVisible() then
 			for i = 1, 9 do
-				local cbox = _G["LightHeaded_Panel_Toggle"..i]
+				local cbox = _G['LightHeaded_Panel_Toggle'..i]
 				AS:SkinCheckBox(cbox)
 			end
 			local buttons = {
-				"LightHeaded_Panel_Button1",
-				"LightHeaded_Panel_Button2",
+				'LightHeaded_Panel_Button1',
+				'LightHeaded_Panel_Button2',
 			}
 
 			for _, button in pairs(buttons) do
@@ -45,13 +45,13 @@ function AS:SkinLightHeaded()
 	lhframe.prev:SetHeight(16)
 	lhframe.next:SetWidth(16)
 	lhframe.next:SetHeight(16)
-	lhframe.prev:SetPoint("RIGHT", lhframe.page, "LEFT", -25, 0)
-	lhframe.next:SetPoint("LEFT", lhframe.page, "RIGHT", 25, 0)
+	lhframe.prev:SetPoint('RIGHT', lhframe.page, 'LEFT', -25, 0)
+	lhframe.next:SetPoint('LEFT', lhframe.page, 'RIGHT', 25, 0)
 	AS:SkinScrollBar(LightHeadedScrollFrameScrollBar, 5)
 	lhframe.title:SetTextColor(23/255, 132/255, 209/255)	
-	local LH_OnLoad = _G["LightHeadedFrame"]
-	LH_OnLoad:SetScript("OnUpdate", DoDis)
-	local LH_Options = _G["LightHeaded_Panel"]
+	local LH_OnLoad = _G['LightHeadedFrame']
+	LH_OnLoad:SetScript('OnUpdate', DoDis)
+	local LH_Options = _G['LightHeaded_Panel']
 end
 
 AS:RegisterSkin(name, AS.SkinLightHeaded)

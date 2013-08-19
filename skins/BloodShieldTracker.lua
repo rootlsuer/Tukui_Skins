@@ -1,19 +1,22 @@
-if not (Tukui or AsphyxiaUI or DuffedUI) then return end
+if not (AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "BloodShieldTrackerSkin"
+local name = 'BloodShieldTrackerSkin'
 function AS:SkinBloodShieldTracker()
-	if not IsAddOnLoaded("Tukui") then
-		AS:SkinStatusBar(BloodShieldTracker_EstimateBar)
-		AS:SkinStatusBar(BloodShieldTracker_HealthBar)
-		AS:SkinStatusBar(BloodShieldTracker_ShieldBar)
-		AS:SkinStatusBar(BloodShieldTracker_EstimateBar)
-		AS:SkinStatusBar(BloodShieldTracker_BloodChargeBar)
-		AS:SkinStatusBar(BloodShieldTracker_TotalAbsorbsBar)
-		AS:SkinStatusBar(BloodShieldTracker_PWSBar)
-		AS:SkinStatusBar(BloodShieldTracker_IllumBar)
-		AS:SkinStatusBar(BloodShieldTracker_AMSBar)
-		AS:SkinStatusBar(BloodShieldTracker_PurgatoryBar)
+	local Bars = {
+		BloodShieldTracker_AMSBar,
+		BloodShieldTracker_BloodChargeBar,
+		BloodShieldTracker_EstimateBar,
+		BloodShieldTracker_HealthBar,
+		BloodShieldTracker_IllumBar,
+		BloodShieldTracker_PurgatoryBar,
+		BloodShieldTracker_PWSBar,
+		BloodShieldTracker_ShieldBar,
+		BloodShieldTracker_TotalAbsorbsBar,
+	}
+
+	for _, bar in pairs(Bars) do
+		AS:SkinStatusBar(bar)
 	end
 end
 

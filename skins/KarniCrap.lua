@@ -1,109 +1,143 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "KarniCrapSkin"
+local name = 'KarniCrapSkin'
 function AS:SkinKarniCrap()
-	AS:SkinFrame(KarniCrap)
-	AS:SkinFrame(KarniCrap_CategoryFrame)
-	AS:SkinFrame(KarniCrap_OptionsFrame)
-	AS:SkinFrame(KarniCrap_Blacklist)
-	AS:SkinFrame(KarniCrap_Whitelist)
-	AS:SkinFrame(KarniCrap_Inventory)
-	KarniCrap_Inventory_ScrollBar:StripTextures(True)
-	KarniCrapTab1:Point("BOTTOMLEFT", KarniCrap, "BOTTOMLEFT",0,-30)
-	AS:SkinScrollBar(KarniCrap_Inventory_ScrollBarScrollBar)
-	AS:SkinButton(KarniCrap_BtnBlacklistRemove)
-	AS:SkinButton(KarniCrap_BtnWhitelistRemove)
-	AS:SkinCloseButton(KarniCrapCloseButton)
-	AS:SkinTab(KarniCrapTab1)
-	AS:SkinTab(KarniCrapTab2)
-	AS:SkinTab(KarniCrapTab3)
-	AS:SkinButton(KarniCrap_InvHeader1)
-	AS:SkinButton(KarniCrap_InvHeader2)
-	AS:SkinButton(KarniCrap_ValueHeader)
-	AS:SkinButton(KarniCrap_InvHeader4)
-	AS:SkinButton(KarniCrap_BtnDestroyItem)
-	AS:SkinButton(KarniCrap_BtnDestroyAllCrap)
-	KarniCrapPortrait:Kill()
-	AS:SkinCheckBox(KarniCrap_CBEnabled)
-	AS:SkinCheckBox(KarniCrap_CBPoor)
-	AS:SkinCheckBox(KarniCrap_Tab1_CBCommon)
-	AS:SkinCheckBox(KarniCrap_Tab1_CBUseStackValue)
-	AS:SkinCheckBox(KarniCrap_Tab1_CBEcho)
-	AS:SkinCheckBox(KarniCrap_CBDestroy)
-	AS:SkinCheckBox(KarniCrap_CBDestroySlots)
-	AS:SkinCheckBox(KarniCrap_CBNoDestroyTradeskill)
-	AS:SkinCheckBox(KarniCrap_CBDestroyGroup)
-	AS:SkinCheckBox(KarniCrap_CBDestroyRaid)
-	AS:SkinCheckBox(KarniCrap_Cloth_CBLinen)
-	AS:SkinCheckBox(KarniCrap_Cloth_CBLinen_Never)
-	AS:SkinCheckBox(KarniCrap_Cloth_CBWool)
-	AS:SkinCheckBox(KarniCrap_Cloth_CBWool_Never)
-	AS:SkinCheckBox(KarniCrap_Cloth_CBSilk)
-	AS:SkinCheckBox(KarniCrap_Cloth_CBSilk_Never)
-	AS:SkinCheckBox(KarniCrap_Cloth_CBMageweave)
-	AS:SkinCheckBox(KarniCrap_Cloth_CBMageweave_Never)
-	AS:SkinCheckBox(KarniCrap_Cloth_CBRunecloth)
-	AS:SkinCheckBox(KarniCrap_Cloth_CBRunecloth_Never)
-	AS:SkinCheckBox(KarniCrap_Cloth_CBNetherweave)
-	AS:SkinCheckBox(KarniCrap_Cloth_CBNetherweave_Never)
-	AS:SkinCheckBox(KarniCrap_Cloth_CBFrostweave)
-	AS:SkinCheckBox(KarniCrap_Cloth_CBFrostweave_Never)
-	AS:SkinCheckBox(KarniCrap_Cloth_CBEmbersilk)
-	AS:SkinCheckBox(KarniCrap_Cloth_CBEmbersilk_Never)
-	AS:SkinCheckBox(KarniCrap_Corpses_CBSkinnable)
-	AS:SkinCheckBox(KarniCrap_Corpses_CBGatherable)
-	AS:SkinCheckBox(KarniCrap_Corpses_CBMinable)
-	AS:SkinCheckBox(KarniCrap_Corpses_CBEngineerable)
-	AS:SkinCheckBox(KarniCrap_Corpses_CBSkilledEnough)
-	AS:SkinCheckBox(KarniCrap_Consumables_RBFood1)
-	AS:SkinCheckBox(KarniCrap_Consumables_RBFood2)
-	AS:SkinCheckBox(KarniCrap_Consumables_CBFoodMax)
-	AS:SkinCheckBox(KarniCrap_Consumables_RBWater1)
-	AS:SkinCheckBox(KarniCrap_Consumables_RBWater2)
-	AS:SkinCheckBox(KarniCrap_Consumables_CBWaterMax)
-	AS:SkinCheckBox(KarniCrap_Potions_RBHealth1)
-	AS:SkinCheckBox(KarniCrap_Potions_RBHealth2)
-	AS:SkinCheckBox(KarniCrap_Potions_CBHealthMax)
-	AS:SkinCheckBox(KarniCrap_Potions_RBMana1)
-	AS:SkinCheckBox(KarniCrap_Potions_RBMana2)
-	AS:SkinCheckBox(KarniCrap_Potions_CBManaMax)
-	AS:SkinCheckBox(KarniCrap_Quality_CBQualityPoor)
-	AS:SkinCheckBox(KarniCrap_Quality_CBQualityCommon)
-	AS:SkinCheckBox(KarniCrap_Quality_CBQualityUncommon)
-	AS:SkinCheckBox(KarniCrap_Quality_CBQualityRare)
-	AS:SkinCheckBox(KarniCrap_Quality_CBQualityEpic)
-	AS:SkinCheckBox(KarniCrap_Quality_CBQualityGrouped)
-	AS:SkinCheckBox(KarniCrap_Scrolls_CBMaxScrolls)
-	AS:SkinCheckBox(KarniCrap_Scrolls_CBScrollAgility)
-	AS:SkinCheckBox(KarniCrap_Scrolls_CBScrollIntellect)
-	AS:SkinCheckBox(KarniCrap_Scrolls_CBScrollProtection)
-	AS:SkinCheckBox(KarniCrap_Scrolls_CBScrollSpirit)
-	AS:SkinCheckBox(KarniCrap_Scrolls_CBScrollStamina)
-	AS:SkinCheckBox(KarniCrap_Scrolls_CBScrollStrength)
-	AS:SkinCheckBox(KarniCrap_Tradeskills_CBCooking)
-	AS:SkinCheckBox(KarniCrap_Tradeskills_CBFishing)
-	AS:SkinCheckBox(KarniCrap_Tradeskills_CBPickpocketing)
-	AS:SkinCheckBox(KarniCrap_Tradeskills_CBEnchanting)
-	AS:SkinCheckBox(KarniCrap_Tradeskills_CBGathering)
-	AS:SkinCheckBox(KarniCrap_Tradeskills_CBMilling)
-	AS:SkinCheckBox(KarniCrap_Tradeskills_CBMining)
-	AS:SkinCheckBox(KarniCrap_Tradeskills_CBProspecting)
-	AS:SkinCheckBox(KarniCrap_Tradeskills_CBSkinning)
-	AS:SkinCheckBox(KarniCrap_Inventory_CBHideQuestItems)
-	AS:SkinCheckBox(KarniCrap_CBOpenAtMerchant)
+	local Frames = {
+		KarniCrap,
+		KarniCrap_Blacklist,
+		KarniCrap_CategoryFrame,
+		KarniCrap_Inventory,
+		KarniCrap_OptionsFrame,
+		KarniCrap_Whitelist,
+	}
 
-	for i = 1, 15 do
-		AS:SkinCloseButton(_G["KarniInvEntry"..i.."_BtnCrap"])
+	for _, object in pairs(Frames) do
+		AS:SkinFrame(object)
 	end
 
---	AS:SkinEditBox(KarniCrap_Poor_GoldInputBox)	
---	AS:SkinEditBox(KarniCrap_Poor_SilverInputBox)
---	AS:SkinEditBox(KarniCrap_Poor_CopperInputBox)
---	AS:SkinEditBox(KarniCrap_Tab1_CBCommonDesc_GoldInputBox)
---	AS:SkinEditBox(KarniCrap_Tab1_CBCommonDesc_SilverInputBox)
---	AS:SkinEditBox(KarniCrap_Tab1_CBCommonDesc_CopperInputBox)
---	AS:SkinEditBox(KarniCrap_EBDestroySlotsNum)
+	local Tabs = {
+		KarniCrapTab1,
+		KarniCrapTab2,
+		KarniCrapTab3,
+	}
+
+	for _, object in pairs(Tabs) do
+		AS:SkinTab(object)
+	end
+
+	local Buttons = {
+		KarniCrap_BtnBlacklistRemove,
+		KarniCrap_BtnWhitelistRemove,
+		KarniCrap_InvHeader1,
+		KarniCrap_InvHeader2,
+		KarniCrap_ValueHeader,
+		KarniCrap_InvHeader4,
+		KarniCrap_BtnDestroyItem,
+		KarniCrap_BtnDestroyAllCrap,
+	}
+
+	for _, object in pairs(Buttons) do
+		AS:SkinButton(object)
+	end
+
+	local CheckBoxes = {
+		KarniCrap_CBEnabled,
+		KarniCrap_CBPoor,
+		KarniCrap_Tab1_CBCommon,
+		KarniCrap_Tab1_CBUseStackValue,
+		KarniCrap_Tab1_CBEcho,
+		KarniCrap_CBDestroy,
+		KarniCrap_CBDestroySlots,
+		KarniCrap_CBNoDestroyTradeskill,
+		KarniCrap_CBDestroyGroup,
+		KarniCrap_CBDestroyRaid,
+		KarniCrap_Cloth_CBLinen,
+		KarniCrap_Cloth_CBLinen_Never,
+		KarniCrap_Cloth_CBWool,
+		KarniCrap_Cloth_CBWool_Never,
+		KarniCrap_Cloth_CBSilk,
+		KarniCrap_Cloth_CBSilk_Never,
+		KarniCrap_Cloth_CBMageweave,
+		KarniCrap_Cloth_CBMageweave_Never,
+		KarniCrap_Cloth_CBRunecloth,
+		KarniCrap_Cloth_CBRunecloth_Never,
+		KarniCrap_Cloth_CBNetherweave,
+		KarniCrap_Cloth_CBNetherweave_Never,
+		KarniCrap_Cloth_CBFrostweave,
+		KarniCrap_Cloth_CBFrostweave_Never,
+		KarniCrap_Cloth_CBEmbersilk,
+		KarniCrap_Cloth_CBEmbersilk_Never,
+		KarniCrap_Corpses_CBSkinnable,
+		KarniCrap_Corpses_CBGatherable,
+		KarniCrap_Corpses_CBMinable,
+		KarniCrap_Corpses_CBEngineerable,
+		KarniCrap_Corpses_CBSkilledEnough,
+		KarniCrap_Consumables_RBFood1,
+		KarniCrap_Consumables_RBFood2,
+		KarniCrap_Consumables_CBFoodMax,
+		KarniCrap_Consumables_RBWater1,
+		KarniCrap_Consumables_RBWater2,
+		KarniCrap_Consumables_CBWaterMax,
+		KarniCrap_Potions_RBHealth1,
+		KarniCrap_Potions_RBHealth2,
+		KarniCrap_Potions_CBHealthMax,
+		KarniCrap_Potions_RBMana1,
+		KarniCrap_Potions_RBMana2,
+		KarniCrap_Potions_CBManaMax,
+		KarniCrap_Quality_CBQualityPoor,
+		KarniCrap_Quality_CBQualityCommon,
+		KarniCrap_Quality_CBQualityUncommon,
+		KarniCrap_Quality_CBQualityRare,
+		KarniCrap_Quality_CBQualityEpic,
+		KarniCrap_Quality_CBQualityGrouped,
+		KarniCrap_Scrolls_CBMaxScrolls,
+		KarniCrap_Scrolls_CBScrollAgility,
+		KarniCrap_Scrolls_CBScrollIntellect,
+		KarniCrap_Scrolls_CBScrollProtection,
+		KarniCrap_Scrolls_CBScrollSpirit,
+		KarniCrap_Scrolls_CBScrollStamina,
+		KarniCrap_Scrolls_CBScrollStrength,
+		KarniCrap_Tradeskills_CBCooking,
+		KarniCrap_Tradeskills_CBFishing,
+		KarniCrap_Tradeskills_CBPickpocketing,
+		KarniCrap_Tradeskills_CBEnchanting,
+		KarniCrap_Tradeskills_CBGathering,
+		KarniCrap_Tradeskills_CBMilling,
+		KarniCrap_Tradeskills_CBMining,
+		KarniCrap_Tradeskills_CBProspecting,
+		KarniCrap_Tradeskills_CBSkinning,
+		KarniCrap_Inventory_CBHideQuestItems,
+		KarniCrap_CBOpenAtMerchant,
+	}
+
+	for _, object in pairs(CheckBoxes) do
+		AS:SkinCheckBox(object)
+	end
+
+	local EditBoxes = {
+		KarniCrap_Poor_GoldInputBox,
+		KarniCrap_Poor_SilverInputBox,
+		KarniCrap_Poor_CopperInputBox,
+		KarniCrap_Tab1_CBCommonDesc_GoldInputBox,
+		KarniCrap_Tab1_CBCommonDesc_SilverInputBox,
+		KarniCrap_Tab1_CBCommonDesc_CopperInputBox,
+		KarniCrap_EBDestroySlotsNum,
+	}
+
+	--[[for _, object in pairs(EditBoxes) do
+		AS:SkinEditBox(object)
+	end]]
+
+	KarniCrap_Inventory_ScrollBar:StripTextures(true)
+	KarniCrapTab1:Point('BOTTOMLEFT', KarniCrap, 'BOTTOMLEFT',0,-30)
+	AS:SkinScrollBar(KarniCrap_Inventory_ScrollBarScrollBar)
+	AS:SkinCloseButton(KarniCrapCloseButton)
+	KarniCrapPortrait:Kill()
+
+	for i = 1, 15 do
+		AS:SkinCloseButton(_G['KarniInvEntry'..i..'_BtnCrap'])
+	end
 end
 
 AS:RegisterSkin(name, AS.SkinKarniCrap)

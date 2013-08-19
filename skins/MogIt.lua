@@ -1,7 +1,7 @@
 ﻿if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "MogItSkin"
+local name = 'MogItSkin'
 function AS:SkinMogIt()
 	AS:SkinFrame(MogItFrame)
 	MogItFrameInset:StripTextures(true)
@@ -10,37 +10,37 @@ function AS:SkinMogIt()
 	local function SkinMogItPreview()
 		for i = 1, 99 do
 			local MogItGearSlots = {
-				"HeadSlot",
-				"ShoulderSlot",
-				"BackSlot",
-				"ChestSlot",
-				"ShirtSlot",
-				"TabardSlot",
-				"WristSlot",
-				"HandsSlot",
-				"WaistSlot",
-				"LegsSlot",
-				"FeetSlot",
-				"MainHandSlot",
-				"SecondaryHandSlot",
+				'HeadSlot',
+				'ShoulderSlot',
+				'BackSlot',
+				'ChestSlot',
+				'ShirtSlot',
+				'TabardSlot',
+				'WristSlot',
+				'HandsSlot',
+				'WaistSlot',
+				'LegsSlot',
+				'FeetSlot',
+				'MainHandSlot',
+				'SecondaryHandSlot',
 			}
 
 			for _, object in pairs(MogItGearSlots) do
-				if _G["MogItPreview"..i..object] then
-					AS:SkinIconButton(_G["MogItPreview"..i..object])
-					_G["MogItPreview"..i..object]:SetPushedTexture(nil)
-					_G["MogItPreview"..i..object]:SetHighlightTexture(nil)
+				if _G['MogItPreview'..i..object] then
+					AS:SkinIconButton(_G['MogItPreview'..i..object])
+					_G['MogItPreview'..i..object]:SetPushedTexture(nil)
+					_G['MogItPreview'..i..object]:SetHighlightTexture(nil)
 				end
 			end
 
-			if _G["MogItPreview"..i] then AS:SkinFrame(_G["MogItPreview"..i]) end
-			if _G["MogItPreview"..i.."CloseButton"] then AS:SkinCloseButton(_G["MogItPreview"..i.."CloseButton"]) end
-			if _G["MogItPreview"..i.."Inset"] then _G["MogItPreview"..i.."Inset"]:StripTextures(true) end
-			if _G["MogItPreview"..i.."Activate"] then AS:SkinButton(_G["MogItPreview"..i.."Activate"], true) end
+			if _G['MogItPreview'..i] then AS:SkinFrame(_G['MogItPreview'..i]) end
+			if _G['MogItPreview'..i..'CloseButton'] then AS:SkinCloseButton(_G['MogItPreview'..i..'CloseButton']) end
+			if _G['MogItPreview'..i..'Inset'] then _G['MogItPreview'..i..'Inset']:StripTextures(true) end
+			if _G['MogItPreview'..i..'Activate'] then AS:SkinButton(_G['MogItPreview'..i..'Activate'], true) end
 		end
 	end
 
-	hooksecurefunc(MogIt, "CreatePreview", SkinMogItPreview)
+	hooksecurefunc(MogIt, 'CreatePreview', SkinMogItPreview)
 	AS:SkinTooltip(MogItTooltip)
 	AS:SkinCloseButton(MogItFrameCloseButton)
 	AS:SkinCloseButton(MogItFiltersCloseButton)

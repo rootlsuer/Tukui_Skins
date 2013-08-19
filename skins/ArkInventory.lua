@@ -1,7 +1,7 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "ArkInventorySkin"
+local name = 'ArkInventorySkin'
 function AS:SkinArkInventory()
 	hooksecurefunc(ArkInventory, 'Frame_Main_Paint', function(self, frame)
 		if not ArkInventory.ValidFrame(frame, true) then return	end
@@ -9,8 +9,8 @@ function AS:SkinArkInventory()
 			local subframe = select(i, frame:GetChildren())
 			local name = subframe:GetName()
 			if name then
-				if _G[name.."ArkBorder"] then _G[name.."ArkBorder"]:Hide() end
-				if _G[name.."Background"] then _G[name.."Background"]:Hide() end
+				if _G[name..'ArkBorder'] then _G[name..'ArkBorder']:Hide() end
+				if _G[name..'Background'] then _G[name..'Background']:Hide() end
 			end
 			AS:SkinFrame(subframe)
 		end
@@ -27,35 +27,35 @@ function AS:SkinArkInventory()
 		title:SetPoint('TOPLEFT')
 		title:SetPoint('TOPRIGHT')
 		search:ClearAllPoints()
-		search:SetPoint("TOPLEFT",title,"BOTTOMLEFT",0,-2)
-		search:SetPoint("TOPRIGHT",title,"BOTTOMRIGHT",0,-2)
+		search:SetPoint('TOPLEFT',title,'BOTTOMLEFT',0,-2)
+		search:SetPoint('TOPRIGHT',title,'BOTTOMRIGHT',0,-2)
 		container:ClearAllPoints()
-		container:SetPoint("TOPLEFT",search,"BOTTOMLEFT",0,-2)
-		container:SetPoint("TOPRIGHT",search,"BOTTOMRIGHT",0,-2)
+		container:SetPoint('TOPLEFT',search,'BOTTOMLEFT',0,-2)
+		container:SetPoint('TOPRIGHT',search,'BOTTOMRIGHT',0,-2)
 		changer:ClearAllPoints()
-		changer:SetPoint("TOPLEFT",container,"BOTTOMLEFT",0,-2)
-		changer:SetPoint("TOPRIGHT",container,"BOTTOMRIGHT",0,-2)
+		changer:SetPoint('TOPLEFT',container,'BOTTOMLEFT',0,-2)
+		changer:SetPoint('TOPRIGHT',container,'BOTTOMRIGHT',0,-2)
 		status:ClearAllPoints()
-		status:SetPoint("TOPLEFT",changer,"BOTTOMLEFT",0,-2)
-		status:SetPoint("TOPRIGHT",changer,"BOTTOMRIGHT",0,-2)
+		status:SetPoint('TOPLEFT',changer,'BOTTOMLEFT',0,-2)
+		status:SetPoint('TOPRIGHT',changer,'BOTTOMRIGHT',0,-2)
 		ARKINV_Frame4ChangerWindowPurchaseInfo:ClearAllPoints()
-		ARKINV_Frame4ChangerWindowPurchaseInfo:SetPoint("TOP", ARKINV_Frame4ChangerWindowGoldAvailable, "BOTTOM", 0, -12)
-		_G[status:GetName().."EmptyText"]:SetPoint("LEFT",2,0)
-		_G[status:GetName().."EmptyText"]:SetFont(AS.Font, 12)
-		_G[status:GetName().."GoldCopperButton"]:SetPoint("RIGHT",-1,0)
-		_G[status:GetName().."GoldCopperButtonText"]:SetFont(AS.Font, 12)
-		_G[status:GetName().."GoldSilverButton"]:SetPoint("RIGHT",_G[status:GetName().."GoldCopperButtonText"],"LEFT",-1,0)
-		_G[status:GetName().."GoldSilverButtonText"]:SetFont(AS.Font, 12)
-		_G[status:GetName().."GoldGoldButton"]:SetPoint("RIGHT",_G[status:GetName().."GoldSilverButtonText"],"LEFT",-1,0)
-		_G[status:GetName().."GoldGoldButtonText"]:SetFont(AS.Font, 12)
+		ARKINV_Frame4ChangerWindowPurchaseInfo:SetPoint('TOP', ARKINV_Frame4ChangerWindowGoldAvailable, 'BOTTOM', 0, -12)
+		_G[status:GetName()..'EmptyText']:SetPoint('LEFT',2,0)
+		_G[status:GetName()..'EmptyText']:SetFont(AS.Font, 12)
+		_G[status:GetName()..'GoldCopperButton']:SetPoint('RIGHT',-1,0)
+		_G[status:GetName()..'GoldCopperButtonText']:SetFont(AS.Font, 12)
+		_G[status:GetName()..'GoldSilverButton']:SetPoint('RIGHT',_G[status:GetName()..'GoldCopperButtonText'],'LEFT',-1,0)
+		_G[status:GetName()..'GoldSilverButtonText']:SetFont(AS.Font, 12)
+		_G[status:GetName()..'GoldGoldButton']:SetPoint('RIGHT',_G[status:GetName()..'GoldSilverButtonText'],'LEFT',-1,0)
+		_G[status:GetName()..'GoldGoldButtonText']:SetFont(AS.Font, 12)
 	end)
 
 	hooksecurefunc(ArkInventory, 'Frame_Bar_Paint', function(self, bar)
 		local loc_id = bar.ARK_Data.loc_id
-		ArkInventory.LocationOptionSet(loc_id, "bar", "name", "height", 18)
+		ArkInventory.LocationOptionSet(loc_id, 'bar', 'name', 'height', 18)
 		local name = bar:GetName()
-		if _G[name.."ArkBorder"] then _G[name.."ArkBorder"]:Hide() end
-		if _G[name.."Background"] then _G[name.."Background"]:Hide() end
+		if _G[name..'ArkBorder'] then _G[name..'ArkBorder']:Hide() end
+		if _G[name..'Background'] then _G[name..'Background']:Hide() end
 		AS:SkinFrame(bar)
 
 		if ArkInventory.Global.Mode.Edit then
@@ -65,7 +65,7 @@ function AS:SkinArkInventory()
 	end)
 
 	hooksecurefunc(ArkInventory, 'SetItemButtonTexture', function(self, frame, texture, r, g, b)
-		local obj = _G[frame:GetName().."IconTexture"]
+		local obj = _G[frame:GetName()..'IconTexture']
 		if not texture then
 			obj:Hide()
 		else
@@ -78,11 +78,11 @@ function AS:SkinArkInventory()
 	end)
 
 	hooksecurefunc(ArkInventory, 'Frame_Item_Update_Border', function(self, frame)
-		local obj = _G[frame:GetName().."ArkBorder"]
+		local obj = _G[frame:GetName()..'ArkBorder']
 		local r, g, b, a = obj:GetBackdropBorderColor()
 		obj:Hide()
-		if _G[frame:GetName()] == ARKINV_Frame1ChangerWindowBag1 then ARKINV_Frame1ChangerWindowBag1IconTexture:SetTexture("interface\\icons\\inv_misc_bag_07_green") end
-		if _G[frame:GetName().."Background"] then _G[frame:GetName().."Background"]:Hide() end
+		if _G[frame:GetName()] == ARKINV_Frame1ChangerWindowBag1 then ARKINV_Frame1ChangerWindowBag1IconTexture:SetTexture('interface\\icons\\inv_misc_bag_07_green') end
+		if _G[frame:GetName()..'Background'] then _G[frame:GetName()..'Background']:Hide() end
 		AS:SkinIconButton(frame, true)
 		frame.Backdrop:SetBackdropBorderColor(r,g,b,a)
 	end)

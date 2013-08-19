@@ -1,16 +1,16 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "CoolLineSkin"
+local name = 'CoolLineSkin'
 function AS:SkinCoolLine()
 	CoolLineDB.bgcolor = { r = 0, g = 0, b = 0, a = 0, }
-	CoolLineDB.border  = "None"
+	CoolLineDB.border  = 'None'
 	CoolLine.updatelook()
 	AS:SkinBackdropFrame(CoolLine)
 	CoolLine.backdrop:SetAllPoints(CoolLine)
 	CoolLine.backdrop:CreateShadow()
 	AS:RegisterForPetBattleHide(CoolLine)
-	if AS:CheckOption("EmbedCoolLine") then
+	if AS:CheckOption('EmbedCoolLine') then
 		local function OnShow()
 			CoolLine:Point('BOTTOM', AS.ActionBar4, 'TOP', 0, 1)
 			CoolLine:SetHeight(ActionButton1:GetHeight())
@@ -29,8 +29,8 @@ function AS:SkinCoolLine()
 			else
 				OnHide()
 			end
-			AS.ActionBar4:HookScript("OnShow", OnShow)
-			AS.ActionBar4:HookScript("OnHide", OnHide)
+			AS.ActionBar4:HookScript('OnShow', OnShow)
+			AS.ActionBar4:HookScript('OnHide', OnHide)
 		end
 	end
 end

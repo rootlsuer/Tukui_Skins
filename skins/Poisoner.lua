@@ -1,7 +1,7 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "PoisonerSkin"
+local name = 'PoisonerSkin'
 function AS:SkinPoisoner()
 	AS:SkinFrame(PoisonerOptions_SettingsFrame)
 	AS:SkinButton(PoisonerOptions_MenuSortingButton)
@@ -44,10 +44,10 @@ function AS:SkinPoisoner()
 	AS:SkinCheckBox(PoisonerOptions_ChkBox_AutoBuy_Check)
 	AS:SkinCheckBox(PoisonerOptions_ChkBox_QuickButton_Lock)
 
-	PoisonerOptions_SettingsFrameTab1:Point("TOPLEFT", PoisonerOptions_SettingsFrame, "BOTTOMLEFT", 0, 2)
+	PoisonerOptions_SettingsFrameTab1:Point('TOPLEFT', PoisonerOptions_SettingsFrame, 'BOTTOMLEFT', 0, 2)
 
 	for i = 1, 5 do
-		AS:SkinTab(_G["PoisonerOptions_SettingsFrameTab"..i])
+		AS:SkinTab(_G['PoisonerOptions_SettingsFrameTab'..i])
 	end
 end
 

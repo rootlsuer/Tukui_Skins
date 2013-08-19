@@ -98,3 +98,7 @@ else
 	AddOn.ActionBar3 = G.ActionBars.Bar3
 	AddOn.ActionBar4 = G.ActionBars.Bar4
 end
+
+function AddOn:Delay(...)
+	A.Delay(...)
+end

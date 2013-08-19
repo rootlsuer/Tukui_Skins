@@ -1,7 +1,7 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "WeakAurasSkin"
+local name = 'WeakAurasSkin'
 function AS:SkinWeakAuras()
 	local function Skin_WeakAuras(frame)
 		if not frame.backdrop then

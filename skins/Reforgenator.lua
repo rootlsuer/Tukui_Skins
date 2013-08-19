@@ -1,7 +1,7 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "ReforgenatorSkin"
+local name = 'ReforgenatorSkin'
 function AS:SkinReforgenator()
 	AS:SkinFrame(ReforgenatorPanel)
 	AS:SkinFrame(ReforgenatorMessageFrame)
@@ -10,11 +10,11 @@ function AS:SkinReforgenator()
 	AS:SkinDropDownBox(ReforgenatorPanel_SandboxSelection)
 	AS:SkinDropDownBox(ReforgenatorPanel_TargetLevelSelection)
 	AS:SkinCloseButton(ReforgenatorPanel_CloseButton)
-	hooksecurefunc(Reforgenator,"UpdateWindowItem", function(self, index, itemDescriptor)
+	hooksecurefunc(Reforgenator,'UpdateWindowItem', function(self, index, itemDescriptor)
 		if not itemDescriptor then return end
-		local item = _G["ReforgenatorPanel_Item"..index]
-		local iconTexture = _G["ReforgenatorPanel_Item" .. index .. "IconTexture"]
-		local checked = _G["ReforgenatorPanel_Item" .. index .. "Checked"]
+		local item = _G['ReforgenatorPanel_Item'..index]
+		local iconTexture = _G['ReforgenatorPanel_Item' .. index .. 'IconTexture']
+		local checked = _G['ReforgenatorPanel_Item' .. index .. 'Checked']
 		AS:SkinBackdropFrame(item)
 		local texture = select(10, GetItemInfo(itemDescriptor.itemLink))
 		iconTexture:SetTexture(texture)

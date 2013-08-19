@@ -1,7 +1,7 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "GuildMemberInfo_TradeSkillsSkin"
+local name = 'GuildMemberInfo_TradeSkillsSkin'
 function AS:SkinGuildMemberInfo_TradeSkills()
 	AS:SkinFrame(GMIFrame)
 	AS:SkinIconButton(GMItsButton1)

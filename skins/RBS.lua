@@ -1,7 +1,7 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "RaidBuffStatusSkin"
+local name = 'RaidBuffStatusSkin'
 function AS:SkinRaidBuffStatus()
 	AS:SkinFrame(RBSFrame)
 	AS:SkinButton(RBSFrameScanButton)

@@ -29,13 +29,13 @@ EmbedSystem_MainWindow:SetScript('OnEvent', function(self, event)
 		EmbedSystem_WidthSlider:SetScript('OnValueChanged', function(self, value)
 			AS:SetOption('EmbedLeftWidth', value)
 			AS:EmbedSystem_WindowResize()
-			AS:Embed_Check()
+			AS:Embed_Check(true)
 		end)
 		if not EmbedSystem_WidthSlider.isSkinned then
 			AS:SkinSlideBar(EmbedSystem_WidthSlider, AS.InfoRight:GetHeight(), true)
 		end
 		AS:EmbedSystem_WindowResize()
-		AS:Embed_Check(true)
+		AS:Embed_Check()
 		if AS:CheckOption('EmbedOoC') and not InCombatLockdown() then AS:Embed_Hide() end
 	end
 	if event == 'PLAYER_REGEN_DISABLED' then
@@ -208,6 +208,7 @@ function AS:Embed_Recount()
 	Recount_MainWindow:ClearAllPoints()
 	Recount_MainWindow:SetPoint('TOPLEFT', EmbedParent, 'TOPLEFT', 0, 6)
 	Recount_MainWindow:SetPoint('BOTTOMRIGHT', EmbedParent, 'BOTTOMRIGHT', 0, 0)
+	if Recount.MainWindow.Backdrop then Recount.MainWindow.Backdrop:SetTemplate(AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default') end
 	if not AS:CheckOption('RecountBackdrop') then Recount.MainWindow.Backdrop:Hide() end
 
 	Recount.db.profile.Locked = true

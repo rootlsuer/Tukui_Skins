@@ -1,13 +1,13 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "PetBattleTeamsSkin"
+local name = 'PetBattleTeamsSkin'
 function AS:SkinPetBattleTeams()
 	AS:Delay(6, function()
 		AS:SkinFrame(PetBattleTeamFrame)
 		AS:SkinScrollBar(PetBattleTeamsScrollFrameScrollBar)
 
-		PetBattleTeamsTooltip:HookScript("OnShow", function(self)
+		PetBattleTeamsTooltip:HookScript('OnShow', function(self)
 			AS:SkinTexture(self.Icon)
 			self.rarityGlow:SetTexture(nil)
 			self.Background:SetTexture(nil)

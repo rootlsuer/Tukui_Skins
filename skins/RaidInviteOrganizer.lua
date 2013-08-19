@@ -1,7 +1,7 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "RaidInviteOrganizerSkin"
+local name = 'RaidInviteOrganizerSkin'
 function AS:SkinRaidInviteOrganizer()
 	AS:SkinFrame(RIO_MainFrame)
 	AS:SkinFrame(RIO_GuildMemberFrame)
@@ -24,16 +24,16 @@ function AS:SkinRaidInviteOrganizer()
 	AS:SkinCheckBox(RIO_AutoSetDifficultyBox)
 	AS:SkinCheckBox(RIO_AutoSetMasterLooter)
 
-	RIO_MainFrameTab1:Point("TOPLEFT", RIO_MainFrame, "BOTTOMLEFT", -5, 2)
-	RIO_MainFrameTab2:Point("LEFT", RIO_MainFrameTab1, "RIGHT", -2, 0)
-	RIO_MainFrameTab3:Point("LEFT", RIO_MainFrameTab2, "RIGHT", -2, 0)
+	RIO_MainFrameTab1:Point('TOPLEFT', RIO_MainFrame, 'BOTTOMLEFT', -5, 2)
+	RIO_MainFrameTab2:Point('LEFT', RIO_MainFrameTab1, 'RIGHT', -2, 0)
+	RIO_MainFrameTab3:Point('LEFT', RIO_MainFrameTab2, 'RIGHT', -2, 0)
 
 	for i = 1, 3 do
-		AS:SkinTab(_G["RIO_MainFrameTab"..i])
+		AS:SkinTab(_G['RIO_MainFrameTab'..i])
 	end
 
 	for i = 1, 10 do
-		AS:SkinCheckBox(_G["RIO_ShowRank"..i])
+		AS:SkinCheckBox(_G['RIO_ShowRank'..i])
 	end
 end
 

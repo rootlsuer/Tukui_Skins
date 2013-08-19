@@ -1,7 +1,7 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
-local name = "MRTSkin"
+local name = 'MRTSkin'
 function AS:SkinMRT()
 	AS:SkinFrame(MRT_GUIFrame)
 	AS:SkinFrame(MRT_GUI_FourRowDialog)
@@ -28,9 +28,9 @@ function AS:SkinMRT()
 	AS:SkinButton(MRT_GUI_FourRowDialog_OKButton)
 	AS:SkinButton(MRT_GUI_FourRowDialog_CancelButton)
 	for i = 1, 6 do
-		AS:SkinFrame(_G["ScrollTable"..i])
-		_G["ScrollTable"..i.."ScrollFrameScrollBar"]:StripTextures(true)
-		AS:SkinScrollBar(_G["ScrollTable"..i.."ScrollFrameScrollBar"])
+		AS:SkinFrame(_G['ScrollTable'..i])
+		_G['ScrollTable'..i..'ScrollFrameScrollBar']:StripTextures(true)
+		AS:SkinScrollBar(_G['ScrollTable'..i..'ScrollFrameScrollBar'])
 	end
 	AS:SkinTooltip(MRT_GUI_ItemTT)
 	AS:SkinTooltip(MRT_GUI_TT)
