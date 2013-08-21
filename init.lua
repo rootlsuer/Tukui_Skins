@@ -4,6 +4,7 @@ local AddOnName, Engine = ...
 local AddOn = {
 	Credits = {
 		'Affli',
+		'Arstraea',
 		'Azilroka',
 		'Blazeflack',
 		'Cadayron',
@@ -97,6 +98,10 @@ else
 	AddOn.ActionBar2 = G.ActionBars.Bar2
 	AddOn.ActionBar3 = G.ActionBars.Bar3
 	AddOn.ActionBar4 = G.ActionBars.Bar4
+end
+
+function AddOn:Round(...)
+	A.Round(...)
 end
 
 function AddOn:Delay(...)

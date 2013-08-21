@@ -18,7 +18,6 @@ function AS:Ace3Options()
 		local options = {
 			type = 'toggle',
 			name = text,
-			desc = L.Skins.ToggleSkinDesc,
 			order = order,
 			disabled = function() if addon then return not IsAddOnLoaded(addon) else return false end end,
 		}
@@ -28,83 +27,68 @@ function AS:Ace3Options()
 	Ace3OptionsPanel.Options.args.skins = {
 		order = 100,
 		type = 'group',
-		name = AS.Title,
+		name = format('%s v|cFF1784D1%s', AS.Title, AS.Version),
 		args = {},
 	}
-	Ace3OptionsPanel.Options.args.skins.args.skins = {
-		order = 1,
+	Ace3OptionsPanel.Options.args.skins.args.addons = {
+		order = 0,
 		type = 'group',
-		name = format('%s |cFFFFFFFFby|r |cFFFF7D0AAzilroka|r |cFFFFFFFF- Version:|r |cff1784d1%s|r', AS.Title, AS.Version),
+		name = 'AddOn Skins',
 		get = function(info) return AS:CheckOption(info[#info]) end,
-		set = function(info, value) AS:ToggleOption(info[#info]) end,
+		set = function(info, value) AS:SetOption(info[#info], value) end,
 		guiInline = true,
+		args = {},
+	}
+	Ace3OptionsPanel.Options.args.skins.args.dbm = {
+		type = 'group',
+		name = 'DBM Options',
+		order = 1,
+		get = function(info) return AS:CheckOption(info[#info]) end,
+		set = function(info, value) AS:SetOption(info[#info], value) end,
+		guiInline = false,
 		args = {
-			misc = {
-				type = 'group',
-				name = L.Skins.MiscellaneousOptions,
-				order = 500,
-				args = {
-					DBMFont = {
-						type = "select", dialogControl = 'LSM30_Font',
-						order = 1,
-						name = "DBM Font",
-						desc = "DBM Font",
-						values = AceGUIWidgetLSMlists.font, 
-						disabled = function() return not AS:CheckOption('DBMSkin', 'DBM-Core') end
-					},
-					DBMFontSize = {
-						type = 'range',
-						order = 2,
-						name = "DBM Font Size",
-						desc = "DBM Font Size",
-						min = 8, max = 18, step = 1, 
-						disabled = function() return not AS:CheckOption('DBMSkin', 'DBM-Core') end
-					},
-					DBMFontFlag = {
-						name = 'DBM Font Flag',
-						desc = 'Font Flag',
-						order = 3,
-						type = "select",
-						values = {
-							['NONE'] = 'None',
-							['OUTLINE'] = 'OUTLINE',
-							['THICKOUTLINE'] = 'THICKOUTLINE',
-							['MONOCHROME'] = 'MONOCHROME',
-							['MONOCHROMEOUTLINE'] = 'MONOCHROMEOUTLINE',
-						},
-						disabled = function() return not AS:CheckOption('DBMSkin', 'DBM-Core') end
-					},
-					DBMSkinHalf = {
-						type = 'toggle',
-						name = 'DBM Half-bar Skin',
-						desc = L.Skins.ToggleSkinDesc,
-						order = 1,
-						disabled = function() return not AS:CheckOption('DBMSkin', 'DBM-Core') end
-					},
-					RecountBackdrop = {
-						type = 'toggle',
-						name = 'Recount Backdrop',
-						desc = L.Skins.ToggleOptionDesc,
-						order = 2,
-						disabled = function() return not AS:CheckOption('RecountSkin', 'Recount') end,
-					},
-					SkadaBackdrop = {
-						type = 'toggle',
-						name = 'Skada Backdrop',
-						desc = L.Skins.ToggleOptionDesc,
-						order = 3,
-						disabled = function() return not AS:CheckOption('SkadaSkin', 'Skada') end,
-					},
-				},
+			DBMFont = {
+				type = "select", dialogControl = 'LSM30_Font',
+				order = 1,
+				name = "DBM Font",
+				values = AceGUIWidgetLSMlists.font, 
+				disabled = function() return not AS:CheckOption('DBMSkin', 'DBM-Core') end
 			},
-		},
+			DBMFontSize = {
+				type = 'range',
+				order = 2,
+				name = "DBM Font Size",
+				min = 8, max = 18, step = 1, 
+				disabled = function() return not AS:CheckOption('DBMSkin', 'DBM-Core') end
+			},
+			DBMFontFlag = {
+				name = 'DBM Font Flag',
+				order = 3,
+				type = "select",
+				values = {
+					['NONE'] = 'None',
+					['OUTLINE'] = 'OUTLINE',
+					['THICKOUTLINE'] = 'THICKOUTLINE',
+					['MONOCHROME'] = 'MONOCHROME',
+					['MONOCHROMEOUTLINE'] = 'MONOCHROMEOUTLINE',
+				},
+				disabled = function() return not AS:CheckOption('DBMSkin', 'DBM-Core') end
+			},
+			DBMSkinHalf = {
+				type = 'toggle',
+				name = 'DBM Half-bar Skin',
+				order = 4,
+				disabled = function() return not AS:CheckOption('DBMSkin', 'DBM-Core') end
+			},
+		}
 	}
 	Ace3OptionsPanel.Options.args.skins.args.embed = {
 		order = 2,
 		type = 'group',
 		name = 'Embed Settings',
 		get = function(info) return AS:CheckOption(info[#info]) end,
-		set = function(info, value) AS:ToggleOption(info[#info]) end,
+		set = function(info, value) AS:SetOption(info[#info], value) AS:EmbedSystem_WindowResize() AS:Embed_Check(nil, true) end,
+		guiInline = false,
 		args = {
 			desc = {
 				type = 'description',
@@ -114,7 +98,6 @@ function AS:Ace3Options()
 			EmbedSystem = {
 				type = 'toggle',
 				name = 'Single Embed System',
-				desc = L.Skins.ToggleOptionDesc,
 				order = 2,
 				disabled = function() return AS:CheckOption('EmbedSystemDual') end,
 			},
@@ -122,70 +105,92 @@ function AS:Ace3Options()
 				type = 'input',
 				width = 'full',
 				name = 'Embed for Main Panel',
-				desc = '',
 				disabled = function() return not AS:CheckOption('EmbedSystem') end,
 				order = 3,
 			},
 			EmbedSystemDual = {
 				type = 'toggle',
 				name = 'Dual Embed System',
-				desc = L.Skins.ToggleOptionDesc,
 				order = 4,
 				disabled = function() return AS:CheckOption('EmbedSystem') end,
 			},
 			EmbedLeft = {
 				type = 'input',
 				width = 'full',
-				name = 'Embed for Left Panel',
-				desc = '',
+				name = 'Embed for Left Window',
 				disabled = function() return not AS:CheckOption('EmbedSystemDual') end,
 				order = 5,
 			},
 			EmbedRight = {
 				type = 'input',
 				width = 'full',
-				name = 'Embed to Right Panel',
-				desc = '',
+				name = 'Embed for Right Window',
 				disabled = function() return not AS:CheckOption('EmbedSystemDual') end,
 				order = 6,
 			},
 			EmbedOoC = {
 				type = 'toggle',
 				name = 'Out of Combat (Hide)',
-				desc = L.Skins.ToggleOptionDesc,
 				order = 7,
 			},
 			EmbedSexyCooldown = {
 				type = 'toggle',
 				name = 'Attach SexyCD to action bar',
-				desc = L.Skins.ToggleEmbedDesc,
 				order = 8,
 				disabled = function() return not AS:CheckOption('SexyCooldownSkin', 'SexyCooldown2') end,
 			},
 			EmbedCoolLine = {
 				type = 'toggle',
 				name = 'Attach CoolLine to action bar',
-				desc = L.Skins.ToggleEmbedDesc,
 				order = 9,
 				disabled = function() return not AS:CheckOption('CoolLineSkin', 'CoolLine') end,
 			},
-		},
+			TransparentEmbed = {
+				type = 'toggle',
+				name = 'Embed Transparancy',
+				order = 10,
+			},
+			EmbedBelowTop = {
+				type = 'toggle',
+				name = 'Embed Below Top Tab',
+				order = 11,
+			},
+			RecountBackdrop = {
+				type = 'toggle',
+				name = 'Recount Backdrop',
+				order = 12,
+				disabled = function() return not AS:CheckOption('RecountSkin', 'Recount') end
+			},
+			SkadaBackdrop = {
+				type = 'toggle',
+				name = 'Skada Backdrop',
+				order = 13,
+				disabled = function() return not AS:CheckOption('SkadaSkin', 'Skada') end
+			},
+			OmenBackdrop = {
+				type = 'toggle',
+				name = 'Omen Backdrop',
+				order = 14,
+				disabled = function() return not AS:CheckOption('OmenSkin', 'Omen') end
+			},
+		}
 	}
 	Ace3OptionsPanel.Options.args.skins.args.credits = {
-		type = 'group',
-		name = 'Credits',
+		type = "group",
+		name = "Credits",
 		order = -1,
 		args = {
-			text = {
+			desc = {
 				order = 1,
-				type = 'description',
-				name = 'Credits:\n'..AS.CreditsString,
+				type = "description",
+				fontSize = Large,
+				name = format('Credits:\n%s', AS.CreditsString),
 			},
 		},
 	}
 	local order = 2
 	for skinName, _ in AS:OrderedPairs(AS.register) do
-		Ace3OptionsPanel.Options.args.skins.args.skins.args[skinName] = GenerateOptionTable(skinName, order)
+		Ace3OptionsPanel.Options.args.skins.args.addons.args[skinName] = GenerateOptionTable(skinName, order)
 		order = order + 1
 	end
 end

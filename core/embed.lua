@@ -4,7 +4,7 @@ local L = AS.Locale
 
 local format, gsub, pairs, ipairs, select, tinsert, tonumber = format, gsub, pairs, ipairs, select, tinsert, tonumber
 
-local EmbedOoCCombatStart, EmbedOoCCombatEnd, ChatFrame4Hide
+local EmbedOoCCombatStart
 local SkadaWindows = {}
 local Ace3Options = IsAddOnLoaded('Enhanced_Config') and true or false
 
@@ -18,7 +18,6 @@ EmbedSystem_MainWindow:RegisterEvent('PLAYER_REGEN_DISABLED')
 EmbedSystem_MainWindow:RegisterEvent('PLAYER_REGEN_ENABLED')
 EmbedSystem_MainWindow:SetScript('OnEvent', function(self, event)
 	if event == 'PLAYER_ENTERING_WORLD' then
-		ChatFrame4Hide = ChatFrame4Tab:IsShown()
 		EmbedSystem_WidthSlider:Hide()
 		EmbedSystem_WidthSlider:SetSize(AS.InfoRight:GetWidth(), AS.InfoRight:GetHeight())
 		EmbedSystem_WidthSlider:SetPoint(AS.InfoRight:GetPoint())
@@ -41,20 +40,15 @@ EmbedSystem_MainWindow:SetScript('OnEvent', function(self, event)
 	if event == 'PLAYER_REGEN_DISABLED' then
 		EmbedOoCCombatStart = true
 		if AS:CheckOption('EmbedOoC') then
-			if ChatFrame4Hide then ChatFrame4Tab:Hide() end
 			AS:Embed_Show()
 		end
 	else
 		EmbedOoCCombatStart = false
 		if AS:CheckOption('EmbedOoC') then
-			if ChatFrame4Hide then ChatFrame4Tab:Show() end
-			if EmbedOoCCombatEnd then return end
-			EmbedOoCCombatEnd = true
 			AS:Delay(10, function()
 				if not EmbedOoCCombatStart then
 					AS:Embed_Hide()
 				end
-				EmbedOoCCombatEnd = false
 			end)
 		end
 	end
@@ -103,28 +97,24 @@ function AS:EmbedSystem_WindowResize()
 		if DuffedUI then
 			EmbedSystem_MainWindow:SetInside(AS.ChatBackgroundRight, 5, 5)
 		else
-			EmbedSystem_MainWindow:SetPoint('TOP', AS.ChatBackgroundRight, 'TOP', 0, -5)
-			EmbedSystem_MainWindow:SetSize(AS.InfoRight:GetWidth(), AS.ChatBackgroundRight:GetHeight() - 34)
+			EmbedSystem_MainWindow:SetPoint('BOTTOM', AS.InfoRight, 'TOP', 0, 1)
+			EmbedSystem_MainWindow:SetSize(AS.InfoRight:GetWidth(), AS.ChatBackgroundRight:GetHeight() - (AS:CheckOption('EmbedBelowTop') and 60 or 36))
 		end
 	end
 	EmbedSystem_LeftWindow:SetPoint('RIGHT', EmbedSystem_RightWindow, 'LEFT', -2, 0)
 	EmbedSystem_RightWindow:SetPoint('RIGHT', EmbedSystem_MainWindow, 'RIGHT', 0, 0)
 	EmbedSystem_LeftWindow:SetSize(AS:CheckOption('EmbedLeftWidth') - 1, EmbedSystem_MainWindow:GetHeight())
 	EmbedSystem_RightWindow:SetSize((EmbedSystem_MainWindow:GetWidth() - AS:CheckOption('EmbedLeftWidth')) - 1, EmbedSystem_MainWindow:GetHeight())
-	AS:EmbedSystem_ResizeSlider()
-end
-
-function AS:EmbedSystem_ResizeSlider()
 	local min, max = floor(EmbedSystem_MainWindow:GetWidth() * .25), floor(EmbedSystem_MainWindow:GetWidth() * .75)
 	EmbedSystem_WidthSlider:SetMinMaxValues(min, max)
 	EmbedSystem_WidthSlider:SetValue(AS:CheckOption('EmbedLeftWidth'))
 end
 
-function AS:Embed_Check(Login)
+function AS:Embed_Check(Login, NoMessage)
 	if not (AS:CheckOption('EmbedSystem') or AS:CheckOption('EmbedSystemDual')) then return end
-	AS:Embed_Toggle(Login and true or false)
+	AS:Embed_Toggle(Login or NoMessage)
 	if AS:CheckOption('EmbedOmen', 'Omen') then AS:Embed_Omen() end
-	if AS:CheckOption('EmbedSkada', 'Skada') then AS:Embed_Skada(Login and true or false) end
+	if AS:CheckOption('EmbedSkada', 'Skada') then AS:Embed_Skada(Login) end
 	if AS:CheckOption('EmbedTinyDPS', 'TinyDPS') then AS:Embed_TinyDPS() end
 	if AS:CheckOption('EmbedRecount', 'Recount') then AS:Embed_Recount() end
 	if AS:CheckOption('EmbedalDamageMeter', 'alDamageMeter') then AS:Embed_alDamageMeter() end
@@ -208,8 +198,8 @@ function AS:Embed_Recount()
 	Recount_MainWindow:ClearAllPoints()
 	Recount_MainWindow:SetPoint('TOPLEFT', EmbedParent, 'TOPLEFT', 0, 6)
 	Recount_MainWindow:SetPoint('BOTTOMRIGHT', EmbedParent, 'BOTTOMRIGHT', 0, 0)
-	if Recount.MainWindow.Backdrop then Recount.MainWindow.Backdrop:SetTemplate(AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default') end
-	if not AS:CheckOption('RecountBackdrop') then Recount.MainWindow.Backdrop:Hide() end
+	if Recount.MainWindow.backdrop then Recount.MainWindow.backdrop:SetTemplate(AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default') end
+	if not AS:CheckOption('RecountBackdrop') then Recount.MainWindow.backdrop:Hide() end
 
 	Recount.db.profile.Locked = true
 	Recount.db.profile.Scaling = 1
@@ -245,9 +235,9 @@ function AS:Embed_Omen()
 	OmenAnchor:ClearAllPoints()
 	OmenAnchor:SetPoint('TOPLEFT', EmbedParent, 'TOPLEFT', 0, 0)
 	OmenAnchor:SetPoint('BOTTOMRIGHT', EmbedParent, 'BOTTOMRIGHT', 0, 0)
-	if not OmenAnchor.Backdrop then
+	if not OmenAnchor.backdrop then
 		OmenAnchor:CreateBackdrop()
-		OmenAnchor.Backdrop:SetOutside(OmenAnchor, 0, 0)
+		OmenAnchor.backdrop:SetOutside(OmenAnchor, 0, 0)
 	end
 end
 
@@ -278,7 +268,7 @@ function AS:Embed_alDamageMeter()
 	dmconf.maxbars = AS:Round(EmbedParent:GetHeight() / (dmconf.barheight + dmconf.spacing))
 	dmconf.width = EmbedParent:GetWidth()
 
-	alDamageMeterFrame.Backdrop:SetTemplate(AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default')
+	alDamageMeterFrame.backdrop:SetTemplate(AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default')
 	alDamageMeterFrame.bg:Kill()
 	alDamageMeterFrame:ClearAllPoints()
 	alDamageMeterFrame:SetInside(EmbedParent, 2, 2)
@@ -312,8 +302,10 @@ function AS:Embed_Skada(Login)
 		window.bargroup:SetPoint(point, relativeFrame, relativePoint, ofsx, -offsety)
 		window.bargroup:SetParent(relativeFrame)
 		window.bargroup:SetFrameStrata('LOW')
-		if window.bargroup.Backdrop then
-			window.bargroup.Backdrop:SetTemplate(AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default')
+		window.bargroup:SetBackdrop(nil)
+		if window.bargroup.backdrop then
+			window.bargroup.backdrop:SetTemplate(AS:CheckOption('TransparentEmbed') and "Transparent" or 'Default')
+			if not AS:CheckOption('SkadaBackdrop') then window.bargroup.backdrop:Hide() else window.bargroup.backdrop:Show() end
 		end
 		barmod.ApplySettings(barmod, window)
 	end
@@ -389,10 +381,8 @@ RightToggleButton:HookScript('OnClick', function(self, button)
 		else
 			if EmbedSystem_MainWindow:IsShown() then
 				EmbedSystem_MainWindow:Hide()
-				if ChatFrame4Hide then ChatFrame4Tab:Show() end
 			else
 				EmbedSystem_MainWindow:Show()
-				if ChatFrame4Hide then ChatFrame4Tab:Hide() end
 			end
 		end
 	end

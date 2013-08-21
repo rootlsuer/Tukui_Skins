@@ -1,5 +1,5 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
-local AS = unpack(select(2,...))
+local AS = unpack(select(2, ...))
 
 local pairs, sort, tinsert, tremove, unpack, floor = pairs, sort, tinsert, tremove, unpack, floor
 
@@ -19,9 +19,8 @@ function AS:OrderedPairs(t, f)
 	return iter
 end
 
-function AS:Round(num, idp)
-	local mult = 10^(idp or 0)
-	return floor(num * mult + 0.5) / mult
+function AS:PrintURL(url)
+	return format("|cFFFFFFFF[|Hurl:%s|h%s|h]|r", url, url)
 end
 
 function AS:SkinButton(frame, strip)

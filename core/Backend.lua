@@ -7,6 +7,7 @@ local tinsert, pairs, ipairs, unpack, select, pcall = tinsert, pairs, ipairs, un
 AS.skins = {}
 AS.events = {}
 AS.register = {}
+AS.TicketTracker = 'http://www.tukui.org/tickets/tukuiskins/'
 
 function AS:Init()
 	if self.frame then return end
@@ -61,9 +62,9 @@ end
 function AS:CallSkin(skin, func, event, ...)
 	local pass, error = pcall(func, self, event, ...)
 	if not pass then
-		local message = '%s: |cFFFF0000There was an error in the|r |cFF0AFFFF%s|r |cFFFF0000skin|r. Please report this to Azilroka immediately @ http://www.tukui.org/tickets/tukuiskins'
+		local message = '%s %s: |cfFFF0000There was an error in the|r |cff0AFFFF%s|r |cffFF0000skin|r.  Please report this to Azilroka immediately @ %s'
 		local errormessage = '%s Error: %s'
-		print(format(message, AS.Title, gsub(skin, 'Skin', '')))
+		print(format(message, AS.Title, AS.Version, gsub(skin, 'Skin', ''), AS:PrintURL(AS.TicketTracker)))
 		print(format(errormessage, gsub(skin, 'Skin', ''), error))
 	end
 end
@@ -111,6 +112,7 @@ ASFrame:SetScript('OnEvent', function(self, event)
 	self:UnregisterEvent(event)
 	if AS:CheckOption('RecountBackdrop') == nil then AS:EnableOption('RecountBackdrop') end
 	if AS:CheckOption('SkadaBackdrop') == nil then AS:EnableOption('SkadaBackdrop') end
+	if AS:CheckOption('OmenBackdrop') == nil then AS:EnableOption('OmenBackdrop') end
 	if AS:CheckOption('DBMSkinHalf') == nil then AS:DisableOption('DBMSkinHalf') end
 	if AS:CheckOption('EmbedOoC') == nil then AS:DisableOption('EmbedOoC') end
 	if AS:CheckOption('EmbedOmen') == nil then AS:DisableOption('EmbedOmen') end
@@ -119,7 +121,7 @@ ASFrame:SetScript('OnEvent', function(self, event)
 	if AS:CheckOption('EmbedRecount') == nil then AS:DisableOption('EmbedRecount') end
 	if AS:CheckOption('EmbedCoolLine') == nil then AS:DisableOption('EmbedCoolLine') end
 	if AS:CheckOption('EmbedMain') == nil then AS:SetOption('EmbedMain', 'Recount') end
-	if AS:CheckOption('EmbedLeft') == nil then AS:SetOption('EmbedLeft', 'Omen') end
+	if AS:CheckOption('EmbedLeft') == nil then AS:SetOption('EmbedLeft', 'Skada') end
 	if AS:CheckOption('EmbedRight') == nil then AS:SetOption('EmbedRight', 'Skada') end
 	if AS:CheckOption('TransparentEmbed') == nil then AS:DisableOption('TransparentEmbed') end
 	if AS:CheckOption('EmbedSystem') == nil then AS:DisableOption('EmbedSystem') end
@@ -128,4 +130,5 @@ ASFrame:SetScript('OnEvent', function(self, event)
 	AS:Init()
 	print(format('%s by |cFFFF7D0AAzilroka|r - Version: |cFF1784D1%s|r Loaded!', AS.Title, AS.Version))
 	if IsAddOnLoaded('Enhanced_Config') then AS:Ace3Options() else AS:LegacyOptions() end
+	AS:CheckConflicts()
 end)

@@ -129,6 +129,8 @@ function AS:LegacyOptions()
 				r, g, b = .6, 0, .86
 			end
 			self:SetBackdropColor(r, g, b)
+			AS:EmbedSystem_WindowResize()
+			AS:Embed_Check(nil, true)
 		end)
 	end
 
@@ -151,6 +153,18 @@ function AS:LegacyOptions()
 
 	CreateEmbedButton('TransparentEmbed', 'Embed Transparenacy')
 	TransparentEmbedButton:SetPoint('TOPLEFT', EmbedSystemDualButton, 'BOTTOMLEFT', 0, -10)
+
+	CreateEmbedButton('EmbedBelowTop', 'Embed Below Top Bar')
+	EmbedBelowTopButton:SetPoint('TOPLEFT', TransparentEmbedButton, 'BOTTOMLEFT', 0, -10)
+
+	CreateEmbedButton('SkadaBackdrop', 'Skada Backdrop')
+	SkadaBackdropButton:SetPoint('TOPLEFT', EmbedBelowTopButton, 'BOTTOMLEFT', 0, -10)
+
+	CreateEmbedButton('RecountBackdrop', 'Skada Backdrop')
+	RecountBackdropButton:SetPoint('TOPLEFT', SkadaBackdropButton, 'BOTTOMLEFT', 0, -10)
+
+	CreateEmbedButton('OmenBackdrop', 'Skada Backdrop')
+	OmenBackdropButton:SetPoint('TOPLEFT', RecountBackdropButton, 'BOTTOMLEFT', 0, -10)
 
 	CreateEmbedButton('EmbedSexyCooldown', 'Embed SexyCooldown')
 	EmbedSexyCooldownButton:SetPoint('TOP', -68, -50)
