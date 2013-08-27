@@ -22,7 +22,7 @@ function AS:SkinDBM(event, addon)
 						if not (icon1.overlay) then
 							icon1.overlay = CreateFrame('Frame', '$parentIcon1Overlay', tbar)
 							icon1.overlay:SetTemplate()
-							icon1.overlay:SetBackdropColor(0, 0, 0, 0)
+							icon1.overlay:SetFrameLevel(0)
 							icon1.overlay:Size(buttonsize)
 							icon1.overlay:Point('BOTTOMRIGHT', frame, 'BOTTOMLEFT', -3, 0)
 						end
@@ -30,7 +30,7 @@ function AS:SkinDBM(event, addon)
 						if not (icon2.overlay) then
 							icon2.overlay = CreateFrame('Frame', '$parentIcon2Overlay', tbar)
 							icon2.overlay:SetTemplate()
-							icon2.overlay:SetBackdropColor(0, 0, 0, 0)
+							icon2.overlay:SetFrameLevel(0)
 							icon2.overlay:Size(buttonsize)
 							icon2.overlay:Point('BOTTOMLEFT', frame, 'BOTTOMRIGHT', 3, 0)
 						end

@@ -4,8 +4,6 @@ local AS = unpack(select(2,...))
 local name = 'BigWigsSkin'
 function AS:SkinBigWigs(event, addon)
 	if event == 'PLAYER_ENTERING_WORLD' then return end
-	local BigWigsBars = BigWigs:GetPlugin('Bars')
-	local BigWigsProximity = BigWigs:GetPlugin('Proximity')
 	local buttonsize = 19
 	local freebg = {}
 
@@ -30,13 +28,9 @@ function AS:SkinBigWigs(event, addon)
 			ibg:Hide()
 			freebg[#freebg + 1] = ibg
 		end
-		bar.candyBarBar.SetPoint = bar.candyBarBar.OldSetPoint
-		bar.candyBarIconFrame.SetWidth = bar.candyBarIconFrame.OldSetWidth
-		bar.SetScale = bar.OldSetScale
 		bar.candyBarIconFrame:ClearAllPoints()
 		bar.candyBarIconFrame:SetPoint('TOPLEFT')
 		bar.candyBarIconFrame:SetPoint('BOTTOMLEFT')
-		AS:SkinTexture(bar.candyBarIconFrame.icon)
 		bar.candyBarBar:ClearAllPoints()
 		bar.candyBarBar:SetPoint('TOPRIGHT')
 		bar.candyBarBar:SetPoint('BOTTOMRIGHT')
@@ -87,39 +81,34 @@ function AS:SkinBigWigs(event, addon)
 		bar.candyBarDuration:ClearAllPoints()
 		bar.candyBarDuration:Point('RIGHT', bar, 'RIGHT', -4, 0)
 		bar.candyBarBar:ClearAllPoints()
-		bar.candyBarBar:CreateBackdrop()
 		bar.candyBarBar:SetAllPoints(bar)
-		bar.candyBarBar.OldSetPoint = bar.candyBarBar.SetPoint
 		bar.candyBarBar.SetPoint = AS.Noop
 		bar.candyBarBar:SetStatusBarTexture(AS.NormTex)
 		bar.candyBarBackground:SetTexture(unpack(AS.BackdropColor))
 		bar.candyBarIconFrame:ClearAllPoints()
-		bar.candyBarIconFrame:CreateBackdrop()
 		bar.candyBarIconFrame:Point('BOTTOMRIGHT', bar, 'BOTTOMLEFT', -7, 0)
 		bar.candyBarIconFrame:SetSize(buttonsize, buttonsize)
-		bar.candyBarIconFrame.OldSetWidth = bar.candyBarIconFrame.SetWidth
 		bar.candyBarIconFrame.SetWidth = AS.Noop
-		AS:SkinTexture(bar.candyBarIconFrame.icon)
+		AS:SkinTexture(bar.candyBarIconFrame)
 	end
 
-	local function RegisterStyle()
+	if addon == 'BigWigs_Plugins' then
+		local BigWigsBars = BigWigs:GetPlugin('Bars')
+		local BigWigsProximity = BigWigs:GetPlugin('Proximity')
 		BigWigsBars:RegisterBarStyle('Tukui', {
 			apiVersion = 1,
 			version = 1,
-			GetSpacing = function(bar) return 4 end,
+			GetSpacing = function(bar) return 8 end,
 			ApplyStyle = applystyle,
 			BarStopped = freestyle,
 			GetStyleName = function() return 'Tukui' end,
 		})
-	end
-
-	if addon == 'BigWigs_Plugins' then
-		hooksecurefunc(BigWigsBars, 'OnPluginEnable', RegisterStyle)
 		hooksecurefunc(BigWigsProximity, 'RestyleWindow', function()
 			if BigWigs.pluginCore.modules.Bars.db.profile.barStyle == 'Tukui' then
 				BigWigsProximityAnchor:SetTemplate('Transparent')
 			end
 		end)
+		AS:UnregisterEvent(name, event)
 	end
 end
 
