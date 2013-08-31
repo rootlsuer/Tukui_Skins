@@ -47,6 +47,17 @@ end
 Engine[1] = AddOn
 UISkins = Engine
 
+if DuffedUI then
+	AS.UIBase = "DuffedUI"
+	AS.UIBaseVersion = GetAddOnMetadata("DuffedUI", 'Version')
+elseif AsphyxiaUI then
+	AS.UIBase = "AsphyxiaUI"
+	AS.UIBaseVersion = GetAddOnMetadata("AsphyxiaUI", 'Version')
+elseif Tukui then
+	AS.UIBase = "Tukui"
+	AS.UIBaseVersion = GetAddOnMetadata("Tukui", 'Version')
+end
+
 if Tukui and tonumber(GetAddOnMetadata('Tukui', 'Version')) >= 16.00 then
 	AddOn.Blank = C['Medias'].Blank
 	AddOn.NormTex = C['Medias'].Normal
