@@ -1,5 +1,5 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
-local AS = unpack(select(2,...))
+local AS = unpack(select(2, ...))
 
 local name = 'BigBrotherSkin'
 function AS:SkinBigBrother()

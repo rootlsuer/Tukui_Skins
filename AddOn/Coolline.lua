@@ -4,7 +4,7 @@ local AS = unpack(select(2,...))
 local name = 'CoolLineSkin'
 function AS:SkinCoolLine()
 	CoolLineDB.bgcolor = { r = 0, g = 0, b = 0, a = 0, }
-	CoolLineDB.border  = 'None'
+	CoolLineDB.border = 'None'
 	CoolLine.updatelook()
 	AS:SkinBackdropFrame(CoolLine)
 	CoolLine.backdrop:SetAllPoints(CoolLine)

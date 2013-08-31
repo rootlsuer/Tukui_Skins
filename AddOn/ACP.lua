@@ -34,9 +34,9 @@ function AS:SkinACP()
 
 	local buttons = {
 		'ACP_AddonListSetButton',
-	    'ACP_AddonListDisableAll',
+		'ACP_AddonListDisableAll',
 		'ACP_AddonListEnableAll',
-	    'ACP_AddonList_ReloadUI',
+		'ACP_AddonList_ReloadUI',
 		'ACP_AddonListBottomClose',
 	}
 

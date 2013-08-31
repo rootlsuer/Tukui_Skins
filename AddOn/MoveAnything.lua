@@ -1,5 +1,5 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
-local AS = unpack(select(2,...))
+local AS = unpack(select(2, ...))
 
 local name = 'MoveAnythingSkin'
 function AS:SkinMoveAnything()
@@ -10,7 +10,6 @@ function AS:SkinMoveAnything()
 	AS:SkinButton(MAOptionsOpenBlizzardOptions)
 	AS:SkinButton(MAOptionsClose)
 	AS:SkinButton(GameMenuButtonMoveAnything)
-	AS:SkinBackdropFrame(GameMenuButtonMoveAnything)
 	GameMenuButtonMoveAnything:ClearAllPoints()
 	GameMenuButtonMoveAnything:Point('TOP', GameMenuFrame, 'BOTTOM', 0, -3)
 	AS:SkinEditBox(MA_Search)

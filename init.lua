@@ -100,10 +100,6 @@ else
 	AddOn.ActionBar4 = G.ActionBars.Bar4
 end
 
-function AddOn:Round(...)
-	A.Round(...)
-end
-
-function AddOn:Delay(...)
-	A.Delay(...)
+function AddOn:Delay(delay, func, ...)
+	A.Delay(delay, func, ...)
 end

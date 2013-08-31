@@ -1,5 +1,5 @@
 ﻿if not (Tukui or AsphyxiaUI or DuffedUI) then return end
-local AS = unpack(select(2,...))
+local AS = unpack(select(2, ...))
 
 local name = 'AtlasLootSkin'
 function AS:SkinAtlasLoot()
@@ -40,7 +40,7 @@ function AS:SkinAtlasLoot()
 		AtlasLootCompareFrameSearch_SearchButton:Point('LEFT', AtlasLootCompareFrameSearch_Box, 'RIGHT', 5, 0)
 		AtlasLootCompareFrameSearch_SelectModuel:Point('LEFT', AtlasLootCompareFrameSearch_SearchButton, 'RIGHT', 5, 0)
 		AtlasLootDefaultFrame_CloseButton:ClearAllPoints()
-		AtlasLootDefaultFrame_CloseButton:SetPoint('TOPRIGHT',  AtlasLootDefaultFrame, 'TOPRIGHT', -5 -2)
+		AtlasLootDefaultFrame_CloseButton:SetPoint('TOPRIGHT', AtlasLootDefaultFrame, 'TOPRIGHT', -5 -2)
 
 		AtlasLootDefaultFrame:SetFrameLevel(0)
 		AtlasLootItemsFrame:SetFrameLevel(AtlasLootDefaultFrame:GetFrameLevel()+1)
@@ -58,7 +58,7 @@ function AS:SkinAtlasLoot()
 		AS:Desaturate(AtlasLootDefaultFrame_LockButton)
 	end
 
-	local function Nine_IsThere(Self, event, ...)
+	local function Nine_IsThere(self, event, ...)
 		for i = 1, 9 do 
 			local f = _G['AtlasLootCompareFrameSortButton_'..i]
 			f:SetWidth(44.44)
@@ -176,7 +176,7 @@ function AS:SkinAtlasLoot()
 
 	AS:SkinCloseButton(AtlasLootDefaultFrame_CloseButton)
 	AS:SkinCloseButton(AtlasLootCompareFrame_CloseButton)
-	AS:SkinCloseButton( AtlasLootCompareFrame_CloseButton_Wishlist)
+	AS:SkinCloseButton(AtlasLootCompareFrame_CloseButton_Wishlist)
 	AS:Desaturate(AtlasLootDefaultFrame_LockButton)
 	AS:SkinNextPrevButton(AtlasLootQuickLooksButton)
 	AS:SkinNextPrevButton(AtlasLootItemsFrame_NEXT)
@@ -205,9 +205,8 @@ function AS:SkinAtlasLoot()
 	if AtlasLootItemsFrame_RaidFinder then AS:SkinCheckBox(AtlasLootItemsFrame_RaidFinder) end
 	if AtlasLootItemsFrame_Thunderforged then AS:SkinCheckBox(AtlasLootItemsFrame_Thunderforged) end
 
-	local Frame = AtlasLootPanel
-	Frame.Titel:SetTextColor(23/255, 132/255, 209/255)
-	Frame.Titel:SetPoint('BOTTOM', Frame.TitelBg, 'BOTTOM', 0, 40)
+	AtlasLootPanel.Titel:SetTextColor(23/255, 132/255, 209/255)
+	AtlasLootPanel.Titel:SetPoint('BOTTOM', AtlasLootPanel.TitelBg, 'BOTTOM', 0, 40)
 
 	AS:SkinScrollBar(AtlasLootCompareFrame_ScrollFrameItemFrameScrollBar)
 	AS:SkinScrollBar(AtlasLootCompareFrame_WishlistScrollFrameScrollBar)

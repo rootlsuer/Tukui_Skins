@@ -126,6 +126,7 @@ ASFrame:SetScript('OnEvent', function(self, event)
 	if AS:CheckOption('TransparentEmbed') == nil then AS:DisableOption('TransparentEmbed') end
 	if AS:CheckOption('EmbedSystem') == nil then AS:DisableOption('EmbedSystem') end
 	if AS:CheckOption('EmbedSystemDual') == nil then AS:DisableOption('EmbedSystemDual') end
+	if AS:CheckOption('EmbedLeftWidth') == nil then AS:SetOption('EmbedLeftWidth', 200) end
 	AS:EnableOption('MiscFixes')
 	AS:Init()
 	print(format('%s by |cFFFF7D0AAzilroka|r - Version: |cFF1784D1%s|r Loaded!', AS.Title, AS.Version))

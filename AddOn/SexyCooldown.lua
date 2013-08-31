@@ -1,5 +1,5 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
-local AS = unpack(select(2,...))
+local AS = unpack(select(2, ...))
 
 local name = 'SexyCooldownSkin'
 function AS:SkinSexyCooldown()
@@ -35,37 +35,28 @@ function AS:SkinSexyCooldown()
 				bar:SetHeight(ActionButton1:GetHeight())
 				bar:SetWidth(AS.ActionBar1:GetWidth())
 			end)
-			bar:EnableMouse(false)
 		end
 	end
 
 	local function SkinSexyCooldownIcon(bar, icon)
 		if not icon.skinned then
 			AS:SkinFrame(icon, false, true)
-			icon.overlay:StripTextures(true)
-			AS:SkinTexture(icon.tex)
-			icon.tex.SetTexCoord = function() end
+			AS:SkinBackdropFrame(icon.overlay, false, true)
 			icon.skinned = true
 		end
-	end
-
-	local function SkinSexyCooldownLabel(bar,label,store)
-		if not label.skinned then
-			label:SetFont(AS.PixelFont, store.fontsize, "OUTLINE")
-			label.skinned = true
-		end
+		AS:SkinTexture(icon.overlay.tex)
+		AS:SkinTexture(icon.tex)
 	end
 
 	local function SkinSexyCooldownBackdrop(bar)
-		bar:SetTemplate("Transparent")
+		bar:SetTemplate('Transparent')
 	end
 
 	local function HookSCDBar(bar)
 		if bar.hooked then return end
-		hooksecurefunc(bar, "UpdateBarLook", SkinSexyCooldownBar)
-		hooksecurefunc(bar, "UpdateSingleIconLook", SkinSexyCooldownIcon)
-		hooksecurefunc(bar, "UpdateLabel", SkinSexyCooldownLabel)
-		hooksecurefunc(bar, "UpdateBarBackdrop", SkinSexyCooldownBackdrop)
+		hooksecurefunc(bar, 'UpdateBarLook', SkinSexyCooldownBar)
+		hooksecurefunc(bar, 'UpdateSingleIconLook', SkinSexyCooldownIcon)
+		hooksecurefunc(bar, 'UpdateBarBackdrop', SkinSexyCooldownBackdrop)
 		bar.settings.icon.borderInset = 0
 		bar.hooked = true
 	end
