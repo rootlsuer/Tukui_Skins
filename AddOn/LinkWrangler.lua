@@ -1,4 +1,5 @@
-local AS = ElvUI[1]:GetModule('AddOnSkins')
+if not (Tukui or AsphyxiaUI or DuffedUI) then return end
+local AS = unpack(select(2, ...))
 local AddOnName = ...
 
 local name = "LinkWranglerSkin"

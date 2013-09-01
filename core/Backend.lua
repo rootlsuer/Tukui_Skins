@@ -15,34 +15,60 @@ function AS:Init()
 	self.frame = CreateFrame('Frame')
 	self.frame:RegisterEvent('PET_BATTLE_CLOSE')
 	self.frame:RegisterEvent('PET_BATTLE_OPENING_START')
-	for skin, alldata in AS:OrderedPairs(self.register) do
-		for _, data in pairs(alldata) do
-			local addon
-			local sdata = self.Skins[skin]
-			if sdata and sdata.addon then
-				addon = sdata.addon
-			else
-				addon = gsub(skin, 'Skin', '')
-			end
-			if AS:CheckOption(skin) == nil then AS:EnableOption(skin) end
-			if skin == 'MiscFixes' or IsAddOnLoaded(addon) then
-				self:RegisteredSkin(skin, data.priority, data.func, data.events)
-			end
-		end
-	end
-	for skin, funcs in AS:OrderedPairs(AS.skins) do
-		if AS:CheckOption(skin) then
-			for _, func in ipairs(funcs) do
-				AS:CallSkin(skin, func, 'PLAYER_ENTERING_WORLD')
-			end
-		end
-	end
+	self.frame:RegisterEvent('PLAYER_ENTERING_WORLD')
+	self.frame:RegisterEvent('PLAYER_LOGIN')
 	self.frame:SetScript('OnEvent', function(self, event, ...)
-		if event == 'PET_BATTLE_CLOSE' then
-			AS:AddNonPetBattleFrames()
-		elseif event == 'PET_BATTLE_OPENING_START' then
-			AS:RemoveNonPetBattleFrames()
-		end 
+		if event == 'PLAYER_LOGIN' then
+			if AS:CheckOption('RecountBackdrop') == nil then AS:EnableOption('RecountBackdrop') end
+			if AS:CheckOption('SkadaBackdrop') == nil then AS:EnableOption('SkadaBackdrop') end
+			if AS:CheckOption('OmenBackdrop') == nil then AS:EnableOption('OmenBackdrop') end
+			if AS:CheckOption('DBMSkinHalf') == nil then AS:DisableOption('DBMSkinHalf') end
+			if AS:CheckOption('EmbedOoC') == nil then AS:DisableOption('EmbedOoC') end
+			if AS:CheckOption('EmbedOmen') == nil then AS:DisableOption('EmbedOmen') end
+			if AS:CheckOption('EmbedTinyDPS') == nil then AS:DisableOption('EmbedTinyDPS') end
+			if AS:CheckOption('EmbedSkada') == nil then AS:DisableOption('EmbedSkada') end
+			if AS:CheckOption('EmbedRecount') == nil then AS:DisableOption('EmbedRecount') end
+			if AS:CheckOption('EmbedCoolLine') == nil then AS:DisableOption('EmbedCoolLine') end
+			if AS:CheckOption('EmbedMain') == nil then AS:SetOption('EmbedMain', 'Recount') end
+			if AS:CheckOption('EmbedLeft') == nil then AS:SetOption('EmbedLeft', 'Skada') end
+			if AS:CheckOption('EmbedRight') == nil then AS:SetOption('EmbedRight', 'Skada') end
+			if AS:CheckOption('TransparentEmbed') == nil then AS:DisableOption('TransparentEmbed') end
+			if AS:CheckOption('EmbedSystem') == nil then AS:DisableOption('EmbedSystem') end
+			if AS:CheckOption('EmbedSystemDual') == nil then AS:DisableOption('EmbedSystemDual') end
+			if AS:CheckOption('EmbedLeftWidth') == nil then AS:SetOption('EmbedLeftWidth', 200) end
+			AS:EnableOption('MiscFixes')
+			for skin, alldata in AS:OrderedPairs(AS.register) do
+				for _, data in pairs(alldata) do
+					local addon
+					local sdata = AS.Skins[skin]
+					if sdata and sdata.addon then
+						addon = sdata.addon
+					else
+						addon = gsub(skin, 'Skin', '')
+					end
+					if AS:CheckOption(skin) == nil then AS:EnableOption(skin) end
+					if skin == 'MiscFixes' or IsAddOnLoaded(addon) then
+						AS:RegisteredSkin(skin, data.priority, data.func, data.events)
+					end
+				end
+			end
+		end
+		if event == 'PLAYER_ENTERING_WORLD' then
+			for skin, funcs in AS:OrderedPairs(AS.skins) do
+				if AS:CheckOption(skin) then
+					for _, func in ipairs(funcs) do
+						AS:CallSkin(skin, func, event)
+					end
+				end
+			end
+			AS:CheckConflicts()
+			AS:Embed_Init()
+			if IsAddOnLoaded('Enhanced_Config') then AS:Ace3Options() else AS:LegacyOptions() end
+			AS:Print(format("by |cFFFF7D0AAzilroka|r - Version: |cFF1784D1%s|r Loaded!", AS.Version))
+			self:UnregisterEvent(event)
+		end
+		if event == 'PET_BATTLE_CLOSE' then AS:AddNonPetBattleFrames() end
+		if event == 'PET_BATTLE_OPENING_START' then AS:RemoveNonPetBattleFrames() end
 		for skin, funcs in AS:OrderedPairs(AS.skins) do
 			if AS:CheckOption(skin) and AS.events[event] and AS.events[event][skin] then
 				for _, func in ipairs(funcs) do
@@ -106,30 +132,4 @@ function AS:UnregisterEvent(skinName, event)
 	end
 end
 
-local ASFrame = CreateFrame('Frame')
-ASFrame:RegisterEvent('PLAYER_ENTERING_WORLD')
-ASFrame:SetScript('OnEvent', function(self, event)
-	self:UnregisterEvent(event)
-	if AS:CheckOption('RecountBackdrop') == nil then AS:EnableOption('RecountBackdrop') end
-	if AS:CheckOption('SkadaBackdrop') == nil then AS:EnableOption('SkadaBackdrop') end
-	if AS:CheckOption('OmenBackdrop') == nil then AS:EnableOption('OmenBackdrop') end
-	if AS:CheckOption('DBMSkinHalf') == nil then AS:DisableOption('DBMSkinHalf') end
-	if AS:CheckOption('EmbedOoC') == nil then AS:DisableOption('EmbedOoC') end
-	if AS:CheckOption('EmbedOmen') == nil then AS:DisableOption('EmbedOmen') end
-	if AS:CheckOption('EmbedTinyDPS') == nil then AS:DisableOption('EmbedTinyDPS') end
-	if AS:CheckOption('EmbedSkada') == nil then AS:DisableOption('EmbedSkada') end
-	if AS:CheckOption('EmbedRecount') == nil then AS:DisableOption('EmbedRecount') end
-	if AS:CheckOption('EmbedCoolLine') == nil then AS:DisableOption('EmbedCoolLine') end
-	if AS:CheckOption('EmbedMain') == nil then AS:SetOption('EmbedMain', 'Recount') end
-	if AS:CheckOption('EmbedLeft') == nil then AS:SetOption('EmbedLeft', 'Skada') end
-	if AS:CheckOption('EmbedRight') == nil then AS:SetOption('EmbedRight', 'Skada') end
-	if AS:CheckOption('TransparentEmbed') == nil then AS:DisableOption('TransparentEmbed') end
-	if AS:CheckOption('EmbedSystem') == nil then AS:DisableOption('EmbedSystem') end
-	if AS:CheckOption('EmbedSystemDual') == nil then AS:DisableOption('EmbedSystemDual') end
-	if AS:CheckOption('EmbedLeftWidth') == nil then AS:SetOption('EmbedLeftWidth', 200) end
-	AS:EnableOption('MiscFixes')
-	AS:Init()
-	print(format('%s by |cFFFF7D0AAzilroka|r - Version: |cFF1784D1%s|r Loaded!', AS.Title, AS.Version))
-	if IsAddOnLoaded('Enhanced_Config') then AS:Ace3Options() else AS:LegacyOptions() end
-	AS:CheckConflicts()
-end)
+AS:Init()

@@ -89,22 +89,18 @@ function AS:LegacyOptions()
 		Frame:SetScript('OnEscapePressed', function(self) self:ClearFocus() self:SetText(AS:CheckOption(Name)) end)
 		Frame:SetScript('OnEnterPressed', function(self)
 			self:ClearFocus()
-			if self:GetText() == '' then
-				AS:SetOption(Name, 'NONE')
-			else
-				AS:SetOption(Name, self:GetText())
-			end
-			AS:Embed_Check()
+			AS:SetOption(Name, self:GetText())
+			AS:Embed_Check(nil, true)
 		end)
 	end
 
-	CreateEmbedEditBox('EmbedMain', 'Embed Main AddOn')
+	CreateEmbedEditBox('EmbedMain', 'Embed System - Single')
 	EmbedMainEditBox:SetPoint('TOPLEFT', 12, -50)
 
-	CreateEmbedEditBox('EmbedRight', 'Embed Right AddOn')
+	CreateEmbedEditBox('EmbedRight', 'Embed Right')
 	EmbedRightEditBox:SetPoint('TOPLEFT', 12, -100)
 
-	CreateEmbedEditBox('EmbedLeft', 'Embed Left AddOn')
+	CreateEmbedEditBox('EmbedLeft', 'Embed Left')
 	EmbedLeftEditBox:SetPoint('TOPLEFT', 12, -150)
 
 	local function CreateEmbedButton(Name, Text)
@@ -160,10 +156,10 @@ function AS:LegacyOptions()
 	CreateEmbedButton('SkadaBackdrop', 'Skada Backdrop')
 	SkadaBackdropButton:SetPoint('TOPLEFT', EmbedBelowTopButton, 'BOTTOMLEFT', 0, -10)
 
-	CreateEmbedButton('RecountBackdrop', 'Skada Backdrop')
+	CreateEmbedButton('RecountBackdrop', 'Recount Backdrop')
 	RecountBackdropButton:SetPoint('TOPLEFT', SkadaBackdropButton, 'BOTTOMLEFT', 0, -10)
 
-	CreateEmbedButton('OmenBackdrop', 'Skada Backdrop')
+	CreateEmbedButton('OmenBackdrop', 'Omen Backdrop')
 	OmenBackdropButton:SetPoint('TOPLEFT', RecountBackdropButton, 'BOTTOMLEFT', 0, -10)
 
 	CreateEmbedButton('EmbedSexyCooldown', 'Embed SexyCooldown')
@@ -173,21 +169,14 @@ function AS:LegacyOptions()
 	EmbedCoolLineButton:SetPoint('TOP', -68, -75)
 
 	local SkinsGameMenuButton = CreateFrame('Button', 'SkinsGameMenuButton', GameMenuFrame, 'GameMenuButtonTemplate')
-	SkinsGameMenuButton:Point('TOP', GameMenuButtonMacros, 'BOTTOM', 0 , -1)
-	SkinsGameMenuButton:Size(GameMenuButtonLogout:GetWidth(), GameMenuButtonLogout:GetHeight())
+	SkinsGameMenuButton:Size(GameMenuButtonUIOptions:GetWidth(), GameMenuButtonUIOptions:GetHeight())
+	SkinsGameMenuButton:Point('TOP', select(2, GameMenuButtonKeybindings:GetPoint()), 'BOTTOM', 0 , -1)
+	SkinsGameMenuButton:SetText('Skins')
 	AS:SkinButton(SkinsGameMenuButton)
-	SkinsGameMenuButton:FontString('Text', AS.Font, 12, 'NONE')
-	SkinsGameMenuButton.Text:SetPoint('CENTER', SkinsGameMenuButton, 0, 0)
-	SkinsGameMenuButton.Text:SetText('Skins')
 	SkinsGameMenuButton:SetScript('OnClick', function() SkinOptions_Main:Show() HideUIPanel(GameMenuFrame) end)
-	GameMenuButtonLogout:Point('TOP', GameMenuButtonMacros, 'BOTTOM', 0 , -38)
-	GameMenuFrame:Height(GameMenuFrame:GetHeight() + 26)
-	if IsAddOnLoaded('stAddonmanager') then 
-		GameMenuFrame:HookScript('OnShow', function()
-			SkinsGameMenuButton:Point('TOP', GameMenuButtonMacros, 'BOTTOM', 0 , -23)
-			GameMenuButtonLogout:Point('TOP', GameMenuButtonMacros, 'BOTTOM', 0 , -60)
-		end)
-	end
+	GameMenuFrame:Height(GameMenuFrame:GetHeight() + GameMenuButtonUIOptions:GetHeight())
+	GameMenuButtonKeybindings:ClearAllPoints()
+	GameMenuButtonKeybindings:Point("TOP", SkinsGameMenuButton, "BOTTOM", 0, -1)
 
 	local function CreateButton(name, buttonText, addon, option, x, y, skinOptions2)
 		local button = CreateFrame('Button', name, skinOptions2 and SkinOptions_Frame_2 or SkinOptions_Frame_1)

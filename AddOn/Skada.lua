@@ -36,7 +36,15 @@ function AS:SkinSkada()
 			skada.backdrop:ClearAllPoints()
 			skada.backdrop:Point('TOPLEFT', win.db.enabletitle and skada.button or skada, 'TOPLEFT', -2, 2)
 			skada.backdrop:Point('BOTTOMRIGHT', skada, 'BOTTOMRIGHT', 2, -2)
-		end 
+		end
+	end)
+
+	hooksecurefunc(Skada, 'CreateWindow', AS.Embed_Skada)
+	hooksecurefunc(Skada, 'DeleteWindow', AS.Embed_Skada)
+	hooksecurefunc(Skada, 'UpdateDisplay', function()
+		if not InCombatLockdown() then
+			AS:Embed_Skada()
+		end
 	end)
 end
 

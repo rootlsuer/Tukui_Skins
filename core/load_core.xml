@@ -5,7 +5,7 @@
 	<Script file="Skins.lua"/>
 	<Script file="Options_Ace3.lua"/>
 	<Script file="Options_Legacy.lua"/>
-	<Script file="Backend.lua"/>
 	<Script file="Embed.lua"/>
 	<Script file="DataText.lua"/>
+	<Script file="Backend.lua"/>
 </Ui>

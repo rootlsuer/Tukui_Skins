@@ -19,6 +19,10 @@ function AS:OrderedPairs(t, f)
 	return iter
 end
 
+function AS:Print(string)
+	print(format('%s %s', AS.Title, string))
+end
+
 function AS:Round(num, idp)
 	local mult = 10^(idp or 0)
 	return math.floor(num * mult + 0.5) / mult
@@ -77,16 +81,17 @@ function AS:RegisterForPetBattleHide(frame)
 	end
 end
 
-function AS:SkinFrame(frame, template, overridestrip)
+function AS:SkinFrame(frame, template, override, kill)
 	if not template then template = 'Transparent' end
-	if not overridestrip then frame:StripTextures(true) end
+	if not override then frame:StripTextures(kill) end
 	frame:SetTemplate(template)
 end
 
-function AS:SkinBackdropFrame(frame, template, overridestrip)
+function AS:SkinBackdropFrame(frame, template, override, kill, setpoints)
 	if not template then template = 'Transparent' end
-	if not overridestrip then frame:StripTextures(true) end
-	frame:CreateBackdrop()
+	if not override then frame:StripTextures(kill) end
+	frame:CreateBackdrop(template)
+	if setpoints then frame.backdrop:SetAllPoints() end
 end
 
 function AS:SkinStatusBar(frame, ClassColor)
@@ -134,9 +139,17 @@ function AS:Desaturate(frame, point)
 			end
 		end
 	end	
-	if frame:GetNormalTexture() then frame:GetNormalTexture():SetDesaturated(true) end
-	if frame:GetPushedTexture() then frame:GetPushedTexture():SetDesaturated(true) end
-	if frame:GetHighlightTexture() then frame:GetHighlightTexture():SetDesaturated(true) end
+	frame:HookScript('OnUpdate', function(self)
+		if self:GetNormalTexture() then
+			self:GetNormalTexture():SetDesaturated(true)
+		end
+		if self:GetPushedTexture() then
+			self:GetPushedTexture():SetDesaturated(true)
+		end
+		if self:GetHighlightTexture() then
+			self:GetHighlightTexture():SetDesaturated(true)
+		end
+	end)
 end
 
 function AS:CheckOption(optionName, ...)
@@ -208,13 +221,13 @@ function AS:AcceptFrame(MainText, Function)
 		AcceptFrame:SetSize(250, 70)
 		AcceptFrame:SetPoint('CENTER', UIParent, 'CENTER')
 		AcceptFrame:SetFrameStrata('DIALOG')
-		AcceptFrame:FontString('Text', AS.Font, 12)
+		AcceptFrame:FontString('Text', AS.Font, 14)
 		AcceptFrame.Text:SetPoint('TOP', AcceptFrame, 'TOP', 0, -10)
 		AcceptFrame.Accept = CreateFrame('Button', nil, AcceptFrame)
 		AS:SkinButton(AcceptFrame.Accept)
 		AcceptFrame.Accept:SetSize(70, 25)
 		AcceptFrame.Accept:SetPoint('RIGHT', AcceptFrame, 'BOTTOM', -10, 20)
-		AcceptFrame.Accept:FontString('Text', AS.Font, 10)
+		AcceptFrame.Accept:FontString('Text', AS.Font, 12)
 		AcceptFrame.Accept.Text:SetPoint('CENTER')
 		AcceptFrame.Accept.Text:SetText(YES)
 		AcceptFrame.Close = CreateFrame('Button', nil, AcceptFrame)
@@ -222,7 +235,7 @@ function AS:AcceptFrame(MainText, Function)
 		AcceptFrame.Close:SetSize(70, 25)
 		AcceptFrame.Close:SetPoint('LEFT', AcceptFrame, 'BOTTOM', 10, 20)
 		AcceptFrame.Close:SetScript('OnClick', function(self) self:GetParent():Hide() end)
-		AcceptFrame.Close:FontString('Text', AS.Font, 10)
+		AcceptFrame.Close:FontString('Text', AS.Font, 12)
 		AcceptFrame.Close.Text:SetPoint('CENTER')
 		AcceptFrame.Close.Text:SetText(NO)
 	end
