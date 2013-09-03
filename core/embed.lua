@@ -50,9 +50,7 @@ function AS:Embed_Init()
 		AS:EmbedSystem_WindowResize()
 		AS:Embed_Check()
 	end)
-	if not EmbedSystem_WidthSlider.isSkinned then
-		AS:SkinSlideBar(EmbedSystem_WidthSlider, AS.InfoRight:GetHeight(), true)
-	end
+	AS:SkinSlideBar(EmbedSystem_WidthSlider, AS.InfoRight:GetHeight(), true)
 	AS:EmbedSystem_WindowResize()
 	AS:Embed_Check(true)
 	if AS:CheckOption('EmbedOoC') and not InCombatLockdown() then AS:Embed_Hide() end
@@ -322,7 +320,7 @@ function AS:Embed_alDamageMeter()
 	local EmbedParent = EmbedSystem_MainWindow
 	if AS:CheckOption('EmbedSystemDual') then EmbedParent = AS:CheckOption('EmbedRight') == 'alDamageMeter' and EmbedSystem_RightWindow or EmbedSystem_LeftWindow end
 
-	dmconf.maxbars = AS:Round(EmbedParent:GetHeight() / (dmconf.barheight + dmconf.spacing))
+	dmconf.barheight = floor((EmbedParent:GetHeight() / dmconf.maxbars) - dmconf.spacing)
 	dmconf.width = EmbedParent:GetWidth()
 
 	alDamageMeterFrame.backdrop:SetTemplate(AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default')
@@ -349,6 +347,7 @@ function AS:Embed_Skada()
 	end
 
 	local function EmbedWindow(window, width, height, point, relativeFrame, relativePoint, ofsx, ofsy)
+		if not window then return end
 		local barmod = Skada.displays['bar']
 		local offsety = (window.db.enabletitle and window.db.title.height or 0) + 2
 		window.db.barwidth = width - 4
