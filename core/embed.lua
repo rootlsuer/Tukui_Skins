@@ -22,14 +22,14 @@ function AS:Embed_Init()
 		if event == 'PLAYER_REGEN_DISABLED' then
 			EmbedOoCCombatStart = true
 			if AS:CheckOption('EmbedOoC') then
-				AS:Embed_Show()
+				EmbedSystem_MainWindow:Show()
 			end
 		else
 			EmbedOoCCombatStart = false
 			if AS:CheckOption('EmbedOoC') then
 				AS:Delay(10, function()
 					if not EmbedOoCCombatStart then
-						AS:Embed_Hide()
+						EmbedSystem_MainWindow:Hide()
 					end
 				end)
 			end
@@ -136,35 +136,15 @@ function AS:Embed_Init()
 end
 
 function AS:Embed_Show()
-	EmbedSystem_MainWindow:Show()
-	if EmbedSystem_MainWindow.FrameName ~= nil then
-		_G[EmbedSystem_MainWindow.FrameName]:Show()
-	end
 	if AS:CheckOption('EmbedSystemDual') then
 		EmbedSystem_LeftWindow:Show()
 		EmbedSystem_RightWindow:Show()
-		if EmbedSystem_LeftWindow.FrameName ~= nil then
-			_G[EmbedSystem_LeftWindow.FrameName]:Show()
-		end
-		if EmbedSystem_RightWindow.FrameName ~= nil then
-			_G[EmbedSystem_RightWindow.FrameName]:Show()
-		end
 	end
 end
 
 function AS:Embed_Hide()
-	EmbedSystem_MainWindow:Hide()
 	EmbedSystem_LeftWindow:Hide()
 	EmbedSystem_RightWindow:Hide()
-	if EmbedSystem_MainWindow.FrameName ~= nil then
-		_G[EmbedSystem_MainWindow.FrameName]:Hide()
-	end
-	if EmbedSystem_LeftWindow.FrameName ~= nil then
-		_G[EmbedSystem_LeftWindow.FrameName]:Hide()
-	end
-	if EmbedSystem_RightWindow.FrameName ~= nil then
-		_G[EmbedSystem_RightWindow.FrameName]:Hide()
-	end
 end
 
 function AS:EmbedSystem_WindowResize()
@@ -228,6 +208,7 @@ function AS:Embed_Toggle(Message)
 		Frame = _G[EmbedSystem_MainWindow.FrameName]
 		if Frame and Frame:IsObjectType('Frame') and not Frame:IsProtected() then
 			Frame:ClearAllPoints()
+			Frame:SetParent(EmbedSystem_MainWindow)
 			Frame:SetInside(EmbedSystem_MainWindow, 0, 0)
 		end
 	end
@@ -235,6 +216,7 @@ function AS:Embed_Toggle(Message)
 		Frame = _G[EmbedSystem_LeftWindow.FrameName]
 		if Frame and Frame:IsObjectType('Frame') and not Frame:IsProtected() then
 			Frame:ClearAllPoints()
+			Frame:SetParent(EmbedSystem_LeftWindow)
 			Frame:SetInside(EmbedSystem_LeftWindow, 0, 0)
 		end
 	end
@@ -242,6 +224,7 @@ function AS:Embed_Toggle(Message)
 		Frame = _G[EmbedSystem_RightWindow.FrameName]
 		if Frame and Frame:IsObjectType('Frame') and not Frame:IsProtected() then
 			Frame:ClearAllPoints()
+			Frame:SetParent(EmbedSystem_RightWindow)
 			Frame:SetInside(EmbedSystem_RightWindow, 0, 0)
 		end
 	end
