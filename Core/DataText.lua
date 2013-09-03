@@ -6,10 +6,10 @@ if tonumber(GetAddOnMetadata('Tukui', 'Version')) < 16 then return end
 local DataText = AS["DataTexts"]
 
 local OnClick = function(self, button)
-	if button == 'LeftButton' then
-		AS:Embed_Show()
-	elseif button == 'RightButton' then
-		AS:Embed_Hide()
+	if EmbedSystem_MainWindow:IsShown() then
+		EmbedSystem_MainWindow:Hide()
+	else
+		EmbedSystem_MainWindow:Show()
 	end
 end
 
