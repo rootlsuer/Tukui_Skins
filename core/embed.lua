@@ -57,10 +57,11 @@ function AS:Embed_Init()
 
 	local function CreateToggleButton(Name, Text, Panel1, Panel2, TooltipText1, TooltipText2)
 		local Frame = CreateFrame('Button', Name, UIParent)
+		Frame:SetFrameStrata("DIALOG")
 		Frame:SetTemplate('Transparent')
-		Frame:Size(Panel1:GetHeight())
+		Frame:Size(17, Panel1:GetHeight() - 4)
 		--Frame:FontString('Text', AS.ActionBarFont, 12)
-		Frame:FontString('Text', AS.PixelFont, 12)
+		Frame:FontString('Text', AS.Font, 14)
 		Frame.Text:SetText(Text)
 		Frame.Text:SetPoint('CENTER', 0, 0)
 		Frame:RegisterForClicks('LeftButtonDown', 'RightButtonDown')
@@ -95,7 +96,13 @@ function AS:Embed_Init()
 
 	CreateToggleButton('RightToggleButton', '>', AS.InfoRight, AS.ChatBackgroundRight, L.Skins.ToggleRightChat, L.Skins.ToggleEmbed)
 	--CreateToggleButton('RightToggleButton', '►', AS.InfoRight, AS.ChatBackgroundRight, L.Skins.ToggleRightChat, L.Skins.ToggleEmbed)
-	RightToggleButton:Point('LEFT', AS.InfoRight, 'RIGHT', 2, 0)
+	RightToggleButton:Point('RIGHT', AS.InfoRight, 'RIGHT', -2, 0)
+
+	RightToggleButton:HookScript('OnEnter', function(self)
+		GameTooltip:AddDoubleLine('Alt-Right Click:', 'Toggle Resize Slider', 1, 1, 1, 1, 1, 0)
+		GameTooltip:Show()
+	end)
+
 	RightToggleButton:HookScript('OnClick', function(self, button)
 		if button == 'RightButton' then
 			if IsAltKeyDown() then
@@ -117,7 +124,7 @@ function AS:Embed_Init()
 
 	CreateToggleButton('LeftToggleButton', '<', AS.InfoLeft, AS.ChatBackgroundLeft, L.Skins.ToggleLeftChat, L.Skins.ToggleOptions)
 	--CreateToggleButton('LeftToggleButton', '◄', AS.InfoLeft, AS.ChatBackgroundLeft, L.Skins.ToggleLeftChat, L.Skins.ToggleOptions)
-	LeftToggleButton:Point('RIGHT', AS.InfoLeft, 'LEFT', -2, 0)
+	LeftToggleButton:Point('LEFT', AS.InfoLeft, 'LEFT', 2, 0)
 	LeftToggleButton:HookScript('OnClick', function(self, button)
 		if button == 'RightButton' then
 			if not Ace3Options then
