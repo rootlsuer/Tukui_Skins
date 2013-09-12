@@ -1,6 +1,6 @@
-## Interface: 50300
+## Interface: 50400
 ## Title: |cFFC495DDTukui|r |cFFFFFFFFSkins|r
-## Version: 1.55
+## Version: 1.56
 ## Author: Azilroka, Sortokk
 ## OptionalDeps: AsphyxiaUI, DuffedUI, Tukui, Tukui_ChatTweaks
 ## SavedVariables: UISkinOptions

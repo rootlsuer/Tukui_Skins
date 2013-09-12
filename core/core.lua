@@ -94,6 +94,12 @@ function AS:SkinBackdropFrame(frame, template, override, kill, setpoints)
 	if setpoints then frame.backdrop:SetAllPoints() end
 end
 
+function AS:SkinTitleBar(frame, template, override, kill)
+	if not template then template = 'Transparent' end
+	if not override then frame:StripTextures(kill) end
+	frame:SetTemplate(template, true)
+end
+
 function AS:SkinStatusBar(frame, ClassColor)
 	AS:SkinBackdropFrame(frame, true)
 	frame:SetStatusBarTexture(AS.NormTex)

@@ -1,6 +1,7 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 
+local Loaded
 local name = 'BigWigsSkin'
 function AS:SkinBigWigs(event, addon)
 	if event == 'PLAYER_ENTERING_WORLD' then return end
@@ -92,9 +93,10 @@ function AS:SkinBigWigs(event, addon)
 		AS:SkinTexture(bar.candyBarIconFrame)
 	end
 
-	if addon == 'BigWigs_Plugins' then
+	if (IsAddOnLoaded('BigWigs_Plugins') or event == "ADDON_LOADED" and addon == 'BigWigs_Plugins') then
+		if Loaded then return end
+		Loaded = true
 		local BigWigsBars = BigWigs:GetPlugin('Bars')
-		local BigWigsProximity = BigWigs:GetPlugin('Proximity')
 		BigWigsBars:RegisterBarStyle('Tukui', {
 			apiVersion = 1,
 			version = 1,
@@ -103,12 +105,7 @@ function AS:SkinBigWigs(event, addon)
 			BarStopped = freestyle,
 			GetStyleName = function() return 'Tukui' end,
 		})
-		hooksecurefunc(BigWigsProximity, 'RestyleWindow', function()
-			if BigWigs.pluginCore.modules.Bars.db.profile.barStyle == 'Tukui' then
-				BigWigsProximityAnchor:SetTemplate('Transparent')
-			end
-		end)
-		AS:UnregisterEvent(name, event)
+		AS:UnregisterEvent(name, "ADDON_LOADED")
 	end
 end
 

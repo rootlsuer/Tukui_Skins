@@ -12,9 +12,18 @@ function AS:SkinOmen()
 	hooksecurefunc(Omen, 'UpdateBackdrop', function(self)
 		if not AS:CheckOption('EmbedOmen') then
 			AS:SkinFrame(self.BarList, 'Default')
-			AS:SkinFrame(self.Title, 'Default')
+			AS:SkinTitleBar(self.Title, 'Default')
 		end
 		self.BarList:SetPoint('TOPLEFT', self.Title, 'BOTTOMLEFT', 0, 1)
+	end)
+
+	hooksecurefunc(Omen, 'Toggle', function(self)
+		if not AS:CheckOption('EmbedOmen') then return end
+		if self.Anchor:IsShown() then
+			EmbedSystem_MainWindow:Show()
+		else
+			EmbedSystem_MainWindow:Hide()
+		end
 	end)
 
 	Omen:UpdateBackdrop()

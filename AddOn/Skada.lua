@@ -9,9 +9,9 @@ function AS:SkinSkada()
 		AS:AcceptFrame(L['Do you want to reset Skada?'], function(self) Skada:Reset() self:GetParent():Hide() end)
 	end
 
-	local barmod = Skada.displays['bar']
+	local SkadaDisplayBar = Skada.displays['bar']
 
-	hooksecurefunc(barmod, 'AddDisplayOptions', function(self, win, options)
+	hooksecurefunc(SkadaDisplayBar, 'AddDisplayOptions', function(self, win, options)
 		options.baroptions.args.barspacing = nil
 		options.titleoptions.args.texture = nil
 		options.titleoptions.args.bordertexture = nil
@@ -21,13 +21,13 @@ function AS:SkinSkada()
 		options.windowoptions = nil
 	end)
 
-	hooksecurefunc(barmod, 'ApplySettings', function(self, win)
+	hooksecurefunc(SkadaDisplayBar, 'ApplySettings', function(self, win)
 		local skada = win.bargroup
 		skada:SetSpacing(1)
 		skada:SetFrameLevel(5)
 		skada:SetBackdrop(nil)
 		if win.db.enabletitle then
-			skada.button:SetTemplate()
+			skada.button:SetTemplate("Default", true)
 		end
 		if not skada.backdrop then
 			AS:SkinBackdropFrame(skada)
@@ -39,10 +39,29 @@ function AS:SkinSkada()
 		end
 	end)
 
-	hooksecurefunc(Skada, 'CreateWindow', AS.Embed_Skada)
-	hooksecurefunc(Skada, 'DeleteWindow', AS.Embed_Skada)
+	hooksecurefunc(Skada, 'ToggleWindow', function()
+		if not AS:CheckOption('EmbedSkada') then return end
+		for i, win in ipairs(Skada:GetWindows()) do
+			if win:IsShown() then
+				EmbedSystem_MainWindow:Show()
+			else
+				EmbedSystem_MainWindow:Hide()
+			end
+		end
+	end)
+
+	hooksecurefunc(Skada, 'CreateWindow', function()
+		if AS:CheckOption('EmbedSkada') then
+			AS:Embed_Skada()
+		end
+	end)
+	hooksecurefunc(Skada, 'DeleteWindow', function()
+		if AS:CheckOption('EmbedSkada') then
+			AS:Embed_Skada()
+		end
+	end)
 	hooksecurefunc(Skada, 'UpdateDisplay', function()
-		if not InCombatLockdown() then
+		if AS:CheckOption('EmbedSkada') and not InCombatLockdown() then
 			AS:Embed_Skada()
 		end
 	end)

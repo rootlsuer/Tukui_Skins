@@ -1,6 +1,7 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local A, C, L, G = unpack(Tukui or AsphyxiaUI or DuffedUI)
 local AddOnName, Engine = ...
+
 local AddOn = {
 	Credits = {
 		'Affli',
@@ -12,13 +13,15 @@ local AddOn = {
 		'Catok',
 		'Darth Predator',
 		'Dec',
+		'Driizt',
 		'Edoc',
 		'Elv',
 		'Jasje',
 		'Kkthnx',
 		'Konungr',
 		'Lockslap',
-		'Lolarennt',
+		'lolarennt',
+		'MaXiMUS',
 		'Outofammo',
 		'Pat',
 		'Repooc',
@@ -26,6 +29,7 @@ local AddOn = {
 		'Sinaris',
 		'Sortokk',
 		'Tukz',
+		'Warmexx',
 	},
 	CreditsString = '',
 	FrameLocks = {},
@@ -84,6 +88,32 @@ if Tukui and tonumber(GetAddOnMetadata('Tukui', 'Version')) >= 16.00 then
 	AddOn.ActionBar2 = A.ActionBar2
 	AddOn.ActionBar3 = A.ActionBar3
 	AddOn.ActionBar4 = A.ActionBar4
+elseif AsphyxiaUI and tostring(GetAddOnMetadata('AsphyxiaUI', 'Version')) == "8.1.0" then
+	AddOn.Blank = C['Media']['Textures']['Blank']
+	AddOn.NormTex = C['Media']['Textures']['Normal']
+	AddOn.Font = C['Media']['Fonts']['Default']['Normal']
+	AddOn.UFFont = C['Media']['Fonts']['Default']['Unitframes']
+	AddOn.PixelFont = C['Media']['Fonts']['Pixel']['Asphyxia']
+	AddOn.ActionBarFont = C['Media']['Fonts']['Default']['Normal']
+	AddOn.UIScale = C['General']['UIScale']
+	AddOn.DataTextFontSize = 12
+	AddOn.BackdropColor = C['Media']['Colors']['Backdrop']
+	AddOn.BorderColor = C['Media']['Colors']['Border']
+	AddOn.Mult = 768/strmatch(GetCVar('gxResolution'), '%d+x(%d+)')/AddOn.UIScale
+	AddOn.DataTexts = A['DataTexts']
+
+	AddOn.InfoLeft = A["Layouts"]['DataTextLeft']
+	AddOn.InfoRight = A["Layouts"]['DataTextRight']
+	AddOn.ChatBackgroundRight = A["Layouts"]['ChatRight']
+	AddOn.ChatBackgroundLeft = A["Layouts"]['ChatLeft']
+	AddOn.TabsRightBackground = A["Layouts"]['ChatRightTab']
+	AddOn.TabsLeftBackground = A["Layouts"]['ChatLeftTab']
+	AddOn.Minimap = A["Minimap"]
+	--AddOn.TooltipEnable = C['Tooltips']['Enable']
+	AddOn.ActionBar1 = A["Layouts"]["ActionBars1"]
+	AddOn.ActionBar2 = A["Layouts"]["ActionBars2"]
+	AddOn.ActionBar3 = A["Layouts"]["ActionBars3"]
+	AddOn.ActionBar4 = A["Layouts"]["ActionBars4"]
 else
 	AddOn.Blank = C['media'].blank
 	AddOn.NormTex = C['media'].normTex

@@ -16,7 +16,7 @@ function AS:SkinRecount()
 		frame.CloseButton:SetPoint('TOPRIGHT', frame, 'TOPRIGHT', -1, -9)
 		frame:SetBackdrop(nil)
 		frame.TitleBackground = CreateFrame('Frame', nil, frame)
-		frame.TitleBackground:SetTemplate()
+		AS:SkinTitleBar(frame.TitleBackground, 'Default')
 		frame.TitleBackground:SetPoint('TOP', frame, 'TOP', 0, -8)
 		frame.TitleBackground:SetScript('OnUpdate', function(self) self:SetSize(frame:GetWidth() - 4, 22) end)
 		frame.TitleBackground:SetFrameLevel(frame:GetFrameLevel())
@@ -39,26 +39,17 @@ function AS:SkinRecount()
 	}
 
 	for _, frame in pairs(RecountFrames) do
-		if frame then
-			SkinFrame(frame)
-		end
+		if frame then SkinFrame(frame) end
 	end
 
 	AS:SkinScrollBar(Recount_MainWindow_ScrollBarScrollBar)
 
-	hooksecurefunc(Recount, 'RefreshMainWindow', function()
-	 	if not Recount.db.profile.MainWindow.ShowScrollbar then
-			Recount_MainWindow_ScrollBarScrollBar:Hide()
-		else
-			Recount_MainWindow_ScrollBarScrollBar:Show()
-		end
-	end)
-
-	hooksecurefunc(Recount, 'CreateFrame', function(self, frame)
-		SkinFrame(_G[frame])
-	end)
-
+	Recount.MainWindow:HookScript('OnShow', function(self) if AS:CheckOption('EmbedRecount') then EmbedSystem_MainWindow:Show() end end)
 	Recount.MainWindow.FileButton:HookScript('OnClick', function(self) if LibDropdownFrame0 then LibDropdownFrame0:SetTemplate() end end)
+
+	hooksecurefunc(Recount, 'ShowScrollbarElements', function(self, name) Recount_MainWindow_ScrollBarScrollBar:Show() end)
+	hooksecurefunc(Recount, 'HideScrollbarElements', function(self, name) Recount_MainWindow_ScrollBarScrollBar:Hide() end)
+	hooksecurefunc(Recount, 'CreateFrame', function(self, frame) SkinFrame(_G[frame]) end)
 
 	hooksecurefunc(Recount, 'ShowReport', function(self)
 		if Recount_ReportWindow.isSkinned then return end

@@ -141,9 +141,14 @@ function AS:Embed_Init()
 end
 
 function AS:Embed_Show()
+	if AS:CheckOption('EmbedSystem') then
+		if EmbedSystem_MainWindow.FrameName ~= nil then _G[EmbedSystem_MainWindow.FrameName]:Show() end
+	end
 	if AS:CheckOption('EmbedSystemDual') then
 		EmbedSystem_LeftWindow:Show()
 		EmbedSystem_RightWindow:Show()
+		if EmbedSystem_LeftWindow.FrameName ~= nil then _G[EmbedSystem_LeftWindow.FrameName]:Show() end
+		if EmbedSystem_RightWindow.FrameName ~= nil then _G[EmbedSystem_RightWindow.FrameName]:Show() end
 	end
 end
 
@@ -258,6 +263,7 @@ end
 function AS:Embed_Recount()
 	local EmbedParent = EmbedSystem_MainWindow
 	if AS:CheckOption('EmbedSystemDual') then EmbedParent = AS:CheckOption('EmbedRight') == 'Recount' and EmbedSystem_RightWindow or EmbedSystem_LeftWindow end
+	EmbedParent.FrameName = "Recount_MainWindow"
 
 	Recount_MainWindow:SetParent(EmbedParent)
 	Recount_MainWindow:ClearAllPoints()
@@ -278,8 +284,9 @@ end
 function AS:Embed_Omen()
 	local EmbedParent = EmbedSystem_MainWindow
 	if AS:CheckOption('EmbedSystemDual') then EmbedParent = AS:CheckOption('EmbedRight') == 'Omen' and EmbedSystem_RightWindow or EmbedSystem_LeftWindow end
+	EmbedParent.FrameName = "OmenAnchor"
 
-	AS:SkinFrame(OmenTitle, AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default')
+	AS:SkinTitleBar(OmenTitle, 'Default')
 	AS:SkinFrame(OmenBarList, AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default')
 	if not AS:CheckOption('OmenBackdrop') then OmenBarList:StripTextures() end
 
@@ -308,6 +315,7 @@ end
 function AS:Embed_TinyDPS()
 	local EmbedParent = EmbedSystem_MainWindow
 	if AS:CheckOption('EmbedSystemDual') then EmbedParent = AS:CheckOption('EmbedRight') == 'TinyDPS' and EmbedSystem_RightWindow or EmbedSystem_LeftWindow end
+	EmbedParent.FrameName = "tdpsFrame"
 
 	AS:SkinFrame(tdpsFrame, AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default')
 	tdpsFrame:SetParent(EmbedParent)
@@ -326,6 +334,7 @@ end
 function AS:Embed_alDamageMeter()
 	local EmbedParent = EmbedSystem_MainWindow
 	if AS:CheckOption('EmbedSystemDual') then EmbedParent = AS:CheckOption('EmbedRight') == 'alDamageMeter' and EmbedSystem_RightWindow or EmbedSystem_LeftWindow end
+	EmbedParent.FrameName = "alDamageMeterFrame"
 
 	dmconf.barheight = floor((EmbedParent:GetHeight() / dmconf.maxbars) - dmconf.spacing)
 	dmconf.width = EmbedParent:GetWidth()

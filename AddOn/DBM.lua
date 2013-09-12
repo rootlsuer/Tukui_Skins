@@ -60,7 +60,7 @@ function AS:SkinDBM(event, addon)
 
 						tbar:SetInside(frame)
 
-						frame:SetTemplate()
+						frame:SetTemplate("Transparent", true)
 
 						name:ClearAllPoints()
 						name:SetWidth(165)
@@ -73,7 +73,7 @@ function AS:SkinDBM(event, addon)
 						timer:SetShadowColor(0, 0, 0, 0)
 
 						if AS:CheckOption('DBMSkinHalf') then
-							frame:SetHeight(buttonsize / 3)
+							frame:SetHeight(buttonsize / 2)
 							name:Point('BOTTOMLEFT', frame, 'TOPLEFT', 0, 4)
 							timer:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -1, 2)
 						else
@@ -211,7 +211,8 @@ function AS:SkinDBM(event, addon)
 		end)
 		AS:SkinTab(DBM_GUI_OptionsFrameTab1)
 		AS:SkinTab(DBM_GUI_OptionsFrameTab2)
-		AS:SkinButton(DBM_GUI_OptionsFrameOkay, true)	
+		AS:SkinButton(DBM_GUI_OptionsFrameOkay, true)
+		AS:SkinButton(DBM_GUI_OptionsFrameWebsiteButton, true)
 		AS:SkinScrollBar(DBM_GUI_OptionsFramePanelContainerFOVScrollBar)
 		AS:UnregisterEvent(name, event)
 	end
