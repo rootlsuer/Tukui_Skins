@@ -63,7 +63,7 @@ function AS:Init()
 			end
 			AS:CheckConflicts()
 			AS:Embed_Init()
-			if IsAddOnLoaded('Enhanced_Config') then AS:Ace3Options() else AS:LegacyOptions() end
+			AS:Ace3Options()
 			AS:Print(format("by |cFFFF7D0AAzilroka|r - Version: |cFF1784D1%s|r Loaded!", AS.Version))
 			self:UnregisterEvent(event)
 		end

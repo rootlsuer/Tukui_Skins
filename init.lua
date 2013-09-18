@@ -1,65 +1,64 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local A, C, L, G = unpack(Tukui or AsphyxiaUI or DuffedUI)
 local AddOnName, Engine = ...
+local AddOn = LibStub('AceAddon-3.0'):NewAddon(AddOnName, 'AceConsole-3.0', 'AceEvent-3.0', 'AceTimer-3.0', 'AceHook-3.0')
+Engine[1] = AddOn
+_G[AddOnName] = Engine
 
-local AddOn = {
-	Credits = {
-		'Affli',
-		'Arstraea',
-		'Azilroka',
-		'Blazeflack',
-		'Cadayron',
-		'Camealion',
-		'Catok',
-		'Darth Predator',
-		'Dec',
-		'Driizt',
-		'Edoc',
-		'Elv',
-		'Jasje',
-		'Kkthnx',
-		'Konungr',
-		'Lockslap',
-		'lolarennt',
-		'MaXiMUS',
-		'Outofammo',
-		'Pat',
-		'Repooc',
-		'Shadowcall',
-		'Sinaris',
-		'Sortokk',
-		'Tukz',
-		'Warmexx',
-	},
-	CreditsString = '',
-	FrameLocks = {},
-	Locale = L,
-	MyClass = select(2, UnitClass('player')),
-	MyName = UnitName('player'),
-	MyRealm = GetCVar('realmName'),
-	Noop = function() return end,
-	Title = select(2, GetAddOnInfo(AddOnName)),
-	TexCoords = {.08, .92, .08, .92},
-	Version = GetAddOnMetadata(AddOnName, 'Version'),
+AddOn.Credits = {
+	'Affli',
+	'Arstraea',
+	'Azilroka',
+	'Blazeflack',
+	'Cadayron',
+	'Camealion',
+	'Catok',
+	'Darth Predator',
+	'Dec',
+	'Driizt',
+	'Edoc',
+	'Elv',
+	'Jasje',
+	'Kkthnx',
+	'Konungr',
+	'Lockslap',
+	'lolarennt',
+	'MaXiMUS',
+	'Outofammo',
+	'Pat',
+	'Repooc',
+	'Shadowcall',
+	'Sinaris',
+	'Sortokk',
+	'Tukz',
+	'Warmexx',
 }
+
+AddOn.CreditsString = ''
+AddOn.FrameLocks = {}
+AddOn.Locale = L
+AddOn.MyClass = select(2, UnitClass('player'))
+AddOn.MyName = UnitName('player')
+AddOn.MyRealm = GetCVar('realmName')
+AddOn.Noop = function() return end
+AddOn.Title = select(2, GetAddOnInfo(AddOnName))
+AddOn.TexCoords = {.08, .92, .08, .92}
+AddOn.Version = GetAddOnMetadata(AddOnName, 'Version')
 
 sort(AddOn.Credits)
 for Key, Person in pairs(AddOn.Credits) do
 	AddOn.CreditsString = AddOn.CreditsString..'\n'..Person
 end
 
-Engine[1] = AddOn
-UISkins = Engine
-
 if DuffedUI then
-	AddOn.UIBase = "DuffedUI"
-	AddOn.UIBaseVersion = GetAddOnMetadata("DuffedUI", 'Version')
+	AddOn.UIBase = 'DuffedUI'
+	AddOn.UIBaseVersion = GetAddOnMetadata('DuffedUI', 'Version')
 elseif AsphyxiaUI then
-	AddOn.UIBase = "AsphyxiaUI"
-	AddOn.UIBaseVersion = GetAddOnMetadata("AsphyxiaUI", 'Version')
+	AddOn.UIBase = 'AsphyxiaUI'
+	AddOn.UIBaseVersion = GetAddOnMetadata('AsphyxiaUI', 'Version')
 elseif Tukui then
-	AddOn.UIBase = "Tukui"
-	AddOn.UIBaseVersion = GetAddOnMetadata("Tukui", 'Version')
+	AddOn.UIBase = 'Tukui'
+	AddOn.UIBaseVersion = GetAddOnMetadata('Tukui', 'Version')
 end
 
 if Tukui and tonumber(GetAddOnMetadata('Tukui', 'Version')) >= 16.00 then
@@ -88,7 +87,7 @@ if Tukui and tonumber(GetAddOnMetadata('Tukui', 'Version')) >= 16.00 then
 	AddOn.ActionBar2 = A.ActionBar2
 	AddOn.ActionBar3 = A.ActionBar3
 	AddOn.ActionBar4 = A.ActionBar4
-elseif AsphyxiaUI and tostring(GetAddOnMetadata('AsphyxiaUI', 'Version')) == "8.1.0" then
+elseif AsphyxiaUI and tostring(GetAddOnMetadata('AsphyxiaUI', 'Version')) == '8.1.0' then
 	AddOn.Blank = C['Media']['Textures']['Blank']
 	AddOn.NormTex = C['Media']['Textures']['Normal']
 	AddOn.Font = C['Media']['Fonts']['Default']['Normal']
@@ -102,18 +101,18 @@ elseif AsphyxiaUI and tostring(GetAddOnMetadata('AsphyxiaUI', 'Version')) == "8.
 	AddOn.Mult = 768/strmatch(GetCVar('gxResolution'), '%d+x(%d+)')/AddOn.UIScale
 	AddOn.DataTexts = A['DataTexts']
 
-	AddOn.InfoLeft = A["Layouts"]['DataTextLeft']
-	AddOn.InfoRight = A["Layouts"]['DataTextRight']
-	AddOn.ChatBackgroundRight = A["Layouts"]['ChatRight']
-	AddOn.ChatBackgroundLeft = A["Layouts"]['ChatLeft']
-	AddOn.TabsRightBackground = A["Layouts"]['ChatRightTab']
-	AddOn.TabsLeftBackground = A["Layouts"]['ChatLeftTab']
-	AddOn.Minimap = A["Minimap"]
+	AddOn.InfoLeft = A['Layouts']['DataTextLeft']
+	AddOn.InfoRight = A['Layouts']['DataTextRight']
+	AddOn.ChatBackgroundRight = A['Layouts']['ChatRight']
+	AddOn.ChatBackgroundLeft = A['Layouts']['ChatLeft']
+	AddOn.TabsRightBackground = A['Layouts']['ChatRightTab']
+	AddOn.TabsLeftBackground = A['Layouts']['ChatLeftTab']
+	AddOn.Minimap = A['Minimap']
 	--AddOn.TooltipEnable = C['Tooltips']['Enable']
-	AddOn.ActionBar1 = A["Layouts"]["ActionBars1"]
-	AddOn.ActionBar2 = A["Layouts"]["ActionBars2"]
-	AddOn.ActionBar3 = A["Layouts"]["ActionBars3"]
-	AddOn.ActionBar4 = A["Layouts"]["ActionBars4"]
+	AddOn.ActionBar1 = A['Layouts']['ActionBars1']
+	AddOn.ActionBar2 = A['Layouts']['ActionBars2']
+	AddOn.ActionBar3 = A['Layouts']['ActionBars3']
+	AddOn.ActionBar4 = A['Layouts']['ActionBars4']
 else
 	AddOn.Blank = C['media'].blank
 	AddOn.NormTex = C['media'].normTex

@@ -142,13 +142,13 @@ end
 
 function AS:Embed_Show()
 	if AS:CheckOption('EmbedSystem') then
-		if EmbedSystem_MainWindow.FrameName ~= nil then _G[EmbedSystem_MainWindow.FrameName]:Show() end
+		if _G[EmbedSystem_MainWindow.FrameName] then _G[EmbedSystem_MainWindow.FrameName]:Show() end
 	end
 	if AS:CheckOption('EmbedSystemDual') then
 		EmbedSystem_LeftWindow:Show()
 		EmbedSystem_RightWindow:Show()
-		if EmbedSystem_LeftWindow.FrameName ~= nil then _G[EmbedSystem_LeftWindow.FrameName]:Show() end
-		if EmbedSystem_RightWindow.FrameName ~= nil then _G[EmbedSystem_RightWindow.FrameName]:Show() end
+		if _G[EmbedSystem_LeftWindow.FrameName] then _G[EmbedSystem_LeftWindow.FrameName]:Show() end
+		if _G[EmbedSystem_RightWindow.FrameName] then _G[EmbedSystem_RightWindow.FrameName]:Show() end
 	end
 end
 

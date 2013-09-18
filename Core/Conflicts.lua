@@ -1,3 +1,4 @@
+if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2, ...))
 local format, pairs, print, GetAddOnInfo = format, pairs, print, GetAddOnInfo
 
