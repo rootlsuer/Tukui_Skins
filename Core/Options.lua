@@ -27,7 +27,7 @@ function AS:Ace3Options()
 	Ace3OptionsPanel.Options.args.skins = {
 		order = 100,
 		type = 'group',
-		name = format('%s v|cFF1784D1%s', AS.Title, AS.Version),
+		name = AS.Title,
 		args = {},
 	}
 	Ace3OptionsPanel.Options.args.skins.args.addons = {
@@ -39,9 +39,9 @@ function AS:Ace3Options()
 		guiInline = true,
 		args = {},
 	}
-	Ace3OptionsPanel.Options.args.skins.args.dbm = {
+	Ace3OptionsPanel.Options.args.skins.args.bossmods = {
 		type = 'group',
-		name = 'DBM Options',
+		name = 'BossMod Options',
 		order = 1,
 		get = function(info) return AS:CheckOption(info[#info]) end,
 		set = function(info, value) AS:SetOption(info[#info], value) end,
@@ -79,6 +79,12 @@ function AS:Ace3Options()
 				name = 'DBM Half-bar Skin',
 				order = 4,
 				disabled = function() return not AS:CheckOption('DBMSkin', 'DBM-Core') end
+			},
+			BigWigsHalfBar = {
+				type = 'toggle',
+				name = 'BigWigs Half-Bar',
+				order = 4,
+				disabled = function() return not AS:CheckOption('BigWigsSkin', 'BigWigs') end
 			},
 		}
 	}
@@ -128,49 +134,59 @@ function AS:Ace3Options()
 				disabled = function() return not AS:CheckOption('EmbedSystemDual') end,
 				order = 6,
 			},
+			EmbedLeftWidth = {
+				type = 'range',
+				order = 7,
+				name = "Embed Left Window Width",
+				min = floor(EmbedSystem_MainWindow:GetWidth() * .25),
+				max = floor(EmbedSystem_MainWindow:GetWidth() * .75),
+				step = 1,
+				disabled = function() return not AS:CheckOption('EmbedSystemDual') end,
+				width = 'full',
+			},
 			EmbedOoC = {
 				type = 'toggle',
 				name = 'Out of Combat (Hide)',
-				order = 7,
+				order = 8,
 			},
 			EmbedSexyCooldown = {
 				type = 'toggle',
 				name = 'Attach SexyCD to action bar',
-				order = 8,
+				order = 9,
 				disabled = function() return not AS:CheckOption('SexyCooldownSkin', 'SexyCooldown2') end,
 			},
 			EmbedCoolLine = {
 				type = 'toggle',
 				name = 'Attach CoolLine to action bar',
-				order = 9,
+				order = 10,
 				disabled = function() return not AS:CheckOption('CoolLineSkin', 'CoolLine') end,
 			},
 			TransparentEmbed = {
 				type = 'toggle',
 				name = 'Embed Transparancy',
-				order = 10,
+				order = 11,
 			},
 			EmbedBelowTop = {
 				type = 'toggle',
 				name = 'Embed Below Top Tab',
-				order = 11,
+				order = 12,
 			},
 			RecountBackdrop = {
 				type = 'toggle',
 				name = 'Recount Backdrop',
-				order = 12,
+				order = 13,
 				disabled = function() return not AS:CheckOption('RecountSkin', 'Recount') end
 			},
 			SkadaBackdrop = {
 				type = 'toggle',
 				name = 'Skada Backdrop',
-				order = 13,
+				order = 14,
 				disabled = function() return not AS:CheckOption('SkadaSkin', 'Skada') end
 			},
 			OmenBackdrop = {
 				type = 'toggle',
 				name = 'Omen Backdrop',
-				order = 14,
+				order = 15,
 				disabled = function() return not AS:CheckOption('OmenSkin', 'Omen') end
 			},
 		}

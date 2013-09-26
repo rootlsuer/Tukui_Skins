@@ -29,8 +29,8 @@ function AS:SkinCLCProt()
 			button = CreateFrame('Button', name , parent)
 			button:CreateBackdrop('Default')
 		end
-
-		button.backdrop:SetAllPoints()
+		local Backdrop = button.backdrop or button.Backdrop
+		Backdrop:SetAllPoints()
 		button:EnableMouse(false)
 		button:Size(size)
 		button.texture = button:CreateTexture('$parentIcon', 'OVERLAY')
@@ -46,7 +46,7 @@ function AS:SkinCLCProt()
 			else
 				button.backdrop:Hide()
 			end
-		end	
+		end
 
 		button.border = button:CreateTexture(nil, 'BORDER')
 		button.border:Kill()

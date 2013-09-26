@@ -5,7 +5,8 @@ local name = 'Capping'
 function AS:SkinCapping(event)
 	hooksecurefunc(Capping, "StartBar",	function(self, name)
 		local bar = self:GetBar(name, true)
-		if not bar.backdrop then
+		local Backdrop = bar.backdrop or bar.Backdrop
+		if not Backdrop then
 			bar:CreateBackdrop()
 			bar.iconbackdrop = CreateFrame('Frame', nil, bar)
 			bar.iconbackdrop:SetOutside(bar.icon)

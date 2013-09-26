@@ -4,7 +4,8 @@ local AS = unpack(select(2,...))
 local name = 'CritlineSkin'
 function AS:SkinCritline()
 	AS:SkinBackdropFrame(Critline.display)
-	Critline.display.backdrop:SetFrameStrata('BACKGROUND')
+	local Backdrop = Critline.display.backdrop or Critline.display.Backdrop
+	Backdrop:SetFrameStrata('BACKGROUND')
 end
 
 AS:RegisterSkin(name, AS.SkinCritline)

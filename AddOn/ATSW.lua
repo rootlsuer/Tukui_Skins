@@ -121,8 +121,7 @@ function AS:SkinAdvancedTradeSkillWindow()
 			icon.backdrop = CreateFrame('Frame', nil, button)
 			icon.backdrop:SetFrameLevel(button:GetFrameLevel() - 1)
 			icon.backdrop:SetTemplate('Default')
-			icon.backdrop:Point('TOPLEFT', icon, 'TOPLEFT', -2, 2)
-			icon.backdrop:Point('BOTTOMRIGHT', icon, 'BOTTOMRIGHT', 2, -2)
+			icon.backdrop:SetOutside(icon)
 		end
 
 		icon:SetParent(icon.backdrop)

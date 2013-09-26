@@ -1,9 +1,11 @@
-﻿local AS = ElvUI[1]:GetModule('AddOnSkins')
+﻿if not (Tukui or AsphyxiaUI or DuffedUI) then return end
+local AS = unpack(select(2,...))
 
 local name = 'CLCInfoSkin'
 function AS:SkinCLCInfo(event, addon)
 	if event == 'PLAYER_ENTERING_WORLD' then
 		local function ApplyIconSkin(self)
+			local Font, FontSize = NumberFontNormal:GetFont()
 			local xScale = self.db.width / 36
 			local yScale = self.db.height / 36
 			local texMain = self.elements.texMain
@@ -18,19 +20,8 @@ function AS:SkinCLCInfo(event, addon)
 			texMain:SetTexCoord(unpack(AS.TexCoords))
 
 			texNormal:Hide()
-
-			texHighlight:SetTexture("Interface\\AddOns\\clcInfo\\textures\\IconHighlight")
-			texHighlight:SetSize(self.db.width, self.db.height)
-			texHighlight:ClearAllPoints()
-			texHighlight:SetPoint("CENTER", self.elements, "CENTER", 0, 0)
-			texHighlight:SetVertexColor(1, 1, 1, 1)
-
+			texHighlight:Hide()
 			texGloss:Hide()
-
-			if not cooldown.isRegistered then
-				ElvUI[1]:RegisterCooldown(cooldown)
-				cooldown.isRegistered = true
-			end
 
 			if not self.elements.backdropFrame then
 				local bg = CreateFrame('Frame', nil, self.elements)
@@ -43,18 +34,9 @@ function AS:SkinCLCInfo(event, addon)
 				self.elements.backdropFrame:Show()
 			end
 
-			hooksecurefunc(texMain, 'SetTexture', function(self, tex, ...)
-				if tex ~= nil then
-					self.elements.backdropFrame:Show()
-				else
-					self.elements.backdropFrame:Hide()
-				end
-			end
-
-			count:SetSize(40 * xScale, 10 * yScale)
 			count:ClearAllPoints()
-			count:SetPoint("CENTER", self.elements, "CENTER", -2 * xScale, -8 * yScale)
-			count:FontTemplate()
+			count:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', 4, 0)
+			count:SetFont(Font, FontSize, 'OUTLINE')
 		end
 
 		local function ApplyBarSkin(self)
@@ -91,7 +73,7 @@ function AS:SkinCLCInfo(event, addon)
 
 			local x = g.cellWidth * (self.db.gridX - 1) + g.spacingX * (self.db.gridX - 1)
 			local y = g.cellHeight * (self.db.gridY - 1) + g.spacingY * (self.db.gridY - 1)
-			self:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", x, y)
+			self:SetPoint('BOTTOMLEFT', f, 'BOTTOMLEFT', x, y)
 
 			return true
 		end
@@ -99,16 +81,16 @@ function AS:SkinCLCInfo(event, addon)
 		local function UpdateIconLayout(self)
 			local onGrid = TryGridPositioning(self)
 			local skinType, g
-			if onGrid and self.db.skinSource == "Grid" then
+			if onGrid and self.db.skinSource == 'Grid' then
 				g = clcInfo.display.grids.active[self.db.gridId].db.skinOptions.icons
-			elseif self.db.skinSource == "Template" then
+			elseif self.db.skinSource == 'Template' then
 				g = clcInfo.activeTemplate.skinOptions.icons
 			else
 				g = self.db.skin
 			end
 			skinType = g.skinType
 
-			if skinType == "ElvUI" then
+			if skinType == 'Tukui' then
 				ApplyIconSkin(self)
 			elseif self.elements.backdropFrame then
 				self.elements.backdropFrame:Hide()
@@ -127,7 +109,7 @@ function AS:SkinCLCInfo(event, addon)
 			end
 			skinType = g.skinType
 
-			if skinType == 'ElvUI' then
+			if skinType == 'Tukui' then
 				ApplyBarSkin(self)
 			elseif self.elements.backdropFrame then
 				self.elements.backdropFrame:Hide()
@@ -154,54 +136,39 @@ function AS:SkinCLCInfo(event, addon)
 		hooksecurefunc(clcInfo.display['bars'], 'New', NewBar)
 	end
 	if addon == 'clcInfo_Options' then
-		local function LoadActiveTemplate(self)
+		hooksecurefunc(clcInfo_Options, 'LoadActiveTemplate', function(self)
 			local options = clcInfo_Options.options
 			if not clcInfo.activeTemplate then return end
-			options.args.activeTemplate.args.skins.args.icons.args.selectType.args.skinType.values = options.args.activeTemplate.args.skins.args.icons.args.selectType.args.skinType.values()
-			options.args.activeTemplate.args.skins.args.icons.args.selectType.args.skinType.values['ElvUI'] = 'ElvUI'
-
-			options.args.activeTemplate.args.skins.args.micons.args.selectType.args.skinType.values = options.args.activeTemplate.args.skins.args.micons.args.selectType.args.skinType.values()
-			options.args.activeTemplate.args.skins.args.micons.args.selectType.args.skinType.values['ElvUI'] = 'ElvUI'	
-		end
-
-		local function UpdateGridList(self)
+			options.args.activeTemplate.args.skins.args.icons.args.selectType.args.skinType.values['Tukui'] = 'Tukui'
+			options.args.activeTemplate.args.skins.args.micons.args.selectType.args.skinType.values['Tukui'] = 'Tukui'	
+		end)
+		hooksecurefunc(clcInfo_Options, 'UpdateGridList', function(self)
 			local db = clcInfo.display.grids.active
 			local optionsGrids = self.options.args.activeTemplate.args.grids
 			for i = 1, #db do
 				local options = optionsGrids.args[tostring(i)].args.tabSkins.args
-				options.icons.args.selectType.args.skinType.values = options.icons.args.selectType.args.skinType.values()
-				options.icons.args.selectType.args.skinType.values['ElvUI'] = 'ElvUI'
-				options.micons.args.selectType.args.skinType.values = options.micons.args.selectType.args.skinType.values()
-				options.micons.args.selectType.args.skinType.values['ElvUI'] = 'ElvUI'		
+				options.icons.args.selectType.args.skinType.values['Tukui'] = 'Tukui'
+				options.micons.args.selectType.args.skinType.values['Tukui'] = 'Tukui'		
 			end
-		end
-
-		local function UpdateIconList(self)
+		end)
+		hooksecurefunc(clcInfo_Options, 'UpdateIconList', function(self)
 			local db = clcInfo.display.icons.active
 			local optionsIcons = self.options.args.activeTemplate.args.icons
 			for i = 1, #db do
 				local options = optionsIcons.args[tostring(i)].args.tabSkin.args
-				options.selectType.args.skinType.values = options.selectType.args.skinType.values()
-				options.selectType.args.skinType.values['ElvUI'] = 'ElvUI'
+				options.selectType.args.skinType.values['Tukui'] = 'Tukui'
 			end
-		end
-
-		local function UpdateMIconList(self)
+		end)
+		hooksecurefunc(clcInfo_Options, 'UpdateMIconList', function(self)
 			local db = clcInfo.display.micons.active
 			local optionsMIcons = self.options.args.activeTemplate.args.micons
 			for i = 1, #db do
 				local options = optionsMIcons.args[tostring(i)].args.tabSkin.args
-				options.selectType.args.skinType.values = options.selectType.args.skinType.values()
-				options.selectType.args.skinType.values['ElvUI'] = 'ElvUI'
+				options.selectType.args.skinType.values['Tukui'] = 'Tukui'
 			end
-		end
-
-		hooksecurefunc(clcInfo_Options, 'LoadActiveTemplate', LoadActiveTemplate)
-		hooksecurefunc(clcInfo_Options, 'UpdateGridList', UpdateGridList)
-		hooksecurefunc(clcInfo_Options, 'UpdateIconList', UpdateIconList)
-		hooksecurefunc(clcInfo_Options, 'UpdateMIconList', UpdateMIconList)
-		AS:UnregisterEvent(name, "ADDON_LOADED")
+		end)
+		AS:UnregisterEvent(name, 'ADDON_LOADED')
 	end
 end
 
-AS:RegisterSkin(name, AS.SkinCLCInfo, "ADDON_LOADED")
+AS:RegisterSkin(name, AS.SkinCLCInfo, 'ADDON_LOADED')

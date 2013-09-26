@@ -13,16 +13,17 @@ function AS:SkinClique()
 
 	for _, object in pairs(Frames) do
 		AS:SkinBackdropFrame(_G[object])
+		local Backdrop = _G[object].backdrop or _G[object].Backdrop
 		if _G[object] == CliqueConfig then
-			_G[object].backdrop:SetPoint('TOPLEFT', 0, 0)
-			_G[object].backdrop:SetPoint('BOTTOMRIGHT', 0, -5)
+			Backdrop:SetPoint('TOPLEFT', 0, 0)
+			Backdrop:SetPoint('BOTTOMRIGHT', 0, -5)
 		elseif _G[object] == CliqueClickGrabber or _G[object] == CliqueScrollFrame then
-			_G[object].backdrop:SetPoint('TOPLEFT', 4, 0)
-			_G[object].backdrop:SetPoint('BOTTOMRIGHT', -2, 4)
+			Backdrop:SetPoint('TOPLEFT', 4, 0)
+			Backdrop:SetPoint('BOTTOMRIGHT', -2, 4)
 		else
 			_G[object]:SetFrameLevel(_G[object]:GetFrameLevel() + 1)
-			_G[object].backdrop:SetPoint('TOPLEFT', 0, 0)
-			_G[object].backdrop:SetPoint('BOTTOMRIGHT', 2, 0)
+			Backdrop:SetPoint('TOPLEFT', 0, 0)
+			Backdrop:SetPoint('BOTTOMRIGHT', 2, 0)
 		end
 	end
 	
@@ -84,7 +85,8 @@ function AS:SkinClique()
 	CliqueSpellTab:GetNormalTexture():ClearAllPoints()
 	CliqueSpellTab:GetNormalTexture():SetInside()
 	AS:SkinBackdropFrame(CliqueSpellTab)
-	CliqueSpellTab.backdrop:SetAllPoints()
+	local Backdrop = CliqueSpellTab.backdrop or CliqueSpellTab.Backdrop
+	Backdrop:SetAllPoints()
 	CliqueSpellTab:StyleButton(true)
 end
 

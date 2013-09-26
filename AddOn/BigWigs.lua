@@ -75,12 +75,17 @@ function AS:SkinBigWigs(event, addon)
 		bar.candyBarLabel:SetShadowColor(0, 0, 0, 0)
 		bar.candyBarLabel:SetJustifyH('LEFT')
 		bar.candyBarLabel:ClearAllPoints()
-		bar.candyBarLabel:Point('LEFT', bar, 'LEFT', 4, 0)
 		bar.candyBarDuration:SetFont(AS.Font, 12, 'OUTLINE')
 		bar.candyBarDuration:SetShadowColor(0, 0, 0, 0)
 		bar.candyBarDuration:SetJustifyH('RIGHT')
 		bar.candyBarDuration:ClearAllPoints()
-		bar.candyBarDuration:Point('RIGHT', bar, 'RIGHT', -4, 0)
+		if AS:CheckOption('BigWigsHalfBar') then
+			bar.candyBarLabel:Point('BOTTOMLEFT', bar, 'TOPLEFT', 0, 4)
+			bar.candyBarDuration:Point('BOTTOMRIGHT', bar, 'TOPRIGHT', -1, 2)
+		else
+			bar.candyBarLabel:Point("LEFT", bar, "LEFT", 4, 0)
+			bar.candyBarDuration:Point("RIGHT", bar, "RIGHT", -4, 0)
+		end
 		bar.candyBarBar:ClearAllPoints()
 		bar.candyBarBar:SetAllPoints(bar)
 		bar.candyBarBar.SetPoint = AS.Noop
@@ -100,7 +105,15 @@ function AS:SkinBigWigs(event, addon)
 		BigWigsBars:RegisterBarStyle('Tukui', {
 			apiVersion = 1,
 			version = 1,
-			GetSpacing = function(bar) return 8 end,
+			GetSpacing = function(bar)
+				local Spacing = 0
+				if AS:CheckOption('BigWigsHalfBar') then
+					Spacing = 20
+				else
+					Spacing = 8
+				end
+				return Spacing
+			end,
 			ApplyStyle = applystyle,
 			BarStopped = freestyle,
 			GetStyleName = function() return 'Tukui' end,

@@ -2,6 +2,8 @@ if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local A, C, L, G = unpack(Tukui or AsphyxiaUI or DuffedUI)
 local AddOnName, Engine = ...
 local AddOn = LibStub('AceAddon-3.0'):NewAddon(AddOnName, 'AceConsole-3.0', 'AceEvent-3.0', 'AceTimer-3.0', 'AceHook-3.0')
+local LSM = LibStub('LibSharedMedia-3.0')
+
 Engine[1] = AddOn
 _G[AddOnName] = Engine
 
@@ -61,18 +63,22 @@ elseif Tukui then
 	AddOn.UIBaseVersion = GetAddOnMetadata('Tukui', 'Version')
 end
 
+local Frame = CreateFrame('Frame')
+Frame:Hide()
+Frame:SetTemplate()
+
+AddOn.Blank = LSM:Fetch('background', 'Solid')
+AddOn.NormTex = AsphyxiaUI and LSM:Fetch('statusbar', 'Asphyxia') or LSM:Fetch('statusbar', 'Tukui')
+AddOn.Font = LSM:Fetch('font', 'PT Sans Narrow Bold')
+AddOn.PixelFont = AsphyxiaUI and LSM:Fetch('font', 'Homespun TT BRK') or LSM:Fetch('font', 'Visitor TT2 BRK')
+AddOn.ActionBarFont = LSM:Fetch('font', 'Arial')
+AddOn.UIScale = GetCVar('uiScale') or UIParent:GetScale()
+AddOn.Mult = 768/strmatch(GetCVar('gxResolution'), '%d+x(%d+)')/AddOn.UIScale
+AddOn.BackdropColor = { Frame:GetBackdropColor() }
+AddOn.BorderColor = { Frame:GetBackdropBorderColor() }
+
 if Tukui and tonumber(GetAddOnMetadata('Tukui', 'Version')) >= 16.00 then
-	AddOn.Blank = C['Medias'].Blank
-	AddOn.NormTex = C['Medias'].Normal
-	AddOn.Font = C['Medias'].Font
-	AddOn.UFFont = C['Medias'].AltFont
-	AddOn.PixelFont = C['Medias'].PixelFont
-	AddOn.ActionBarFont = C['Medias'].ActionBarFont
-	AddOn.UIScale = C['General'].UIScale
 	AddOn.DataTextFontSize = A['DataTexts'].Size
-	AddOn.BackdropColor = C['Medias'].BackdropColor
-	AddOn.BorderColor = C['Medias'].BorderColor
-	AddOn.Mult = 768/strmatch(GetCVar('gxResolution'), '%d+x(%d+)')/AddOn.UIScale
 	AddOn.DataTexts = A['DataTexts']
 
 	AddOn.InfoLeft = A.Panels.DataTextLeft
@@ -82,24 +88,12 @@ if Tukui and tonumber(GetAddOnMetadata('Tukui', 'Version')) >= 16.00 then
 	AddOn.TabsRightBackground = A.Panels.RightChatTabsBackground
 	AddOn.TabsLeftBackground = A.Panels.LeftChatTabsBackground
 	AddOn.Minimap = A.Minimap
-	AddOn.TooltipEnable = C['Tooltips']['Enable']
 	AddOn.ActionBar1 = A.ActionBar1
 	AddOn.ActionBar2 = A.ActionBar2
 	AddOn.ActionBar3 = A.ActionBar3
 	AddOn.ActionBar4 = A.ActionBar4
 elseif AsphyxiaUI and tostring(GetAddOnMetadata('AsphyxiaUI', 'Version')) == '8.1.0' then
-	AddOn.Blank = C['Media']['Textures']['Blank']
-	AddOn.NormTex = C['Media']['Textures']['Normal']
-	AddOn.Font = C['Media']['Fonts']['Default']['Normal']
-	AddOn.UFFont = C['Media']['Fonts']['Default']['Unitframes']
-	AddOn.PixelFont = C['Media']['Fonts']['Pixel']['Asphyxia']
-	AddOn.ActionBarFont = C['Media']['Fonts']['Default']['Normal']
-	AddOn.UIScale = C['General']['UIScale']
 	AddOn.DataTextFontSize = 12
-	AddOn.BackdropColor = C['Media']['Colors']['Backdrop']
-	AddOn.BorderColor = C['Media']['Colors']['Border']
-	AddOn.Mult = 768/strmatch(GetCVar('gxResolution'), '%d+x(%d+)')/AddOn.UIScale
-	AddOn.DataTexts = A['DataTexts']
 
 	AddOn.InfoLeft = A['Layouts']['DataTextLeft']
 	AddOn.InfoRight = A['Layouts']['DataTextRight']
@@ -108,23 +102,12 @@ elseif AsphyxiaUI and tostring(GetAddOnMetadata('AsphyxiaUI', 'Version')) == '8.
 	AddOn.TabsRightBackground = A['Layouts']['ChatRightTab']
 	AddOn.TabsLeftBackground = A['Layouts']['ChatLeftTab']
 	AddOn.Minimap = A['Minimap']
-	--AddOn.TooltipEnable = C['Tooltips']['Enable']
 	AddOn.ActionBar1 = A['Layouts']['ActionBars1']
 	AddOn.ActionBar2 = A['Layouts']['ActionBars2']
 	AddOn.ActionBar3 = A['Layouts']['ActionBars3']
 	AddOn.ActionBar4 = A['Layouts']['ActionBars4']
 else
-	AddOn.Blank = C['media'].blank
-	AddOn.NormTex = C['media'].normTex
-	AddOn.Font = C['media'].font
-	AddOn.UFFont = C['media'].uffont
-	AddOn.PixelFont = C['media'].pixelfont
-	AddOn.ActionBarFont = C['media'].font
-	AddOn.UIScale = C['general'].uiscale
 	AddOn.DataTextFontSize = C['datatext'].fontsize
-	AddOn.BackdropColor = C['media'].backdropcolor
-	AddOn.BorderColor = C['media'].bordercolor
-	AddOn.Mult = 768/strmatch(GetCVar('gxResolution'), '%d+x(%d+)')/AddOn.UIScale
 
 	AddOn.InfoLeft = G.Panels.DataTextLeft
 	AddOn.InfoRight = G.Panels.DataTextRight
@@ -133,7 +116,6 @@ else
 	AddOn.TabsRightBackground = G.Panels.RightChatTabsBackground
 	AddOn.TabsLeftBackground = G.Panels.LeftChatTabsBackground
 	AddOn.Minimap = G.Maps.Minimap
-	AddOn.TooltipEnable = C['tooltip']['enable']
 	AddOn.ActionBar1 = G.ActionBars.Bar1
 	AddOn.ActionBar2 = G.ActionBars.Bar2
 	AddOn.ActionBar3 = G.ActionBars.Bar3

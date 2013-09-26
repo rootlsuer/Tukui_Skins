@@ -357,7 +357,8 @@ function AS:SkinArmory()
 				icon:Point("TOP", 3, 0)
 			end
 			icon:CreateBackdrop("Default")
-			icon.backdrop:SetAllPoints()
+			local Backdrop = icon.backdrop or icon.Backdrop
+			Backdrop:SetAllPoints()
 		end
 	end
 
@@ -434,7 +435,8 @@ function AS:SkinArmory()
 		AS:SkinTexture(ArmoryMailIcon)
 		ArmoryMailIcon:SetInside()
 		ArmoryMailFrame:CreateBackdrop()
-		ArmoryMailFrame.backdrop:SetOutside(ArmoryMailIcon)
+		local Backdrop = ArmoryMailFrame.backdrop or ArmoryMailFrame.Backdrop
+		Backdrop:SetOutside(ArmoryMailIcon)
 		ArmoryMailFrame:Point("TOPLEFT", 28, 24)
 
 		-- Resting
@@ -451,7 +453,8 @@ function AS:SkinArmory()
 				AS:SkinTexture(icon)
 				icon:SetInside()
 				button:CreateBackdrop()
-				button.backdrop:SetOutside(icon)
+				local Backdrop = button.backdrop or button.Backdrop
+				Backdrop:SetOutside(icon)
 				button.isSkinned = true
 			end
 		end)
@@ -479,8 +482,9 @@ function AS:SkinArmory()
 		button.Hider:Point("BOTTOMRIGHT", -1, 0)
 
 		button:CreateBackdrop("Default")
-		button.backdrop:Point("TOPLEFT", 1, -2)
-		button.backdrop:Point("BOTTOMRIGHT", 1, -2)
+		local Backdrop = button.backdrop or button.Backdrop
+		Backdrop:Point("TOPLEFT", 1, -2)
+		Backdrop:Point("BOTTOMRIGHT", 1, -2)
 
 		ArmoryGearSetFrame:HookScript("OnShow", function()
 			button.Hider:Hide();
@@ -506,7 +510,8 @@ function AS:SkinArmory()
 				button:StripTextures()
 				button:StyleButton(true)
 				button:CreateBackdrop("Default")
-				button.backdrop:SetAllPoints()
+				local Backdrop = button.backdrop or button.Backdrop
+				Backdrop:SetAllPoints()
 				AS:SkinTexture(icon)
 				icon:SetInside()
 			end
@@ -582,7 +587,8 @@ function AS:SkinArmory()
 		AS:SkinTexture(ArmoryPetFrameSelectedPetIcon)
 		ArmoryPetFrameIconBorder:Kill()
 		ArmoryPetFramePetInfo:CreateBackdrop("Default", true)
-		ArmoryPetFramePetInfo.backdrop:SetOutside(ArmoryPetFrameSelectedPetIcon)
+		local Backdrop = ArmoryPetFramePetInfo.backdrop or ArmoryPetFramePetInfo.Backdrop
+		Backdrop:SetOutside(ArmoryPetFrameSelectedPetIcon)
 
 		ArmoryPetFrameDiet:Point("TOPRIGHT", 63, -2)
 		ArmoryPetFrameTypeText:Point("BOTTOMRIGHT", 60, 2)
@@ -612,15 +618,17 @@ function AS:SkinArmory()
 
 		ArmoryPetSpecFrame.ring:Hide()
 		ArmoryPetSpecFrame:CreateBackdrop("Default")
-		ArmoryPetSpecFrame.backdrop:SetOutside(ArmoryPetSpecFrame.specIcon)
+		local Backdrop = ArmoryPetSpecFrame.backdrop or ArmoryPetSpecFrame.Backdrop
+		Backdrop:SetOutside(ArmoryPetSpecFrame.specIcon)
 		ArmoryPetSpecFrame.specIcon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
-		ArmoryPetSpecFrame.specIcon:SetParent(ArmoryPetSpecFrame.backdrop)
+		ArmoryPetSpecFrame.specIcon:SetParent(Backdrop)
 	 
 		for i = 1, ARMORY_NUM_PET_ABILITIES do
 			local button = _G["ArmoryPetAbility"..i]
 			button:StripTextures()
 			button:CreateBackdrop("Default")
-			button.backdrop:SetOutside(button.icon)
+			local Backdrop = button.backdrop or button.Backdrop
+			Backdrop:SetOutside(button.icon)
 			button.icon:SetDrawLayer("ARTWORK")
 			button.icon:SetTexCoord(0.1, 0.9, 0.1, 0.9) 
 		end
@@ -686,7 +694,8 @@ function AS:SkinArmory()
 			for i = 1, Armory:GetNumFactions() do
 				local statusbar = _G["ArmoryReputationBar"..i.."ReputationBar"]
 				if statusbar then
-					if not statusbar.backdrop then
+					local Backdrop = statusbar.backdrop or statusbar.Backdrop
+					if not Backdrop then
 						AS:SkinStatusBar(statusbar)
 					end
 					_G["ArmoryReputationBar"..i.."Background"]:SetTexture(nil)
@@ -994,7 +1003,8 @@ function AS:SkinArmory()
 
 		tab.pushed = true
 		tab:CreateBackdrop("Default")
-		tab.backdrop:SetAllPoints()
+		local Backdrop = tab.backdrop or tab.Backdrop
+		Backdrop:SetAllPoints()
 		tab:StyleButton(true)
 		tab:GetHighlightTexture().SetTexture = AS.Noop
 		tab:GetCheckedTexture().SetTexture = AS.Noop
@@ -1112,7 +1122,8 @@ function AS:SkinArmory()
 		ArmorySpellBookPetInfo:Point("TOPLEFT", 10, -30)
 		AS:SkinTexture(ArmorySpellBookPetInfo.icon)
 		ArmorySpellBookPetInfo:CreateBackdrop("Default", true)
-		ArmorySpellBookPetInfo.backdrop:SetOutside(ArmorySpellBookPetInfo.icon)
+		local Backdrop = ArmorySpellBookPetInfo.backdrop or ArmorySpellBookPetInfo.Backdrop
+		Backdrop:SetOutside(ArmorySpellBookPetInfo.icon)
 	end
 
 	local function SkinSocial()
@@ -1275,7 +1286,8 @@ function AS:SkinArmory()
 			for i = 1, numAchievements do
 				local statusbar = _G["ArmoryAchievementBar"..i.."AchievementBar"]
 				if statusbar then
-					if not statusbar.backdrop then
+					local Backdrop = statusbar.backdrop or statusbar.Backdrop
+					if not Backdrop then
 						AS:SkinStatusBar(statusbar)
 					end
 					_G["ArmoryAchievementBar"..i.."Background"]:SetTexture(nil)

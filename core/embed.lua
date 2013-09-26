@@ -11,7 +11,6 @@ local Ace3Options = IsAddOnLoaded('Enhanced_Config') and true or false
 local EmbedSystem_MainWindow = CreateFrame('Frame', 'EmbedSystem_MainWindow', UIParent)
 local EmbedSystem_LeftWindow = CreateFrame('Frame', 'EmbedSystem_LeftWindow', EmbedSystem_MainWindow)
 local EmbedSystem_RightWindow = CreateFrame('Frame', 'EmbedSystem_RightWindow', EmbedSystem_MainWindow)
-local EmbedSystem_WidthSlider = CreateFrame('Slider', 'EmbedSystem_WidthSlider', EmbedSystem_MainWindow, 'OptionsSliderTemplate')
 
 function AS:Embed_Init()
 	EmbedSystem_MainWindow:RegisterEvent('PLAYER_REGEN_DISABLED')
@@ -36,21 +35,6 @@ function AS:Embed_Init()
 		end
 	end)
 
-	EmbedSystem_WidthSlider:Hide()
-	EmbedSystem_WidthSlider:SetSize(AS.InfoRight:GetWidth(), AS.InfoRight:GetHeight())
-	EmbedSystem_WidthSlider:SetPoint(AS.InfoRight:GetPoint())
-	EmbedSystem_WidthSlider:SetValueStep(1)
-	EmbedSystem_WidthSliderLow:SetText('')
-	EmbedSystem_WidthSliderHigh:SetText('')
-	EmbedSystem_WidthSliderText:SetText('')
-	EmbedSystem_WidthSlider:SetMinMaxValues(1, 1000)
-	EmbedSystem_WidthSlider:SetValue(AS:CheckOption('EmbedLeftWidth'))
-	EmbedSystem_WidthSlider:SetScript('OnValueChanged', function(self, value)
-		AS:SetOption('EmbedLeftWidth', value)
-		AS:EmbedSystem_WindowResize()
-		AS:Embed_Check()
-	end)
-	AS:SkinSlideBar(EmbedSystem_WidthSlider, AS.InfoRight:GetHeight(), true)
 	AS:EmbedSystem_WindowResize()
 	AS:Embed_Check(true)
 	if AS:CheckOption('EmbedOoC') and not InCombatLockdown() then AS:Embed_Hide() end
@@ -60,10 +44,9 @@ function AS:Embed_Init()
 		Frame:SetFrameStrata("DIALOG")
 		Frame:SetTemplate('Transparent')
 		Frame:Size(17, Panel1:GetHeight() - 4)
-		--Frame:FontString('Text', AS.ActionBarFont, 12)
-		Frame:FontString('Text', AS.Font, 14)
+		Frame:FontString('Text', AS.ActionBarFont, 12)
 		Frame.Text:SetText(Text)
-		Frame.Text:SetPoint('CENTER', 0, 0)
+		Frame.Text:SetPoint('CENTER', 0, 1)
 		Frame:RegisterForClicks('LeftButtonDown', 'RightButtonDown')
 		UIFrameFadeOut(Frame, 0.2, Frame:GetAlpha(), 0)
 		Frame:SetScript('OnEnter', function(self, ...)
@@ -94,36 +77,20 @@ function AS:Embed_Init()
 		end)
 	end
 
-	CreateToggleButton('RightToggleButton', '>', AS.InfoRight, AS.ChatBackgroundRight, L.Skins.ToggleRightChat, L.Skins.ToggleEmbed)
-	--CreateToggleButton('RightToggleButton', '►', AS.InfoRight, AS.ChatBackgroundRight, L.Skins.ToggleRightChat, L.Skins.ToggleEmbed)
+	CreateToggleButton('RightToggleButton', '►', AS.InfoRight, AS.ChatBackgroundRight, L.Skins.ToggleRightChat, L.Skins.ToggleEmbed)
 	RightToggleButton:Point('RIGHT', AS.InfoRight, 'RIGHT', -2, 0)
-
-	RightToggleButton:HookScript('OnEnter', function(self)
-		GameTooltip:AddDoubleLine('Alt-Right Click:', 'Toggle Resize Slider', 1, 1, 1, 1, 1, 0)
-		GameTooltip:Show()
-	end)
 
 	RightToggleButton:HookScript('OnClick', function(self, button)
 		if button == 'RightButton' then
-			if IsAltKeyDown() then
-				if EmbedSystem_WidthSlider:IsShown() then
-					EmbedSystem_WidthSlider:Hide()
-				else
-					EmbedSystem_MainWindow:Show()
-					EmbedSystem_WidthSlider:Show()
-				end
+			if EmbedSystem_MainWindow:IsShown() then
+				EmbedSystem_MainWindow:Hide()
 			else
-				if EmbedSystem_MainWindow:IsShown() then
-					EmbedSystem_MainWindow:Hide()
-				else
-					EmbedSystem_MainWindow:Show()
-				end
+				EmbedSystem_MainWindow:Show()
 			end
 		end
 	end)
 
-	CreateToggleButton('LeftToggleButton', '<', AS.InfoLeft, AS.ChatBackgroundLeft, L.Skins.ToggleLeftChat, L.Skins.ToggleOptions)
-	--CreateToggleButton('LeftToggleButton', '◄', AS.InfoLeft, AS.ChatBackgroundLeft, L.Skins.ToggleLeftChat, L.Skins.ToggleOptions)
+	CreateToggleButton('LeftToggleButton', '◄', AS.InfoLeft, AS.ChatBackgroundLeft, L.Skins.ToggleLeftChat, L.Skins.ToggleOptions)
 	LeftToggleButton:Point('LEFT', AS.InfoLeft, 'LEFT', 2, 0)
 	LeftToggleButton:HookScript('OnClick', function(self, button)
 		if button == 'RightButton' then
@@ -175,7 +142,10 @@ function AS:EmbedSystem_WindowResize()
 	EmbedSystem_LeftWindow:SetSize(AS:CheckOption('EmbedLeftWidth') - 1, EmbedSystem_MainWindow:GetHeight())
 	EmbedSystem_RightWindow:SetSize((EmbedSystem_MainWindow:GetWidth() - AS:CheckOption('EmbedLeftWidth')) - 1, EmbedSystem_MainWindow:GetHeight())
 
-	EmbedSystem_WidthSlider:SetMinMaxValues(floor(EmbedSystem_MainWindow:GetWidth() * .25), floor(EmbedSystem_MainWindow:GetWidth() * .75))
+	if Enhanced_Config[1].Options.args.skins then
+		Enhanced_Config[1].Options.args.skins.args.embed.args.EmbedLeftWidth.min = floor(EmbedSystem_MainWindow:GetWidth() * .25)
+		Enhanced_Config[1].Options.args.skins.args.embed.args.EmbedLeftWidth.max = floor(EmbedSystem_MainWindow:GetWidth() * .75)
+	end
 end
 
 function AS:Embed_Check(Message)
@@ -306,9 +276,11 @@ function AS:Embed_Omen()
 	OmenAnchor:ClearAllPoints()
 	OmenAnchor:SetPoint('TOPLEFT', EmbedParent, 'TOPLEFT', 0, 0)
 	OmenAnchor:SetPoint('BOTTOMRIGHT', EmbedParent, 'BOTTOMRIGHT', 0, 0)
-	if not OmenAnchor.backdrop then
+	local Backdrop = OmenAnchor.backdrop or OmenAnchor.Backdrop
+	if not Backdrop then
 		OmenAnchor:CreateBackdrop()
-		OmenAnchor.backdrop:SetOutside(OmenAnchor, 0, 0)
+		Backdrop = OmenAnchor.backdrop or OmenAnchor.Backdrop
+		Backdrop:SetOutside(OmenAnchor, 0, 0)
 	end
 end
 
@@ -338,8 +310,8 @@ function AS:Embed_alDamageMeter()
 
 	dmconf.barheight = floor((EmbedParent:GetHeight() / dmconf.maxbars) - dmconf.spacing)
 	dmconf.width = EmbedParent:GetWidth()
-
-	alDamageMeterFrame.backdrop:SetTemplate(AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default')
+	local Backdrop = alDamageMeterFrame.backdrop or alDamageMeterFrame.Backdrop
+	Backdrop:SetTemplate(AS:CheckOption('TransparentEmbed') and 'Transparent' or 'Default')
 	alDamageMeterFrame.bg:Kill()
 	alDamageMeterFrame:ClearAllPoints()
 	alDamageMeterFrame:SetInside(EmbedParent, 2, 2)
@@ -375,9 +347,10 @@ function AS:Embed_Skada()
 		window.bargroup:SetParent(relativeFrame)
 		window.bargroup:SetFrameStrata('LOW')
 		window.bargroup:SetBackdrop(nil)
-		if window.bargroup.backdrop then
-			window.bargroup.backdrop:SetTemplate(AS:CheckOption('TransparentEmbed') and "Transparent" or 'Default')
-			if not AS:CheckOption('SkadaBackdrop') then window.bargroup.backdrop:Hide() else window.bargroup.backdrop:Show() end
+		local Backdrop = window.bargroup.backdrop or window.bargroup.Backdrop
+		if Backdrop then
+			Backdrop:SetTemplate(AS:CheckOption('TransparentEmbed') and "Transparent" or 'Default')
+			if not AS:CheckOption('SkadaBackdrop') then Backdrop:Hide() else Backdrop:Show() end
 		end
 		barmod.ApplySettings(barmod, window)
 	end

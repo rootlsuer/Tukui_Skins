@@ -7,7 +7,8 @@ function AS:SkinAltoholic(event, addon)
 	local function ColorAltoBorder(self)
 		if self.border then
 			local r, g, b = self.border:GetVertexColor()
-			self.backdrop:SetBackdropBorderColor(r, g, b, 1)
+			local Backdrop = self.backdrop or self.Backdrop
+			Backdrop:SetBackdropBorderColor(r, g, b, 1)
 		end
 	end
 
@@ -145,8 +146,9 @@ function AS:SkinAltoholic(event, addon)
 		for i = 1, 8 do
 			for j = 1, 10 do
 				AS:SkinBackdropFrame(_G["AltoholicFrameAchievementsEntry"..i.."Item"..j])
+				local Backdrop = _G["AltoholicFrameAchievementsEntry"..i.."Item"..j].backdrop or _G["AltoholicFrameAchievementsEntry"..i.."Item"..j].Backdrop
 				AS:SkinTexture(_G["AltoholicFrameAchievementsEntry"..i.."Item"..j..'_Background'])
-				_G["AltoholicFrameAchievementsEntry"..i.."Item"..j..'_Background']:SetInside(_G["AltoholicFrameAchievementsEntry"..i.."Item"..j].backdrop)
+				_G["AltoholicFrameAchievementsEntry"..i.."Item"..j..'_Background']:SetInside(Backdrop)
 			end
 		end
 	end

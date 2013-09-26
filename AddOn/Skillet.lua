@@ -304,16 +304,16 @@ function AS:SkinSkillet()
 	SkilletSortAscButton:StripTextures()
 	SkilletSortAscButton:SetTemplate('Default', true)
 	if not SkilletSortAscButton.text then
-		SkilletSortAscButton:FontString('text', AS.PixelFont, AS.DataTextFontSize)
+		SkilletSortAscButton:FontString('text', AS.ActionBarFont, AS.DataTextFontSize)
 		SkilletSortAscButton.text:Point('CENTER', 0, 0)
-		SkilletSortAscButton.text:SetText('^')
+		SkilletSortAscButton.text:SetText("▲")
 	end
 	SkilletSortDescButton:StripTextures()
 	SkilletSortDescButton:SetTemplate('Default', true)
 	if not SkilletSortDescButton.text then
-		SkilletSortDescButton:FontString('text', AS.PixelFont, AS.DataTextFontSize)
+		SkilletSortDescButton:FontString('text', AS.ActionBarFont, AS.DataTextFontSize)
 		SkilletSortDescButton.text:Point('CENTER', 0, 0)
-		SkilletSortDescButton.text:SetText('v')
+		SkilletSortDescButton.text:SetText("▼")
 	end
 	AS:SkinNextPrevButton(SkilletRecipeGroupOperations)
 	AS:SkinEditBox(SkilletItemCountInputBox)

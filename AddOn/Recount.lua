@@ -11,8 +11,9 @@ function AS:SkinRecount()
 
 	local function SkinFrame(frame)
 		AS:SkinBackdropFrame(frame)
-		frame.backdrop:SetAllPoints()
-		frame.backdrop:SetPoint('TOPLEFT', frame, 'TOPLEFT', 0, -6)
+		local Backdrop = frame.backdrop or frame.Backdrop
+		Backdrop:SetAllPoints()
+		Backdrop:SetPoint('TOPLEFT', frame, 'TOPLEFT', 0, -6)
 		frame.CloseButton:SetPoint('TOPRIGHT', frame, 'TOPRIGHT', -1, -9)
 		frame:SetBackdrop(nil)
 		frame.TitleBackground = CreateFrame('Frame', nil, frame)

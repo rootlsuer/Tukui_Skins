@@ -38,6 +38,22 @@ end
 
 function AS:SkinScrollBar(frame)
 	frame:SkinScrollBar()
+	_G[frame:GetName().."ScrollUpButton"]:StripTextures()
+	_G[frame:GetName().."ScrollUpButton"]:SetTemplate("Default", true)
+	_G[frame:GetName().."ScrollDownButton"]:StripTextures()
+	_G[frame:GetName().."ScrollDownButton"]:SetTemplate("Default", true)
+	if not _G[frame:GetName().."ScrollUpButton"].text then
+		_G[frame:GetName().."ScrollUpButton"]:FontString("text", AS.ActionBarFont, 12)
+		_G[frame:GetName().."ScrollUpButton"].text:SetText("▲")
+		_G[frame:GetName().."ScrollUpButton"].text:SetPoint("CENTER", 0, 0)
+		_G[frame:GetName().."ScrollUpButton"].text:SetTextColor(unpack(AS.BorderColor))
+	end	
+	if not _G[frame:GetName().."ScrollDownButton"].text then
+		_G[frame:GetName().."ScrollDownButton"]:FontString("text", AS.ActionBarFont, 12)
+		_G[frame:GetName().."ScrollDownButton"].text:SetText("▼")
+		_G[frame:GetName().."ScrollDownButton"].text:SetPoint("CENTER", 0, 0)
+		_G[frame:GetName().."ScrollDownButton"].text:SetTextColor(unpack(AS.BorderColor))
+	end
 end
 
 function AS:SkinTab(frame, strip)

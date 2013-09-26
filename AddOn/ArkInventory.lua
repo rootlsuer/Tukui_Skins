@@ -84,7 +84,8 @@ function AS:SkinArkInventory()
 		if _G[frame:GetName()] == ARKINV_Frame1ChangerWindowBag1 then ARKINV_Frame1ChangerWindowBag1IconTexture:SetTexture('interface\\icons\\inv_misc_bag_07_green') end
 		if _G[frame:GetName()..'Background'] then _G[frame:GetName()..'Background']:Hide() end
 		AS:SkinIconButton(frame, true)
-		frame.backdrop:SetBackdropBorderColor(r,g,b,a)
+		local Backdrop = frame.backdrop or frame.Backdrop
+		Backdrop:SetBackdropBorderColor(r,g,b,a)
 	end)
 end
 

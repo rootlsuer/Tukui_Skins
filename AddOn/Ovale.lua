@@ -8,11 +8,12 @@ function AS:SkinOvale()
 		Icon1n1:GetParent():StripTextures()
 		local i = 1
 		while _G["Icon"..i.."n1"] do
-			if not _G["Icon"..i.."n1"].backdrop then
+			local Backdrop = _G["Icon"..i.."n1"].backdrop or _G["Icon"..i.."n1"].Backdrop
+			if not Backdrop then
 				AS:SkinBackdropFrame(_G["Icon"..i.."n1"], true)
-				_G["Icon"..i.."n1"].backdrop:SetFrameLevel(0)
-				_G["Icon"..i.."n1"].backdrop:SetAllPoints()
-				_G["Icon"..i.."n1"].backdrop:SetScale(AS.UIScale)
+				Backdrop:SetFrameLevel(0)
+				Backdrop:SetAllPoints()
+				Backdrop:SetScale(AS.UIScale)
 			end
 			_G['Icon'..i..'n1'].shortcut:ClearAllPoints()
 			_G['Icon'..i..'n1'].shortcut:SetJustifyH('LEFT')

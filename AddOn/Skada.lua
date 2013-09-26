@@ -29,13 +29,13 @@ function AS:SkinSkada()
 		if win.db.enabletitle then
 			skada.button:SetTemplate("Default", true)
 		end
-		if not skada.backdrop then
+		local Backdrop = skada.backdrop or skada.Backdrop
+		if not Backdrop then
 			AS:SkinBackdropFrame(skada)
-		end
-		if skada.backdrop then
-			skada.backdrop:ClearAllPoints()
-			skada.backdrop:Point('TOPLEFT', win.db.enabletitle and skada.button or skada, 'TOPLEFT', -2, 2)
-			skada.backdrop:Point('BOTTOMRIGHT', skada, 'BOTTOMRIGHT', 2, -2)
+		else
+			Backdrop:ClearAllPoints()
+			Backdrop:Point('TOPLEFT', win.db.enabletitle and skada.button or skada, 'TOPLEFT', -2, 2)
+			Backdrop:Point('BOTTOMRIGHT', skada, 'BOTTOMRIGHT', 2, -2)
 		end
 	end)
 
