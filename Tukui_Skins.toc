@@ -1,6 +1,6 @@
 ## Interface: 50400
 ## Title: |cFFC495DDTukui|r |cFFFFFFFFSkins|r
-## Version: 1.56
+## Version: 1.57
 ## Author: Azilroka, Sortokk
 ## Url: http://www.tukui.org/addons/index.php?act=view&id=127
 ## OptionalDeps: AsphyxiaUI, DuffedUI, Tukui, Tukui_ChatTweaks
