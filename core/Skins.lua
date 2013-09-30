@@ -84,6 +84,10 @@ AS.Skins = {
 		["addon"] = "Tukui_Skins",
 		["hide"] = true,
 	},
+	['Blizzard_Calendar'] = {
+		["buttonText"] = "Calendar",
+		['addon'] = 'Tukui_Skins',
+	},
 	['Blizzard_WorldStateCaptureBar'] = {
 		["buttonText"] = "World State Capture Bar",
 		['addon'] = 'Tukui_Skins',

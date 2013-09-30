@@ -1,7 +1,7 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local AS = unpack(select(2,...))
 local L = AS.Locale
-local tinsert, sort, pairs, format, gsub = tinsert, sort, pairs, format, gsub
+local tinsert, sort, pairs, format, gsub, strfind = tinsert, sort, pairs, format, gsub, strfind
 
 function AS:Ace3Options()
 	local Ace3OptionsPanel = IsAddOnLoaded('Enhanced_Config') and Enhanced_Config[1] or nil
@@ -34,6 +34,15 @@ function AS:Ace3Options()
 		order = 0,
 		type = 'group',
 		name = 'AddOn Skins',
+		get = function(info) return AS:CheckOption(info[#info]) end,
+		set = function(info, value) AS:SetOption(info[#info], value) end,
+		guiInline = true,
+		args = {},
+	}
+	Ace3OptionsPanel.Options.args.skins.args.blizzard = {
+		order = 0,
+		type = 'group',
+		name = 'Blizzard Skins',
 		get = function(info) return AS:CheckOption(info[#info]) end,
 		set = function(info, value) AS:SetOption(info[#info], value) end,
 		guiInline = true,
@@ -194,19 +203,26 @@ function AS:Ace3Options()
 	Ace3OptionsPanel.Options.args.skins.args.credits = {
 		type = "group",
 		name = "Credits",
-		order = -1,
+		order = 3,
 		args = {
 			desc = {
 				order = 1,
 				type = "description",
-				fontSize = Large,
 				name = format('Credits:\n%s', AS.CreditsString),
 			},
 		},
 	}
-	local order = 2
+
+	local order, blizzorder = 0, 0
 	for skinName, _ in AS:OrderedPairs(AS.register) do
-		Ace3OptionsPanel.Options.args.skins.args.addons.args[skinName] = GenerateOptionTable(skinName, order)
-		order = order + 1
+		if skinName ~= 'MiscFixes' then
+			if strfind(skinName, 'Blizzard_') then
+				Ace3OptionsPanel.Options.args.skins.args.blizzard.args[skinName] = GenerateOptionTable(skinName, blizzorder)
+				blizzorder = blizzorder + 1
+			else
+				Ace3OptionsPanel.Options.args.skins.args.addons.args[skinName] = GenerateOptionTable(skinName, order)
+				order = order + 1
+			end
+		end
 	end
 end
