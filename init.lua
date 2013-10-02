@@ -68,7 +68,7 @@ Frame:Hide()
 Frame:SetTemplate()
 
 AddOn.Blank = LSM:Fetch('background', 'Solid')
-AddOn.NormTex = AsphyxiaUI and LSM:Fetch('statusbar', 'Asphyxia') or LSM:Fetch('statusbar', 'Tukui')
+AddOn.NormTex = AsphyxiaUI and LSM:Fetch('statusbar', 'Asphyxia') or DuffedUI and LSM:Fetch('statusbar', 'Duffed') or LSM:Fetch('statusbar', 'Tukui')
 AddOn.Font = LSM:Fetch('font', 'PT Sans Narrow Bold')
 AddOn.PixelFont = AsphyxiaUI and LSM:Fetch('font', 'Homespun TT BRK') or LSM:Fetch('font', 'Visitor TT2 BRK')
 AddOn.ActionBarFont = LSM:Fetch('font', 'Arial')
