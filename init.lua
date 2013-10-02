@@ -1,4 +1,5 @@
 if not (Tukui or AsphyxiaUI or DuffedUI) then return end
+assert(not IsAddOnLoaded('Enhanced_Config'), "Required AddOn 'Enhanced_Config' - http://www.tukui.org/addons/index.php?act=view&id=201")
 local A, C, L, G = unpack(Tukui or AsphyxiaUI or DuffedUI)
 local AddOnName, Engine = ...
 local AddOn = LibStub('AceAddon-3.0'):NewAddon(AddOnName, 'AceConsole-3.0', 'AceEvent-3.0', 'AceTimer-3.0', 'AceHook-3.0')
