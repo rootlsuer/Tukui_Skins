@@ -11,6 +11,7 @@ function AS:SkinOvale()
 			local Backdrop = _G["Icon"..i.."n1"].backdrop or _G["Icon"..i.."n1"].Backdrop
 			if not Backdrop then
 				AS:SkinBackdropFrame(_G["Icon"..i.."n1"], true)
+				Backdrop = _G["Icon"..i.."n1"].backdrop or _G["Icon"..i.."n1"].Backdrop
 				Backdrop:SetFrameLevel(0)
 				Backdrop:SetAllPoints()
 				Backdrop:SetScale(AS.UIScale)
@@ -22,7 +23,7 @@ function AS:SkinOvale()
 			_G['Icon'..i..'n1'].aPortee:SetJustifyV('BOTTOM')
 			_G['Icon'..i..'n1'].aPortee:SetPoint('BOTTOMLEFT', _G['Icon'..i..'n1'], 'BOTTOMLEFT', 2, 2)
 			AS:SkinTexture(_G["Icon"..i.."n1"].icone)
-			_G["Icon"..i.."n1"].icone:SetInside(_G["Icon"..i.."n1"].backdrop)
+			_G["Icon"..i.."n1"].icone:SetInside(Backdrop)
 			i = i + 1
 		end
 	end)

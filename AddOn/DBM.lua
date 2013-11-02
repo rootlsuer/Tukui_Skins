@@ -82,8 +82,10 @@ function AS:SkinDBM(event, addon)
 							timer:Point('RIGHT', frame, 'RIGHT', -4, 0)
 						end
 
-						name:SetFont(DBT_SavedOptions['DBM'].Font, 12, 'OUTLINE')
-						timer:SetFont(DBT_SavedOptions['DBM'].Font, 12, 'OUTLINE')
+						name:SetFont(AS.LSM:Fetch('font', AS:CheckOption('DBMFont')), AS:CheckOption('DBMFontSize'), AS:CheckOption('DBMFontFlag'))
+						timer:SetFont(AS.LSM:Fetch('font', AS:CheckOption('DBMFont')), AS:CheckOption('DBMFontSize'), AS:CheckOption('DBMFontFlag'))
+						name:SetTextColor(bar.owner.options.TextColorR, bar.owner.options.TextColorG, bar.owner.options.TextColorB)
+						timer:SetTextColor(bar.owner.options.TextColorR, bar.owner.options.TextColorG, bar.owner.options.TextColorB)
 
 						if bar.owner.options.IconLeft then icon1:Show() icon1.overlay:Show() else icon1:Hide() icon1.overlay:Hide() end
 						if bar.owner.options.IconRight then icon2:Show() icon2.overlay:Show() else icon2:Hide() icon2.overlay:Hide() end
@@ -104,7 +106,7 @@ function AS:SkinDBM(event, addon)
 			if not anchor.styled then
 				local header = {anchor:GetRegions()}
 					if header[1]:IsObjectType('FontString') then
-						header[1]:SetFont(DBT_SavedOptions['DBM'].Font, 12, 'OUTLINE')
+						header[1]:SetFont(AS.LSM:Fetch('font', AS:CheckOption('DBMFont')), AS:CheckOption('DBMFontSize'), AS:CheckOption('DBMFontFlag'))
 						header[1]:SetTextColor(1, 1, 1, 1)
 						header[1]:SetShadowColor(0, 0, 0, 0)
 						anchor.styled = true	
@@ -144,7 +146,7 @@ function AS:SkinDBM(event, addon)
 
 				background:SetNormalTexture(nil)
 
-				progress:SetStatusBarTexture(AS.LSM:Fetch('statusbar', E.private.general.normTex))
+				progress:SetStatusBarTexture(AS.NormTex)
 				progress:ClearAllPoints()
 				progress:SetInside(bar)
 
@@ -166,8 +168,8 @@ function AS:SkinDBM(event, addon)
 					timer:Point('RIGHT', bar, 'RIGHT', -4, 0)
 				end
 
-				name:SetFont(DBT_SavedOptions['DBM'].Font, 12, 'OUTLINE')
-				timer:SetFont(DBT_SavedOptions['DBM'].Font, 12, 'OUTLINE')
+				name:SetFont(AS.LSM:Fetch('font', AS:CheckOption('DBMFont')), AS:CheckOption('DBMFontSize'), AS:CheckOption('DBMFontFlag'))
+				timer:SetFont(AS.LSM:Fetch('font', AS:CheckOption('DBMFont')), AS:CheckOption('DBMFontSize'), AS:CheckOption('DBMFontFlag'))
 
 				count = count + 1
 			end
@@ -197,9 +199,6 @@ function AS:SkinDBM(event, addon)
 				return RaidNotice_AddMessage_(noticeFrame, textString, colorInfo)
 			end
 		end
-		DBM_SavedOptions.Enabled = true
-		DBT_SavedOptions['DBM'].Texture = AS.NormTex
-		DBT_SavedOptions['DBM'].Font = AS.Font
 	end
 
 	if addon == 'DBM-GUI' then

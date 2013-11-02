@@ -3,7 +3,6 @@ if not (Tukui or AsphyxiaUI or DuffedUI) then return end
 local A, C, L, G = unpack(Tukui or AsphyxiaUI or DuffedUI)
 local AddOnName, Engine = ...
 local AddOn = LibStub('AceAddon-3.0'):NewAddon(AddOnName, 'AceConsole-3.0', 'AceEvent-3.0', 'AceTimer-3.0', 'AceHook-3.0')
-local LSM = LibStub('LibSharedMedia-3.0')
 
 Engine[1] = AddOn
 _G[AddOnName] = Engine
@@ -68,11 +67,12 @@ local Frame = CreateFrame('Frame')
 Frame:Hide()
 Frame:SetTemplate()
 
-AddOn.Blank = LSM:Fetch('background', 'Solid')
-AddOn.NormTex = AsphyxiaUI and LSM:Fetch('statusbar', 'Asphyxia') or DuffedUI and LSM:Fetch('statusbar', 'Duffed') or LSM:Fetch('statusbar', 'Tukui')
-AddOn.Font = LSM:Fetch('font', 'PT Sans Narrow Bold')
-AddOn.PixelFont = AsphyxiaUI and LSM:Fetch('font', 'Homespun TT BRK') or LSM:Fetch('font', 'Visitor TT2 BRK')
-AddOn.ActionBarFont = LSM:Fetch('font', 'Arial')
+AddOn.LSM = LibStub('LibSharedMedia-3.0')
+AddOn.Blank = AddOn.LSM:Fetch('background', 'Solid')
+AddOn.NormTex = AsphyxiaUI and AddOn.LSM:Fetch('statusbar', 'Asphyxia') or AddOn.LSM:Fetch('statusbar', 'Tukui')
+AddOn.Font = AddOn.LSM:Fetch('font', 'PT Sans Narrow Bold')
+AddOn.PixelFont = AsphyxiaUI and AddOn.LSM:Fetch('font', 'Homespun TT BRK') or AddOn.LSM:Fetch('font', 'Visitor TT2 BRK')
+AddOn.ActionBarFont = AddOn.LSM:Fetch('font', 'Arial')
 AddOn.UIScale = GetCVar('uiScale') or UIParent:GetScale()
 AddOn.Mult = 768/strmatch(GetCVar('gxResolution'), '%d+x(%d+)')/AddOn.UIScale
 AddOn.BackdropColor = { Frame:GetBackdropColor() }
@@ -93,7 +93,7 @@ if Tukui and tonumber(GetAddOnMetadata('Tukui', 'Version')) >= 16.00 then
 	AddOn.ActionBar2 = A.ActionBar2
 	AddOn.ActionBar3 = A.ActionBar3
 	AddOn.ActionBar4 = A.ActionBar4
-elseif AsphyxiaUI and tostring(GetAddOnMetadata('AsphyxiaUI', 'Version')) == '8.1.0' then
+elseif AsphyxiaUI then
 	AddOn.DataTextFontSize = 12
 
 	AddOn.InfoLeft = A['Layouts']['DataTextLeft']

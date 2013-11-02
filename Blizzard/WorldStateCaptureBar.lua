@@ -9,6 +9,7 @@ function AS:Blizzard_WorldStateCaptureBar(event, addon)
 	local BarTexture = [[Interface\AddOns\Tukui\medias\textures\normTex]]
 
 	local CreateCaptureBar = function(ID)
+		if not _G['WorldStateCaptureBar'..ID] then return end
 		_G['WorldStateCaptureBar'..ID]:StripTextures(true)
 		_G['WorldStateCaptureBar'..ID..'Indicator']:StripTextures(true)
 		_G['WorldStateCaptureBar'..ID..'LeftBar']:SetTexture(nil)
