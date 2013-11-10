@@ -36,6 +36,9 @@ function AS:Init()
 			if AS:CheckOption('EmbedSystem') == nil then AS:DisableOption('EmbedSystem') end
 			if AS:CheckOption('EmbedSystemDual') == nil then AS:DisableOption('EmbedSystemDual') end
 			if AS:CheckOption('EmbedLeftWidth') == nil then AS:SetOption('EmbedLeftWidth', 200) end
+			if AS:CheckOption('DBMFont') == nil then AS:SetOption('DBMFont', 'Tukui') end
+			if AS:CheckOption('DBMFontSize') == nil then AS:SetOption('DBMFontSize', 12) end
+			if AS:CheckOption('DBMFontFlag') == nil then AS:SetOption('DBMFontFlag', 'OUTLINE') end
 			AS:EnableOption('MiscFixes')
 			for skin, alldata in AS:OrderedPairs(AS.register) do
 				for _, data in pairs(alldata) do
